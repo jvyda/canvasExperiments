@@ -19,8 +19,23 @@ function formatInterval(date1, date2, message) {
 
 function downloadCanvasCommon(name, canvas_obj) {
     var downloadBtn = $('#download')[0];
-    downloadBtn.href = canvas_obj.toDataURL();
     downloadBtn.download = name + '_' + new Date().toISOString() + '.png';
+
+    var imageData = canvas_obj.toDataURL({    format: 'png',
+        multiplier: 4});
+    var blob = dataURLtoBlob(imageData);
+    downloadBtn.href = URL.createObjectURL(blob);
+
+}
+
+//http://stackoverflow.com/questions/23150333/html5-javascript-dataurl-to-blob-blob-to-dataurl
+function dataURLtoBlob(dataurl) {
+    var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new Blob([u8arr], {type:mime});
 }
 
 
