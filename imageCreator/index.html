@@ -1,0 +1,98 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Image Creation</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/png" href="../common/img/ava.png"/>
+
+    <link rel="stylesheet" href="../common/css/normalize.css">
+    <link rel="stylesheet" href="../common/css/main.css">
+    <script src="../common/js/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<div class="topcorner">
+    Some explanation: <br>
+    The user defined function is something<br> which should return true or false<br> to indicate that something should<br> be drawn on this pixel. <br>
+    The color user defined function should<br> return a number indicating the<br> red, blue, green or alpha value. <br>
+    This value can<br> be anything, but it will <br> be sized down to the range 0-254 via modulo. <br>
+    'x' and 'y' can be used within the text fields <br> and javascript methods are available. <br>
+    Providing a user definition<br> and pressing <br> enter or the update <br>button will override <br>the current selected option.
+</div>
+
+Function:
+<span id='desc'></span> <br>
+Background:
+<span id='background'></span>
+<br>
+<label for="function">User defined function: </label><input type="text" id="function" onkeypress="userDefinedTfEnter(event)">
+<input type="button" value="update" onclick="userDefinedFunction()"> Example: Math.sin(x) > Math.cos(y)
+<br>
+OR <br>
+<label for="fun_select">Pre defined function: </label><select id="fun_select" onchange="setNewFunction(true)"></select> <span id="img_definition_wrapper">Definition: <span
+    id='img_definition'></span></span>
+<br>
+<label for="col_select">Color:</label><select id="col_select" onchange="setNewColorFunction()"></select>
+<span id="col_definition_wrapper">Definition:
+    <label for="col_definition_red">Red:</label>
+    <span id='col_definition_red'></span>
+    <label for="col_definition_green">Green:</label>
+    <span id='col_definition_green'></span>
+    <label for="col_definition_blue">Blue:</label>
+    <span id='col_definition_blue'></span>
+    <label for="col_definition_alpha">Alpha:</label>
+    <span id='col_definition_alpha'></span>
+</span>
+<br>
+OR
+<br>
+<label for="tf_red">Red:</label> <input type="text" id="tf_red" value="255" onkeypress="userDefinedColorTf(event)">
+<label for="tf_green">Green:</label> <input type="text" id="tf_green" value="255" onkeypress="userDefinedColorTf(event)">
+<label for="tf_blue">Blue:</label> <input type="text" id="tf_blue" value="255" onkeypress="userDefinedColorTf(event)">
+<label for="tf_alpha">Alpha:</label> <input type="text" id="tf_alpha" value="255" onkeypress="userDefinedColorTf(event)">
+<input type="button" value="update" onclick="updateUserDefinedColor()"> Example: Math.sin(x) * x
+<br>
+<label for="invert_chk">invert?</label>
+<input type="checkbox" id="invert_chk" onchange="updateCanvas()">
+<label for="invert_chk">'oilfilter'?</label>
+<input type="checkbox" id="oilFilter_chk" onchange="showOilConfig()">
+<label for="show_definition_chk">show definition?</label>
+<input type="checkbox" id="show_definition_chk" onchange="showDefinition()">
+<span id="oil_filter_config_wrapper">
+    <label for="oil_effect_levels_tf">Level:</label>
+    <input type="number" id="oil_effect_levels_tf" onkeypress="configChanged(event)">
+    <label for="oil_effect_radius_tf">Radius:</label>
+    <input type="number" id="oil_effect_radius_tf" max="7" onkeypress="configChanged(event)">
+    <input type="button" value="apply" onclick="updateConfig()">
+</span>
+<br>
+<label for="width">Width:</label>
+<input type="number" id="width" onkeypress="configChanged(event)">
+<label for="height">Height:</label>
+<input type="number" id="height" onkeypress="configChanged(event)">
+<input type="button" value="update" onclick="updateConfig()">
+<br>
+<label for="url">URL to this definition:</label><input type="text" id="url" /> <a id="download" onclick="downloadCanvasCommon('imageCreator', canvas)">Download</a>
+<br>
+<canvas id="canvas"></canvas>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+<script src="../common/js/common.js"></script>
+<script src="js/plugins.js"></script>
+
+<script src="js/base.js"></script>
+<script src="js/color_functions.js"></script>
+<script src="js/imageCreationFunctions.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>

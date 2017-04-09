@@ -1,0 +1,53 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ClusterFilter</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/png" href="../common/img/ava.png"/>
+
+    <link rel="stylesheet" href="../common/css/normalize.css">
+    <link rel="stylesheet" href="../common/css/main.css">
+    <script src="../common/js/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+A cluster is a point of color in which the pixels might be concentrated in. <br>
+<label for="equidistant_cluster">Equally distributed colors (random colors if unchecked)</label>
+<input type="checkbox" checked="checked" id="equidistant_cluster" onchange="setNewClusterFunction()">
+<input type="button" onclick="generateClusters()" value="Regenerate image">
+<br>
+<select id="fun_select" onchange="setNewFunction()">
+    <option value="1">Every pixel moves to half the distance between it and the cluster</option>
+    <option value="2">Sets the pixels to exactly the cluster color (only the cluster colors)</option>
+    <option value="3">Move the pixels in the direction to the cluster (and maybe over it)</option>
+</select>
+<span id="dist_wrapper">
+    <label for="dist_in">Distance to move the pixels</label>
+    <input type="number" id="dist_in" onblur="updateConfig()" min="0">
+</span>
+<label for="cluster_in">Amount of clusters (essentially amount of colors, bigger number might crash)</label>
+<input type="number" id="cluster_in" onblur="updateConfig()" min="0">
+<br>
+<label for=img_upload>Change image: (bigger images cause slowdown)</label>
+<input type="file" onchange="previewFile()" id="img_upload"> <a id="download" onclick="downloadCanvas()">Download</a>
+<br>
+<img src="example.jpg" id="src_image">
+<canvas id="src_canvas" style="display: none"></canvas>
+<canvas id="final_canvas"></canvas>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+<script src="../common/js/common.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
