@@ -12,7 +12,7 @@ var config = {
         size: 1000
     },
     stretchiness: 0.1,
-    circleAmount: 1500
+    circleAmount: 750
 };
 
 
@@ -63,6 +63,9 @@ function paintUlamSpiral(data) {
     var index = 0;
     var step_width = 1;
     var last_pos = 0;
+
+    // TODO maybe rework this to use x/y coordinates of canvas instead of the bytes underneath
+
     coordinate_system[index++] = data.length / 2 + config.size.size / 2 * 4;
     last_pos = data.length / 2 + config.size.size / 2 * 4;
     var loops = 0;
