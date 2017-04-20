@@ -50,6 +50,12 @@ function createImageInfo() {
     var img = $("#src_image")[0];
     config.size.width = img.clientWidth;
     config.size.height = img.clientHeight;
+    if (config.size.width == 0) {
+        config.size.width = 500;
+    }
+    if (config.size.height == 0) {
+        config.size.height = 500;
+    }
     src_canvas.width = config.size.width;
     src_canvas.height = config.size.height;
     final_canvas.width = config.size.width;
@@ -59,6 +65,7 @@ function createImageInfo() {
     for (var i = 0; i < config.size.height; i++) {
         imageInfo[i] = new Array(config.size.width);
     }
+    // draw the image here, because resizing causes the context to loose its imageData (it seems)
     input_data = renderImageAndGetData(img, ctx);
     resetImageInfo(input_data, false);
 }
@@ -177,9 +184,15 @@ $(document).ready(function () {
     inputFields['distance'].val(config.morph.dist);
     inputFields['distanceWrapper'] = $('#dist_wrapper');
     inputFields['distanceWrapper'].hide();
+    var newImg = new Image();
+    newImg.src = "example.jpg";
+    newImg.id = 'src_image';
+    newImg.onload = function () {
+        createImageInfo();
+        recreateClusterAndClusterDistance();
+        applyClusterFilter();
+    };
 
-    recreateClusterAndClusterDistance();
-    applyClusterFilter();
 
 });
 
