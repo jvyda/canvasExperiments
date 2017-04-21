@@ -1,0 +1,64 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Collatz Conjecture Tree</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" type="image/png" href="../common/img/ava.png"/>
+
+    <link rel="stylesheet" href="../common/css/normalize.css">
+    <link rel="stylesheet" href="../common/css/main.css">
+    <script src="../common/js/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+<label for="heightChange">Size of tree</label>
+<input type="range" value="25" min="1" max="50" id="heightChange" oninput="setNewHeightChange(this.value)">
+<label for="spread">Spread</label>
+<input type="range" value="5" min="1" id="spread" oninput="setNewSpread(this.value)" max="15">
+
+
+<label for="firstNumber">First number</label>
+<input type="range" value="2" min="1" max="50" id="firstNumber" oninput="setNewFirstNumber(this.value)">
+<label for="secondNumber">Second number</label>
+<input type="range" value="3" min="1" id="secondNumber" oninput="setNewSecondNumber(this.value)" max="15">
+
+<label for="size">Canvas Size:</label>
+<input type="number" id="size" max="10000" onblur="updateCanvasConfig(this.value)">
+<input type="button" value="reinitialize colors" onclick="generateColors(); updateCanvas()">
+<br>
+Explanation of first and second number:
+The typical conjecture is in the form of: 3n + 1 with the property of dividing by two if odd etc.... (Explanation <a href="https://en.wikipedia.org/wiki/Collatz_conjecture">here</a>). <br> The 'firstNumber' is the 2 in the formula and the 'secondNumber' the 3.
+Beware of ... interesting outcomes as this can cause the created tree to become very large... often too much for the browser.
+<br>
+<span>
+    Height:
+    <span id="heightValue"></span>
+    Spread:
+    <span id="spreadValue"></span>
+    Firstnumber:
+    <span id="firstValue"></span>
+    Secondnumber:
+    <span id="secondValue"></span>
+</span>
+<br>
+<a id="download" onclick="downloadCanvasCommon('collatzConjecture', canvas)">Download</a>
+<br>
+<canvas id="canvas"></canvas>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
+<script src="../common/js/common.js"></script>
+<script src="js/plugins.js"></script>
+
+<script src="js/main.js"></script>
+
+
+</body>
+</html>
