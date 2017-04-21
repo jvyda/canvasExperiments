@@ -136,7 +136,7 @@ function setNewFirstNumber(newVal) {
 
 function setNewSecondNumber(newVal) {
     config.conjectureConfig.secondNumber = parseInt(newVal);
-    firstValue.text(config.conjectureConfig.secondNumber);
+    secondValue.text(config.conjectureConfig.secondNumber);
     initStructure();
 }
 
