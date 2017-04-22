@@ -13,6 +13,21 @@ var spreadValue;
 var firstValue;
 var secondValue;
 
+var startCol = {r: 0, g: 0, b: 0};
+var colorPoints = [];
+
+function setToPinkishColors() {
+    colorPoints.push({r: 38, g: 17, b: 43});
+    colorPoints.push({r: 86, g: 37, b: 81});
+    colorPoints.push({r: 132, g: 60, b: 107});
+    colorPoints.push({r: 171, g: 88, b: 126});
+    colorPoints.push({r: 202, g: 122, b: 142});
+    colorPoints.push({r: 224, g: 159, b: 161});
+    colorPoints.push({r: 238, g: 198, b: 189});
+    colorPoints.push({r: 249, g: 237, b: 229});
+}
+
+
 var config = {
     size: {
         size: 1500
@@ -64,13 +79,31 @@ function toRad(angle) {
     return angle / 180 * Math.PI;
 }
 
-function drawElement(element, dir, parentPos, depth) {
-    ctx.beginPath();
+function d2h(d) {
+    return (d / 256 + 1 / 512).toString(16).substring(2, 4);
+}
 
+
+function drawElement(input, dir, parentPos, depth) {
+    if (depth >= config.conjectureConfig.maxDepth || input in used) return;
+    ctx.beginPath();
     ctx.moveTo(parentPos.x, parentPos.y);
-    ctx.strokeStyle = colors[depth];
-    //ctx.fillText((depth % colors.length) + ' ', parentPos.x + config.heightChange * Math.cos(toRad(dir)), parentPos.y + config.heightChange * Math.sin(toRad(dir)));
-    ctx.lineTo(parentPos.x + config.conjectureConfig.heightChange * Math.cos(toRad(dir)), parentPos.y + config.conjectureConfig.heightChange * Math.sin(toRad(dir)));
+    var whereToMoveColorWise = ~~((depth / config.conjectureConfig.maxDepth * 0.9999999) * colorPoints.length);
+    var whereWeComeColorWise = whereToMoveColorWise - 1;
+    var baseColor = whereWeComeColorWise != -1 ? colorPoints[whereWeComeColorWise] : startCol;
+    var targetColor = colorPoints[whereToMoveColorWise];
+    var numberOfStepsEachColor = config.conjectureConfig.maxDepth / colorPoints.length;
+    var ratio = (depth % (numberOfStepsEachColor)) / ((numberOfStepsEachColor));
+    var newColor = {
+        r: targetColor.r * ratio + baseColor.r * (1 - ratio),
+        g: targetColor.g * ratio + baseColor.g * (1 - ratio),
+        b: targetColor.b * ratio + baseColor.b * (1 - ratio)
+    };
+    ctx.strokeStyle = '#' + d2h(~~newColor.r) + d2h(~~newColor.g) + d2h(~~newColor.b);
+    var newXOffset = config.conjectureConfig.heightChange * Math.cos(toRad(dir));
+    var newYOffset = config.conjectureConfig.heightChange * Math.sin(toRad(dir));
+    //ctx.fillText((ctx.strokeStyle) + ' ', parentPos.x, parentPos.y);
+    ctx.lineTo(parentPos.x + newXOffset, parentPos.y + newYOffset);
     ctx.stroke();
     // experiment to use two parallel lines represented in the video, doesn't work that well, because the line can cross the other line and then... stuff happens
     // also lines overlay each other
@@ -84,31 +117,32 @@ function drawElement(element, dir, parentPos, depth) {
     //    parentPos.y + config.heightChange * Math.sin(toRad(dir)) + Math.sin(toRad(90 - dir)) * config.width / 2);
     //ctx.stroke();
     var newParentPos = {
-        x: parentPos.x + config.conjectureConfig.heightChange * Math.cos(toRad(dir)),
-        y: parentPos.y + config.conjectureConfig.heightChange * Math.sin(toRad(dir))
+        x: parentPos.x + newXOffset,
+        y: parentPos.y + newYOffset
     };
     depth++;
-    if (element.child1 != undefined) {
-        drawElement(element.child1, dir + config.conjectureConfig.dirChange, newParentPos, depth);
-        ctx.moveTo(parentPos.x, parentPos.y);
-    } else {
-        ctx.stroke();
+    used[input] = 1;
+    drawElement(input * config.conjectureConfig.firstNumber, dir + config.conjectureConfig.dirChange, newParentPos, depth);
+    var inputSmaller = input - 1;
+    var probableNumber = (inputSmaller) / config.conjectureConfig.secondNumber;
+    if ((inputSmaller) % config.conjectureConfig.secondNumber == 0 && (probableNumber % config.conjectureConfig.firstNumber != 0)) {
+        drawElement(probableNumber, dir - config.conjectureConfig.dirChange, newParentPos, depth);
     }
-    if (element.child2 != undefined) {
-        drawElement(element.child2, dir - config.conjectureConfig.dirChange, newParentPos, depth);
-        ctx.moveTo(parentPos.x, parentPos.y);
-    } else {
+    else {
         ctx.stroke();
     }
 }
 
 function generateColors() {
     colors = [];
-    for (var i = 0; i < config.conjectureConfig.maxDepth; i++) {
+    colorPoints = [];
+    var maxInc = (255 / config.conjectureConfig.maxDepth);
+    for (var i = 0; i < (config.conjectureConfig.maxDepth / 10); i++) {
         var red = ~~(Math.random() * 255);
         var green = ~~(Math.random() * 255);
         var blue = ~~(Math.random() * 255);
-        colors.push('#' + (red).toString(16) + (green).toString(16) + (blue).toString(16));
+        //colors.push('#' + (red).toString(16) + (green).toString(16) + (blue).toString(16));
+        colorPoints.push({r: red, g: green, b: blue});
     }
 }
 
@@ -119,25 +153,21 @@ function updateCanvasConfig(newValue) {
 }
 
 function updateCanvas() {
+    used = {};
     ctx.clearRect(0, 0, config.size.size, config.size.size);
-    drawElement(collatzTree, -180, config.size, 0);
+    drawElement(1, -180, config.size, 0);
 }
 
-function initStructure() {
-    used = {};
-    collatzTree = buildStructure(1, 0);
-    updateCanvas();
-}
 function setNewFirstNumber(newVal) {
     config.conjectureConfig.firstNumber = parseInt(newVal);
     firstValue.text(config.conjectureConfig.firstNumber);
-    initStructure();
+    updateCanvas();
 }
 
 function setNewSecondNumber(newVal) {
     config.conjectureConfig.secondNumber = parseInt(newVal);
     secondValue.text(config.conjectureConfig.secondNumber);
-    initStructure();
+    updateCanvas();
 }
 
 function initCanvas() {
@@ -169,8 +199,9 @@ $(document).ready(function () {
     $('#size').val(config.size.size);
     $spread.val(config.conjectureConfig.dirChange);
     $heightChange.val(config.conjectureConfig.heightChange);
-    generateColors();
-    initStructure();
+    setToPinkishColors();
+    drawElement(1, -180, config.size, 0);
+    //initStructure();
 });
 
 
