@@ -14,6 +14,7 @@ var firstValue;
 var secondValue;
 
 var startCol = {r: 0, g: 0, b: 0};
+var finalCol = {r: 0, g: 0, b: 0};
 var colorPoints = [];
 
 function setToPinkishColors() {
@@ -25,6 +26,7 @@ function setToPinkishColors() {
     colorPoints.push({r: 224, g: 159, b: 161});
     colorPoints.push({r: 238, g: 198, b: 189});
     colorPoints.push({r: 249, g: 237, b: 229});
+    finalCol = colorPoints[colorPoints.length - 1];
 }
 
 
@@ -35,7 +37,7 @@ var config = {
     conjectureConfig: {
         firstNumber: 2,
         secondNumber: 3,
-        maxDepth: 25,
+        maxDepth: 30,
         heightChange: 25,
         dirChange: 10
     }
@@ -83,17 +85,35 @@ function d2h(d) {
     return (d / 256 + 1 / 512).toString(16).substring(2, 4);
 }
 
-
+// TODO fix with different amount of colors
 function drawElement(input, dir, parentPos, depth) {
     if (depth >= config.conjectureConfig.maxDepth || input in used) return;
+    //console.log('__________________')
     ctx.beginPath();
     ctx.moveTo(parentPos.x, parentPos.y);
-    var whereToMoveColorWise = ~~((depth / config.conjectureConfig.maxDepth * 0.9999999) * colorPoints.length);
-    var whereWeComeColorWise = whereToMoveColorWise - 1;
-    var baseColor = whereWeComeColorWise != -1 ? colorPoints[whereWeComeColorWise] : startCol;
-    var targetColor = colorPoints[whereToMoveColorWise];
-    var numberOfStepsEachColor = config.conjectureConfig.maxDepth / colorPoints.length;
+    var numberOfStepsEachColor = Math.round(config.conjectureConfig.maxDepth / colorPoints.length);
+    // often... this returns a higher color, but the ratio is still in above 0.5, so the color changes drastically
+    var whereToMoveColorWise = (~~((depth) / config.conjectureConfig.maxDepth * 0.995 * colorPoints.length) + 1);
     var ratio = (depth % (numberOfStepsEachColor)) / ((numberOfStepsEachColor));
+    // sometimes a color to high is chosen with a high ratio, this causes the color change to be wrong (and very drastic)
+    // we need to go a step back
+    if (ratio >= 1) {
+        whereToMoveColorWise--;
+    }
+    else if (ratio > 0.5) {
+        whereToMoveColorWise = (~~((depth - 1) / config.conjectureConfig.maxDepth * 0.995 * colorPoints.length) + 1);
+    }
+
+    var targetColor = colorPoints[whereToMoveColorWise];
+    if (whereToMoveColorWise == colorPoints.length) {
+        targetColor = finalCol;
+    }
+    var whereWeComeColorWise = whereToMoveColorWise - 1;
+    //console.log(whereWeComeColorWise + '_' + whereToMoveColorWise)
+    //console.log(depth + '_' + numberOfStepsEachColor)
+    //console.log(ratio + '_' + depth / config.conjectureConfig.maxDepth)
+
+    var baseColor = colorPoints[whereWeComeColorWise];
     var newColor = {
         r: targetColor.r * ratio + baseColor.r * (1 - ratio),
         g: targetColor.g * ratio + baseColor.g * (1 - ratio),
@@ -101,6 +121,10 @@ function drawElement(input, dir, parentPos, depth) {
     };
     ctx.strokeStyle = '#' + d2h(~~newColor.r) + d2h(~~newColor.g) + d2h(~~newColor.b);
     var newXOffset = config.conjectureConfig.heightChange * Math.cos(toRad(dir));
+    //console.log(ctx.strokeStyle)
+    //console.log(newColor)
+    //console.log(baseColor)
+    //console.log(targetColor)
     var newYOffset = config.conjectureConfig.heightChange * Math.sin(toRad(dir));
     //ctx.fillText((ctx.strokeStyle) + ' ', parentPos.x, parentPos.y);
     ctx.lineTo(parentPos.x + newXOffset, parentPos.y + newYOffset);
@@ -136,8 +160,9 @@ function drawElement(input, dir, parentPos, depth) {
 function generateColors() {
     colors = [];
     colorPoints = [];
+    colorPoints.push(startCol);
     var maxInc = (255 / config.conjectureConfig.maxDepth);
-    for (var i = 0; i < (config.conjectureConfig.maxDepth / 10); i++) {
+    for (var i = 0; i < 3; i++) {
         var red = ~~(Math.random() * 255);
         var green = ~~(Math.random() * 255);
         var blue = ~~(Math.random() * 255);
@@ -181,7 +206,7 @@ $(document).ready(function () {
     canvas = $("#canvas")[0];
     initCanvas();
 
-    ctx.font = "6px Verdana";
+    ctx.font = "8px Verdana";
     ctx.lineWidth = 1;
     $size = $('#size');
     $heightChange = $('#heightChange');
@@ -200,6 +225,7 @@ $(document).ready(function () {
     $spread.val(config.conjectureConfig.dirChange);
     $heightChange.val(config.conjectureConfig.heightChange);
     setToPinkishColors();
+    //generateColors();
     drawElement(1, -180, config.size, 0);
     //initStructure();
 });
