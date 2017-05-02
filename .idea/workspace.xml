@@ -2,206 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ad.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ae.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/af.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ag.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/al.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/am.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ao.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ar.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/at.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/au.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/az.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ba.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/be.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/br.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/by.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/bz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ca.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cf.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ch.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ci.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/co.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/cz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/de.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/dj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/dk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/dm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/do.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/dz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ec.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ee.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/eg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/eh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/er.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/es.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/et.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/fi.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/fj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/fm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/fr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ga.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ge.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/gy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/hn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/hr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ht.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/hu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/id.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ie.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/il.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/in.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/iq.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ir.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/is.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/it.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/jm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/jo.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/jp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ke.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ki.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/km.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kp.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ks.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/kz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/la.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/li.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ls.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/lv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ly.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ma.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/md.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/me.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mh.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ml.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mx.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/my.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/mz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/na.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ne.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ng.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ni.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/nl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/no.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/np.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/nr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/nz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/om.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pe.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ph.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/pw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/py.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/qa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ro.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/rs.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ru.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/rw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sa.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sb.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sd.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/se.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/si.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sk.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/so.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/st.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/sz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/td.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tg.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/th.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tj.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tl.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/to.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tr.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tt.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tv.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/tz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ua.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ug.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/us.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/uy.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/uz.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/va.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/vc.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ve.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/vn.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/vu.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ws.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/ye.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/za.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/zm.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/src/zw.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/flags/js/plugins.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clusterFilter/index.html" afterPath="$PROJECT_DIR$/clusterFilter/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/clusterFilter/js/main.js" afterPath="$PROJECT_DIR$/clusterFilter/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -224,23 +26,23 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/flags/js/main.js">
+        <entry file="file://$PROJECT_DIR$/clusterFilter/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.18053375">
-              <caret line="101" column="31" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="31" />
+            <state vertical-scroll-proportion="3.7409732">
+              <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/flags/index.html">
+        <entry file="file://$PROJECT_DIR$/clusterFilter/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.0">
-              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="21" />
+            <state vertical-scroll-proportion="-16.0">
+              <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
               <folding>
-                <marker date="1493726909770" expanded="true" signature="599:752" placeholder="..." />
-                <marker date="1493726909770" expanded="true" signature="692:720" placeholder="..." />
+                <marker date="1493732482315" expanded="true" signature="607:760" placeholder="..." />
+                <marker date="1493732482315" expanded="true" signature="700:728" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -274,14 +76,14 @@
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/ulamSpiral/index.html" />
         <option value="$PROJECT_DIR$/ulamSpiral/js/main.js" />
-        <option value="$PROJECT_DIR$/clusterFilter/index.html" />
         <option value="$PROJECT_DIR$/collatzConjecture/js/plugins.js" />
         <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/collatzConjecture/index.html" />
         <option value="$PROJECT_DIR$/collatzConjecture/js/main.js" />
-        <option value="$PROJECT_DIR$/clusterFilter/js/main.js" />
         <option value="$PROJECT_DIR$/flags/index.html" />
         <option value="$PROJECT_DIR$/flags/js/main.js" />
+        <option value="$PROJECT_DIR$/clusterFilter/js/main.js" />
+        <option value="$PROJECT_DIR$/clusterFilter/index.html" />
       </list>
     </option>
   </component>
@@ -437,38 +239,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="circleBs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="circleBs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -606,7 +376,13 @@
       <option name="project" value="LOCAL" />
       <updated>1493722303591</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="added js for calculating the 'average' flag of all the flags">
+      <created>1493732232645</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1493732232645</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -676,7 +452,8 @@
     <MESSAGE value="increased maximum spread to 30&#10;" />
     <MESSAGE value="the new elements are now calculated while the tree is being drawn&#10;changed to use the gradient of colors not the absolut values" />
     <MESSAGE value="minor fixed regarding gradient, still not working correctly with a different number of colors" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor fixed regarding gradient, still not working correctly with a different number of colors" />
+    <MESSAGE value="added js for calculating the 'average' flag of all the flags" />
+    <option name="LAST_COMMIT_MESSAGE" value="added js for calculating the 'average' flag of all the flags" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1009,29 +786,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/clusterFilter/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.074074">
-          <caret line="17" column="45" selection-start-line="17" selection-start-column="45" selection-end-line="17" selection-end-column="45" />
-          <folding>
-            <marker date="1492707258055" expanded="true" signature="607:760" placeholder="..." />
-            <marker date="1492707258055" expanded="true" signature="700:728" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5023548">
           <caret line="1274" column="0" selection-start-line="1274" selection-start-column="0" selection-end-line="1274" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/clusterFilter/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5259026">
-          <caret line="198" column="8" selection-start-line="198" selection-start-column="8" selection-end-line="198" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1044,9 +802,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.18053375">
+          <caret line="101" column="31" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/flags/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.0">
+        <state vertical-scroll-proportion="0.6196721">
           <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="21" />
           <folding>
             <marker date="1493726909770" expanded="true" signature="599:752" placeholder="..." />
@@ -1055,10 +821,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
+    <entry file="file://$PROJECT_DIR$/clusterFilter/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18053375">
-          <caret line="101" column="31" selection-start-line="101" selection-start-column="31" selection-end-line="101" selection-end-column="31" />
+        <state vertical-scroll-proportion="-16.0">
+          <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
+          <folding>
+            <marker date="1493732482315" expanded="true" signature="607:760" placeholder="..." />
+            <marker date="1493732482315" expanded="true" signature="700:728" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/clusterFilter/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.7409732">
+          <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
           <folding />
         </state>
       </provider>

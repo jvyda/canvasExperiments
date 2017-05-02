@@ -125,10 +125,9 @@ function addDistanceToPoint(colorInfoAtThisPos, dist) {
 
 function getEquidistantPoints() {
     var clusterCenter = [];
-    var incremental = config.morph.cubeSize / Math.cbrt(config.morph.clusterAmount);
-    for (var x = 0; x < config.morph.cubeSize; x += incremental) {
-        for (var y = 0; y < config.morph.cubeSize; y += incremental) {
-            for (var z = 0; z < config.morph.cubeSize; z += incremental) {
+    for (var x = 0; x < config.morph.cubeSize; x += config.morph.cubeSize / Math.cbrt(config.morph.clusterAmount)) {
+        for (var y = 0; y < config.morph.cubeSize; y += config.morph.cubeSize / Math.cbrt(config.morph.clusterAmount)) {
+            for (var z = 0; z < config.morph.cubeSize; z += config.morph.cubeSize / Math.cbrt(config.morph.clusterAmount)) {
                 clusterCenter.push({x: x, y: y, z: z});
             }
         }
