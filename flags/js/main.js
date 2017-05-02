@@ -5,10 +5,12 @@ var tempCanvas;
 
 var config = {
     size: {
-        width: 100,
-        height: 100
+        width: 250,
+        height: 250
     }
 };
+
+var done = false;
 var flagImage = new Image();
 
 var countries = [
@@ -40,7 +42,7 @@ function addImageToAverage(index) {
         drawAverageImage(index);
         return;
     }
-    if (index > 1) {
+    if (index % 10 == 2) {
         drawAverageImage(index);
     }
     flagImage.onload = function () {
@@ -72,10 +74,7 @@ function addImageToAverage(index) {
                 colors.push(currentColor);
             }
         }
-
-        setTimeout(function(){
-            addImageToAverage(++index);
-        }, 500)
+        done = true;
     };
     flagImage.src = 'src/' + countries[index] + '.png';
 }
@@ -117,8 +116,19 @@ $(document).ready(function () {
     tempCanvas.width = config.size.width;
     tempCanvas.height = config.size.height;
     tmpCtx = tempCanvas.getContext("2d");
-    addImageToAverage(0);
+    setTimeout(function () {
+        mainFun();
+    }, 200)
 });
+var index = 0;
+
+function mainFun() {
+    index += 1;
+    if (index < countries.length) {
+        addImageToAverage(index);
+        setTimeout(mainFun, 200);
+    }
+}
 
 
 
