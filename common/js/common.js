@@ -4,6 +4,9 @@ function randomNumber(n, cur) {
     return rand;
 }
 
+function roundedRandom(amount) {
+    return ~~(Math.random() * amount);
+}
 
 function getCoordinates(index) {
     return {x: index / 4 % config.size.width, y: Math.floor((index / 4 / config.size.width))}
@@ -134,4 +137,9 @@ leastFactor = function(n){
         if (n%(i+24)==0) return i+24;
     }
     return n;
+}
+
+function pointDistance(pointA, pointB) {
+    return Math.sqrt(Math.pow(pointA.x - pointB.x, 2) +
+        Math.pow(pointA.y - pointB.y, 2));
 }
