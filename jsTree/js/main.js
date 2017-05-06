@@ -12,24 +12,26 @@ var config = {
         height: 700,
         width: 1300
     },
-    maxAge: 50,
-    color: {
-        red: 0,
-        blue: 0,
-        green: 120,
-        alpha: 25
-    },
-    initialX: 10,
-    initialY: 10,
-    fuzziness: 1,
-    noise: 8,
-    deltaVel: 0.8,
-    spawn: 1,
-    fuzzyStart: true,
-    oilEffectConfig: {
-        levels: 10,
-        radius: 2,
-        showing: false
+    jsTree: {
+        maxAge: 50,
+        color: {
+            red: 0,
+            blue: 0,
+            green: 120,
+            alpha: 25
+        },
+        initialX: 10,
+        initialY: 10,
+        fuzziness: 1,
+        noise: 8,
+        deltaVel: 0.8,
+        spawn: 1,
+        fuzzyStart: true,
+        oilEffectConfig: {
+            levels: 10,
+            radius: 2,
+            showing: false
+        }
     }
 };
 
@@ -58,10 +60,10 @@ function getIndexForCoordinate(x, y) {
 
 function setCoordinate(x, y) {
     var indexForCoordinate = getIndexForCoordinate(x, y);
-    imageData.data[indexForCoordinate] = tonemap(hdrdata[indexForCoordinate] += config.color.red);
-    imageData.data[indexForCoordinate + 1] = tonemap(hdrdata[indexForCoordinate + 1] += config.color.green);
-    imageData.data[indexForCoordinate + 2] = tonemap(hdrdata[indexForCoordinate + 2] += config.color.blue);
-    imageData.data[indexForCoordinate + 3] = tonemap(hdrdata[indexForCoordinate + 3] += config.color.alpha);
+    imageData.data[indexForCoordinate] = tonemap(hdrdata[indexForCoordinate] += config.jsTree.color.red);
+    imageData.data[indexForCoordinate + 1] = tonemap(hdrdata[indexForCoordinate + 1] += config.jsTree.color.green);
+    imageData.data[indexForCoordinate + 2] = tonemap(hdrdata[indexForCoordinate + 2] += config.jsTree.color.blue);
+    imageData.data[indexForCoordinate + 3] = tonemap(hdrdata[indexForCoordinate + 3] += config.jsTree.color.alpha);
 }
 
 function updateCanvasConfig(event) {
@@ -73,17 +75,17 @@ function updateCanvasConfig(event) {
 }
 
 function updateConfig() {
-    config.color.red = parseInt(inputFields['red'].val());
-    config.color.blue = parseInt(inputFields['blue'].val());
-    config.color.green = parseInt(inputFields['green'].val());
-    config.color.alpha = parseInt(inputFields['alpha'].val());
-    config.initialX = parseInt(inputFields['initialX'].val());
-    config.initialY = parseInt(inputFields['initialY'].val());
-    config.fuzziness = parseFloat(inputFields['fuz'].val());
-    config.noise = parseFloat(inputFields['noise'].val());
-    config.deltaVel = parseFloat(inputFields['deltaVel'].val());
-    config.maxAge = parseInt(inputFields['maxAge'].val());
-    config.spawn = parseInt(inputFields['spawn'].val());
+    config.jsTree.color.red = parseInt(inputFields['red'].val());
+    config.jsTree.color.blue = parseInt(inputFields['blue'].val());
+    config.jsTree.color.green = parseInt(inputFields['green'].val());
+    config.jsTree.color.alpha = parseInt(inputFields['alpha'].val());
+    config.jsTree.initialX = parseInt(inputFields['initialX'].val());
+    config.jsTree.initialY = parseInt(inputFields['initialY'].val());
+    config.jsTree.fuzziness = parseFloat(inputFields['fuz'].val());
+    config.jsTree.noise = parseFloat(inputFields['noise'].val());
+    config.jsTree.deltaVel = parseFloat(inputFields['deltaVel'].val());
+    config.jsTree.maxAge = parseInt(inputFields['maxAge'].val());
+    config.jsTree.spawn = parseInt(inputFields['spawn'].val());
 }
 
 function updateConfigEvent(event) {
@@ -136,8 +138,10 @@ function thirdMovement(part) {
 
 function onTickFunction() {
     var alive = [];
-    var delta = config.deltaVel, fuz = config.fuzziness, noise = config.noise,
-        maxAge = config.maxAge;
+    var delta = config.jsTree.deltaVel;
+    var fuz = config.jsTree.fuzziness;
+    var noise = config.jsTree.noise;
+    var maxAge = config.jsTree.maxAge;
 
     for (var i = 0; i < particles.length; i++) {
         var part = particles[i];
@@ -153,18 +157,18 @@ function onTickFunction() {
     }
     particles = alive;
     ctx.putImageData(imageData, 0, 0);
-    setTimeout(onTickFunction, 30);
+    requestAnimationFrame(onTickFunction)
 }
 
 var currentMousePos = {};
 
 function definiteAdd() {
-    for (var i = 0; i < config.spawn; i++) {
+    for (var i = 0; i < config.jsTree.spawn; i++) {
         var particle = {
             x: currentMousePos.x,
             y: currentMousePos.y,
-            deltaX: config.fuzzyStart ? fuzzy(config.initialX) : config.initialX,
-            deltaY: config.fuzzyStart ? fuzzy(config.initialY) : config.initialY,
+            deltaX: config.jsTree.fuzzyStart ? fuzzy(config.jsTree.initialX) : config.jsTree.initialX,
+            deltaY: config.jsTree.fuzzyStart ? fuzzy(config.jsTree.initialY) : config.jsTree.initialY,
             age: 0
         };
         particles.push(particle);
@@ -178,7 +182,7 @@ function definiteAdd() {
 
 var mouseDown = false;
 function addParticle(event) {
-    config.fuzzyStart = inputFields['fuzzyStart'].is(':checked');
+    config.jsTree.fuzzyStart = inputFields['fuzzyStart'].is(':checked');
     mouseDown = true;
     event = event || window.event;
     currentMousePos.x = event.pageX - canvas.offsetLeft;
@@ -276,7 +280,7 @@ function toggleBackgroundNoise() {
 }
 
 function startDrawingLoop() {
-    setTimeout(onTickFunction, 100);
+    requestAnimationFrame(onTickFunction);
 }
 
 function clearThis() {
@@ -401,17 +405,17 @@ function applyOil() {
 
 
 function reconfigureOilEffect() {
-    config.oilEffectConfig.levels = $('#oil_effect_levels_tf').val();
-    config.oilEffectConfig.radius = $('#oil_effect_radius_tf').val();
+    config.jsTree.oilEffectConfig.levels = $('#oil_effect_levels_tf').val();
+    config.jsTree.oilEffectConfig.radius = $('#oil_effect_radius_tf').val();
 }
 
 function showOilConfig() {
-    if (!config.oilEffectConfig.showing) {
+    if (!config.jsTree.oilEffectConfig.showing) {
         oilFilterConfigWrapper.show();
     } else {
         oilFilterConfigWrapper.hide();
     }
-    config.oilEffectConfig.showing = !config.oilEffectConfig.showing;
+    config.jsTree.oilEffectConfig.showing = !config.jsTree.oilEffectConfig.showing;
 }
 
 

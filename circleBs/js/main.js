@@ -6,9 +6,9 @@ var config = {
         width: 1000,
         height: 1000
     },
-    maxDeltaX: 10,
-    maxDeltaY: 10,
-    maxAge: 1000
+    circleBs: {
+        maxAge: 1000
+    }
 };
 
 var objects = [];
@@ -33,16 +33,19 @@ function update(obj) {
         obj.deltaY *= -1;
     }
     obj.age += 1;
-    if (obj.age < config.maxAge) {
-        setTimeout(function () {
+    if (obj.age < config.circleBs.maxAge) {
+        requestAnimationFrame(function(){
             update(obj);
-        }, 10)
+        });
+        //setTimeout(function () {
+        //    update(obj);
+        //}, 10)
     }
 }
 
 function reset() {
     objects.forEach(function (obj) {
-        obj.age = config.maxAge;
+        obj.age = config.circleBs.maxAge;
     });
     objects = [];
     ctx.clearRect(0, 0, config.size.width, config.size.height);
@@ -64,7 +67,9 @@ function createNewCircle() {
         col: '#' + (~~(Math.random() * 255)).toString(16) + (~~(Math.random() * 255)).toString(16) + (~~(Math.random() * 255)).toString(16)
     };
     objects.push(obj);
-    update(obj)
+    requestAnimationFrame(function(){
+        update(obj);
+    });
 }
 $(document).ready(function () {
     canvas = $('#canvas')[0];

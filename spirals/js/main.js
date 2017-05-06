@@ -11,8 +11,10 @@ var config = {
     size: {
         size: 1000
     },
-    stretchiness: 0.1,
-    circleAmount: 750
+    spirals: {
+        stretchiness: 0.1,
+        circleAmount: 750
+    }
 };
 
 
@@ -27,8 +29,8 @@ function paintArchimedianSpiral() {
     //var increment = 2 * Math.PI / amount;
     //var theta = increment;
     //while (theta < 100 * Math.PI) {
-    //    var newX = centerX + theta * config.stretchiness * Math.cos(theta);
-    //    var newY = centerY + theta * config.stretchiness * Math.sin(theta);
+    //    var newX = centerX + theta * config.spirals.stretchiness * Math.cos(theta);
+    //    var newY = centerY + theta * config.spirals.stretchiness * Math.sin(theta);
     //    ctx.lineTo(newX, newY);
     //    theta = theta + increment;
     //}
@@ -37,7 +39,7 @@ function paintArchimedianSpiral() {
     ctx.font = "8px Georgia";
     var cnt = 1;
     var theta2 = 0;
-    for (var index = 1; index < config.circleAmount; index++) {
+    for (var index = 1; index < config.spirals.circleAmount; index++) {
         var amountOfNumbers = Math.pow(index + 1, 2) - Math.pow(index, 2);
         var increment2 = 2 * Math.PI / amountOfNumbers;
         var amountOfAngle = (index) * 2 * Math.PI;
@@ -45,8 +47,8 @@ function paintArchimedianSpiral() {
         // there are some rounding errors....
         while (theta2 < amountOfAngle && !(Math.abs(theta2 - amountOfAngle) < 0.00001)) {
             theta2 = theta2 + increment2;
-            var newX2 = centerX + theta2 * config.stretchiness * Math.cos(theta2);
-            var newY2 = centerY + theta2 * config.stretchiness * Math.sin(theta2);
+            var newX2 = centerX + theta2 * config.spirals.stretchiness * Math.cos(theta2);
+            var newY2 = centerY + theta2 * config.spirals.stretchiness * Math.sin(theta2);
             cnt++;
             if (isPrime(cnt)) {
                 ctx.rect(newX2, newY2, 1, 1);
@@ -115,18 +117,18 @@ function paintUlamSpiral(data) {
 }
 
 function updateArchimedeanConfig() {
-    if (config.circleAmount == $numberOfCircles.val() && config.stretchiness == $stretchiness.val()) {
+    if (config.spirals.circleAmount == $numberOfCircles.val() && config.spirals.stretchiness == $stretchiness.val()) {
         return;
     }
-    config.circleAmount = $numberOfCircles.val();
-    config.stretchiness = $stretchiness.val();
+    config.spirals.circleAmount = $numberOfCircles.val();
+    config.spirals.stretchiness = $stretchiness.val();
     updateCanvas();
 }
 
 function initArchimedeanConfig() {
     $archimedeanWrapper.show();
-    $numberOfCircles.val(config.circleAmount);
-    $stretchiness.val(config.stretchiness);
+    $numberOfCircles.val(config.spirals.circleAmount);
+    $stretchiness.val(config.spirals.stretchiness);
 }
 function selectSpiral() {
     var selectedSpiral = $("#spiral_select").val();

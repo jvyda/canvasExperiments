@@ -14,7 +14,9 @@ var config = {
     size: {
         size: 1000
     },
-    colorFun: colorFunctions[0]
+    quadTree: {
+        colorFun: colorFunctions[0]
+    }
 };
 
 function drawBorder() {
@@ -48,7 +50,7 @@ function cityLights(input, x, y, depth) {
 }
 
 function setNewColorFunction() {
-    config.colorFun = colorFunctions[$("#color_fun").val()];
+    config.quadTree.colorFun = colorFunctions[$("#color_fun").val()];
     reset(false);
 }
 
@@ -74,7 +76,7 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
             x: basePos.x, y: basePos.y
         };
         var newBaseColor = {
-            red: config.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth),
+            red: config.quadTree.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth),
             green: baseColor.green,
             blue: baseColor.blue
         };
@@ -87,7 +89,7 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
         var newBaseColor = {
             red: baseColor.red,
             green: baseColor.green,
-            blue: config.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth)
+            blue: config.quadTree.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth)
         };
         drawQuadTreeElement(element.second, newBasePos, depth, newBaseColor)
     }
@@ -97,7 +99,7 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
         };
         var newBaseColor = {
             red: baseColor.red,
-            green: config.colorFun.fun(baseColor.green, basePos.x, basePos.y, depth),
+            green: config.quadTree.colorFun.fun(baseColor.green, basePos.x, basePos.y, depth),
             blue: baseColor.blue
         };
         drawQuadTreeElement(element.third, newBasePos, depth, newBaseColor)
@@ -107,7 +109,7 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
             x: basePos.x + quadWidth, y: basePos.y + quadWidth
         };
         var newBaseColor = {
-            red: config.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth),
+            red: config.quadTree.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth),
             green: baseColor.green,
             blue: baseColor.blue
         };

@@ -13,7 +13,7 @@ var config = {
         width: 640,
         height: 923
     },
-    morph: {
+    clusterFilter: {
         dist: 120,
         fun: halfWayDistance,
         clusterFun: getEquidistantPoints,
@@ -71,14 +71,14 @@ function createImageInfo() {
 }
 function recreateClusterAndClusterDistance() {
     var timeBefore = new Date();
-    clusterCenter = config.morph.clusterFun();
+    clusterCenter = config.clusterFilter.clusterFun();
     createImageInfo();
     for (var y = 0; y < config.size.height; y++) {
         for (var x = 0; x < config.size.width; x++) {
             var colorInfoAtThisPos = imageInfo[y][x];
             var minDist = Number.MAX_VALUE;
             var foundCluster = -1;
-            for (var clusterIndex = 0; clusterIndex < config.morph.clusterAmount; clusterIndex++) {
+            for (var clusterIndex = 0; clusterIndex < config.clusterFilter.clusterAmount; clusterIndex++) {
                 var clusterPoint = clusterCenter[clusterIndex];
                 var dist = Math.sqrt(Math.pow(colorInfoAtThisPos.red - clusterPoint.x, 2) +
                     Math.pow(colorInfoAtThisPos.green - clusterPoint.y, 2) +
@@ -118,17 +118,17 @@ function addDistanceToPoint(colorInfoAtThisPos, dist) {
     vect.y /= dist;
     vect.z /= dist;
 
-    colorInfoAtThisPos.red += vect.x * config.morph.dist;
-    colorInfoAtThisPos.green += vect.y * config.morph.dist;
-    colorInfoAtThisPos.blue += vect.z * config.morph.dist;
+    colorInfoAtThisPos.red += vect.x * config.clusterFilter.dist;
+    colorInfoAtThisPos.green += vect.y * config.clusterFilter.dist;
+    colorInfoAtThisPos.blue += vect.z * config.clusterFilter.dist;
 }
 
 function getEquidistantPoints() {
     var clusterCenter = [];
-    var increment = config.morph.cubeSize / Math.cbrt(config.morph.clusterAmount);
-    for (var x = 0; x < config.morph.cubeSize; x += increment) {
-        for (var y = 0; y < config.morph.cubeSize; y += increment) {
-            for (var z = 0; z < config.morph.cubeSize; z += increment) {
+    var increment = config.clusterFilter.cubeSize / Math.cbrt(config.clusterFilter.clusterAmount);
+    for (var x = 0; x < config.clusterFilter.cubeSize; x += increment) {
+        for (var y = 0; y < config.clusterFilter.cubeSize; y += increment) {
+            for (var z = 0; z < config.clusterFilter.cubeSize; z += increment) {
                 clusterCenter.push({x: x, y: y, z: z});
             }
         }
@@ -137,11 +137,11 @@ function getEquidistantPoints() {
 }
 function getRandomClusters() {
     var clusterCenter = [];
-    for (var i = 0; i < config.morph.clusterAmount; i++) {
+    for (var i = 0; i < config.clusterFilter.clusterAmount; i++) {
         clusterCenter.push({
-            x: Math.random() * config.morph.cubeSize,
-            y: Math.random() * config.morph.cubeSize,
-            z: Math.random() * config.morph.cubeSize
+            x: Math.random() * config.clusterFilter.cubeSize,
+            y: Math.random() * config.clusterFilter.cubeSize,
+            z: Math.random() * config.clusterFilter.cubeSize
         });
     }
     return clusterCenter;
@@ -154,7 +154,7 @@ function applyClusterFilter() {
     for (var y = 0; y < config.size.height; y++) {
         for (var x = 0; x < config.size.width; x++) {
             var colorInfoAtThisPos = imageInfo[y][x];
-            config.morph.fun(colorInfoAtThisPos, colorInfoAtThisPos.cluster.dist);
+            config.clusterFilter.fun(colorInfoAtThisPos, colorInfoAtThisPos.cluster.dist);
         }
     }
 
@@ -180,9 +180,9 @@ $(document).ready(function () {
     ctx = src_canvas.getContext("2d");
     final_ctx = final_canvas.getContext("2d");
     inputFields['clusterAmount'] = $('#cluster_in');
-    inputFields['clusterAmount'].val(config.morph.clusterAmount);
+    inputFields['clusterAmount'].val(config.clusterFilter.clusterAmount);
     inputFields['distance'] = $('#dist_in');
-    inputFields['distance'].val(config.morph.dist);
+    inputFields['distance'].val(config.clusterFilter.dist);
     inputFields['distanceWrapper'] = $('#dist_wrapper');
     inputFields['distanceWrapper'].hide();
     var newImg = new Image();
@@ -200,13 +200,13 @@ $(document).ready(function () {
 function setNewFunction() {
     var selectedWAy = $("#fun_select").val();
     if (selectedWAy == 1) {
-        config.morph.fun = halfWayDistance;
+        config.clusterFilter.fun = halfWayDistance;
         inputFields['distanceWrapper'].hide();
     } else if (selectedWAy == 2) {
-        config.morph.fun = exactlyCluster;
+        config.clusterFilter.fun = exactlyCluster;
         inputFields['distanceWrapper'].hide();
     } else {
-        config.morph.fun = addDistanceToPoint;
+        config.clusterFilter.fun = addDistanceToPoint;
         inputFields['distanceWrapper'].show();
     }
     applyClusterFilter();
@@ -214,9 +214,9 @@ function setNewFunction() {
 
 function setNewClusterFunction() {
     if ($("#equidistant_cluster").is(':checked')) {
-        config.morph.clusterFun = getEquidistantPoints;
+        config.clusterFilter.clusterFun = getEquidistantPoints;
     } else {
-        config.morph.clusterFun = getRandomClusters;
+        config.clusterFilter.clusterFun = getRandomClusters;
     }
     recreateClusterAndClusterDistance();
     applyClusterFilter();
@@ -228,10 +228,10 @@ function generateClusters() {
 }
 
 function updateConfig() {
-    config.morph.dist = inputFields['distance'].val();
+    config.clusterFilter.dist = inputFields['distance'].val();
     var newClusterAmount = inputFields['clusterAmount'].val();
-    if (config.morph.clusterAmount != newClusterAmount) {
-        config.morph.clusterAmount = newClusterAmount;
+    if (config.clusterFilter.clusterAmount != newClusterAmount) {
+        config.clusterFilter.clusterAmount = newClusterAmount;
         recreateClusterAndClusterDistance();
     }
     applyClusterFilter();

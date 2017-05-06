@@ -3,14 +3,15 @@ var ctx;
 var drawn = {};
 var mousePos = {};
 
+var animationId;
 
 var config = {
     size: {
         width: 1920,
-        height: 1920
+        height: 1080
     },
     dotLines: {
-        dotAmount: 1000,
+        dotAmount: 500,
         boxWidth: 50,
         boxHeight: 50,
         maxLinks: 10,
@@ -19,7 +20,7 @@ var config = {
         paused: false,
         showAll: false,
         minOpacity: 0.1,
-        intervall: 40,
+        fps: 30,
         linkRange: 100
     }
 };
@@ -115,13 +116,15 @@ function act(dot) {
 }
 
 function renderDots() {
-    if (!config.dotLines.paused) {
-        drawn = {};
-        ctx.clearRect(0, 0, config.size.width, config.size.height);
-        dots.forEach(renderDot);
-        dots.forEach(act);
-    }
-    setTimeout(renderDots, config.dotLines.intervall);
+    drawn = {};
+    ctx.clearRect(0, 0, config.size.width, config.size.height);
+    dots.forEach(renderDot);
+    dots.forEach(act);
+    setTimeout(function () {
+        if(!config.dotLines.paused) {
+            animationId = requestAnimationFrame(renderDots);
+        }
+    }, 1000 / config.dotLines.fps)
 }
 
 function setMousePos(e) {
@@ -138,9 +141,14 @@ function getMousePos(canvas, evt) {
 
 function pause() {
     config.dotLines.paused = !config.dotLines.paused;
+    if (!config.dotLines.paused) {
+        animationId = requestAnimationFrame(renderDots);
+    } else {
+        cancelAnimationFrame(animationId);
+    }
 }
 
-function showAll(){
+function showAll() {
     config.dotLines.showAll = !config.dotLines.showAll;
 }
 
@@ -151,9 +159,11 @@ $(document).ready(function () {
     canvas.height = config.size.height;
     canvas.onmousemove = setMousePos;
     ctx = canvas.getContext("2d");
+
+    $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
     createDots();
     createLines();
-    renderDots();
+    requestAnimationFrame(renderDots);
 });
 
 
