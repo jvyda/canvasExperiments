@@ -7,8 +7,8 @@ var config = {
         width: window.innerWidth
     },
     triangles: {
-        maxSideLenght: 25,
-        minSideLenght: 5,
+        maxSideLength: 25,
+        minSideLength: 5,
         fps: 50,
         paused: false,
         maxDistance: window.innerWidth / 3,
@@ -41,7 +41,7 @@ function generateTriangle() {
         y: base.y + randomNumber(config.triangles.spawnDist)
     };
     var random = function () {
-        return randomNumberButAtLeast(config.triangles.maxSideLenght, config.triangles.minSideLenght);
+        return randomNumberButAtLeast(config.triangles.maxSideLength, config.triangles.minSideLength);
     };
 
     var newYOffset = random() * Math.sin(toRad(90));
@@ -65,14 +65,18 @@ function generateTriangle() {
     obj.points.push(pointC);
     obj.vect = createNormalizedVector(pointA, base);
     obj.col = colors[roundedRandom(colors.length)];
+    obj.origin = {
+        x: base.x,
+        y: base.y
+    };
     return obj;
 }
 
 
 function drawTriangle(obj) {
-    var dist = pointDistance(obj.points[0], base);
-    if (dist > config.triangles.maxDistance) return false;
-    var alpha = 1 - (dist / config.triangles.maxDistance);
+    obj.dist = pointDistance(obj.points[0], obj.origin);
+    if (obj.dist > config.triangles.maxDistance) return false;
+    var alpha = 1 - (obj.dist / config.triangles.maxDistance);
     ctx.beginPath();
     ctx.fillStyle = obj.col.style.replace('%alpha', alpha);
     ctx.moveTo(obj.points[0].x, obj.points[0].y);
@@ -84,8 +88,7 @@ function drawTriangle(obj) {
 }
 
 function act(obj) {
-    var dist = pointDistance(obj.points[0], base);
-    var percentageTraveled = 1 - dist / config.triangles.maxDistance;
+    var percentageTraveled = 1 - obj.dist / config.triangles.maxDistance;
     percentageTraveled = Math.max(0.5, percentageTraveled);
     var delta = {
         x: obj.vect.x * (config.triangles.deltaX * percentageTraveled),
