@@ -419,8 +419,6 @@ function showOilConfig() {
 }
 
 
-
-
 function setNewMovementType() {
     movementPtr = movementTypes[$("#movement_type").val()].ptr;
 }

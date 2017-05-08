@@ -8,12 +8,16 @@ window.requestAnimationFrame = window.requestAnimationFrame
     || window.mozRequestAnimationFrame
     || window.webkitRequestAnimationFrame
     || window.msRequestAnimationFrame
-    || function(f){return setTimeout(f, 1000/60)};
+    || function (f) {
+        return setTimeout(f, 1000 / 60)
+    };
 
 
 window.cancelAnimationFrame = window.cancelAnimationFrame
     || window.mozCancelAnimationFrame
-    || function(requestID){clearTimeout(requestID)};
+    || function (requestID) {
+        clearTimeout(requestID)
+    };
 
 
 function roundedRandom(amount) {
@@ -36,8 +40,10 @@ function downloadCanvasCommon(name, canvas_obj) {
     var downloadBtn = $('#download')[0];
     downloadBtn.download = name + '_' + new Date().toISOString() + '.png';
 
-    var imageData = canvas_obj.toDataURL({    format: 'png',
-        multiplier: 4});
+    var imageData = canvas_obj.toDataURL({
+        format: 'png',
+        multiplier: 4
+    });
     var blob = dataURLtoBlob(imageData);
     downloadBtn.href = URL.createObjectURL(blob);
 
@@ -47,10 +53,10 @@ function downloadCanvasCommon(name, canvas_obj) {
 function dataURLtoBlob(dataurl) {
     var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
         bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
-    while(n--){
+    while (n--) {
         u8arr[n] = bstr.charCodeAt(n);
     }
-    return new Blob([u8arr], {type:mime});
+    return new Blob([u8arr], {type: mime});
 }
 
 
@@ -118,9 +124,9 @@ function applyOilEffect(data, ctx) {
 
 
 // courtesy of http://www.javascripter.net/faq/numberisprime.htm
-isPrime = function(n) {
-    if (isNaN(n) || !isFinite(n) || n%1 || n<2) return false;
-    if (n==leastFactor(n)) return true;
+isPrime = function (n) {
+    if (isNaN(n) || !isFinite(n) || n % 1 || n < 2) return false;
+    if (n == leastFactor(n)) return true;
     return false;
 }
 
@@ -130,23 +136,23 @@ isPrime = function(n) {
 //      0  if n=0
 //      1  if n=1, n=-1, or n is not an integer
 
-leastFactor = function(n){
+leastFactor = function (n) {
     if (isNaN(n) || !isFinite(n)) return NaN;
-    if (n==0) return 0;
-    if (n%1 || n*n<2) return 1;
-    if (n%2==0) return 2;
-    if (n%3==0) return 3;
-    if (n%5==0) return 5;
+    if (n == 0) return 0;
+    if (n % 1 || n * n < 2) return 1;
+    if (n % 2 == 0) return 2;
+    if (n % 3 == 0) return 3;
+    if (n % 5 == 0) return 5;
     var m = Math.sqrt(n);
-    for (var i=7;i<=m;i+=30) {
-        if (n%i==0)      return i;
-        if (n%(i+4)==0)  return i+4;
-        if (n%(i+6)==0)  return i+6;
-        if (n%(i+10)==0) return i+10;
-        if (n%(i+12)==0) return i+12;
-        if (n%(i+16)==0) return i+16;
-        if (n%(i+22)==0) return i+22;
-        if (n%(i+24)==0) return i+24;
+    for (var i = 7; i <= m; i += 30) {
+        if (n % i == 0)      return i;
+        if (n % (i + 4) == 0)  return i + 4;
+        if (n % (i + 6) == 0)  return i + 6;
+        if (n % (i + 10) == 0) return i + 10;
+        if (n % (i + 12) == 0) return i + 12;
+        if (n % (i + 16) == 0) return i + 16;
+        if (n % (i + 22) == 0) return i + 22;
+        if (n % (i + 24) == 0) return i + 24;
     }
     return n;
 }
@@ -154,4 +160,51 @@ leastFactor = function(n){
 function pointDistance(pointA, pointB) {
     return Math.sqrt(Math.pow(pointA.x - pointB.x, 2) +
         Math.pow(pointA.y - pointB.y, 2));
+}
+
+
+function toRad(angle) {
+    return angle / 180 * Math.PI;
+}
+
+function d2h(d) {
+    return (d / 256 + 1 / 512).toString(16).substring(2, 4);
+}
+
+
+function randomNumberButAtLeast(range, min) {
+    var rand = roundedRandom(range);
+    return (rand < min) ? min : rand;
+}
+
+
+function createNormalizedVector(tip, shaft) {
+    var vect = {
+        x: tip.x - shaft.x,
+        y: tip.y - shaft.y
+    };
+
+    var dist = pointDistance(tip, shaft);
+    vect.x /= dist;
+    vect.y /= dist;
+    return vect;
+}
+
+function getMousePos(canvas, evt) {
+    var rect = canvas.getBoundingClientRect();
+    return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+    };
+}
+
+function convertColorToStyle(color) {
+    color.style = '#' + d2h(color.r) + d2h(color.g) + d2h(color.b);
+}
+
+function converColorToRgbaWithAlphaPlaceholderStyle(color) {
+    color.style = 'rgba(%red, %blue, %green, %alpha)'
+        .replace('%red', color.r)
+        .replace('%blue', color.b)
+        .replace('%green', color.g);
 }

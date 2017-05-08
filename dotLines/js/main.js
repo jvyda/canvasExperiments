@@ -7,11 +7,11 @@ var animationId;
 
 var config = {
     size: {
-        width: 1920,
-        height: 1080
+        height: window.innerHeight,
+        width: window.innerWidth
     },
     dotLines: {
-        dotAmount: 500,
+        dotAmount: (window.innerHeight * window.innerWidth) / 4000,
         boxWidth: 50,
         boxHeight: 50,
         maxLinks: 10,
@@ -131,13 +131,6 @@ function setMousePos(e) {
     mousePos = getMousePos(canvas, e);
 }
 
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-        x: evt.clientX - rect.left,
-        y: evt.clientY - rect.top
-    };
-}
 
 function pause() {
     config.dotLines.paused = !config.dotLines.paused;
@@ -160,7 +153,6 @@ $(document).ready(function () {
     canvas.onmousemove = setMousePos;
     ctx = canvas.getContext("2d");
 
-    $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
     createDots();
     createLines();
     requestAnimationFrame(renderDots);

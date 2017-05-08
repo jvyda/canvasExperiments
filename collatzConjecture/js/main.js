@@ -77,14 +77,6 @@ function setNewSpread(newValue) {
     updateCanvas();
 }
 
-function toRad(angle) {
-    return angle / 180 * Math.PI;
-}
-
-function d2h(d) {
-    return (d / 256 + 1 / 512).toString(16).substring(2, 4);
-}
-
 // TODO fix with different amount of colors
 function drawElement(input, dir, parentPos, depth) {
     if (depth >= config.conjectureConfig.maxDepth || input in used) return;
