@@ -199,7 +199,7 @@ function getMousePos(canvas, evt) {
 }
 
 function convertColorToStyle(color) {
-    color.style = '#' + d2h(color.r) + d2h(color.g) + d2h(color.b);
+    color.styleRGB = '#' + d2h(color.r) + d2h(color.g) + d2h(color.b);
 }
 
 function converColorToRgbaWithAlphaPlaceholderStyle(color) {
