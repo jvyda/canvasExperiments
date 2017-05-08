@@ -203,7 +203,7 @@ function convertColorToStyle(color) {
 }
 
 function converColorToRgbaWithAlphaPlaceholderStyle(color) {
-    color.style = 'rgba(%red, %blue, %green, %alpha)'
+    color.style = 'rgba(%red, %green, %blue, %alpha)'
         .replace('%red', color.r)
         .replace('%blue', color.b)
         .replace('%green', color.g);

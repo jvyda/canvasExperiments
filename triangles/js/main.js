@@ -73,8 +73,8 @@ function drawTriangle(obj) {
     var dist = pointDistance(obj.points[0], base);
     if (dist > config.triangles.maxDistance) return false;
     var alpha = 1 - (dist / config.triangles.maxDistance);
-    ctx.fillStyle = obj.col.style.replace('%alpha', alpha);
     ctx.beginPath();
+    ctx.fillStyle = obj.col.style.replace('%alpha', alpha);
     ctx.moveTo(obj.points[0].x, obj.points[0].y);
     obj.points.forEach(function (point) {
         ctx.lineTo(point.x, point.y);
