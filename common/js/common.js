@@ -198,7 +198,7 @@ function getMousePos(canvas, evt) {
     };
 }
 
-function convertColorToStyle(color) {
+function addRGBStyle(color) {
     color.styleRGB = '#' + d2h(color.r) + d2h(color.g) + d2h(color.b);
 }
 
@@ -207,4 +207,25 @@ function converColorToRgbaWithAlphaPlaceholderStyle(color) {
         .replace('%red', color.r)
         .replace('%blue', color.b)
         .replace('%green', color.g);
+}
+
+function addOptionsWithImages(selectId, listOfElements, initialIndex){
+    var oDropdown = $('#'+ selectId).msDropdown().data("dd");
+    listOfElements.forEach(function (objectToPreview) {
+        var tmpCanvas = document.createElement('canvas');
+        objectToPreview.previewDimensionFun();
+        tmpCanvas.width = objectToPreview.previewWidth;
+        tmpCanvas.height = objectToPreview.previewHeight;
+        var tmpCtx = tmpCanvas.getContext("2d");
+        objectToPreview.previewFun(tmpCtx);
+        var imageData = tmpCanvas.toDataURL({
+            format: 'png',
+            multiplier: 4
+        });
+        var blob = dataURLtoBlob(imageData);
+
+        oDropdown.add({text: objectToPreview.name, image: URL.createObjectURL(blob)});
+    });
+
+    oDropdown.set("selectedIndex", initialIndex);
 }

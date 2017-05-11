@@ -14,14 +14,17 @@ var config = {
         maxDistance: window.innerWidth / 4,
         deltaX: 1.5,
         deltaY: 1.5,
-        spawnDist: 10
+        spawnDist: 10,
+        previewConfig: {
+            dimensions: {width: 10, height: 10}
+        }
     }
 };
 
 var triangles = [];
 
 var redOrangeYellowGreen = {
-    name: 'Red to green',
+    name: '',
     colors: [
         {r: 0xb0, g: 0x56, b: 0x3f},
         {r: 0xb5, g: 0x7a, b: 0x3f},
@@ -31,7 +34,7 @@ var redOrangeYellowGreen = {
 };
 
 var blackToRed = {
-    name: 'Black to red',
+    name: '',
     colors: [
         {r: 0x1a, g: 0x1a, b: 0x1a},
         {r: 0x34, g: 0x34, b: 0x34},
@@ -42,7 +45,7 @@ var blackToRed = {
 };
 
 var greyToBlue = {
-    name: 'Grey to blue',
+    name: '',
     colors: [
         {r: 0x7b, g: 0x7b, b: 0x7b},
         {r: 0x94, g: 0x94, b: 0x94},
@@ -53,7 +56,7 @@ var greyToBlue = {
 };
 
 var blackToOchre = {
-    name: 'Black to ochre',
+    name: '',
     colors: [
         {r: 0x0b, g: 0x0b, b: 0x0b},
         {r: 0x25, g: 0x25, b: 0x25},
@@ -64,7 +67,7 @@ var blackToOchre = {
 };
 
 var blackToDarkRed = {
-    name: 'Black to dark red',
+    name: '',
     colors: [
         {r: 0x00, g: 0x00, b: 0x00},
         {r: 0x1a, g: 0x1a, b: 0x1a},
@@ -75,7 +78,7 @@ var blackToDarkRed = {
 };
 
 var greyToPink = {
-    name: 'grey to pink',
+    name: '',
     colors: [
         {r: 0x00, g: 0x00, b: 0x00},
         {r: 0x99, g: 0x99, b: 0x99},
@@ -86,7 +89,7 @@ var greyToPink = {
 };
 
 var darkColors = {
-    name: 'dark colors',
+    name: '',
     colors: [
         {r: 0x40, g: 0x17, b: 0x3d},
         {r: 0x44, g: 0x18, b: 0x33},
@@ -97,7 +100,7 @@ var darkColors = {
 };
 
 var purpleToOrange = {
-    name: 'purple to orange',
+    name: '',
     colors: [
         {r: 0xac, g: 0x44, b: 0xbc},
         {r: 0xbf, g: 0x46, b: 0xac},
@@ -108,7 +111,7 @@ var purpleToOrange = {
 };
 
 var blueish = {
-    name: 'blueish',
+    name: '',
     colors: [
         {r: 0x28, g: 0x70, b: 0x6c},
         {r: 0x29, g: 0x62, b: 0x75},
@@ -120,7 +123,7 @@ var blueish = {
 
 
 var greenBlueRedYellow = {
-    name: 'green blue red yellow',
+    name: '',
     colors: [
         {r: 0x3a, g: 0x95, b: 0x60},
         {r: 0x3b, g: 0x44, b: 0xa4},
@@ -239,44 +242,40 @@ function setMousePos(e) {
     base = getMousePos(canvas, e);
 }
 
+function setPreviewDimensions() {
+    this.previewWidth = config.triangles.previewConfig.dimensions.width * this.colors.length;
+    this.previewHeight = config.triangles.previewConfig.dimensions.height;
+}
+
+function setPreviewFunPtr() {
+    colorArray.forEach(function (colorScheme) {
+        colorScheme.previewDimensionFun = setPreviewDimensions;
+        colorScheme.previewFun = previewColorScheme;
+    });
+}
 function convertColorsToStyle() {
     colorArray.forEach(function (colorScheme) {
-        colorScheme.colors.forEach(converColorToRgbaWithAlphaPlaceholderStyle)
-        colorScheme.colors.forEach(convertColorToStyle)
-    })
+        colorScheme.colors.forEach(converColorToRgbaWithAlphaPlaceholderStyle);
+        colorScheme.colors.forEach(addRGBStyle)
+    });
+}
+
+function previewColorScheme(ctx){
+    this.colors.forEach(function (color, index) {
+        addColorToCanvas(ctx, color, index);
+    });
+}
+
+function addColorToCanvas(ctx, color, indexInArray){
+    ctx.beginPath();
+    ctx.fillStyle = color.styleRGB;
+    var dimensions = config.triangles.previewConfig.dimensions;
+    ctx.rect(indexInArray *  dimensions.width, 0,  dimensions.width,  dimensions.height);
+    ctx.fill();
 }
 
 function changeColorScheme(newIndex){
     currentColorScheme = colorArray[newIndex];
-}
-
-
-function initDropdownList() {
-
-    var oDropdown = $("#colors").msDropdown({selectedIndex: 0}).data("dd");
-    colorArray.forEach(function (colorScheme) {
-        var tmpCanvas = document.createElement('canvas');
-        tmpCanvas.width = 50;
-        tmpCanvas.height = 10;
-        var tmpCtx = tmpCanvas.getContext("2d");
-        var index = 0;
-        colorScheme.colors.forEach(function (color) {
-            tmpCtx.beginPath();
-            tmpCtx.fillStyle = color.styleRGB;
-            tmpCtx.rect(index * 10, 0, 10, 10);
-            tmpCtx.fill();
-            index++;
-        });
-        var imageData = tmpCanvas.toDataURL({
-            format: 'png',
-            multiplier: 4
-        });
-        var blob = dataURLtoBlob(imageData);
-
-        oDropdown.add({text: colorScheme.name, value: colorScheme.colors[0], image: URL.createObjectURL(blob)});
-    })
-
-    oDropdown.set("selectedIndex", 0);
 }
 
 $(document).ready(function () {
@@ -288,8 +287,9 @@ $(document).ready(function () {
     ctx.fillStyle = 'red';
     triangles.push(generateTriangle());
     convertColorsToStyle();
+    setPreviewFunPtr();
     requestAnimationFrame(updateCanvas);
-    initDropdownList()
+    addOptionsWithImages('colors', colorArray, 0);
 });
 
 
