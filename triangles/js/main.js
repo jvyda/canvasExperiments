@@ -133,20 +133,28 @@ var greenBlueRedYellow = {
 };
 
 
-var colorArray = [];
-colorArray.push(blackToRed);
-colorArray.push(redOrangeYellowGreen);
-colorArray.push(greyToBlue);
-colorArray.push(blackToOchre);
-colorArray.push(blackToDarkRed);
-colorArray.push(greyToPink);
-colorArray.push(darkColors);
-colorArray.push(purpleToOrange);
-colorArray.push(blueish);
-colorArray.push(greenBlueRedYellow);
+var colorSchemes = [];
+colorSchemes.push(blackToRed);
+colorSchemes.push(redOrangeYellowGreen);
+colorSchemes.push(greyToBlue);
+colorSchemes.push(blackToOchre);
+colorSchemes.push(blackToDarkRed);
+colorSchemes.push(greyToPink);
+colorSchemes.push(darkColors);
+colorSchemes.push(purpleToOrange);
+colorSchemes.push(blueish);
+colorSchemes.push(greenBlueRedYellow);
+
+var backGroundColors = [];
+backGroundColors.push({r: 0xff, g: 0xff, b: 0xff});
+backGroundColors.push({r: 0x0, g: 0x0, b: 0x0});
+backGroundColors.push({r: 0xc6, g: 0x0, b: 0x0});
+backGroundColors.push({r: 0x0, g: 0xc6, b: 0x0});
+backGroundColors.push({r: 0x0, g: 0x0, b: 0xc6});
 
 
-var currentColorScheme = colorArray[0];
+var currentColorScheme = colorSchemes[0];
+var currentBackgroundColor = backGroundColors[0];
 
 var base = {
     x: config.size.width / 2, y: config.size.height / 2
@@ -159,20 +167,20 @@ function generateTriangle() {
         x: base.x + randomNumber(config.triangles.spawnDist),
         y: base.y + randomNumber(config.triangles.spawnDist)
     };
-    var random = function () {
+    var sideWith = function () {
         return randomNumberButAtLeast(config.triangles.maxSideLength, config.triangles.minSideLength);
     };
 
-    var newYOffset = random() * Math.sin(toRad(90));
-    var newXOffset = random() * Math.cos(toRad(90));
+    var newYOffset = sideWith() * Math.sin(toRad(90));
+    var newXOffset = sideWith() * Math.cos(toRad(90));
 
     var pointB = {
         x: base.x + newYOffset,
         y: base.y + newXOffset
     };
 
-    newYOffset = random() * Math.sin(toRad(180));
-    newXOffset = random() * Math.cos(toRad(180));
+    newYOffset = sideWith() * Math.sin(toRad(180));
+    newXOffset = sideWith() * Math.cos(toRad(180));
 
     var pointC = {
         x: base.x + newYOffset,
@@ -197,7 +205,7 @@ function drawTriangle(obj) {
     if (obj.dist > config.triangles.maxDistance) return false;
     var alpha = 1 - (obj.dist / config.triangles.maxDistance);
     ctx.beginPath();
-    ctx.fillStyle = obj.col.style.replace('%alpha', alpha);
+    ctx.fillStyle = obj.col.styleRGBA.replace('%alpha', alpha);
     ctx.moveTo(obj.points[0].x, obj.points[0].y);
     obj.points.forEach(function (point) {
         ctx.lineTo(point.x, point.y);
@@ -222,6 +230,11 @@ function act(obj) {
 
 function updateCanvas() {
     ctx.clearRect(0, 0, config.size.width, config.size.height);
+    // we need to draw, else the background is not in the download
+    ctx.beginPath();
+    ctx.fillStyle = currentBackgroundColor.styleRGB;
+    ctx.rect(0, 0, config.size.width, config.size.height);
+    ctx.fill();
     triangles.push(generateTriangle());
     for (var i = 0; i < triangles.length; i++) {
         var triangle = triangles[i];
@@ -242,40 +255,64 @@ function setMousePos(e) {
     base = getMousePos(canvas, e);
 }
 
-function setPreviewDimensions() {
+function setPreviewDimensionsForColorScheme() {
     this.previewWidth = config.triangles.previewConfig.dimensions.width * this.colors.length;
     this.previewHeight = config.triangles.previewConfig.dimensions.height;
 }
 
+function setPreviewDimensionForBackgroundColor(){
+    this.previewWidth = config.triangles.previewConfig.dimensions.width;
+    this.previewHeight = config.triangles.previewConfig.dimensions.height;
+}
+
+
 function setPreviewFunPtr() {
-    colorArray.forEach(function (colorScheme) {
-        colorScheme.previewDimensionFun = setPreviewDimensions;
+    colorSchemes.forEach(function (colorScheme) {
+        colorScheme.previewDimensionFun = setPreviewDimensionsForColorScheme;
         colorScheme.previewFun = previewColorScheme;
     });
+    backGroundColors.forEach(function(backgroundColor){
+        backgroundColor.previewDimensionFun = setPreviewDimensionForBackgroundColor;
+        backgroundColor.previewFun = previewBackgroundColor;
+    })
 }
 function convertColorsToStyle() {
-    colorArray.forEach(function (colorScheme) {
+    colorSchemes.forEach(function (colorScheme) {
         colorScheme.colors.forEach(converColorToRgbaWithAlphaPlaceholderStyle);
         colorScheme.colors.forEach(addRGBStyle)
     });
+
+    backGroundColors.forEach(addRGBStyle);
 }
 
-function previewColorScheme(ctx){
+function previewBackgroundColor(context){
+    context.beginPath();
+    context.fillStyle = this.styleRGB;
+    var dimensions = config.triangles.previewConfig.dimensions;
+    context.rect(0, 0, dimensions.width, dimensions.height);
+    context.fill();
+}
+
+function previewColorScheme(ctx) {
     this.colors.forEach(function (color, index) {
         addColorToCanvas(ctx, color, index);
     });
 }
 
-function addColorToCanvas(ctx, color, indexInArray){
+function addColorToCanvas(ctx, color, indexInArray) {
     ctx.beginPath();
     ctx.fillStyle = color.styleRGB;
     var dimensions = config.triangles.previewConfig.dimensions;
-    ctx.rect(indexInArray *  dimensions.width, 0,  dimensions.width,  dimensions.height);
+    ctx.rect(indexInArray * dimensions.width, 0, dimensions.width, dimensions.height);
     ctx.fill();
 }
 
-function changeColorScheme(newIndex){
-    currentColorScheme = colorArray[newIndex];
+function changeColorScheme(newIndex) {
+    currentColorScheme = colorSchemes[newIndex];
+}
+
+function changeBackgroundColor(newIndex){
+    currentBackgroundColor = backGroundColors[newIndex];
 }
 
 $(document).ready(function () {
@@ -289,7 +326,8 @@ $(document).ready(function () {
     convertColorsToStyle();
     setPreviewFunPtr();
     requestAnimationFrame(updateCanvas);
-    addOptionsWithImages('colors', colorArray, 0);
+    addOptionsWithImages('colors', colorSchemes, 0);
+    addOptionsWithImages('backgroundColor', backGroundColors, 0);
 });
 
 

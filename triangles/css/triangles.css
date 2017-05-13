@@ -1,0 +1,35 @@
+#content {
+    position: relative;
+}
+
+
+
+#colors_msdd, #backgroundColor_msdd, #background_label, #scheme_label, #download {
+    position: absolute;
+    top: 0px;
+}
+
+#colors_msdd {
+    width: 150px;
+    left: 115px;
+}
+
+#backgroundColor_msdd {
+    width: 25px;
+    left: 350px;
+}
+
+#background_label {
+    left: 225px;
+    top: 5px;
+}
+
+#scheme_label {
+    left: 1px;
+    top: 5px;
+}
+
+#download {
+    left: 380px;
+    top: 5px;
+}

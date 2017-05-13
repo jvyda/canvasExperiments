@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../common/css/normalize.css">
     <link rel="stylesheet" href="../common/css/main.css">
     <link rel="stylesheet" href="../common/css/dd.css">
+    <link rel="stylesheet" href="css/triangles.css">
     <script src="../common/js/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -19,10 +20,17 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<select id="colors" style="width: 100px" onchange="changeColorScheme(this.selectedIndex)">
-</select>
-<a id="download" onclick="downloadCanvasCommon('triangles', canvas)">Download</a> <br>
-<canvas id="canvas"></canvas>
+<div id="content">
+    <canvas id="canvas"></canvas>
+    <label for="colors" id="scheme_label">Colorscheme</label>
+    <select id="colors" style="width: 100px" class="schemeSelector" onchange="changeColorScheme(this.selectedIndex)">
+    </select>
+    <label for="backgroundColor" id="background_label">Backgroundcolor</label>
+    <select id="backgroundColor" class="backgroundSelector" onchange="changeBackgroundColor(this.selectedIndex)">
+    </select>
+    <a id="download" onclick="downloadCanvasCommon('triangles', canvas)">Download</a> <br>
+</div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>

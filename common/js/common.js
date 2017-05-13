@@ -203,14 +203,22 @@ function addRGBStyle(color) {
 }
 
 function converColorToRgbaWithAlphaPlaceholderStyle(color) {
-    color.style = 'rgba(%red, %green, %blue, %alpha)'
+    color.styleRGBA = 'rgba(%red, %green, %blue, %alpha)'
         .replace('%red', color.r)
         .replace('%blue', color.b)
         .replace('%green', color.g);
 }
 
+function convertColorToRGBA(color) {
+    color.styleRGBA = 'rgba(%red, %green, %blue, %alpha)'
+        .replace('%red', color.r)
+        .replace('%blue', color.b)
+        .replace('%green', color.g)
+        .replace('%alpha', 1);
+}
+
 function addOptionsWithImages(selectId, listOfElements, initialIndex){
-    var oDropdown = $('#'+ selectId).msDropdown().data("dd");
+    var oDropdown = $('#'+ selectId).msDropdown({ roundedCorner:false}).data("dd");
     listOfElements.forEach(function (objectToPreview) {
         var tmpCanvas = document.createElement('canvas');
         objectToPreview.previewDimensionFun();
