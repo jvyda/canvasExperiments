@@ -1,76 +1,62 @@
 <!doctype html>
 <html class="no-js" lang="">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>jsTree</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>jsTree</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="shortcut icon" type="image/png" href="../common/img/ava.png"/>
+    <link rel="shortcut icon" type="image/png" href="../common/img/ava.png"/>
 
-        <link rel="stylesheet" href="../common/css/normalize.css">
-        <link rel="stylesheet" href="../common/css/main.css">
-        <script src="../common/js/modernizr-2.8.3.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <link rel="stylesheet" href="../common/css/normalize.css">
+    <link rel="stylesheet" href="../common/css/main.css">
+    <link rel="stylesheet" href="css/jsTree.css">
+    <script src="../common/js/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 8]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
 
-        <label for="red">RED:</label>
-        <input type="number" id="red" value="0" max="255" onblur="updateConfigEvent(event)">
+<div id="content">
+    <canvas id="canvas" onmousedown="addParticle(event)" onmouseup="cancelTimer(event)"
+            onmousemove="updateMousePos(event)"></canvas>
+    <canvas id="backgroundNoise"></canvas>
+    <label for="startColor" id="startColorLabel" class="top">Color</label>
+    <input type="color" id="startColor" class="top" value="#007800">
 
-        <label for="blue">BLUE:</label>
-        <input type="number" id="blue" value="0" max="255"  onblur="updateConfigEvent(event)">
-
-        <label for="green">GREEN:</label>
-        <input type="number" id="green" value="120" max="255"  onblur="updateConfigEvent(event)">
-
-        <label for="alpha">ALPHA:</label>
-        <input type="number" id="alpha" value="25" max="255"  onblur="updateConfigEvent(event)">
-
-        <label for="width">Width:</label>
-        <input type="number" id="width" value="1300" max="10000" onkeypress="updateCanvasConfig(event)">
-
-        <label for="height">Height:</label>
-        <input type="number" id="height" value="700" max="10000"  onkeypress="updateCanvasConfig(event)">
-
-        <span>Resizing the canvas, will reset it. Because of that, you need to hit enter in the text field to apply that.</span>
-        <br>
+    <label for="alpha" id="alphaLabel" class="top">Alpha</label>
+    <input type="range" id="alpha" class="top" min="0" value="25" max="255" onblur="updateConfigEvent(event)">
+    <input type="button" class="top" id="advancedBtn" onclick="toggleAdvanced()" value="toggle Advanced">
+    <br>
+    <div id="advanced" class="top">
         <label for="fuzzy_start">Fuzzy start:</label>
         <input type="checkbox" checked="checked" id="fuzzy_start">
         <label for="initialX">InitialX:</label>
-        <input type="number" id="initialX" value="10" max="100"  onblur="updateConfigEvent(event)">
+        <input type="number" id="initialX" value="10" max="100" onblur="updateConfigEvent(event)">
 
         <label for="initialY">InitialY:</label>
-        <input type="number" id="initialY" value="10" max="100"  onblur="updateConfigEvent(event)">
+        <input type="number" id="initialY" value="10" max="100" onblur="updateConfigEvent(event)">
 
         <label for="noise">Noise:</label>
-        <input type="number" id="noise" value="8" max="255"  onblur="updateConfigEvent(event)">
+        <input type="number" id="noise" value="8" max="255" onblur="updateConfigEvent(event)">
 
         <label for="deltaVel">Delta Vel Faktor:</label>
-        <input type="number" id="deltaVel" value="0.8" max="255"  onblur="updateConfigEvent(event)">
+        <input type="number" id="deltaVel" value="0.8" max="255" onblur="updateConfigEvent(event)">
 
         <label for="fuz">Fuz:</label>
-        <input type="number" id="fuz" value="1" max="255"  onblur="updateConfigEvent(event)">
+        <input type="number" id="fuz" value="1" max="255" onblur="updateConfigEvent(event)">
 
         <label for="maxAge">MaxAge:</label>
-        <input type="number" id="maxAge" value="50" max="255"  onblur="updateConfigEvent(event)">
+        <input type="number" id="maxAge" value="50" max="255" onblur="updateConfigEvent(event)">
 
         <label for="spawn">Spawn:</label>
-        <input type="number" id="spawn" value="1" max="1000"  onblur="updateConfigEvent(event)">
-        <input type="button" onclick="showOilConfig()" value="OilEffect" />
-        <span id="oil_filter_config_wrapper">
-            <label for="oil_effect_levels_tf">Level:</label>
-            <input type="number" value="10" id="oil_effect_levels_tf">
-            <label for="oil_effect_radius_tf">Radius:</label>
-            <input type="number" value="2" id="oil_effect_radius_tf" max="7">
-            <input type="button" id="oil_btn" value="apply" onclick="applyOil()">
-        </span>
-        <a id="download" onclick="downloadCanvasCommon('jsTree', canvas)">Download</a>
+        <input type="number" id="spawn" value="1" max="1000" onblur="updateConfigEvent(event)">
         <br>
-        <label for="noise_select">Noise function: </label><select id="noise_select" onchange="setNewNoise()">
+        <label for="noise_select">Noise function: </label>
+        <select id="noise_select" onchange="setNewNoise()">
             <option value="1">Default noise</option>
             <option value="2">Second noise</option>
             <option value="3">Third noise</option>
@@ -80,29 +66,26 @@
         <label for="movement_type">Movement type</label>
         <select id="movement_type" onchange="setNewMovementType()">
         </select>
-        <input type="button" onclick="setCurrentImageAsNoise()" value="set current image as noise">
-        <label for="clear_btn"></label>
-        <input type="button" id="clear_btn" onclick="clearThis()" value="clear">
-        <input type="button" id="noise_bbtn" onclick="toggleBackgroundNoise()" value="Toggle Show Noise">
-        <span>There may be some lags in chrome, with 0.5 FPS over a longer time. It fixes itself, most of the time after some time.</span>
-        <br>
-        <input type="button" onclick="toggleRecording()" id="record" value="">
-        <a style="display:none" id="downloadVid">Download WebM</a>
-        Recording only works in chrome
-        <br>
-        <canvas id="canvas" onmousedown="addParticle(event)" onmouseup="cancelTimer(event)" onmousemove="updateMousePos(event)"></canvas>
-        <canvas id="backgroundNoise"></canvas>
+        <input type="button" class="top" id="noise_btn" onclick="toggleBackgroundNoise()" value="Toggle Show Noise">
+        <span class="top" id="lagg">There may be some lags in chrome, with 0.5 FPS over a longer time. It fixes itself, most of the time after some time.</span>
+        <input type="button" class="top" onclick="toggleRecording()" id="record" value="">
+        <a style="display:none" class="top" id="downloadVid">Download WebM</a>
+        <span class="top" id="hint">Recording only works in chrome</span>
+    </div>
+    <a id="download" class="top" onclick="downloadCanvasCommon('jsTree', canvas)">Download</a>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>
-        <script src="../common/js/common.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/vendor/RecordRTC.js"></script>
-        <script src="js/vendor/Whammy.js"></script>
-        <script src="js/vendor/CanvasRecorder.js"></script>
-        <canvas></canvas>
+    <!-- <input type="button" onclick="setCurrentImageAsNoise()" value="set current image as noise"> -->
+    <input type="button" class="top" id="clear_btn" onclick="clearThis()" value="clear">
+</div>
 
-        <script src="js/main.js"></script>
 
-    </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="../common/js/common.js"></script>
+<script src="js/plugins.js"></script>
+<script src="js/vendor/RecordRTC.js"></script>
+<script src="js/vendor/Whammy.js"></script>
+<script src="js/vendor/CanvasRecorder.js"></script>
+<script src="js/main.js"></script>
+
+</body>
 </html>

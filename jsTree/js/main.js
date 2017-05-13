@@ -5,12 +5,12 @@ var inputFields = {};
 
 var particles = [];
 
-var oilFilterConfigWrapper;
+var mouseDown = false;
 
 var config = {
     size: {
-        height: 700,
-        width: 1300
+        height: window.innerHeight,
+        width: window.innerWidth
     },
     jsTree: {
         maxAge: 50,
@@ -27,11 +27,7 @@ var config = {
         deltaVel: 0.8,
         spawn: 1,
         fuzzyStart: true,
-        oilEffectConfig: {
-            levels: 10,
-            radius: 2,
-            showing: false
-        }
+        showAdvanced: true
     }
 };
 
@@ -66,18 +62,7 @@ function setCoordinate(x, y) {
     imageData.data[indexForCoordinate + 3] = tonemap(hdrdata[indexForCoordinate + 3] += config.jsTree.color.alpha);
 }
 
-function updateCanvasConfig(event) {
-    if (event.keyCode == 13) {
-        config.size.width = parseInt(inputFields['width'].val());
-        config.size.height = parseInt(inputFields['height'].val());
-        reInitCanvas();
-    }
-}
-
 function updateConfig() {
-    config.jsTree.color.red = parseInt(inputFields['red'].val());
-    config.jsTree.color.blue = parseInt(inputFields['blue'].val());
-    config.jsTree.color.green = parseInt(inputFields['green'].val());
     config.jsTree.color.alpha = parseInt(inputFields['alpha'].val());
     config.jsTree.initialX = parseInt(inputFields['initialX'].val());
     config.jsTree.initialY = parseInt(inputFields['initialY'].val());
@@ -180,7 +165,6 @@ function definiteAdd() {
     }
 }
 
-var mouseDown = false;
 function addParticle(event) {
     config.jsTree.fuzzyStart = inputFields['fuzzyStart'].is(':checked');
     mouseDown = true;
@@ -273,8 +257,10 @@ function skewedNoise(width, height, noiseFunction) {
 function toggleBackgroundNoise() {
     var elem = $("#backgroundNoise");
     if (elem.is(":visible")) {
+        $("#canvas").css('opacity', '1');
         elem.hide();
     } else {
+        $("#canvas").css('opacity', '0.5');
         elem.show();
     }
 }
@@ -290,14 +276,6 @@ function clearThis() {
     for (var i = 0; i < hdrdata.length; i++) {
         hdrdata[i] = 0;
     }
-}
-
-function zero(x, y) {
-    return 0;
-}
-
-function max(x, y) {
-    return 255;
 }
 
 function setCurrentImageAsNoise() {
@@ -348,6 +326,14 @@ function xAndY(x, y) {
     return ((x & y)) % 255;
 }
 
+function zero(x, y) {
+    return 0;
+}
+
+function max(x, y) {
+    return 255;
+}
+
 var secondNoise = {};
 secondNoise.red = sqrtxyy;
 secondNoise.green = sqrtxyy;
@@ -396,31 +382,18 @@ function toggleRecording() {
     recording = !recording;
 }
 
-function applyOil() {
-    $('#oil_btn').val('oiling...');
-    reconfigureOilEffect();
-    applyOilEffect(imageData.data, ctx);
-    $('#oil_btn').val('oil up');
-}
-
-
-function reconfigureOilEffect() {
-    config.jsTree.oilEffectConfig.levels = $('#oil_effect_levels_tf').val();
-    config.jsTree.oilEffectConfig.radius = $('#oil_effect_radius_tf').val();
-}
-
-function showOilConfig() {
-    if (!config.jsTree.oilEffectConfig.showing) {
-        oilFilterConfigWrapper.show();
-    } else {
-        oilFilterConfigWrapper.hide();
-    }
-    config.jsTree.oilEffectConfig.showing = !config.jsTree.oilEffectConfig.showing;
-}
-
 
 function setNewMovementType() {
     movementPtr = movementTypes[$("#movement_type").val()].ptr;
+}
+
+function toggleAdvanced(){
+    config.jsTree.showAdvanced = !config.jsTree.showAdvanced;
+    if(config.jsTree.showAdvanced){
+        inputFields['advanced'].show();
+    } else {
+        inputFields['advanced'].hide();
+    }
 }
 
 function reInitCanvas() {
@@ -441,9 +414,7 @@ $(document).ready(function () {
 
     canvas = $("#canvas")[0];
     ctx = canvas.getContext("2d");
-    inputFields['red'] = $('#red');
-    inputFields['blue'] = $('#blue');
-    inputFields['green'] = $('#green');
+    inputFields['startColor'] = $('#startColor');
     inputFields['alpha'] = $('#alpha');
     inputFields['initialX'] = $('#initialX');
     inputFields['initialY'] = $('#initialY');
@@ -453,18 +424,24 @@ $(document).ready(function () {
     inputFields['maxAge'] = $('#maxAge');
     inputFields['spawn'] = $('#spawn');
     inputFields['fuzzyStart'] = $("#fuzzy_start");
-    inputFields['width'] = $("#width");
-    inputFields['height'] = $("#height");
+    inputFields['advanced'] = $("#advanced");
 
     recordBtn = $("#record");
     recordBtn.val('\u23FA');
 
-    oilFilterConfigWrapper = $("#oil_filter_config_wrapper");
-    oilFilterConfigWrapper.hide();
-
     $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
-    reInitCanvas();
 
+    inputFields['startColor'].change(function(){
+        var value = $(this).val();
+        config.jsTree.color.red = parseInt(value.substr(1, 2), 16);
+        config.jsTree.color.green = parseInt(value.substr(3, 2), 16);
+        config.jsTree.color.blue = parseInt(value.substr(5, 2), 16);
+    });
+    toggleAdvanced();
+    config.size.height = window.innerHeight;
+    config.size.width = window.innerWidth;
+    console.log(window.innerHeight)
+    reInitCanvas();
     initDropdownList('movement_type', movementTypes);
 
     recorder = new CanvasRecorder(canvas, {
@@ -472,6 +449,5 @@ $(document).ready(function () {
     });
 
     toggleBackgroundNoise();
-
     startDrawingLoop();
 });

@@ -1,0 +1,88 @@
+#startColorLabel {
+    left: 0px;
+    top: 0px;
+}
+
+.top {
+    color: white;
+    z-index: 70;
+}
+
+#startColor {
+    top: 0px;
+    left: 40px;
+    background-color: transparent;
+}
+
+#alphaLabel {
+    left: 95px;
+    top: 0px;
+}
+
+#alpha {
+    top: 0px;
+    left: 150px;
+    width: 100px;
+}
+#advancedBtn {
+    left: 250px;
+    top: 0px;
+    background-color: transparent;
+}
+
+#advanced {
+    left: 0px;
+    top: 25px;
+}
+
+#download {
+    top: 100px;
+}
+
+#clear_btn {
+    top: 100px;
+    left: 75px;
+    background-color: transparent;
+}
+
+#noise_btn {
+    top: 75px;
+    left: 125px;
+    background-color: transparent;
+}
+
+#lagg {
+    top: 75px;
+    left: 280px;
+}
+
+#record {
+    left: 0px;
+    top: 100px;
+    background-color: transparent;
+}
+
+#downloadVid {
+    top: 100px;
+    left: 50px;
+}
+
+#hint {
+    top: 100px;
+    left: 180px;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#canvas {
+    z-index: 50;
+}
+
+#backgroundNoise {
+    opacity: 0.5;
+    z-index: 10;
+}

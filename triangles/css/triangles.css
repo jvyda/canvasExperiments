@@ -1,12 +1,11 @@
-#content {
-    position: relative;
-}
-
-
-
-#colors_msdd, #backgroundColor_msdd, #background_label, #scheme_label, #download {
+#colors_msdd, #scheme_label{
     position: absolute;
     top: 0px;
+}
+
+#backgroundColor_msdd, #background_label, #download {
+    position: absolute;
+    top: 50px;
 }
 
 #colors_msdd {
@@ -16,12 +15,12 @@
 
 #backgroundColor_msdd {
     width: 25px;
-    left: 350px;
+    left: 125px;
 }
 
 #background_label {
-    left: 225px;
-    top: 5px;
+    left: 0px;
+    top: 55px;
 }
 
 #scheme_label {
@@ -30,6 +29,6 @@
 }
 
 #download {
-    left: 380px;
-    top: 5px;
+    left: 155px;
+    top: 55px;
 }
