@@ -283,3 +283,9 @@ body, html { padding: 0; }
 #content {
     position: relative;
 }
+
+
+.top {
+    position: absolute;
+    top: 0px;
+}
