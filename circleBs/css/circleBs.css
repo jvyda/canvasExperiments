@@ -1,0 +1,13 @@
+#clearBtn, #download {
+    position: absolute;
+    top: 0px;
+}
+
+#clearBtn {
+    left: 0px;
+}
+
+#download {
+    left: 60px;
+    top: 3px;
+}

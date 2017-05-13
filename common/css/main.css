@@ -279,3 +279,7 @@ textarea {
 
 
 body, html { padding: 0; }
+
+#content {
+    position: relative;
+}

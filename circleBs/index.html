@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="../common/css/normalize.css">
     <link rel="stylesheet" href="../common/css/main.css">
+    <link rel="stylesheet" href="css/circleBs.css">
     <script src="../common/js/modernizr-2.8.3.min.js"></script>
 </head>
 <body>
@@ -18,9 +19,11 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
-<input type="button" onclick="reset()" value="clear" />
-<a id="download" onclick="downloadCanvasCommon('circleBs', canvas)">Download</a><br>
-<canvas id="canvas" />
+<div id="content">
+    <canvas id="canvas" ></canvas>
+    <input id="clearBtn" type="button" onclick="reset()" value="clear" />
+    <a id="download" onclick="downloadCanvasCommon('circleBs', canvas)">Download</a>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.1.1.min.js"><\/script>')</script>

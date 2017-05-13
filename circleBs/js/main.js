@@ -3,8 +3,8 @@ var ctx;
 
 var config = {
     size: {
-        width: 1000,
-        height: 1000
+        height: window.innerHeight,
+        width: window.innerWidth
     },
     circleBs: {
         maxAge: 1000
@@ -49,10 +49,6 @@ function reset() {
     });
     objects = [];
     ctx.clearRect(0, 0, config.size.width, config.size.height);
-    ctx.beginPath();
-    ctx.rect(0, 0, config.size.width, config.size.height);
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
     createNewCircle();
 }
 
