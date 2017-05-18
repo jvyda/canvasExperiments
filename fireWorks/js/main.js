@@ -45,23 +45,23 @@ function generateDefaultFlare() {
     defaultFlare.trail = [];
     defaultFlare.parameter = firstFlareParameter;
     defaultFlare.color = flareColors[1];
-    defaultFlare.eventFun = createSecondaryFlare;
+    defaultFlare.eventFun = 1;
     defaultFlare.radius = 2;
     defaultFlare.postFun = defaultPostSlopeFun;
+    converColorToRgbaWithAlphaPlaceholderStyle(defaultFlare.color);
     return defaultFlare;
 }
 
 
-function generateSecondaryFlare(){
+function generateSecondaryFlare() {
     var secondaryFlare = generateDefaultFlare();
     secondaryFlare.maxAge = randomNumberButAtLeast(config.size.height / 10, config.size.height / 20);
     secondaryFlare.vel = 3;
     secondaryFlare.dead = false;
-    // setting this to false, makes it recursive.... bad idea
     secondaryFlare.radius = 1;
     secondaryFlare.parameter = firstFlareParameter;
     secondaryFlare.color = flareColors[3];
-    secondaryFlare.eventFun = function(){};
+    secondaryFlare.eventFun = undefined;
     converColorToRgbaWithAlphaPlaceholderStyle(secondaryFlare.color);
     return secondaryFlare;
 }
@@ -91,7 +91,6 @@ function startRocket() {
         alpha: 1,
         color: randomElement(rocketColors),
         parameter: rocketSlopeParameter,
-        eventFun: createPrimaryFlare,
         postFun: defaultPostSlopeFun
     };
     converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
@@ -142,7 +141,9 @@ function slopeAct(object, parentObj) {
         object.nVec = normalizeVector({x: object.movVec.x, y: object.movVec.y});
         object.age += 2;
     } else if (!object.dead) {
-        object.eventFun(object, parentObj);
+        if (object.eventFun != undefined) {
+            object.eventFun(object, parentObj);
+        }
         object.dead = true;
     }
     object.postFun(object, parentObj);
@@ -151,6 +152,11 @@ function slopeAct(object, parentObj) {
 function explodedRocketAct(rocket) {
     for (var i = 0; i < rocket.flares.length; i++) {
         var flare = rocket.flares[i];
+        if (flare.eventFun == 1) {
+            flare.eventFun = function (flare, rocket) {
+                createFlare(flare, rocket, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount);
+            }
+        }
         slopeAct(flare, rocket)
     }
 }
@@ -158,6 +164,9 @@ function explodedRocketAct(rocket) {
 function rocketAct(rocket) {
     rocket.alpha *= 0.995;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
+    rocket.eventFun = function (rocket, useless) {
+        createFlare(rocket, rocket, generateDefaultFlare, config.fireWorks.flareCount);
+    };
     slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
 }
@@ -191,9 +200,9 @@ var firstFlareParameter = {
     }
 };
 
-function createFlare(object, parentObj, baseFlare, flareAmount){
+function createFlare(object, parentObj, baseFlare, flareAmount) {
     for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareAmount) {
-        var newFlare = baseFlare;
+        var newFlare = baseFlare();
         var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
         var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.sin(i);
         var target = {x: object.x + newXOffset, y: object.y + newYOffset};
@@ -210,46 +219,7 @@ function createFlare(object, parentObj, baseFlare, flareAmount){
     }
 }
 
-function createSecondaryFlare(flare, parentObj){
-    for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / config.fireWorks.secondaryFlare.flareAmount) {
-        var newFlare = generateSecondaryFlare();
-        var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
-        var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.sin(i);
-        var target = {x: flare.x + newXOffset, y: flare.y + newYOffset};
-        var vec = createVector(target, flare);
-        newFlare.movVec = {
-            x: vec.x,
-            y: vec.y
-        };
-        newFlare.nVec = normalizeVector(vec);
-        newFlare.x = flare.x;
-        newFlare.y = flare.y;
-
-        parentObj.flares.push(newFlare);
-    }
-}
-
-function createPrimaryFlare(rocket, parentObj){
-    var flareCount = randomNumberButAtLeast(config.fireWorks.flareCount * 2, config.fireWorks.flareCount);
-    for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareCount) {
-        var flare = generateDefaultFlare();
-        var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.cos(i);
-        var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.sin(i);
-        var target = {x: rocket.x + newXOffset, y: rocket.y + newYOffset};
-        var vec = createVector(target, rocket);
-        flare.movVec = {
-            x: vec.x,
-            y: vec.y
-        };
-        flare.nVec = normalizeVector(vec);
-        flare.x = rocket.x;
-        flare.y = rocket.y;
-        converColorToRgbaWithAlphaPlaceholderStyle(flare.color);
-        rocket.flares.push(flare);
-    }
-}
-
-function defaultPostSlopeFun(object){
+function defaultPostSlopeFun(object) {
     if (!object.dead) {
         object.trail.push({x: object.x, y: object.y, alpha: object.alpha});
     }

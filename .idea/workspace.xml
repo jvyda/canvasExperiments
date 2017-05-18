@@ -71,8 +71,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.2894192">
-              <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+            <state vertical-scroll-proportion="3.0075948">
+              <caret line="204" column="34" selection-start-line="204" selection-start-column="34" selection-end-line="204" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -618,7 +618,13 @@
       <option name="project" value="LOCAL" />
       <updated>1495139937189</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="fireWork:&#10;-replaced the slope function with a generalized function to act for flares and rockets&#10;-rockets now also work with age&#10;">
+      <created>1495144862360</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1495144862360</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -629,7 +635,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -675,7 +681,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="changed default value for archimedean spiral&#10;added todo" />
     <MESSAGE value="only start filling the canvas with the image when the image has finished loading" />
     <MESSAGE value="added collatzConjecture&#10;renamed ulamspiral to spiral&#10;" />
     <MESSAGE value="added collatzConjecture&#10;renamed ulamspiral to spiral&#10;only calculate the incremental once in the creation of the clusters &#10;" />
@@ -700,7 +705,8 @@
     <MESSAGE value="jsTree:&#10;-removed height &amp; width config&#10;-removed oil effect&#10;- showing noise image will cause it to appear behind the canvas with an opacity of 0.5&#10;-moved a lot of config into the advanced tab&#10;-canvas is now the background of the whole page (not really working on mobile...)&#10;Triangles:&#10;-moved picker to next row for mobile" />
     <MESSAGE value="common:&#10;-moved recording stuff to common, maybe used somewhere else&#10;added fireWorks!&#10;-simple version of fireworks with one rocket type and one color default selected" />
     <MESSAGE value="fireWorks:&#10;-added rocket whose flares explode and add some more flares" />
-    <option name="LAST_COMMIT_MESSAGE" value="fireWorks:&#10;-added rocket whose flares explode and add some more flares" />
+    <MESSAGE value="fireWork:&#10;-replaced the slope function with a generalized function to act for flares and rockets&#10;-rockets now also work with age&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="fireWork:&#10;-replaced the slope function with a generalized function to act for flares and rockets&#10;-rockets now also work with age&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1083,8 +1089,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.2894192">
-          <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+        <state vertical-scroll-proportion="3.0075948">
+          <caret line="204" column="34" selection-start-line="204" selection-start-column="34" selection-end-line="204" selection-end-column="34" />
           <folding />
         </state>
       </provider>
