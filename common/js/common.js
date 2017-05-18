@@ -179,10 +179,7 @@ function randomNumberButAtLeast(range, min) {
 
 
 function createNormalizedVector(tip, shaft) {
-    var vect = {
-        x: tip.x - shaft.x,
-        y: tip.y - shaft.y
-    };
+    var vect = createVector(tip, shaft);
 
     var dist = pointDistance(tip, shaft);
     vect.x /= dist;
@@ -190,6 +187,23 @@ function createNormalizedVector(tip, shaft) {
     return vect;
 }
 
+function vectorLenght(vect){
+    return Math.sqrt(vect.x * vect.x + vect.y * vect.y);
+}
+
+function normalizeVector(vect){
+    var lenght = vectorLenght(vect);
+    vect.x /= lenght;
+    vect.y /= lenght;
+    return vect;
+}
+
+function createVector(tip, shaft) {
+    return {
+        x: tip.x - shaft.x,
+        y: tip.y - shaft.y
+    };
+}
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -215,6 +229,10 @@ function convertColorToRGBA(color) {
         .replace('%blue', color.b)
         .replace('%green', color.g)
         .replace('%alpha', 1);
+}
+
+function randomElement(array){
+    return array[~~(Math.random() * array.length)];
 }
 
 function addOptionsWithImages(selectId, listOfElements, initialIndex){
