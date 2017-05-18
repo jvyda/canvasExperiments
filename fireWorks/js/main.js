@@ -12,7 +12,10 @@ var config = {
         maxAge: 1000,
         fps: 60,
         flareDist: window.innerWidth / 8,
-        flareCount: 10
+        flareCount: 10,
+        secondaryFlare: {
+            flareAmount: 15
+        }
     }
 };
 
@@ -32,7 +35,7 @@ var rocketColors = [
     {r: 255, g: 140, b: 0}
 ];
 
-function generateDefaultFlare(){
+function generateDefaultFlare() {
     var defaultFlare = {};
     defaultFlare.vel = 3;
     defaultFlare.age = 0;
@@ -41,10 +44,23 @@ function generateDefaultFlare(){
     defaultFlare.alpha = 1;
     defaultFlare.trail = [];
     defaultFlare.color = flareColors[1];
+    defaultFlare.radius = 2;
     return defaultFlare;
 }
 
 
+function generateSecondaryFlare(){
+    var secondaryFlare = generateDefaultFlare();
+    secondaryFlare.maxAge = randomNumberButAtLeast(config.size.height / 10, config.size.height / 20);
+    secondaryFlare.vel = 3;
+    secondaryFlare.dead = false;
+    // setting this to false, makes it recursive.... bad idea
+    secondaryFlare.exploded = true;
+    secondaryFlare.radius = 1;
+    secondaryFlare.color = flareColors[3];
+    converColorToRgbaWithAlphaPlaceholderStyle(secondaryFlare.color);
+    return secondaryFlare;
+}
 
 var rockets = [];
 
@@ -81,14 +97,18 @@ function drawRocket(rocket) {
     rocket.trail.forEach(function (trailItem) {
         ctx.beginPath();
         ctx.fillStyle = rocket.color.styleRGBA.replace('%alpha', trailItem.alpha);
-        ctx.arc(trailItem.x, trailItem.y, 2, 0, 2* Math.PI);
+        trailItem.x = trailItem.x << 0;
+        trailItem.y = trailItem.y << 0;
+        ctx.rect(trailItem.x, trailItem.y, 2, 2);
         ctx.fill();
     });
     rocket.flares.forEach(function (flare) {
         flare.trail.forEach(function (trailItem) {
             ctx.beginPath();
             ctx.fillStyle = flare.color.styleRGBA.replace('%alpha', trailItem.alpha);
-            ctx.arc(trailItem.x, trailItem.y, 2, 0, 2* Math.PI);
+            trailItem.x = trailItem.x << 0;
+            trailItem.y = trailItem.y << 0;
+            ctx.rect(trailItem.x, trailItem.y, flare.radius, flare.radius);
             ctx.fill();
         })
     });
@@ -111,7 +131,7 @@ function propellRocket(rocket) {
         rocket.vel *= 1.01;
         rocket.x -= rocket.nVec.x * rocket.vel;
         rocket.y -= rocket.nVec.y * rocket.vel;
-        rocket.movVec.y -=  config.size.height / 200;
+        rocket.movVec.y -= config.size.height / 200;
         // pass by reference
         rocket.nVec = normalizeVector({x: rocket.movVec.x, y: rocket.movVec.y});
         rocket.fuel -= 2;
@@ -120,7 +140,7 @@ function propellRocket(rocket) {
         var flareCount = randomNumberButAtLeast(config.fireWorks.flareCount * 2, config.fireWorks.flareCount);
         for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareCount) {
             var flare = generateDefaultFlare();
-            var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist)  * Math.cos(i);
+            var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.cos(i);
             var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.sin(i);
             var target = {x: rocket.x + newXOffset, y: rocket.y + newYOffset};
             var vec = createVector(target, rocket);
@@ -135,7 +155,7 @@ function propellRocket(rocket) {
             rocket.flares.push(flare);
         }
     }
-    if(!rocket.exploded) {
+    if (!rocket.exploded) {
         rocket.trail.push({x: rocket.x, y: rocket.y, alpha: rocket.alpha});
     }
     for (var trailIndex = 0; trailIndex < rocket.trail.length; trailIndex++) {
@@ -149,7 +169,7 @@ function propellRocket(rocket) {
     }
 }
 
-function flareAct(flare) {
+function flareAct(flare, parentRocket) {
     if (flare.age < config.size.width / 150) {
         flare.x -= flare.nVec.x * flare.vel;
         flare.y -= flare.nVec.y * flare.vel;
@@ -171,6 +191,24 @@ function flareAct(flare) {
         // pass by reference
         flare.nVec = normalizeVector({x: flare.movVec.x, y: flare.movVec.y});
         flare.age += 2;
+    } else if (!flare.exploded) {
+        for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / config.fireWorks.secondaryFlare.flareAmount) {
+            var newFlare = generateSecondaryFlare();
+            var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
+            var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.sin(i);
+            var target = {x: flare.x + newXOffset, y: flare.y + newYOffset};
+            var vec = createVector(target, flare);
+            newFlare.movVec = {
+                x: vec.x,
+                y: vec.y
+            };
+            newFlare.nVec = normalizeVector(vec);
+            newFlare.x = flare.x;
+            newFlare.y = flare.y;
+
+            parentRocket.flares.push(newFlare);
+        }
+        flare.exploded = true;
     } else {
         flare.dead = true;
     }
@@ -191,7 +229,7 @@ function flareAct(flare) {
 function explodedRocketAct(rocket) {
     for (var i = 0; i < rocket.flares.length; i++) {
         var flare = rocket.flares[i];
-        flareAct(flare);
+        flareAct(flare, rocket);
     }
 }
 
@@ -201,6 +239,8 @@ function rocketAct(rocket) {
     explodedRocketAct(rocket);
 }
 
+var old = Date.now();
+
 function updateCanvas() {
     ctx.clearRect(0, 0, config.size.width, config.size.height);
     for (var i = 0; i < rockets.length; i++) {
@@ -209,17 +249,19 @@ function updateCanvas() {
         rocketAct(rocket);
     }
     setTimeout(function () {
+        console.log(Date.now() - old);
+        old = Date.now();
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.fireWorks.fps)
 
 }
 
 
-function setShaft(event){
+function setShaft(event) {
     mouseStart = getMousePos(canvas, event);
 }
 
-function setTip(event){
+function setTip(event) {
     mouseStop = getMousePos(canvas, event);
     startRocket();
 }
