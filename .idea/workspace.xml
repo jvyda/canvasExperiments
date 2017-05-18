@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fireWorks/css/fireWorks.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fireWorks/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fireWorks/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/fireWorks/js/plugins.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jsTree/js/vendor/CanvasRecorder.js" afterPath="$PROJECT_DIR$/common/js/CanvasRecorder.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jsTree/js/vendor/RecordRTC.js" afterPath="$PROJECT_DIR$/common/js/RecordRTC.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/jsTree/js/vendor/Whammy.js" afterPath="$PROJECT_DIR$/common/js/Whammy.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsTree/index.html" afterPath="$PROJECT_DIR$/jsTree/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fireWorks/js/main.js" afterPath="$PROJECT_DIR$/fireWorks/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,7 +28,7 @@
         <entry file="file://$PROJECT_DIR$/common/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="189" column="21" selection-start-line="189" selection-start-column="9" selection-end-line="189" selection-end-column="21" />
+              <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -62,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fireWorks/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7659575">
-              <caret line="26" column="88" selection-start-line="26" selection-start-column="88" selection-end-line="26" selection-end-column="88" />
+            <state vertical-scroll-proportion="-11.333333">
+              <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <marker date="1495134213011" expanded="true" signature="656:809" placeholder="..." />
@@ -76,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="152" column="43" selection-start-line="152" selection-start-column="43" selection-end-line="152" selection-end-column="43" />
+            <state vertical-scroll-proportion="-3.2894192">
+              <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -150,8 +142,8 @@
         <option value="$PROJECT_DIR$/fireWorks/css/circleBs.css" />
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/jsTree/index.html" />
-        <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
         <option value="$PROJECT_DIR$/fireWorks/index.html" />
+        <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
       </list>
     </option>
   </component>
@@ -614,7 +606,19 @@
       <option name="project" value="LOCAL" />
       <updated>1494676596222</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="common:&#10;-moved recording stuff to common, maybe used somewhere else&#10;added fireWorks!&#10;-simple version of fireworks with one rocket type and one color default selected">
+      <created>1495134338032</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1495134338032</updated>
+    </task>
+    <task id="LOCAL-00026" summary="fireWorks:&#10;-added rocket whose flares explode and add some more flares">
+      <created>1495139937189</created>
+      <option name="number" value="00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1495139937189</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -623,8 +627,9 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14442128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -632,7 +637,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -671,8 +675,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed image download in clusterFilter&#10;changed the way downloadCanvas works (now also works for bigger images)&#10;added new preview image for clusterFilter" />
-    <MESSAGE value="added archimedean spiral" />
     <MESSAGE value="changed default value for archimedean spiral&#10;added todo" />
     <MESSAGE value="only start filling the canvas with the image when the image has finished loading" />
     <MESSAGE value="added collatzConjecture&#10;renamed ulamspiral to spiral&#10;" />
@@ -696,7 +698,9 @@
     <MESSAGE value="circleBs:&#10;-canvas is now all over the page and controls within the canvas" />
     <MESSAGE value="dotLines:&#10;-canvas now covers all the screen&#10;common:&#10;-created top class for all the controls, not usable with the canvas dropdowns" />
     <MESSAGE value="jsTree:&#10;-removed height &amp; width config&#10;-removed oil effect&#10;- showing noise image will cause it to appear behind the canvas with an opacity of 0.5&#10;-moved a lot of config into the advanced tab&#10;-canvas is now the background of the whole page (not really working on mobile...)&#10;Triangles:&#10;-moved picker to next row for mobile" />
-    <option name="LAST_COMMIT_MESSAGE" value="jsTree:&#10;-removed height &amp; width config&#10;-removed oil effect&#10;- showing noise image will cause it to appear behind the canvas with an opacity of 0.5&#10;-moved a lot of config into the advanced tab&#10;-canvas is now the background of the whole page (not really working on mobile...)&#10;Triangles:&#10;-moved picker to next row for mobile" />
+    <MESSAGE value="common:&#10;-moved recording stuff to common, maybe used somewhere else&#10;added fireWorks!&#10;-simple version of fireworks with one rocket type and one color default selected" />
+    <MESSAGE value="fireWorks:&#10;-added rocket whose flares explode and add some more flares" />
+    <option name="LAST_COMMIT_MESSAGE" value="fireWorks:&#10;-added rocket whose flares explode and add some more flares" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -969,6 +973,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1044,14 +1049,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="189" column="21" selection-start-line="189" selection-start-column="9" selection-end-line="189" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jsTree/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-11.296296">
@@ -1064,23 +1061,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="152" column="43" selection-start-line="152" selection-start-column="43" selection-end-line="152" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fireWorks/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7659575">
-          <caret line="26" column="88" selection-start-line="26" selection-start-column="88" selection-end-line="26" selection-end-column="88" />
+        <state vertical-scroll-proportion="-11.333333">
+          <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <marker date="1495134213011" expanded="true" signature="656:809" placeholder="..." />
             <marker date="1495134213011" expanded="true" signature="749:777" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="174" column="35" selection-start-line="174" selection-start-column="35" selection-end-line="174" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2894192">
+          <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -43,8 +43,11 @@ function generateDefaultFlare() {
     defaultFlare.decay = 0.9;
     defaultFlare.alpha = 1;
     defaultFlare.trail = [];
+    defaultFlare.parameter = firstFlareParameter;
     defaultFlare.color = flareColors[1];
+    defaultFlare.eventFun = createSecondaryFlare;
     defaultFlare.radius = 2;
+    defaultFlare.postFun = defaultPostSlopeFun;
     return defaultFlare;
 }
 
@@ -55,9 +58,10 @@ function generateSecondaryFlare(){
     secondaryFlare.vel = 3;
     secondaryFlare.dead = false;
     // setting this to false, makes it recursive.... bad idea
-    secondaryFlare.exploded = true;
     secondaryFlare.radius = 1;
+    secondaryFlare.parameter = firstFlareParameter;
     secondaryFlare.color = flareColors[3];
+    secondaryFlare.eventFun = function(){};
     converColorToRgbaWithAlphaPlaceholderStyle(secondaryFlare.color);
     return secondaryFlare;
 }
@@ -65,8 +69,6 @@ function generateSecondaryFlare(){
 var rockets = [];
 
 function startRocket() {
-    //var shaft = {x: 10, y: 0};
-    //var tip = {x: 25 + randomNumber(10), y: 20};
     var vec = createVector(mouseStart, mouseStop);
     var rocket = {
         x: mouseStart.x,
@@ -81,13 +83,16 @@ function startRocket() {
         },
         nVec: normalizeVector({x: vec.x, y: vec.y}),
         vel: vectorLenght(vec) / config.size.height * (config.size.height / 80),
-        fuel: config.size.height / 2,
+        age: 0,
+        maxAge: config.size.height / 4,
         distTravelled: 0,
-        exploded: false,
         trail: [],
         flares: [],
         alpha: 1,
-        color: randomElement(rocketColors)
+        color: randomElement(rocketColors),
+        parameter: rocketSlopeParameter,
+        eventFun: createPrimaryFlare,
+        postFun: defaultPostSlopeFun
     };
     converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
     rockets.push(rocket);
@@ -114,132 +119,150 @@ function drawRocket(rocket) {
     });
 }
 
-function propellRocket(rocket) {
-    if (rocket.fuel > config.size.height / 5) {
-        rocket.x -= rocket.nVec.x * rocket.vel;
-        rocket.y -= rocket.nVec.y * rocket.vel;
-        rocket.fuel -= rocket.vel;
-    } else if (rocket.nVec.y > 0) {
-        rocket.vel *= 0.99;
-        rocket.x -= rocket.nVec.x * rocket.vel;
-        rocket.y -= rocket.nVec.y * rocket.vel;
-        rocket.movVec.y -= config.size.height / 200;
+function slopeAct(object, parentObj) {
+    if (object.age < object.parameter.firstPhase.ageLimit) {
+        object.x -= object.nVec.x * object.vel;
+        object.y -= object.nVec.y * object.vel;
+        object.age += object.parameter.firstPhase.ageChange;
+    } else if (object.nVec.y > 0) {
+        object.vel *= object.parameter.secondPhase.velocityFactor;
+        object.x -= object.nVec.x * object.vel;
+        object.y -= object.nVec.y * object.vel;
+        object.movVec.y -= object.parameter.secondPhase.yVectorChange;
         // pass by reference
-        rocket.nVec = normalizeVector({x: rocket.movVec.x, y: rocket.movVec.y});
-        rocket.fuel -= 2;
-    } else if (rocket.fuel > 0) {
-        rocket.vel *= 1.01;
-        rocket.x -= rocket.nVec.x * rocket.vel;
-        rocket.y -= rocket.nVec.y * rocket.vel;
-        rocket.movVec.y -= config.size.height / 200;
+        object.nVec = normalizeVector({x: object.movVec.x, y: object.movVec.y});
+        object.age += 2;
+    } else if (object.age < object.maxAge) {
+        object.vel *= 1.01;
+        object.x -= object.nVec.x * object.vel;
+        object.y -= object.nVec.y * object.vel;
+        object.movVec.y -= object.parameter.thirdPhase.yVectorChange;
+        object.movVec.x *= object.parameter.thirdPhase.xVectorFactor;
         // pass by reference
-        rocket.nVec = normalizeVector({x: rocket.movVec.x, y: rocket.movVec.y});
-        rocket.fuel -= 2;
-    } else if (!rocket.exploded) {
-        rocket.exploded = true;
-        var flareCount = randomNumberButAtLeast(config.fireWorks.flareCount * 2, config.fireWorks.flareCount);
-        for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareCount) {
-            var flare = generateDefaultFlare();
-            var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.cos(i);
-            var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.sin(i);
-            var target = {x: rocket.x + newXOffset, y: rocket.y + newYOffset};
-            var vec = createVector(target, rocket);
-            flare.movVec = {
-                x: vec.x,
-                y: vec.y
-            };
-            flare.nVec = normalizeVector(vec);
-            flare.x = rocket.x;
-            flare.y = rocket.y;
-            converColorToRgbaWithAlphaPlaceholderStyle(flare.color);
-            rocket.flares.push(flare);
-        }
+        object.nVec = normalizeVector({x: object.movVec.x, y: object.movVec.y});
+        object.age += 2;
+    } else if (!object.dead) {
+        object.eventFun(object, parentObj);
+        object.dead = true;
     }
-    if (!rocket.exploded) {
-        rocket.trail.push({x: rocket.x, y: rocket.y, alpha: rocket.alpha});
-    }
-    for (var trailIndex = 0; trailIndex < rocket.trail.length; trailIndex++) {
-        var trailItem = rocket.trail[trailIndex];
-        trailItem.y += 0.02;
-        trailItem.age++;
-        trailItem.alpha *= 0.95;
-        if (trailItem.alpha < 0.01) {
-            rocket.trail.splice(trailIndex--, 1);
-        }
-    }
-}
-
-function flareAct(flare, parentRocket) {
-    if (flare.age < config.size.width / 150) {
-        flare.x -= flare.nVec.x * flare.vel;
-        flare.y -= flare.nVec.y * flare.vel;
-        flare.age += 1;
-    } else if (flare.nVec.y > 0) {
-        flare.vel *= 0.95;
-        flare.x -= flare.nVec.x * flare.vel;
-        flare.y -= flare.nVec.y * flare.vel;
-        flare.movVec.y -= config.size.height / 50;
-        // pass by reference
-        flare.nVec = normalizeVector({x: flare.movVec.x, y: flare.movVec.y});
-        flare.age += 2;
-    } else if (flare.age < flare.maxAge) {
-        flare.vel *= 1.01;
-        flare.x -= flare.nVec.x * flare.vel;
-        flare.y -= flare.nVec.y * flare.vel;
-        flare.movVec.y -= config.size.height / 200;
-        flare.movVec.x *= 0.95;
-        // pass by reference
-        flare.nVec = normalizeVector({x: flare.movVec.x, y: flare.movVec.y});
-        flare.age += 2;
-    } else if (!flare.exploded) {
-        for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / config.fireWorks.secondaryFlare.flareAmount) {
-            var newFlare = generateSecondaryFlare();
-            var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
-            var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.sin(i);
-            var target = {x: flare.x + newXOffset, y: flare.y + newYOffset};
-            var vec = createVector(target, flare);
-            newFlare.movVec = {
-                x: vec.x,
-                y: vec.y
-            };
-            newFlare.nVec = normalizeVector(vec);
-            newFlare.x = flare.x;
-            newFlare.y = flare.y;
-
-            parentRocket.flares.push(newFlare);
-        }
-        flare.exploded = true;
-    } else {
-        flare.dead = true;
-    }
-    if (!flare.dead) {
-        flare.trail.push({x: flare.x, y: flare.y, alpha: flare.alpha});
-    }
-    for (var i = 0; i < flare.trail.length; i++) {
-        var trailItem = flare.trail[i];
-        trailItem.y += 0.02;
-        trailItem.age += 1;
-        trailItem.alpha *= flare.decay;
-        if (trailItem.alpha < 0.01) {
-            flare.trail.splice(i--, 1);
-        }
-    }
+    object.postFun(object, parentObj);
 }
 
 function explodedRocketAct(rocket) {
     for (var i = 0; i < rocket.flares.length; i++) {
         var flare = rocket.flares[i];
-        flareAct(flare, rocket);
+        slopeAct(flare, rocket)
     }
 }
 
 function rocketAct(rocket) {
     rocket.alpha *= 0.995;
-    propellRocket(rocket);
+    rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
+    slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
 }
+var rocketSlopeParameter = {
+    firstPhase: {
+        ageLimit: config.size.height / 5,
+        ageChange: 1
+    },
+    secondPhase: {
+        velocityFactor: 0.99,
+        yVectorChange: config.size.height / 200
+    },
+    thirdPhase: {
+        yVectorChange: config.size.height / 200,
+        xVectorFactor: 1
+    }
+};
 
-var old = Date.now();
+var firstFlareParameter = {
+    firstPhase: {
+        ageLimit: config.size.width / 150,
+        ageChange: 1
+    },
+    secondPhase: {
+        velocityFactor: 0.95,
+        yVectorChange: config.size.height / 50
+    },
+    thirdPhase: {
+        yVectorChange: config.size.height / 200,
+        xVectorFactor: 0.95
+    }
+};
+
+function createFlare(object, parentObj, baseFlare, flareAmount){
+    for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareAmount) {
+        var newFlare = baseFlare;
+        var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
+        var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.sin(i);
+        var target = {x: object.x + newXOffset, y: object.y + newYOffset};
+        var vec = createVector(target, object);
+        newFlare.movVec = {
+            x: vec.x,
+            y: vec.y
+        };
+        newFlare.nVec = normalizeVector(vec);
+        newFlare.x = object.x;
+        newFlare.y = object.y;
+
+        parentObj.flares.push(newFlare);
+    }
+}
+
+function createSecondaryFlare(flare, parentObj){
+    for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / config.fireWorks.secondaryFlare.flareAmount) {
+        var newFlare = generateSecondaryFlare();
+        var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
+        var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.sin(i);
+        var target = {x: flare.x + newXOffset, y: flare.y + newYOffset};
+        var vec = createVector(target, flare);
+        newFlare.movVec = {
+            x: vec.x,
+            y: vec.y
+        };
+        newFlare.nVec = normalizeVector(vec);
+        newFlare.x = flare.x;
+        newFlare.y = flare.y;
+
+        parentObj.flares.push(newFlare);
+    }
+}
+
+function createPrimaryFlare(rocket, parentObj){
+    var flareCount = randomNumberButAtLeast(config.fireWorks.flareCount * 2, config.fireWorks.flareCount);
+    for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareCount) {
+        var flare = generateDefaultFlare();
+        var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.cos(i);
+        var newYOffset = randomNumberButAtLeast(config.fireWorks.flareDist * 2, config.fireWorks.flareDist) * Math.sin(i);
+        var target = {x: rocket.x + newXOffset, y: rocket.y + newYOffset};
+        var vec = createVector(target, rocket);
+        flare.movVec = {
+            x: vec.x,
+            y: vec.y
+        };
+        flare.nVec = normalizeVector(vec);
+        flare.x = rocket.x;
+        flare.y = rocket.y;
+        converColorToRgbaWithAlphaPlaceholderStyle(flare.color);
+        rocket.flares.push(flare);
+    }
+}
+
+function defaultPostSlopeFun(object){
+    if (!object.dead) {
+        object.trail.push({x: object.x, y: object.y, alpha: object.alpha});
+    }
+    for (var trailIndex = 0; trailIndex < object.trail.length; trailIndex++) {
+        var trailItem = object.trail[trailIndex];
+        trailItem.y += 0.02;
+        trailItem.age++;
+        trailItem.alpha *= 0.95;
+        if (trailItem.alpha < 0.01) {
+            object.trail.splice(trailIndex--, 1);
+        }
+    }
+}
 
 function updateCanvas() {
     ctx.clearRect(0, 0, config.size.width, config.size.height);
@@ -249,8 +272,6 @@ function updateCanvas() {
         rocketAct(rocket);
     }
     setTimeout(function () {
-        console.log(Date.now() - old);
-        old = Date.now();
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.fireWorks.fps)
 
