@@ -12,9 +12,9 @@ var config = {
         maxAge: 1000,
         fps: 60,
         flareDist: window.innerWidth / 8,
-        flareCount: 10,
+        flareCount: 7,
         secondaryFlare: {
-            flareAmount: 15,
+            flareAmount: 10,
             chance: 0.5,
             colorChangeChance: 0.5
         }
@@ -76,7 +76,7 @@ colorSchemes.push(magenta);
 colorSchemes.push(yellow);
 colorSchemes.push(red);
 
-colorSchemes.forEach(function(colorScheme){
+colorSchemes.forEach(function (colorScheme) {
     colorScheme.forEach(converColorToRgbaWithAlphaPlaceholderStyle)
 });
 
@@ -97,6 +97,7 @@ function generateDefaultFlare() {
     defaultFlare.decay = 0.9;
     defaultFlare.alpha = 1;
     defaultFlare.trail = [];
+    defaultFlare.flares = [];
     defaultFlare.parameter = firstFlareParameter;
     defaultFlare.colorScheme = randomElement(colorSchemes);
     defaultFlare.eventFun = 1;
@@ -142,30 +143,54 @@ function startRocket() {
         alpha: 1,
         color: randomElement(rocketColors),
         parameter: rocketSlopeParameter,
-        postFun: defaultPostSlopeFun
+        postFun: defaultPostSlopeFun,
+        childColorScheme: randomElement(colorSchemes)
     };
+    var colorSchemeToUse = rocket.childColorScheme;
+    var illegal = false;
+    if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
+        // just for eva, no magenta and green combination
+        do {
+            colorSchemeToUse = randomElement(colorSchemes);
+            illegal = isIllegalColorTransition(colorSchemeToUse, rocket.childColorScheme);
+        } while (illegal);
+    }
+    rocket.childChildColorScheme = colorSchemeToUse;
     converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
     rockets.push(rocket);
 }
 
+function getFullColor(color) {
+    return 'rgba(' + color.r + ', ' + color.g + ', ' + color.b + ', ' + color.alpha + ')';
+}
+
+function renderFlareTrailItem(trailItem, flare) {
+    if (trailItem.alpha < 0.05)  return;
+    ctx.beginPath();
+    var color = randomElement(flare.colorScheme);
+    color.alpha = trailItem.alpha;
+    ctx.fillStyle = getFullColor(color);
+    ctx.rect(trailItem.x << 0, trailItem.y << 0, flare.radius, flare.radius);
+    ctx.fill();
+}
+
 function drawRocket(rocket) {
     rocket.trail.forEach(function (trailItem) {
+        if (trailItem.alpha < 0.05)  return;
         ctx.beginPath();
-        ctx.fillStyle = rocket.color.styleRGBA.replace('%alpha', trailItem.alpha);
-        trailItem.x = trailItem.x << 0;
-        trailItem.y = trailItem.y << 0;
-        ctx.rect(trailItem.x, trailItem.y, 2, 2);
+        rocket.color.alpha = trailItem.alpha;
+        ctx.fillStyle = getFullColor(rocket.color);
+        ctx.rect(trailItem.x << 0, trailItem.y << 0, 2, 2);
         ctx.fill();
     });
     rocket.flares.forEach(function (flare) {
         flare.trail.forEach(function (trailItem) {
-            ctx.beginPath();
-            var color = randomElement(flare.colorScheme);
-            ctx.fillStyle = color.styleRGBA.replace('%alpha', trailItem.alpha);
-            trailItem.x = trailItem.x << 0;
-            trailItem.y = trailItem.y << 0;
-            ctx.rect(trailItem.x, trailItem.y, flare.radius, flare.radius);
-            ctx.fill();
+            renderFlareTrailItem(trailItem, flare)
+        });
+        flare.flares.forEach(function (subFlare) {
+            subFlare.trail.forEach(function (trailItem) {
+                renderFlareTrailItem(trailItem, subFlare);
+            })
         })
     });
 }
@@ -194,7 +219,7 @@ function slopeAct(object, parentObj) {
         object.age += 2;
     } else if (!object.dead) {
         if (object.eventFun != undefined) {
-            object.eventFun(object, parentObj);
+            object.eventFun(object);
         }
         object.dead = true;
     }
@@ -206,33 +231,36 @@ function explodedRocketAct(rocket) {
     for (var i = 0; i < rocket.flares.length; i++) {
         var flare = rocket.flares[i];
         if (flare.eventFun == 1) {
-            var colorSchemeTouse = flare.colorScheme;
-            if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
-                // just for eva, no magenta and green combination
-                do {
-                    colorSchemeTouse = randomElement(colorSchemes);
-                    if(colorSchemeTouse[0] == magenta[0] && flare.colorScheme[0] == green[0] || colorSchemeTouse[0] == green[0] && flare.colorScheme[0] == magenta[0]){
-                        console.log('illegal... try again...')
-                    }
-                } while (colorSchemeTouse[0] == magenta[0] && flare.colorScheme[0] == green[0] || colorSchemeTouse[0] == green[0] && flare.colorScheme[0] == magenta[0]);
-            }
-            if(secondFlare) {
-                flare.eventFun = function (flare, rocket) {
-                    createFlare(flare, rocket, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, colorSchemeTouse);
+            if (secondFlare) {
+                flare.eventFun = function (flare) {
+                    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, rocket.childChildColorScheme);
                 }
             } else {
                 flare.eventFun = undefined;
             }
         }
-        slopeAct(flare, rocket)
+        slopeAct(flare, rocket);
+        for (var subFlareI = 0; subFlareI < flare.flares.length; subFlareI++) {
+            var subFlare = flare.flares[subFlareI];
+            slopeAct(subFlare, flare);
+        }
+
     }
+}
+
+function schemesChangeFromTo(choosen, baseScheme, scheme1, scheme2) {
+    return choosen[0] == scheme1[0] && baseScheme[0] == scheme2[0] || choosen[0] == scheme2[0] && baseScheme[0] == scheme1[0]
+}
+
+function isIllegalColorTransition(chosenScheme, baseScheme) {
+    return schemesChangeFromTo(chosenScheme, baseScheme, green, red) || schemesChangeFromTo(chosenScheme, baseScheme, green, magenta);
 }
 
 function rocketAct(rocket) {
     rocket.alpha *= 0.995;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
-    rocket.eventFun = function (rocket, useless) {
-        createFlare(rocket, rocket, generateDefaultFlare, config.fireWorks.flareCount, randomElement(colorSchemes));
+    rocket.eventFun = function (rocket) {
+        createFlare(rocket, generateDefaultFlare, config.fireWorks.flareCount, rocket.childColorScheme);
     };
     slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
@@ -268,7 +296,7 @@ var firstFlareParameter = {
     }
 };
 
-function createFlare(object, parentObj, baseFlare, flareAmount, colorScheme) {
+function createFlare(object, baseFlare, flareAmount, colorScheme) {
     for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareAmount) {
         var newFlare = baseFlare();
         var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
@@ -284,7 +312,7 @@ function createFlare(object, parentObj, baseFlare, flareAmount, colorScheme) {
         newFlare.x = object.x;
         newFlare.y = object.y;
 
-        parentObj.flares.push(newFlare);
+        object.flares.push(newFlare);
     }
 }
 
@@ -297,7 +325,7 @@ function defaultPostSlopeFun(object) {
         trailItem.y += 0.02;
         trailItem.age++;
         trailItem.alpha *= 0.95;
-        if (trailItem.alpha < 0.01) {
+        if (trailItem.alpha < 0.05) {
             object.trail.splice(trailIndex--, 1);
         }
     }
@@ -309,6 +337,9 @@ function updateCanvas() {
         var rocket = rockets[i];
         drawRocket(rocket);
         rocketAct(rocket);
+        if (rocket.flares.length == 0 && rocket.trail.lenght == 0) {
+            rockets.splice(i--, 1);
+        }
     }
     setTimeout(function () {
         animationId = requestAnimationFrame(updateCanvas);
