@@ -57,7 +57,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fireWorks/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.333333">
+            <state vertical-scroll-proportion="0.0">
               <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -71,8 +71,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.34647304">
-              <caret line="167" column="30" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
+            <state vertical-scroll-proportion="1.373444">
+              <caret line="202" column="41" selection-start-line="202" selection-start-column="41" selection-end-line="202" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -81,7 +81,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/overview/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.666666">
+            <state vertical-scroll-proportion="0.0">
               <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
               <folding />
             </state>
@@ -193,6 +193,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -423,7 +424,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -684,7 +684,13 @@
       <option name="project" value="LOCAL" />
       <updated>1495153365220</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="fireWorks:&#10;-instead of string replace, use concatenation for alpha setting&#10;-don't render the trailItem if the alpha is to low&#10;-reduced flare amount for primary and secondary flares&#10;-the color of the second flare is not decided upon creation of the rocket&#10;-refactored the illegalTransition function&#10;-instead of the subFlares being stored in the rocket, moved them to their own flare respectively&#10;">
+      <created>1495189255796</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1495189255796</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -741,7 +747,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="increased possible maximum of second value&#10;fixed second value using the first valueField" />
     <MESSAGE value="incresed maximum spread to 30&#10;" />
     <MESSAGE value="increased maximum spread to 30&#10;" />
     <MESSAGE value="the new elements are now calculated while the tree is being drawn&#10;changed to use the gradient of colors not the absolut values" />
@@ -766,11 +771,12 @@
     <MESSAGE value="fireWork:&#10;-only using one flare function&#10;" />
     <MESSAGE value="fireWork:&#10;-now using different color schemes&#10;-two explosion rockets now spawn with a chance&#10;-the color scheme is changed with a chance for the second explosion (not magenta and green)&#10;-the color for an element in the trail is changed every frame to an element of the color scheme" />
     <MESSAGE value="Overview:&#10;-added fireWorks to overview" />
-    <option name="LAST_COMMIT_MESSAGE" value="Overview:&#10;-added fireWorks to overview" />
+    <MESSAGE value="fireWorks:&#10;-instead of string replace, use concatenation for alpha setting&#10;-don't render the trailItem if the alpha is to low&#10;-reduced flare amount for primary and secondary flares&#10;-the color of the second flare is not decided upon creation of the rocket&#10;-refactored the illegalTransition function&#10;-instead of the subFlares being stored in the rocket, moved them to their own flare respectively&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="fireWorks:&#10;-instead of string replace, use concatenation for alpha setting&#10;-don't render the trailItem if the alpha is to low&#10;-reduced flare amount for primary and secondary flares&#10;-the color of the second flare is not decided upon creation of the rocket&#10;-refactored the illegalTransition function&#10;-instead of the subFlares being stored in the rocket, moved them to their own flare respectively&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="2" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1105,29 +1111,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overview/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.666666">
-          <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jsTree/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="81" selection-end-column="88" />
-          <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <marker date="1495125762627" expanded="true" signature="650:803" placeholder="..." />
-            <marker date="1495125762627" expanded="true" signature="743:771" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fireWorks/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.333333">
+        <state vertical-scroll-proportion="0.0">
           <caret line="17" column="17" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding>
             <element signature="n#style#0;n#a#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -1147,9 +1133,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34647304">
-          <caret line="167" column="30" selection-start-line="167" selection-start-column="30" selection-end-line="167" selection-end-column="30" />
+        <state vertical-scroll-proportion="1.373444">
+          <caret line="202" column="41" selection-start-line="202" selection-start-column="41" selection-end-line="202" selection-end-column="41" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="64" selection-start-line="25" selection-start-column="64" selection-end-line="25" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jsTree/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="81" selection-end-column="88" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1495125762627" expanded="true" signature="650:803" placeholder="..." />
+            <marker date="1495125762627" expanded="true" signature="743:771" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

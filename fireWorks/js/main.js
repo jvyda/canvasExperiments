@@ -13,11 +13,15 @@ var config = {
         fps: 60,
         flareDist: window.innerWidth / 8,
         flareCount: 7,
+        flareHeadChance: 0.4,
         secondaryFlare: {
             flareAmount: 10,
             chance: 0.5,
             colorChangeChance: 0.5
-        }
+        },
+        trailAlphaFactor: 0.95,
+        minAlpha: 0.05,
+        fallingSpeed: 0.1
     }
 };
 
@@ -144,19 +148,23 @@ function startRocket() {
         color: randomElement(rocketColors),
         parameter: rocketSlopeParameter,
         postFun: defaultPostSlopeFun,
-        childColorScheme: randomElement(colorSchemes)
+        colorSchemes: [randomElement(colorSchemes)]
     };
-    var colorSchemeToUse = rocket.childColorScheme;
+    var colorSchemeToUse = rocket.colorSchemes[0];
     var illegal = false;
     if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
-        // just for eva, no magenta and green combination
+        // just for eva, no magenta/red and green combination
         do {
             colorSchemeToUse = randomElement(colorSchemes);
-            illegal = isIllegalColorTransition(colorSchemeToUse, rocket.childColorScheme);
+            illegal = isIllegalColorTransition(colorSchemeToUse, rocket.colorSchemes[0]);
         } while (illegal);
     }
-    rocket.childChildColorScheme = colorSchemeToUse;
+    rocket.colorSchemes.push(colorSchemeToUse);
     converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
+
+    if(Math.random() < config.fireWorks.flareHeadChance){
+        rocket.drawHead = true;
+    }
     rockets.push(rocket);
 }
 
@@ -165,7 +173,7 @@ function getFullColor(color) {
 }
 
 function renderFlareTrailItem(trailItem, flare) {
-    if (trailItem.alpha < 0.05)  return;
+    if (trailItem.alpha < config.fireWorks.minAlpha)  return;
     ctx.beginPath();
     var color = randomElement(flare.colorScheme);
     color.alpha = trailItem.alpha;
@@ -176,7 +184,7 @@ function renderFlareTrailItem(trailItem, flare) {
 
 function drawRocket(rocket) {
     rocket.trail.forEach(function (trailItem) {
-        if (trailItem.alpha < 0.05)  return;
+        if (trailItem.alpha < config.fireWorks.minAlpha)  return;
         ctx.beginPath();
         rocket.color.alpha = trailItem.alpha;
         ctx.fillStyle = getFullColor(rocket.color);
@@ -191,7 +199,15 @@ function drawRocket(rocket) {
             subFlare.trail.forEach(function (trailItem) {
                 renderFlareTrailItem(trailItem, subFlare);
             })
-        })
+        });
+        if(!flare.dead && rocket.drawHead) {
+            ctx.beginPath();
+            var color = randomElement(flare.colorScheme);
+            color.alpha = flare.alpha;
+            ctx.fillStyle = getFullColor(color);
+            ctx.rect(flare.x << 0, flare.y << 0, 2 * flare.radius, 2 * flare.radius);
+            ctx.fill();
+        }
     });
 }
 
@@ -233,7 +249,7 @@ function explodedRocketAct(rocket) {
         if (flare.eventFun == 1) {
             if (secondFlare) {
                 flare.eventFun = function (flare) {
-                    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, rocket.childChildColorScheme);
+                    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, rocket.colorSchemes[1]);
                 }
             } else {
                 flare.eventFun = undefined;
@@ -243,8 +259,13 @@ function explodedRocketAct(rocket) {
         for (var subFlareI = 0; subFlareI < flare.flares.length; subFlareI++) {
             var subFlare = flare.flares[subFlareI];
             slopeAct(subFlare, flare);
+            if(subFlare.trail.length == 0){
+                flare.flares.splice(subFlareI--, 1);
+            }
         }
-
+        if(flare.trail.length == 0 && flare.flares.length == 0){
+            rocket.flares.splice(i--, 1)
+        }
     }
 }
 
@@ -260,7 +281,7 @@ function rocketAct(rocket) {
     rocket.alpha *= 0.995;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
     rocket.eventFun = function (rocket) {
-        createFlare(rocket, generateDefaultFlare, config.fireWorks.flareCount, rocket.childColorScheme);
+        createFlare(rocket, generateDefaultFlare, config.fireWorks.flareCount, rocket.colorSchemes[0]);
     };
     slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
@@ -322,14 +343,15 @@ function defaultPostSlopeFun(object) {
     }
     for (var trailIndex = 0; trailIndex < object.trail.length; trailIndex++) {
         var trailItem = object.trail[trailIndex];
-        trailItem.y += 0.02;
+        trailItem.y += config.fireWorks.fallingSpeed;
         trailItem.age++;
-        trailItem.alpha *= 0.95;
-        if (trailItem.alpha < 0.05) {
+        trailItem.alpha *= config.fireWorks.trailAlphaFactor;
+        if (trailItem.alpha < config.fireWorks.minAlpha) {
             object.trail.splice(trailIndex--, 1);
         }
     }
 }
+
 
 function updateCanvas() {
     ctx.clearRect(0, 0, config.size.width, config.size.height);
@@ -337,7 +359,7 @@ function updateCanvas() {
         var rocket = rockets[i];
         drawRocket(rocket);
         rocketAct(rocket);
-        if (rocket.flares.length == 0 && rocket.trail.lenght == 0) {
+        if (rocket.flares.length == 0 && rocket.trail.length == 0) {
             rockets.splice(i--, 1);
         }
     }
