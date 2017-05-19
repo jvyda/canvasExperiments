@@ -14,7 +14,9 @@ var config = {
         flareDist: window.innerWidth / 8,
         flareCount: 10,
         secondaryFlare: {
-            flareAmount: 15
+            flareAmount: 15,
+            chance: 0.5,
+            colorChangeChance: 0.5
         }
     }
 };
@@ -22,18 +24,70 @@ var config = {
 var mouseStart;
 var mouseStop;
 
-var flareColors = [
+var whiteGoldish = [
     {r: 0xbc, g: 0x47, b: 0x30},
     {r: 0xfa, g: 0xca, b: 0xc4},
     {r: 0xf3, g: 0xda, b: 0xb6},
     {r: 0xf5, g: 0xa9, b: 0x82}
 ];
 
+var metallicBlueFlare = [
+    {r: 0x3a, g: 0x72, b: 0xa1},
+    {r: 0x12, g: 0xe3, b: 0xb5},
+    {r: 0x2f, g: 0x54, b: 0xb9},
+    {r: 0x54, g: 0x56, b: 0xec},
+    {r: 0x1a, g: 0x51, b: 0xc7}
+];
+
+var green = [
+    {r: 0x54, g: 0xca, b: 0x52},
+    {r: 0x03, g: 0x5a, b: 0x07},
+    {r: 0x17, g: 0x47, b: 0x11},
+    {r: 0x7c, g: 0xeb, b: 0x80}
+];
+
+var magenta = [
+    {r: 0xe6, g: 0x59, b: 0xe0},
+    {r: 0x7b, g: 0x08, b: 0x58},
+    {r: 0xcb, g: 0x6f, b: 0xa3},
+    {r: 0xe3, g: 0xa5, b: 0xd7}
+];
+
+var yellow = [
+    {r: 0xf3, g: 0xe1, b: 0x6b},
+    {r: 0xd5, g: 0x96, b: 0x45},
+    {r: 0xff, g: 0xef, b: 0xbe},
+    {r: 0xf5, g: 0xf6, b: 0xa9}
+];
+
+
+var red = [
+    {r: 0xfd, g: 0x46, b: 0x37},
+    {r: 0xfa, g: 0x8c, b: 0x69},
+    {r: 0xe3, g: 0x20, b: 0x08},
+    {r: 0xff, g: 0x66, b: 0x43}
+];
+
+var colorSchemes = [];
+colorSchemes.push(whiteGoldish);
+colorSchemes.push(metallicBlueFlare);
+colorSchemes.push(green);
+colorSchemes.push(magenta);
+colorSchemes.push(yellow);
+colorSchemes.push(red);
+
+colorSchemes.forEach(function(colorScheme){
+    colorScheme.forEach(converColorToRgbaWithAlphaPlaceholderStyle)
+});
+
 var rocketColors = [
     {r: 255, g: 127, b: 0},
     {r: 255, g: 167, b: 0},
     {r: 255, g: 140, b: 0}
 ];
+
+
+rocketColors.forEach(converColorToRgbaWithAlphaPlaceholderStyle);
 
 function generateDefaultFlare() {
     var defaultFlare = {};
@@ -44,11 +98,10 @@ function generateDefaultFlare() {
     defaultFlare.alpha = 1;
     defaultFlare.trail = [];
     defaultFlare.parameter = firstFlareParameter;
-    defaultFlare.color = flareColors[1];
+    defaultFlare.colorScheme = randomElement(colorSchemes);
     defaultFlare.eventFun = 1;
     defaultFlare.radius = 2;
     defaultFlare.postFun = defaultPostSlopeFun;
-    converColorToRgbaWithAlphaPlaceholderStyle(defaultFlare.color);
     return defaultFlare;
 }
 
@@ -60,9 +113,7 @@ function generateSecondaryFlare() {
     secondaryFlare.dead = false;
     secondaryFlare.radius = 1;
     secondaryFlare.parameter = firstFlareParameter;
-    secondaryFlare.color = flareColors[3];
     secondaryFlare.eventFun = undefined;
-    converColorToRgbaWithAlphaPlaceholderStyle(secondaryFlare.color);
     return secondaryFlare;
 }
 
@@ -109,7 +160,8 @@ function drawRocket(rocket) {
     rocket.flares.forEach(function (flare) {
         flare.trail.forEach(function (trailItem) {
             ctx.beginPath();
-            ctx.fillStyle = flare.color.styleRGBA.replace('%alpha', trailItem.alpha);
+            var color = randomElement(flare.colorScheme);
+            ctx.fillStyle = color.styleRGBA.replace('%alpha', trailItem.alpha);
             trailItem.x = trailItem.x << 0;
             trailItem.y = trailItem.y << 0;
             ctx.rect(trailItem.x, trailItem.y, flare.radius, flare.radius);
@@ -123,7 +175,7 @@ function slopeAct(object, parentObj) {
         object.x -= object.nVec.x * object.vel;
         object.y -= object.nVec.y * object.vel;
         object.age += object.parameter.firstPhase.ageChange;
-    } else if (object.nVec.y > 0) {
+    } else if (object.nVec && object.nVec.y > 0) {
         object.vel *= object.parameter.secondPhase.velocityFactor;
         object.x -= object.nVec.x * object.vel;
         object.y -= object.nVec.y * object.vel;
@@ -150,11 +202,26 @@ function slopeAct(object, parentObj) {
 }
 
 function explodedRocketAct(rocket) {
+    var secondFlare = Math.random() < config.fireWorks.secondaryFlare.chance;
     for (var i = 0; i < rocket.flares.length; i++) {
         var flare = rocket.flares[i];
         if (flare.eventFun == 1) {
-            flare.eventFun = function (flare, rocket) {
-                createFlare(flare, rocket, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount);
+            var colorSchemeTouse = flare.colorScheme;
+            if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
+                // just for eva, no magenta and green combination
+                do {
+                    colorSchemeTouse = randomElement(colorSchemes);
+                    if(colorSchemeTouse[0] == magenta[0] && flare.colorScheme[0] == green[0] || colorSchemeTouse[0] == green[0] && flare.colorScheme[0] == magenta[0]){
+                        console.log('illegal... try again...')
+                    }
+                } while (colorSchemeTouse[0] == magenta[0] && flare.colorScheme[0] == green[0] || colorSchemeTouse[0] == green[0] && flare.colorScheme[0] == magenta[0]);
+            }
+            if(secondFlare) {
+                flare.eventFun = function (flare, rocket) {
+                    createFlare(flare, rocket, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, colorSchemeTouse);
+                }
+            } else {
+                flare.eventFun = undefined;
             }
         }
         slopeAct(flare, rocket)
@@ -165,11 +232,12 @@ function rocketAct(rocket) {
     rocket.alpha *= 0.995;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
     rocket.eventFun = function (rocket, useless) {
-        createFlare(rocket, rocket, generateDefaultFlare, config.fireWorks.flareCount);
+        createFlare(rocket, rocket, generateDefaultFlare, config.fireWorks.flareCount, randomElement(colorSchemes));
     };
     slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
 }
+
 var rocketSlopeParameter = {
     firstPhase: {
         ageLimit: config.size.height / 5,
@@ -200,7 +268,7 @@ var firstFlareParameter = {
     }
 };
 
-function createFlare(object, parentObj, baseFlare, flareAmount) {
+function createFlare(object, parentObj, baseFlare, flareAmount, colorScheme) {
     for (var i = 0; i < 2 * Math.PI; i += 2 * Math.PI / flareAmount) {
         var newFlare = baseFlare();
         var newXOffset = randomNumberButAtLeast(config.fireWorks.flareDist, config.fireWorks.flareDist / 5) * Math.cos(i);
@@ -211,6 +279,7 @@ function createFlare(object, parentObj, baseFlare, flareAmount) {
             x: vec.x,
             y: vec.y
         };
+        newFlare.colorScheme = colorScheme;
         newFlare.nVec = normalizeVector(vec);
         newFlare.x = object.x;
         newFlare.y = object.y;
