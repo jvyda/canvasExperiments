@@ -21,9 +21,10 @@ var config = {
         },
         rocketHeadAlphaFactor: 0.995,
         trailAlphaFactor: 0.95,
-        minAlpha: 0.05,
+        minAlpha: 0.02,
         fallingSpeed: 0.1,
-        flareHeadFactor: 1.5
+        flareHeadFactor: 1.5,
+        secondExplosionChance: 0.2
     }
 };
 
@@ -149,18 +150,27 @@ function startRocket() {
         color: randomElement(rocketColors),
         parameter: rocketSlopeParameter,
         postFun: defaultPostSlopeFun,
-        colorSchemes: [randomElement(colorSchemes)]
+        colorSchemes: [randomElement(colorSchemes)],
+        secondExplosion: Math.random() < config.fireWorks.secondExplosionChance,
+        firstExplosionDone: false,
+        secondExplosionDone: false
     };
-    var colorSchemeToUse = rocket.colorSchemes[0];
+    var colorSchemeToUse = colorSchemes[1];
+    var secondColorSchemeToUse = colorSchemes[2];
+
     var illegal = false;
     if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
         // just for eva, no magenta/red and green combination
         do {
             colorSchemeToUse = randomElement(colorSchemes);
+            secondColorSchemeToUse = randomElement(colorSchemes);
             illegal = isIllegalColorTransition(colorSchemeToUse, rocket.colorSchemes[0]);
+            illegal = illegal || isIllegalColorTransition(secondColorSchemeToUse, rocket.colorSchemes[0]);
+            illegal = illegal || isIllegalColorTransition(colorSchemeToUse, secondColorSchemeToUse);
         } while (illegal);
     }
     rocket.colorSchemes.push(colorSchemeToUse);
+    rocket.colorSchemes.push(secondColorSchemeToUse);
     converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
 
     if(Math.random() < config.fireWorks.flareHeadChance){
@@ -237,8 +247,19 @@ function slopeAct(object, parentObj) {
     } else if (!object.dead) {
         if (object.eventFun != undefined) {
             object.eventFun(object);
+            if(object.secondExplosion && !object.firstExplosionDone){
+                object.dead = false;
+                object.firstExplosionDone = true;
+                object.age = object.parameter.firstPhase.ageLimit;
+                object.nVec.y = -Math.abs(object.nVec.y * 0.1);
+                object.vel *= 0.5;
+            }
+            else if(object.secondExplosion && object.firstExplosionDone) {
+                object.secondExplosionDone = true;
+            }
+        } else {
+            object.dead = true;
         }
-        object.dead = true;
     }
     object.postFun(object, parentObj);
 }
@@ -250,7 +271,12 @@ function explodedRocketAct(rocket) {
         if (flare.eventFun == 1) {
             if (secondFlare) {
                 flare.eventFun = function (flare) {
-                    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, rocket.colorSchemes[1]);
+                    flare.dead = true;
+                    var colorSchemeIndex = 1;
+                    if(rocket.secondExplosionDone){
+                        colorSchemeIndex = 2;
+                    }
+                    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount, rocket.colorSchemes[colorSchemeIndex]);
                 }
             } else {
                 flare.eventFun = undefined;
@@ -282,7 +308,12 @@ function rocketAct(rocket) {
     rocket.alpha *= config.fireWorks.rocketHeadAlphaFactor;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
     rocket.eventFun = function (rocket) {
-        createFlare(rocket, generateDefaultFlare, config.fireWorks.flareCount, rocket.colorSchemes[0]);
+        rocket.dead = true;
+        var colorSchemeIndex = 0;
+        if(rocket.firstExplosionDone){
+            colorSchemeIndex = 1;
+        }
+        createFlare(rocket, generateDefaultFlare, config.fireWorks.flareCount, rocket.colorSchemes[colorSchemeIndex]);
     };
     slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
