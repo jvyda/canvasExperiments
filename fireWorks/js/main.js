@@ -19,9 +19,11 @@ var config = {
             chance: 0.5,
             colorChangeChance: 0.5
         },
+        rocketHeadAlphaFactor: 0.995,
         trailAlphaFactor: 0.95,
         minAlpha: 0.05,
-        fallingSpeed: 0.1
+        fallingSpeed: 0.1,
+        flareHeadFactor: 1.5
     }
 };
 
@@ -98,7 +100,6 @@ function generateDefaultFlare() {
     defaultFlare.vel = 3;
     defaultFlare.age = 0;
     defaultFlare.maxAge = randomNumberButAtLeast(config.size.height / 10, config.size.height / 20);
-    defaultFlare.decay = 0.9;
     defaultFlare.alpha = 1;
     defaultFlare.trail = [];
     defaultFlare.flares = [];
@@ -205,7 +206,7 @@ function drawRocket(rocket) {
             var color = randomElement(flare.colorScheme);
             color.alpha = flare.alpha;
             ctx.fillStyle = getFullColor(color);
-            ctx.rect(flare.x << 0, flare.y << 0, 2 * flare.radius, 2 * flare.radius);
+            ctx.rect(flare.x << 0, flare.y << 0, config.fireWorks.flareHeadFactor * flare.radius, config.fireWorks.flareHeadFactor * flare.radius);
             ctx.fill();
         }
     });
@@ -278,7 +279,7 @@ function isIllegalColorTransition(chosenScheme, baseScheme) {
 }
 
 function rocketAct(rocket) {
-    rocket.alpha *= 0.995;
+    rocket.alpha *= config.fireWorks.rocketHeadAlphaFactor;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
     rocket.eventFun = function (rocket) {
         createFlare(rocket, generateDefaultFlare, config.fireWorks.flareCount, rocket.colorSchemes[0]);
