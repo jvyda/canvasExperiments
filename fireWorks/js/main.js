@@ -24,7 +24,10 @@ config.fireWorks = {
         flareMinAge: config.size.height / 20,
         flareMaxAge: config.size.height / 10,
         initialVel: 3,
-        radius: 1
+        radius: 1,
+        // disabled, because not working, eventFun is undefined, so there is no difference between the explosion and it continues flying on
+        // and it will stay on screen
+        secondExplosionChance: 0
     },
     primaryFlare: {
         flareCount: 7,
@@ -34,7 +37,9 @@ config.fireWorks = {
         flareMaxAge: config.size.height / 10,
         longerFlareChance: 0.1,
         initialVel: 3,
-        radius: 2
+        radius: 2,
+        // disabled, because lag switch
+        secondExplosionChance: 0.0
     },
     rocket: {
         maxAge: config.size.height / 4,
@@ -123,6 +128,9 @@ function generateDefaultFlare() {
     defaultFlare.parameter = firstFlareParameter;
     defaultFlare.colorScheme = randomElement(colorSchemes);
     defaultFlare.eventFun = 1;
+    defaultFlare.secondExplosion = Math.random() < config.fireWorks.primaryFlare.secondExplosionChance;
+    defaultFlare.firstExplosionDone =  false;
+    defaultFlare.secondExplosionDone = false;
     defaultFlare.radius = config.fireWorks.primaryFlare.radius;
     defaultFlare.postFun = defaultPostSlopeFun;
     return defaultFlare;
@@ -134,6 +142,7 @@ function generateSecondaryFlare() {
     secondaryFlare.maxAge = randomNumberButAtLeast(config.fireWorks.secondaryFlare.flareMaxAge, config.fireWorks.secondaryFlare.flareMinAge);
     secondaryFlare.vel = config.fireWorks.secondaryFlare.initialVel;
     secondaryFlare.dead = false;
+    secondaryFlare.secondExplosion = false;
     secondaryFlare.radius = config.fireWorks.secondaryFlare.radius;
     secondaryFlare.parameter = firstFlareParameter;
     secondaryFlare.eventFun = undefined;
@@ -263,22 +272,33 @@ function slopeAct(object, parentObj) {
         object.age += 2;
     } else if (!object.dead) {
         if (object.eventFun != undefined) {
-            object.eventFun(object);
-            if (object.secondExplosion && !object.firstExplosionDone) {
-                object.dead = false;
-                object.firstExplosionDone = true;
-                object.age = object.parameter.firstPhase.ageLimit;
-                object.nVec.y = -Math.abs(object.nVec.y * 0.1);
-                object.vel *= 0.5;
-            }
-            else if (object.secondExplosion && object.firstExplosionDone) {
-                object.secondExplosionDone = true;
-            }
+            object.eventFun(object, parentObj);
         } else {
             object.dead = true;
         }
+        if (object.secondExplosion && !object.firstExplosionDone) {
+            object.dead = false;
+            object.firstExplosionDone = true;
+            object.age = object.parameter.firstPhase.ageLimit;
+            object.nVec.y = -Math.abs(object.nVec.y * 0.1);
+            object.vel *= 0.5;
+        }
+        else if (object.secondExplosion && object.firstExplosionDone) {
+            object.secondExplosionDone = true;
+        }
     }
     object.postFun(object, parentObj);
+}
+
+
+function secondaryFlareEvent(flare, rocket) {
+    flare.dead = true;
+    var colorSchemeIndex = 1;
+    if (rocket.secondExplosionDone) {
+        colorSchemeIndex = 2;
+    }
+    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount,
+        rocket.colorSchemes[colorSchemeIndex], {longerFlare: rocket.longerSecondaryFlare});
 }
 
 function explodedRocketAct(rocket) {
@@ -287,15 +307,7 @@ function explodedRocketAct(rocket) {
         var flare = rocket.flares[i];
         if (flare.eventFun == 1) {
             if (secondFlare && !rocket.longerFlare) {
-                flare.eventFun = function (flare) {
-                    flare.dead = true;
-                    var colorSchemeIndex = 1;
-                    if (rocket.secondExplosionDone) {
-                        colorSchemeIndex = 2;
-                    }
-                    createFlare(flare, generateSecondaryFlare, config.fireWorks.secondaryFlare.flareAmount,
-                        rocket.colorSchemes[colorSchemeIndex], {longerFlare: rocket.longerSecondaryFlare});
-                }
+                flare.eventFun = secondaryFlareEvent;
             } else {
                 flare.eventFun = undefined;
             }
@@ -322,18 +334,20 @@ function isIllegalColorTransition(chosenScheme, baseScheme) {
     return schemesChangeFromTo(chosenScheme, baseScheme, green, red) || schemesChangeFromTo(chosenScheme, baseScheme, green, magenta);
 }
 
+function primaryFlareFunction(rocket, useless) {
+    rocket.dead = true;
+    var colorSchemeIndex = 0;
+    if (rocket.firstExplosionDone) {
+        colorSchemeIndex = 1;
+    }
+    createFlare(rocket, generateDefaultFlare, config.fireWorks.primaryFlare.flareCount,
+        rocket.colorSchemes[colorSchemeIndex], {longerFlare: rocket.longerFlare});
+}
+
 function rocketAct(rocket) {
     rocket.alpha *= config.fireWorks.rocket.rocketHeadAlphaFactor;
     rocketSlopeParameter.firstPhase.ageChange = rocket.vel;
-    rocket.eventFun = function (rocket) {
-        rocket.dead = true;
-        var colorSchemeIndex = 0;
-        if (rocket.firstExplosionDone) {
-            colorSchemeIndex = 1;
-        }
-        createFlare(rocket, generateDefaultFlare, config.fireWorks.primaryFlare.flareCount,
-            rocket.colorSchemes[colorSchemeIndex], {longerFlare: rocket.longerFlare});
-    };
+    rocket.eventFun = primaryFlareFunction;
     slopeAct(rocket, undefined);
     explodedRocketAct(rocket);
 }
