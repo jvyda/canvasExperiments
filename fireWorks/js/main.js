@@ -220,32 +220,36 @@ function renderFlareTrailItem(trailItem, flare) {
 }
 
 function drawRocket(rocket) {
-    rocket.trail.forEach(function (trailItem) {
-        if (trailItem.alpha < config.fireWorks.minAlpha)  return;
+    for(var rocketTailI = 0; rocketTailI < rocket.trail.length; rocketTailI++){
+        var tailItem = rocket.trail[rocketTailI];
+        if (tailItem.alpha < config.fireWorks.minAlpha)  return;
         ctx.beginPath();
-        rocket.color.alpha = trailItem.alpha;
+        rocket.color.alpha = tailItem.alpha;
         ctx.fillStyle = getFullColor(rocket.color);
-        ctx.rect(trailItem.x << 0, trailItem.y << 0, config.fireWorks.rocket.radius, config.fireWorks.rocket.radius);
+        ctx.rect(tailItem.x << 0, tailItem.y << 0, config.fireWorks.rocket.radius, config.fireWorks.rocket.radius);
         ctx.fill();
-    });
-    rocket.flares.forEach(function (flare) {
-        flare.trail.forEach(function (trailItem) {
-            renderFlareTrailItem(trailItem, flare)
-        });
-        flare.flares.forEach(function (subFlare) {
-            subFlare.trail.forEach(function (trailItem) {
-                renderFlareTrailItem(trailItem, subFlare);
-            })
-        });
-        if (!flare.dead && rocket.drawHead) {
+    }
+    for(var mainFlareI = 0; mainFlareI < rocket.flares.length; mainFlareI++){
+        var mainFlare = rocket.flares[mainFlareI];
+        for(var mainFlareTrailI = 0; mainFlareTrailI < mainFlare.trail.length; mainFlareTrailI++){
+            renderFlareTrailItem(mainFlare.trail[mainFlareTrailI], mainFlare)
+        }
+        for(var subFlareI = 0; subFlareI < mainFlare.flares.length; subFlareI++){
+            var subFlare = mainFlare.flares[subFlareI];
+            for(var subFlareTrailI = 0; subFlareTrailI < subFlare.trail.length; subFlareTrailI++){
+                renderFlareTrailItem(subFlare.trail[subFlareTrailI], subFlare)
+            }
+        }
+        if (!mainFlare.dead && rocket.drawHead) {
             ctx.beginPath();
-            var color = randomElement(flare.colorScheme);
-            color.alpha = flare.alpha;
+            var color = randomElement(mainFlare.colorScheme);
+            color.alpha = mainFlare.alpha;
             ctx.fillStyle = getFullColor(color);
-            ctx.rect(flare.x << 0, flare.y << 0, config.fireWorks.primaryFlare.flareHeadFactor * flare.radius, config.fireWorks.primaryFlare.flareHeadFactor * flare.radius);
+            ctx.rect(mainFlare.x << 0, mainFlare.y << 0, config.fireWorks.primaryFlare.flareHeadFactor * mainFlare.radius,
+                config.fireWorks.primaryFlare.flareHeadFactor * mainFlare.radius);
             ctx.fill();
         }
-    });
+    }
 }
 
 function slopeAct(object, parentObj) {
