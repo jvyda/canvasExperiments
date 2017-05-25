@@ -1,5 +1,7 @@
 var canvas;
 var ctx;
+var imageData = {};
+var imageData_default;
 
 var animationId;
 
@@ -205,29 +207,27 @@ function startRocket() {
     rockets.push(rocket);
 }
 
-function getFullColor(color) {
-    return 'rgba(' + color.r + ', ' + color.g + ', ' + color.b + ', ' + color.alpha + ')';
-}
-
 function renderFlareTrailItem(trailItem, flare) {
     if (trailItem.alpha < config.fireWorks.minAlpha)  return;
-    ctx.beginPath();
     var color = randomElement(flare.colorScheme);
     color.alpha = trailItem.alpha;
-    ctx.fillStyle = getFullColor(color);
-    ctx.rect(trailItem.x << 0, trailItem.y << 0, flare.radius, flare.radius);
-    ctx.fill();
+    setCoordinateToColor(trailItem.x << 0, trailItem.y << 0, color);
+}
+
+function setCoordinateToColor(x, y, color) {
+    var indexForCoordinate = getIndexForCoordinate(x, y) << 0;
+    imageData.data[indexForCoordinate] = color.r;
+    imageData.data[indexForCoordinate + 1] = color.g;
+    imageData.data[indexForCoordinate + 2] = color.b;
+    imageData.data[indexForCoordinate + 3] = color.alpha *  255;
 }
 
 function drawRocket(rocket) {
     for(var rocketTailI = 0; rocketTailI < rocket.trail.length; rocketTailI++){
         var tailItem = rocket.trail[rocketTailI];
-        if (tailItem.alpha < config.fireWorks.minAlpha)  return;
-        ctx.beginPath();
+        if (tailItem.alpha < config.fireWorks.minAlpha)  continue;
         rocket.color.alpha = tailItem.alpha;
-        ctx.fillStyle = getFullColor(rocket.color);
-        ctx.rect(tailItem.x << 0, tailItem.y << 0, config.fireWorks.rocket.radius, config.fireWorks.rocket.radius);
-        ctx.fill();
+        setCoordinateToColor(tailItem.x << 0, tailItem.y << 0, rocket.color);
     }
     for(var mainFlareI = 0; mainFlareI < rocket.flares.length; mainFlareI++){
         var mainFlare = rocket.flares[mainFlareI];
@@ -241,13 +241,13 @@ function drawRocket(rocket) {
             }
         }
         if (!mainFlare.dead && rocket.drawHead) {
-            ctx.beginPath();
             var color = randomElement(mainFlare.colorScheme);
             color.alpha = mainFlare.alpha;
-            ctx.fillStyle = getFullColor(color);
-            ctx.rect(mainFlare.x << 0, mainFlare.y << 0, config.fireWorks.primaryFlare.flareHeadFactor * mainFlare.radius,
-                config.fireWorks.primaryFlare.flareHeadFactor * mainFlare.radius);
-            ctx.fill();
+            for(var x_off = 0; x_off < mainFlare.radius * config.fireWorks.primaryFlare.flareHeadFactor; x_off++){
+                for(var y_off = 0; y_off < mainFlare.radius * config.fireWorks.primaryFlare.flareHeadFactor; y_off++){
+                    setCoordinateToColor( mainFlare.x + x_off << 0,  mainFlare.y + y_off << 0, color);
+                }
+            }
         }
     }
 }
@@ -426,7 +426,6 @@ function defaultPostSlopeFun(object) {
 
 
 function updateCanvas() {
-    ctx.clearRect(0, 0, config.size.width, config.size.height);
     for (var i = 0; i < rockets.length; i++) {
         var rocket = rockets[i];
         drawRocket(rocket);
@@ -435,6 +434,9 @@ function updateCanvas() {
             rockets.splice(i--, 1);
         }
     }
+
+    ctx.putImageData(imageData, 0, 0);
+    imageData.data.set(imageData_default.data);
     setTimeout(function () {
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.fireWorks.fps)
@@ -457,5 +459,7 @@ $(document).ready(function () {
     canvas.height = config.size.height;
     ctx = canvas.getContext("2d");
     $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
+    imageData_default = ctx.getImageData(0, 0, config.size.width, config.size.height);
+    imageData = ctx.getImageData(0, 0, config.size.width, config.size.height);
     requestAnimationFrame(updateCanvas);
 });
