@@ -2,6 +2,7 @@ var canvas;
 var ctx;
 var imageData = {};
 var imageData_default;
+var pointIndex = 0;
 
 var animationId;
 
@@ -441,6 +442,16 @@ function updateCanvas() {
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.fireWorks.fps)
 
+}
+
+function setPoint(event){
+    if(pointIndex == 0){
+        pointIndex++
+        setShaft(event)
+    } else {
+        pointIndex = 0;
+        setTip(event);
+    }
 }
 
 
