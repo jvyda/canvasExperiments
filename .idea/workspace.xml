@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview/img/orbitingSpheres_preview.png" afterPath="$PROJECT_DIR$/overview/img/orbitingSpheres_preview.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbitingSpheres/index.html" afterPath="$PROJECT_DIR$/orbitingSpheres/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbitingSpheres/js/main.js" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -35,24 +35,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5306749">
-              <caret line="267" column="23" selection-start-line="267" selection-start-column="23" selection-end-line="267" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="251" column="56" selection-start-line="251" selection-start-column="56" selection-end-line="251" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.1481482">
-              <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.3376">
+              <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
               <folding>
-                <marker date="1496515313089" expanded="true" signature="610:763" placeholder="..." />
-                <marker date="1496515313089" expanded="true" signature="703:731" placeholder="..." />
+                <marker date="1496518793916" expanded="true" signature="610:763" placeholder="..." />
+                <marker date="1496518793916" expanded="true" signature="703:731" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -626,7 +626,13 @@
       <option name="project" value="LOCAL" />
       <updated>1496515395405</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="orbitingSpheres:&#10;-fixed preview&#10;-fixed hotkey for showing names">
+      <created>1496516809222</created>
+      <option name="number" value="00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1496516809222</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -685,7 +691,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fixed minor bug with color" />
     <MESSAGE value="triangles now disappear if the  move to far away from the spawn point instead of mouse pointer" />
     <MESSAGE value="added dependency to msDropdown for drop downs with images&#10;added possibility to select color schemes in triangles" />
     <MESSAGE value="Triangles:&#10; -removed names from color schemes&#10; -use the generic select creation function instead of the customized one&#10;Common:&#10;-added function to create selects with canvases in them" />
@@ -710,7 +715,8 @@
     <MESSAGE value="fireWorks:&#10;-changed controls to be two independent mouse clicks instead of dragging, dragging lagged and did not work on mobile" />
     <MESSAGE value="orbitingSpheres:&#10;-added it!" />
     <MESSAGE value="orbitingSpheres:&#10;-added hotkey to update whether we show a name or not&#10;-updated preview" />
-    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-added hotkey to update whether we show a name or not&#10;-updated preview" />
+    <MESSAGE value="orbitingSpheres:&#10;-fixed preview&#10;-fixed hotkey for showing names" />
+    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-fixed preview&#10;-fixed hotkey for showing names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1072,22 +1078,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.1481482">
-          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-          <folding>
-            <marker date="1496515313089" expanded="true" signature="610:763" placeholder="..." />
-            <marker date="1496515313089" expanded="true" signature="703:731" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="251" column="56" selection-start-line="251" selection-start-column="56" selection-end-line="251" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5306749">
-          <caret line="267" column="23" selection-start-line="267" selection-start-column="23" selection-end-line="267" selection-end-column="23" />
-          <folding />
+        <state vertical-scroll-proportion="0.3376">
+          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+          <folding>
+            <marker date="1496518793916" expanded="true" signature="610:763" placeholder="..." />
+            <marker date="1496518793916" expanded="true" signature="703:731" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

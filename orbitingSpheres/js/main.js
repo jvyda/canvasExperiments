@@ -206,7 +206,7 @@ function updateCanvas() {
         var sphere = spheres[sphereI];
         //printSphere(sphere);
         ctx.fillStyle = sphere.finalColor;
-        if(config.orbitingSpheres.showNames) {
+        if (config.orbitingSpheres.showNames) {
             ctx.fillText(sphere.name, sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor);
         }
         ctx.arc(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor, 2, 0, 2 * Math.PI);
@@ -218,7 +218,7 @@ function updateCanvas() {
 }
 
 function setMousePos(event) {
-    if(event.altKey) {
+    if (event.altKey) {
         addRandomPlanet();
         return;
     }
@@ -233,14 +233,13 @@ function setMousePos(event) {
 
 
 $(document).ready(function () {
-    canvas = $("#canvas")[0];
+    var canvasJQuery = $("#canvas");
+    canvas = canvasJQuery[0];
     canvas.width = config.size.width;
     canvas.height = config.size.height;
     ctx = canvas.getContext("2d");
-    $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
+    canvasJQuery.css('background-color', 'rgba(0, 0, 0, 1)');
     canvas.addEventListener("click", setMousePos, false);
-
-    window.onkeypress = keyPressed;
     ctx.fillStyle = 'red';
     ctx.translate(config.size.width / 2, config.size.height / 2);
     createSpheres();
@@ -248,6 +247,10 @@ $(document).ready(function () {
         var sphere = spheres[i];
         sphere.finalColor = '#' + d2h(sphere.color.r) + d2h(sphere.color.g) + d2h(sphere.color.b);
     }
+
+    canvasJQuery.on('wheel', mouseWheelEvent);
+    // attach it to document, because of focus errors...
+    document.onkeypress = keyPressed;
     requestAnimationFrame(updateCanvas);
 });
 
@@ -265,14 +268,13 @@ function addRandomPlanet() {
 
 function mouseWheelEvent(event) {
     if (!event.altKey) return;
-    var delta = event.wheelDelta ? event.wheelDelta : -event.detail;
-    config.orbitingSpheres.scale_factor_factor += delta > 0 ? 1 : -1;
+    config.orbitingSpheres.scale_factor_factor += event.originalEvent.deltaY < 0 ? 1 : -1;
     config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
     event.preventDefault()
 }
 
-function keyPressed(event){
-    if(event.keyCode == 110) {
+function keyPressed(event) {
+    if (event.keyCode == 110 || event.charCode == 110) {
         config.orbitingSpheres.showNames = !config.orbitingSpheres.showNames;
     }
 }
