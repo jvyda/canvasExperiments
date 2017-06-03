@@ -446,7 +446,7 @@ function updateCanvas() {
 
 function setPoint(event){
     if(pointIndex == 0){
-        pointIndex++
+        pointIndex++;
         setShaft(event)
     } else {
         pointIndex = 0;
