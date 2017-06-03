@@ -272,5 +272,7 @@ function mouseWheelEvent(event) {
 }
 
 function keyPressed(event){
-    if(event.keyCode = 110) config.orbitingSpheres.showNames = !config.orbitingSpheres.showNames;
+    if(event.keyCode == 110) {
+        config.orbitingSpheres.showNames = !config.orbitingSpheres.showNames;
+    }
 }
