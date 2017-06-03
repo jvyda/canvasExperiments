@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/overview/img/orbitingSpheres_preview.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/orbitingSpheres/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/orbitingSpheres/js/plugins.js" />
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="orbitingSpheres:&#10;-&#10;-updated preview">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview/img/orbitingSpheres_preview.png" afterPath="$PROJECT_DIR$/overview/img/orbitingSpheres_preview.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/fireWorks/js/main.js" afterPath="$PROJECT_DIR$/fireWorks/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview/index.html" afterPath="$PROJECT_DIR$/overview/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbitingSpheres/index.html" afterPath="$PROJECT_DIR$/orbitingSpheres/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbitingSpheres/js/main.js" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,44 +36,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.4355829">
-              <caret line="251" column="35" selection-start-line="251" selection-start-column="35" selection-end-line="251" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overview/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.333333">
-              <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="113" column="86" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="86" />
+              <caret line="274" column="96" selection-start-line="274" selection-start-column="96" selection-end-line="274" selection-end-column="96" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.148149">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0496">
+              <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
               <folding>
-                <marker date="1496509285274" expanded="true" signature="610:763" placeholder="..." />
-                <marker date="1496509285274" expanded="true" signature="703:731" placeholder="..." />
+                <marker date="1496515313089" expanded="true" signature="610:763" placeholder="..." />
+                <marker date="1496515313089" expanded="true" signature="703:731" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -135,10 +111,10 @@
         <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
         <option value="$PROJECT_DIR$/swingingSpheres/js/main.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/orbit.py" />
-        <option value="$PROJECT_DIR$/orbitingSpheres/index.html" />
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
+        <option value="$PROJECT_DIR$/orbitingSpheres/index.html" />
       </list>
     </option>
   </component>
@@ -639,15 +615,22 @@
       <option name="project" value="LOCAL" />
       <updated>1495778831491</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="orbitingSpheres:&#10;-added it!">
+      <created>1496513279754</created>
+      <option name="number" value="00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1496513279754</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="19" width="1364" height="748" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14296187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14296187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -657,7 +640,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -698,7 +680,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="refactored some projects to use requestAnimationFrame instead of setTimeout&#10;refactored some config layout" />
     <MESSAGE value="added triangles project&#10;changed dotLines to be screen size instead of static values&#10;" />
     <MESSAGE value="fixed minor bug with color" />
     <MESSAGE value="triangles now disappear if the  move to far away from the spawn point instead of mouse pointer" />
@@ -723,7 +704,8 @@
     <MESSAGE value="fireWorks:&#10;-changed forEach to normal for loops, it seems performance is better" />
     <MESSAGE value="fireWorks:&#10;-replaced ctx.drawRect with directly modifying the underlying imageData, great improvement of performance!" />
     <MESSAGE value="fireWorks:&#10;-changed controls to be two independent mouse clicks instead of dragging, dragging lagged and did not work on mobile" />
-    <option name="LAST_COMMIT_MESSAGE" value="fireWorks:&#10;-changed controls to be two independent mouse clicks instead of dragging, dragging lagged and did not work on mobile" />
+    <MESSAGE value="orbitingSpheres:&#10;-added it!" />
+    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-added it!" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1053,14 +1035,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="113" column="86" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.66871166">
@@ -1085,22 +1059,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
+    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.148149">
-          <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-          <folding>
-            <marker date="1496509285274" expanded="true" signature="610:763" placeholder="..." />
-            <marker date="1496509285274" expanded="true" signature="703:731" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.303681">
+          <caret line="113" column="86" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="86" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4355829">
-          <caret line="251" column="35" selection-start-line="251" selection-start-column="35" selection-end-line="251" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="274" column="96" selection-start-line="274" selection-start-column="96" selection-end-line="274" selection-end-column="96" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0496">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
+          <folding>
+            <marker date="1496515313089" expanded="true" signature="610:763" placeholder="..." />
+            <marker date="1496515313089" expanded="true" signature="703:731" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

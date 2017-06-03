@@ -15,7 +15,8 @@ var config = {
         gravitationalConstant: 6.67428e-11,
         timestep: 24 * 3600,
         AU: 149.6e6 * 1000,
-        scale_factor_factor: 20
+        scale_factor_factor: 20,
+        showNames: false
     }
 };
 
@@ -205,7 +206,9 @@ function updateCanvas() {
         var sphere = spheres[sphereI];
         //printSphere(sphere);
         ctx.fillStyle = sphere.finalColor;
-        ctx.fillText(sphere.name, sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor);
+        if(config.orbitingSpheres.showNames) {
+            ctx.fillText(sphere.name, sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor);
+        }
         ctx.arc(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor, 2, 0, 2 * Math.PI);
         ctx.fill();
     }
@@ -237,6 +240,7 @@ $(document).ready(function () {
     $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
     canvas.addEventListener("click", setMousePos, false);
 
+    window.onkeypress = keyPressed;
     ctx.fillStyle = 'red';
     ctx.translate(config.size.width / 2, config.size.height / 2);
     createSpheres();
@@ -267,3 +271,6 @@ function mouseWheelEvent(event) {
     event.preventDefault()
 }
 
+function keyPressed(event){
+    if(event.keyCode = 110) config.orbitingSpheres.showNames = !config.orbitingSpheres.showNames;
+}
