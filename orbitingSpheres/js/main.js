@@ -21,6 +21,7 @@ var config = {
 };
 
 config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
+config.orbitingSpheres.labelOffset = config.orbitingSpheres.AU / 10;
 
 var spheres = [];
 
@@ -32,6 +33,7 @@ function generateBasicPlanet() {
     basePlanet.y = 0;
     basePlanet.vx = 0;
     basePlanet.vy = 0;
+    basePlanet.labelPosition = 0;
     return basePlanet;
 }
 
@@ -140,10 +142,25 @@ function createSpheres() {
     neptune.x = 30.047 * config.orbitingSpheres.AU;
     neptune.vy = 5.43 * 1000;
 
+    var moon = generateBasicPlanet();
+    moon.name = 'moon';
+    moon.color = {
+        r: 0x51, g: 0x4d, b: 0x4a
+    };
+
+    moon.radius = 1738 * 1000;
+    moon.mass = 7.349 * Math.pow(10, 22);
+    moon.x = 1 * config.orbitingSpheres.AU;
+    moon.y = 384400 * 1000;
+    moon.vy = 29.783 * 1000;
+    moon.vx = 1.023 * 1000;
+    moon.labelPosition = -1;
+
     spheres.push(sun);
     spheres.push(merkur);
     spheres.push(venus);
     spheres.push(earth);
+    spheres.push(moon);
     spheres.push(mars);
     spheres.push(jupiter);
     spheres.push(saturn);
@@ -207,9 +224,9 @@ function updateCanvas() {
         //printSphere(sphere);
         ctx.fillStyle = sphere.finalColor;
         if (config.orbitingSpheres.showNames) {
-            ctx.fillText(sphere.name, sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor);
+            ctx.fillText(sphere.name, (sphere.x + config.orbitingSpheres.labelOffset * sphere.labelPosition) * config.orbitingSpheres.scale_factor, (sphere.y + config.orbitingSpheres.AU / 10 * sphere.labelPosition) * config.orbitingSpheres.scale_factor);
         }
-        ctx.arc(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor, 2, 0, 2 * Math.PI);
+        ctx.arc(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor, 1, 0, 2 * Math.PI);
         ctx.fill();
     }
     setTimeout(function () {
