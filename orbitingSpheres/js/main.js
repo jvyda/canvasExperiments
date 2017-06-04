@@ -16,7 +16,8 @@ var config = {
         timestep: 24 * 3600,
         AU: 149.6e6 * 1000,
         scale_factor_factor: 20,
-        showNames: false
+        showNames: false,
+        trails: false
     }
 };
 
@@ -216,7 +217,9 @@ function printSphere(sphere) {
 }
 
 function updateCanvas() {
-    ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
+    if(!config.orbitingSpheres.trails){
+        ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
+    }
     spheresAct();
     for (var sphereI = 0; sphereI < spheres.length; sphereI++) {
         ctx.beginPath();
@@ -237,15 +240,15 @@ function updateCanvas() {
 function setMousePos(event) {
     if (event.altKey) {
         addRandomPlanet();
-        return;
+    } else if(event.ctrlKey) {
+        mousePos = getMousePos(canvas, event);
+        mousePos.x -= config.size.width / 2;
+        mousePos.y -= config.size.height / 2;
+        mousePos.x /= config.orbitingSpheres.scale_factor;
+        mousePos.y /= config.orbitingSpheres.scale_factor;
+        spheres[0].x = mousePos.x;
+        spheres[0].y = mousePos.y;
     }
-    mousePos = getMousePos(canvas, event);
-    mousePos.x -= config.size.width / 2;
-    mousePos.y -= config.size.height / 2;
-    mousePos.x /= config.orbitingSpheres.scale_factor;
-    mousePos.y /= config.orbitingSpheres.scale_factor;
-    spheres[0].x = mousePos.x;
-    spheres[0].y = mousePos.y;
 }
 
 
@@ -261,8 +264,7 @@ $(document).ready(function () {
     ctx.translate(config.size.width / 2, config.size.height / 2);
     createSpheres();
     for (var i = 0; i < spheres.length; i++) {
-        var sphere = spheres[i];
-        sphere.finalColor = '#' + d2h(sphere.color.r) + d2h(sphere.color.g) + d2h(sphere.color.b);
+        convertColorToRgb(spheres[i]);
     }
 
     canvasJQuery.on('wheel', mouseWheelEvent);
@@ -275,11 +277,13 @@ function addRandomPlanet() {
     var newPlanet = generateBasicPlanet();
     newPlanet.name = spheres.length;
     newPlanet.color = {
-        r: 255, g: 0, b: 0
+        r: roundedRandom(255), g: roundedRandom(255), b: roundedRandom(255)
     };
+
     newPlanet.mass = Math.random() * 1000 * Math.pow(10, 24);
     newPlanet.x = Math.random() * 10 * config.orbitingSpheres.AU + config.orbitingSpheres.AU / 2;
     newPlanet.vy = Math.random() * 30 * 1000;
+    convertColorToRgb(newPlanet);
     spheres.push(newPlanet)
 }
 
@@ -290,8 +294,14 @@ function mouseWheelEvent(event) {
     event.preventDefault()
 }
 
+function eventIsKey(event, code) {
+    return event.keyCode == code || event.charCode == code;
+}
+
 function keyPressed(event) {
-    if (event.keyCode == 110 || event.charCode == 110) {
+    if (eventIsKey(event, 110)) {
         config.orbitingSpheres.showNames = !config.orbitingSpheres.showNames;
+    } else if (eventIsKey(event, 116)) {
+        config.orbitingSpheres.trails = !config.orbitingSpheres.trails;
     }
 }

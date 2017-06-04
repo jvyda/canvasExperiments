@@ -255,3 +255,8 @@ function addOptionsWithImages(selectId, listOfElements, initialIndex){
 
     oDropdown.set("selectedIndex", initialIndex);
 }
+
+
+function convertColorToRgb(sphere) {
+    sphere.finalColor = '#' + d2h(sphere.color.r) + d2h(sphere.color.g) + d2h(sphere.color.b);
+}

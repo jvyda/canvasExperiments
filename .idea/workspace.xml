@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="orbitingSpheres:&#10;-added moon&#10;-added a option to indicate an offset of the label with (">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/flags/js/main.js" afterPath="$PROJECT_DIR$/flags/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imageCreator/js/color_functions.js" afterPath="$PROJECT_DIR$/imageCreator/js/color_functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/imageCreator/js/main.js" afterPath="$PROJECT_DIR$/imageCreator/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/jsTree/js/main.js" afterPath="$PROJECT_DIR$/jsTree/js/main.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbitingSpheres/js/main.js" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/quadTree/js/main.js" afterPath="$PROJECT_DIR$/quadTree/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -24,35 +30,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/js/common.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="257" column="0" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
+        <entry file="file://$PROJECT_DIR$/jsTree/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.46932516">
-              <caret line="227" column="9" selection-start-line="227" selection-start-column="9" selection-end-line="227" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.36196318">
+              <caret line="59" column="109" selection-start-line="59" selection-start-column="109" selection-end-line="59" selection-end-column="109" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.814815">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-              <folding>
-                <marker date="1496518793916" expanded="true" signature="610:763" placeholder="..." />
-                <marker date="1496518793916" expanded="true" signature="703:731" placeholder="..." />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -74,8 +57,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/imageCreator/index.html" />
-        <option value="$PROJECT_DIR$/imageCreator/js/color_functions.js" />
-        <option value="$PROJECT_DIR$/imageCreator/js/main.js" />
         <option value="$PROJECT_DIR$/imageCreator/js/base.js" />
         <option value="$PROJECT_DIR$/quadTree/index.html" />
         <option value="$PROJECT_DIR$/ulamSpiral/index.html" />
@@ -83,10 +64,8 @@
         <option value="$PROJECT_DIR$/collatzConjecture/js/plugins.js" />
         <option value="$PROJECT_DIR$/collatzConjecture/index.html" />
         <option value="$PROJECT_DIR$/clusterFilter/index.html" />
-        <option value="$PROJECT_DIR$/flags/js/main.js" />
         <option value="$PROJECT_DIR$/flags/index.html" />
         <option value="$PROJECT_DIR$/clusterFilter/js/main.js" />
-        <option value="$PROJECT_DIR$/quadTree/js/main.js" />
         <option value="$PROJECT_DIR$/spirals/js/main.js" />
         <option value="$PROJECT_DIR$/voronoi/index.html" />
         <option value="$PROJECT_DIR$/voronoi/js/main.js" />
@@ -100,7 +79,6 @@
         <option value="$PROJECT_DIR$/dotLines/css/dotLines.css" />
         <option value="$PROJECT_DIR$/triangles/index.html" />
         <option value="$PROJECT_DIR$/circleBs/css/circleBs.css" />
-        <option value="$PROJECT_DIR$/jsTree/js/main.js" />
         <option value="$PROJECT_DIR$/triangles/css/triangles.css" />
         <option value="$PROJECT_DIR$/jsTree/css/jsTree.css" />
         <option value="$PROJECT_DIR$/fireWorks/css/circleBs.css" />
@@ -109,10 +87,15 @@
         <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
         <option value="$PROJECT_DIR$/swingingSpheres/js/main.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/orbit.py" />
-        <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/orbitingSpheres/index.html" />
+        <option value="$PROJECT_DIR$/quadTree/js/main.js" />
+        <option value="$PROJECT_DIR$/flags/js/main.js" />
+        <option value="$PROJECT_DIR$/imageCreator/js/main.js" />
+        <option value="$PROJECT_DIR$/imageCreator/js/color_functions.js" />
+        <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
+        <option value="$PROJECT_DIR$/jsTree/js/main.js" />
       </list>
     </option>
   </component>
@@ -152,7 +135,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -181,7 +163,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="overview" />
+              <option name="myItemId" value="jsTree" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -195,85 +177,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="overview" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="orbitingSpheres" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collatzConjecture" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="collatzConjecture" />
+              <option name="myItemId" value="jsTree" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -283,6 +187,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -643,17 +548,24 @@
       <option name="project" value="LOCAL" />
       <updated>1496559121363</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="orbitingSpheres:&#10;-added moon&#10;-added a option to indicate an offset of the label (needed because moon is very close)">
+      <created>1496560252377</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1496560252377</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="19" width="1364" height="748" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14296187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14296187" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24926686" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -661,11 +573,10 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24973932" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -702,7 +613,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Triangles:&#10; -removed names from color schemes&#10; -use the generic select creation function instead of the customized one&#10;Common:&#10;-added function to create selects with canvases in them" />
     <MESSAGE value="Triangles:&#10;-moved background and colorscheme selector to top left of canvas&#10;-canvas now stretches over all the screen &#10;-added ability to select a background color&#10;Common:&#10;-msDropdown with roundedBorders false as default&#10;" />
     <MESSAGE value="circleBs:&#10;-canvas is now all over the page and controls within the canvas" />
     <MESSAGE value="dotLines:&#10;-canvas now covers all the screen&#10;common:&#10;-created top class for all the controls, not usable with the canvas dropdowns" />
@@ -727,7 +637,8 @@
     <MESSAGE value="orbitingSpheres:&#10;-fixed preview&#10;-fixed hotkey for showing names" />
     <MESSAGE value="orbitingSpheres:&#10;-fixed zooming and showing names in firefox" />
     <MESSAGE value="orbitingSpheres:&#10;-adapted orbiting directions" />
-    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-adapted orbiting directions" />
+    <MESSAGE value="orbitingSpheres:&#10;-added moon&#10;-added a option to indicate an offset of the label (needed because moon is very close)" />
+    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-added moon&#10;-added a option to indicate an offset of the label (needed because moon is very close)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -758,13 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imageCreator/js/color_functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="172" column="10" selection-start-line="172" selection-start-column="8" selection-end-line="172" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -843,24 +747,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.0644171">
-          <caret line="111" column="34" selection-start-line="111" selection-start-column="2" selection-end-line="111" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imageCreator/js/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quadTree/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33282208">
-          <caret line="23" column="25" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -1005,13 +895,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jsTree/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.1576763">
-          <caret line="62" column="1" selection-start-line="56" selection-start-column="0" selection-end-line="62" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spirals/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1041,14 +924,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/imageCreator/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33282208">
-          <caret line="87" column="14" selection-start-line="87" selection-start-column="14" selection-end-line="87" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dotLines/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.32515338">
@@ -1065,14 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="257" column="0" selection-start-line="257" selection-start-column="0" selection-end-line="257" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/overview/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-9.333333">
@@ -1080,17 +947,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.303681">
-          <caret line="113" column="86" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="86" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.814815">
+        <state vertical-scroll-proportion="0.2512">
           <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
           <folding>
             <marker date="1496518793916" expanded="true" signature="610:763" placeholder="..." />
@@ -1099,10 +958,66 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="161" column="29" selection-start-line="161" selection-start-column="29" selection-end-line="161" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quadTree/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="72" selection-start-line="32" selection-start-column="72" selection-end-line="32" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="53" column="20" selection-start-line="53" selection-start-column="20" selection-end-line="53" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imageCreator/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="43" selection-start-line="38" selection-start-column="43" selection-end-line="38" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/imageCreator/js/color_functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="302" column="10" selection-start-line="302" selection-start-column="9" selection-end-line="302" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.46932516">
-          <caret line="227" column="9" selection-start-line="227" selection-start-column="9" selection-end-line="227" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.993865">
+          <caret line="254" column="0" selection-start-line="254" selection-start-column="0" selection-end-line="254" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9447853">
+          <caret line="261" column="1" selection-start-line="261" selection-start-column="1" selection-end-line="261" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jsTree/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36196318">
+          <caret line="59" column="109" selection-start-line="59" selection-start-column="109" selection-end-line="59" selection-end-column="109" />
           <folding />
         </state>
       </provider>

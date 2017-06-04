@@ -19,10 +19,10 @@ var countries = [
 
 
 function colorDistance(colora, colorb) {
-    var rmean = ( colora.red + colorb.red) / 2;
-    var r = colora.red - colorb.red;
-    var g = colora.green - colorb.green;
-    var b = colora.blue - colorb.blue;
+    var rmean = ( colora.r + colorb.r) / 2;
+    var r = colora.r - colorb.r;
+    var g = colora.g - colorb.g;
+    var b = colora.b - colorb.b;
     return Math.sqrt((((512 + rmean) * r * r) >> 8) + 4 * g * g + (((767 - rmean) * b * b) >> 8));
 }
 
@@ -52,9 +52,9 @@ function addImageToAverage(index) {
         for (var i = 0; i < tempImageData.length; i += 4) {
             var coors = getCoordinates(i);
             var currentColor = {
-                red: tempImageData[i],
-                green: tempImageData[i + 1],
-                blue: tempImageData[i + 2],
+                r: tempImageData[i],
+                g: tempImageData[i + 1],
+                b: tempImageData[i + 2],
                 count: 1
             };
             var colors = imageInfo[coors.y][coors.x];
@@ -98,7 +98,7 @@ function drawAverageImage(index) {
         for (var x = 0; x < config.size.height; x++) {
             var color = findColorWithMaxCount(imageInfo[y][x]);
             ctx.beginPath();
-            ctx.fillStyle = 'rgb(' + color.red + ',' + color.green + ',' + color.blue + ')';
+            ctx.fillStyle = 'rgb(' + color.r + ',' + color.g + ',' + color.b + ')';
             ctx.rect(x, y, 1, 1);
             ctx.fill();
         }

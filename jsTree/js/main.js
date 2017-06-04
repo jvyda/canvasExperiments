@@ -15,10 +15,10 @@ var config = {
     jsTree: {
         maxAge: 50,
         color: {
-            red: 0,
-            blue: 0,
-            green: 120,
-            alpha: 25
+            r: 0,
+            b: 0,
+            g: 120,
+            a: 25
         },
         initialX: 10,
         initialY: 10,
@@ -56,14 +56,14 @@ function getIndexForCoordinate(x, y) {
 
 function setCoordinate(x, y) {
     var indexForCoordinate = getIndexForCoordinate(x, y);
-    imageData.data[indexForCoordinate] = tonemap(hdrdata[indexForCoordinate] += config.jsTree.color.red);
-    imageData.data[indexForCoordinate + 1] = tonemap(hdrdata[indexForCoordinate + 1] += config.jsTree.color.green);
-    imageData.data[indexForCoordinate + 2] = tonemap(hdrdata[indexForCoordinate + 2] += config.jsTree.color.blue);
-    imageData.data[indexForCoordinate + 3] = tonemap(hdrdata[indexForCoordinate + 3] += config.jsTree.color.alpha);
+    imageData.data[indexForCoordinate] = tonemap(hdrdata[indexForCoordinate] += config.jsTree.color.r);
+    imageData.data[indexForCoordinate + 1] = tonemap(hdrdata[indexForCoordinate + 1] += config.jsTree.color.g);
+    imageData.data[indexForCoordinate + 2] = tonemap(hdrdata[indexForCoordinate + 2] += config.jsTree.color.b);
+    imageData.data[indexForCoordinate + 3] = tonemap(hdrdata[indexForCoordinate + 3] += config.jsTree.color.a);
 }
 
 function updateConfig() {
-    config.jsTree.color.alpha = parseInt(inputFields['alpha'].val());
+    config.jsTree.color.a = parseInt(inputFields['alpha'].val());
     config.jsTree.initialX = parseInt(inputFields['initialX'].val());
     config.jsTree.initialY = parseInt(inputFields['initialY'].val());
     config.jsTree.fuzziness = parseFloat(inputFields['fuz'].val());
@@ -244,10 +244,10 @@ function skewedNoise(width, height, noiseFunction) {
         var coor = getCoordinates(i);
         var x = coor.x;
         var y = coor.y;
-        data[i] = noiseFunction.red(x, y);     // red
-        data[i + 1] = noiseFunction.green(x, y); // green
-        data[i + 2] = noiseFunction.blue(x, y); // blue
-        data[i + 3] = noiseFunction.alpha(x, y);
+        data[i] = noiseFunction.r(x, y);     // red
+        data[i + 1] = noiseFunction.g(x, y); // green
+        data[i + 2] = noiseFunction.b(x, y); // blue
+        data[i + 3] = noiseFunction.a(x, y);
     }
     noiseCtx.putImageData(tempData, 0, 0);
 
@@ -335,28 +335,28 @@ function max(x, y) {
 }
 
 var secondNoise = {};
-secondNoise.red = sqrtxyy;
-secondNoise.green = sqrtxyy;
-secondNoise.blue = zero;
-secondNoise.alpha = max;
+secondNoise.r = sqrtxyy;
+secondNoise.g = sqrtxyy;
+secondNoise.b = zero;
+secondNoise.a = max;
 
 var thirdNoise = {};
-thirdNoise.red = zero;
-thirdNoise.green = sinXY1DivX;
-thirdNoise.blue = zero;
-thirdNoise.alpha = max;
+thirdNoise.r = zero;
+thirdNoise.g = sinXY1DivX;
+thirdNoise.b = zero;
+thirdNoise.a = max;
 
 var fourthNoise = {};
-fourthNoise.red = zero;
-fourthNoise.green = powXYX;
-fourthNoise.blue = zero;
-fourthNoise.alpha = max;
+fourthNoise.r = zero;
+fourthNoise.g = powXYX;
+fourthNoise.b = zero;
+fourthNoise.a = max;
 
 var fifthNoise = {};
-fifthNoise.red = zero;
-fifthNoise.green = xAndY;
-fifthNoise.blue = zero;
-fifthNoise.alpha = max;
+fifthNoise.r = zero;
+fifthNoise.g = xAndY;
+fifthNoise.b = zero;
+fifthNoise.a = max;
 
 var recordBtn;
 
@@ -433,9 +433,9 @@ $(document).ready(function () {
 
     inputFields['startColor'].change(function(){
         var value = $(this).val();
-        config.jsTree.color.red = parseInt(value.substr(1, 2), 16);
-        config.jsTree.color.green = parseInt(value.substr(3, 2), 16);
-        config.jsTree.color.blue = parseInt(value.substr(5, 2), 16);
+        config.jsTree.color.r = parseInt(value.substr(1, 2), 16);
+        config.jsTree.color.g = parseInt(value.substr(3, 2), 16);
+        config.jsTree.color.b = parseInt(value.substr(5, 2), 16);
     });
     toggleAdvanced();
     config.size.height = window.innerHeight;

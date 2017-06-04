@@ -141,171 +141,171 @@ function ggTXYMod(x, y) {
 }
 
 var black = {};
-black.red = zero;
-black.green = zero;
-black.blue = zero;
-black.alpha = max;
+black.r = zero;
+black.g = zero;
+black.b = zero;
+black.a = max;
 
 var violetToGreenRandom = {};
-violetToGreenRandom.red = zero;
-violetToGreenRandom.green = randomXDivWidth;
-violetToGreenRandom.blue = randomYDivHeight;
-violetToGreenRandom.alpha = oneTwenty;
+violetToGreenRandom.r = zero;
+violetToGreenRandom.g = randomXDivWidth;
+violetToGreenRandom.b = randomYDivHeight;
+violetToGreenRandom.a = oneTwenty;
 
 var redGreenTrippy = {};
-redGreenTrippy.red = xY;
-redGreenTrippy.green = yy;
-redGreenTrippy.blue = xPowY;
-redGreenTrippy.alpha = max;
+redGreenTrippy.r = xY;
+redGreenTrippy.g = yy;
+redGreenTrippy.b = xPowY;
+redGreenTrippy.a = max;
 
 var kachelnGrey = {};
-kachelnGrey.red = xY;
-kachelnGrey.green = xY;
-kachelnGrey.blue = xY;
-kachelnGrey.alpha = max;
+kachelnGrey.r = xY;
+kachelnGrey.g = xY;
+kachelnGrey.b = xY;
+kachelnGrey.a = max;
 
 var sternSchnuppenRed = {};
-sternSchnuppenRed.red = ggTXYMod;
-sternSchnuppenRed.green = zero;
-sternSchnuppenRed.blue = zero;
-sternSchnuppenRed.alpha = max;
+sternSchnuppenRed.r = ggTXYMod;
+sternSchnuppenRed.g = zero;
+sternSchnuppenRed.b = zero;
+sternSchnuppenRed.a = max;
 
 var reddish = {};
-reddish.red = randomX25;
-reddish.green = randomYDiv3;
-reddish.blue = randomY;
-reddish.alpha = oneTwenty;
+reddish.r = randomX25;
+reddish.g = randomYDiv3;
+reddish.b = randomY;
+reddish.a = oneTwenty;
 
 var horizontalRedLines = {};
-horizontalRedLines.red = cosYX;
-horizontalRedLines.green = zero;
-horizontalRedLines.blue = zero;
-horizontalRedLines.alpha = max;
+horizontalRedLines.r = cosYX;
+horizontalRedLines.g = zero;
+horizontalRedLines.b = zero;
+horizontalRedLines.a = max;
 
 var violetRedCircles = {};
-violetRedCircles.red = cosXY3255;
-violetRedCircles.green = zero;
-violetRedCircles.blue = cosXX3255;
-violetRedCircles.alpha = max;
+violetRedCircles.r = cosXY3255;
+violetRedCircles.g = zero;
+violetRedCircles.b = cosXX3255;
+violetRedCircles.a = max;
 
 var redGreenRaster = {};
-redGreenRaster.red = ggtx17y19;
-redGreenRaster.green = ggtY17x19;
-redGreenRaster.blue = zero;
-redGreenRaster.alpha = max;
+redGreenRaster.r = ggtx17y19;
+redGreenRaster.g = ggtY17x19;
+redGreenRaster.b = zero;
+redGreenRaster.a = max;
 
 var pixelAndPerfect = {};
-pixelAndPerfect.red = xOrY;
-pixelAndPerfect.green = zero;
-pixelAndPerfect.blue = zero;
-pixelAndPerfect.alpha = max;
+pixelAndPerfect.r = xOrY;
+pixelAndPerfect.g = zero;
+pixelAndPerfect.b = zero;
+pixelAndPerfect.a = max;
 
 var perfectRaster2 = {};
-perfectRaster2.red = xAndY3;
-perfectRaster2.green = zero;
-perfectRaster2.blue = zero;
-perfectRaster2.alpha = max;
+perfectRaster2.r = xAndY3;
+perfectRaster2.g = zero;
+perfectRaster2.b = zero;
+perfectRaster2.a = max;
 
 var nearlyPerfectRaster = {};
-nearlyPerfectRaster.red = xXorY;
-nearlyPerfectRaster.green = zero;
-nearlyPerfectRaster.blue = zero;
-nearlyPerfectRaster.alpha = max;
+nearlyPerfectRaster.r = xXorY;
+nearlyPerfectRaster.g = zero;
+nearlyPerfectRaster.b = zero;
+nearlyPerfectRaster.a = max;
 
 var perfectRedRaster = {};
-perfectRedRaster.red = xAndy;
-perfectRedRaster.green = zero;
-perfectRedRaster.blue = zero;
-perfectRedRaster.alpha = max;
+perfectRedRaster.r = xAndy;
+perfectRedRaster.g = zero;
+perfectRedRaster.b = zero;
+perfectRedRaster.a = max;
 
 var kreiselInRed = {};
-kreiselInRed.red = xyAndx;
-kreiselInRed.green = zero;
-kreiselInRed.blue = zero;
-kreiselInRed.alpha = max;
+kreiselInRed.r = xyAndx;
+kreiselInRed.g = zero;
+kreiselInRed.b = zero;
+kreiselInRed.a = max;
 
 var redSkewedLines = {};
-redSkewedLines.red = notXYXorNotYX;
-redSkewedLines.green = zero;
-redSkewedLines.blue = zero;
-redSkewedLines.alpha = max;
+redSkewedLines.r = notXYXorNotYX;
+redSkewedLines.g = zero;
+redSkewedLines.b = zero;
+redSkewedLines.a = max;
 
 var someShit = {};
-someShit.red = sqrtxyy;
-someShit.green = sqrtxyy;
-someShit.blue = zero;
-someShit.alpha = max;
+someShit.r = sqrtxyy;
+someShit.g = sqrtxyy;
+someShit.b = zero;
+someShit.a = max;
 
 var straightToLinesColor = {};
-straightToLinesColor.red = zero;
-straightToLinesColor.green = logXLogy500;
-straightToLinesColor.blue = zero;
-straightToLinesColor.alpha = max;
+straightToLinesColor.r = zero;
+straightToLinesColor.g = logXLogy500;
+straightToLinesColor.b = zero;
+straightToLinesColor.a = max;
 
 var powerSpike = {};
-powerSpike.red = powXYDivX;
-powerSpike.green = zero;
-powerSpike.blue = zero;
-powerSpike.alpha = max;
+powerSpike.r = powXYDivX;
+powerSpike.g = zero;
+powerSpike.b = zero;
+powerSpike.a = max;
 
 var topDownLines = {};
-topDownLines.red = powYSinX;
-topDownLines.green = zero;
-topDownLines.blue = zero;
-topDownLines.alpha = max;
+topDownLines.r = powYSinX;
+topDownLines.g = zero;
+topDownLines.b = zero;
+topDownLines.a = max;
 
 var crashFromLeft = {};
-crashFromLeft.red = yDivXDivCosXY;
-crashFromLeft.green = zero;
-crashFromLeft.blue = zero;
-crashFromLeft.alpha = max;
+crashFromLeft.r = yDivXDivCosXY;
+crashFromLeft.g = zero;
+crashFromLeft.b = zero;
+crashFromLeft.a = max;
 
 var redTopDownLine = {};
-redTopDownLine.red = xDivYCosX;
-redTopDownLine.green = zero;
-redTopDownLine.blue = zero;
-redTopDownLine.alpha = max;
+redTopDownLine.r = xDivYCosX;
+redTopDownLine.g = zero;
+redTopDownLine.b = zero;
+redTopDownLine.a = max;
 
 var weird = {};
-weird.red = tanXYDiv1DivX;
-weird.green = zero;
-weird.blue = zero;
-weird.alpha = max;
+weird.r = tanXYDiv1DivX;
+weird.g = zero;
+weird.b = zero;
+weird.a = max;
 
 var bigRedAndSmallRed = {};
-bigRedAndSmallRed.red = tanXDivYDiv1DivYX;
-bigRedAndSmallRed.green = zero;
-bigRedAndSmallRed.blue = zero;
-bigRedAndSmallRed.alpha = max;
+bigRedAndSmallRed.r = tanXDivYDiv1DivYX;
+bigRedAndSmallRed.g = zero;
+bigRedAndSmallRed.b = zero;
+bigRedAndSmallRed.a = max;
 
 var dunes = {};
-dunes.red = sinXDivYDiv1DivX;
-dunes.green = zero;
-dunes.blue = zero;
-dunes.alpha = max;
+dunes.r = sinXDivYDiv1DivX;
+dunes.g = zero;
+dunes.b = zero;
+dunes.a = max;
 
 var fastRedLights = {};
-fastRedLights.red = cosXDivY1DivCosX;
-fastRedLights.green = zero;
-fastRedLights.blue = zero;
-fastRedLights.alpha = max;
+fastRedLights.r = cosXDivY1DivCosX;
+fastRedLights.g = zero;
+fastRedLights.b = zero;
+fastRedLights.a = max;
 
 var rightJute = {};
-rightJute.red = powggtXYX;
-rightJute.green = zero;
-rightJute.blue = zero;
-rightJute.alpha = max;
+rightJute.r = powggtXYX;
+rightJute.g = zero;
+rightJute.b = zero;
+rightJute.a = max;
 
 var someRain = {};
-someRain.red = powggtXYacosxDivY;
-someRain.green = zero;
-someRain.blue = zero;
-someRain.alpha = max;
+someRain.r = powggtXYacosxDivY;
+someRain.g = zero;
+someRain.b = zero;
+someRain.a = max;
 
 var indescribable3 = {};
-indescribable3.red = singgtXYDivsinXDivY;
-indescribable3.green = zero;
-indescribable3.blue = zero;
-indescribable3.alpha = max;
+indescribable3.r = singgtXYDivsinXDivY;
+indescribable3.g = zero;
+indescribable3.b = zero;
+indescribable3.a = max;
 
 // x / y * config.size.width * config.size.height

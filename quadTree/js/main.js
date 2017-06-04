@@ -30,7 +30,7 @@ function updateCanvas(recreateQuadTree) {
     if (recreateQuadTree) {
         currentQuadTree = buildQuadTree(1);
     }
-    drawQuadTreeElement(currentQuadTree, {x: 0, y: 0}, 0, {red: 0, blue: 0, green: 0});
+    drawQuadTreeElement(currentQuadTree, {x: 0, y: 0}, 0, {r: 0, g: 0, b: 0});
 }
 
 function fixedAmount(input, x, y, depth) {
@@ -66,7 +66,7 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
         //var red = ~~(Math.random() * 255 * depth % 255);
         //var blue = ~~(Math.random() * 255 * depth % 255);
         //var green = ~~(Math.random() * 255 * depth % 255);
-        ctx.fillStyle = 'rgb(' + baseColor.red + ',' + baseColor.green + ',' + baseColor.blue + ')';
+        ctx.fillStyle = 'rgb(' + baseColor.r + ',' + baseColor.g + ',' + baseColor.b + ')';
         ctx.rect(basePos.x, basePos.y, quadWidth * 2, quadWidth * 2);
         ctx.fill();
         return;
@@ -76,9 +76,9 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
             x: basePos.x, y: basePos.y
         };
         var newBaseColor = {
-            red: config.quadTree.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth),
-            green: baseColor.green,
-            blue: baseColor.blue
+            r: config.quadTree.colorFun.fun(baseColor.r, basePos.x, basePos.y, depth),
+            g: baseColor.g,
+            b: baseColor.b
         };
         drawQuadTreeElement(element.first, newBasePos, depth, newBaseColor)
     }
@@ -87,9 +87,9 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
             x: basePos.x + quadWidth, y: basePos.y
         };
         var newBaseColor = {
-            red: baseColor.red,
-            green: baseColor.green,
-            blue: config.quadTree.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth)
+            r: baseColor.r,
+            g: baseColor.g,
+            b: config.quadTree.colorFun.fun(baseColor.r, basePos.x, basePos.y, depth)
         };
         drawQuadTreeElement(element.second, newBasePos, depth, newBaseColor)
     }
@@ -98,9 +98,9 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
             x: basePos.x, y: basePos.y + quadWidth
         };
         var newBaseColor = {
-            red: baseColor.red,
-            green: config.quadTree.colorFun.fun(baseColor.green, basePos.x, basePos.y, depth),
-            blue: baseColor.blue
+            r: baseColor.r,
+            g: config.quadTree.colorFun.fun(baseColor.g, basePos.x, basePos.y, depth),
+            b: baseColor.b
         };
         drawQuadTreeElement(element.third, newBasePos, depth, newBaseColor)
     }
@@ -109,9 +109,9 @@ function drawQuadTreeElement(element, basePos, depth, baseColor) {
             x: basePos.x + quadWidth, y: basePos.y + quadWidth
         };
         var newBaseColor = {
-            red: config.quadTree.colorFun.fun(baseColor.red, basePos.x, basePos.y, depth),
-            green: baseColor.green,
-            blue: baseColor.blue
+            r: config.quadTree.colorFun.fun(baseColor.r, basePos.x, basePos.y, depth),
+            g: baseColor.g,
+            b: baseColor.b
         };
         drawQuadTreeElement(element.fourth, newBasePos, depth, newBaseColor)
     }

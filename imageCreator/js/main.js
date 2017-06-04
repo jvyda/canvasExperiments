@@ -104,17 +104,17 @@ function updateUrl() {
         path += '?pf=' + functions.indexOf(imageCreation);
     }
     if (colorCreation.user) {
-        if (colorCreation.fun.red) {
-            path += '&r=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.red).replace('% 255', '').trim());
+        if (colorCreation.fun.r) {
+            path += '&r=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.r).replace('% 255', '').trim());
         }
-        if (colorCreation.fun.green) {
-            path += '&g=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.green).replace('% 255', '').trim());
+        if (colorCreation.fun.g) {
+            path += '&g=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.g).replace('% 255', '').trim());
         }
-        if (colorCreation.fun.blue) {
-            path += '&b=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.blue).replace('% 255', '').trim());
+        if (colorCreation.fun.b) {
+            path += '&b=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.b).replace('% 255', '').trim());
         }
-        if (colorCreation.fun.alpha) {
-            path += '&a=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.alpha).replace('% 255', '').trim());
+        if (colorCreation.fun.a) {
+            path += '&a=' + encodeURIComponent(getValueFromFunction(colorCreation.fun.a).replace('% 255', '').trim());
         }
     } else {
         path += '&pc=' + color_functions.indexOf(colorCreation);
@@ -173,15 +173,15 @@ function updateCanvas() {
         var weNeedToPaint = imageCreation.fun(x, y);
         var color = colorCreation.fun;
         if (weNeedToPaint && !invert) {
-            data[i] = color.red(x, y);     // red
-            data[i + 1] = color.green(x, y); // green
-            data[i + 2] = color.blue(x, y); // blue
-            data[i + 3] = color.alpha(x, y);
+            data[i] = color.r(x, y);     // red
+            data[i + 1] = color.g(x, y); // green
+            data[i + 2] = color.b(x, y); // blue
+            data[i + 3] = color.a(x, y);
         } else if (invert && !weNeedToPaint) {
-            data[i] = color.red(x, y);     // red
-            data[i + 1] = color.green(x, y); // green
-            data[i + 2] = color.blue(x, y); // blue
-            data[i + 3] = color.alpha(x, y);
+            data[i] = color.r(x, y);     // red
+            data[i + 1] = color.g(x, y); // green
+            data[i + 2] = color.b(x, y); // blue
+            data[i + 3] = color.a(x, y);
         }
         else {
             data[i] = 0;     // red
@@ -233,10 +233,10 @@ function setUserDefinedColors(red, green, blue, alpha) {
     var blueArgs = ['x', 'y', 'return ' + blue + ((isNumber(blue) || blue == '') ? "" : " % 255")];
     var alphaArgs = ['x', 'y', 'return ' + alpha + ((isNumber(alpha) || alpha == '') ? "" : " % 255")];
     var colorObj = {
-        red: Function.apply(null, redArgs),
-        green: Function.apply(null, greenArgs),
-        blue: Function.apply(null, blueArgs),
-        alpha: Function.apply(null, alphaArgs)
+        r: Function.apply(null, redArgs),
+        g: Function.apply(null, greenArgs),
+        b: Function.apply(null, blueArgs),
+        a: Function.apply(null, alphaArgs)
     };
     colorCreation = {};
     colorCreation.user = true;
@@ -262,10 +262,10 @@ function showDefinition() {
     if ($("#show_definition_chk").is(':checked')) {
         colDefinitionWrapper.show();
         imgDefinitionWrapper.show();
-        $("#col_definition_red").html(getValueFromFunction(colorCreation.fun.red) + ' ');
-        $("#col_definition_green").html(getValueFromFunction(colorCreation.fun.green) + ' ');
-        $("#col_definition_blue").html(getValueFromFunction(colorCreation.fun.blue) + ' ');
-        $("#col_definition_alpha").html(getValueFromFunction(colorCreation.fun.alpha) + ' ');
+        $("#col_definition_red").html(getValueFromFunction(colorCreation.fun.r) + ' ');
+        $("#col_definition_green").html(getValueFromFunction(colorCreation.fun.g) + ' ');
+        $("#col_definition_blue").html(getValueFromFunction(colorCreation.fun.b) + ' ');
+        $("#col_definition_alpha").html(getValueFromFunction(colorCreation.fun.a) + ' ');
         $("#img_definition").html(getValueFromFunction(imageCreation.fun) + ' ');
     } else {
         colDefinitionWrapper.hide();
