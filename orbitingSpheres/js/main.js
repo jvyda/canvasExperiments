@@ -78,7 +78,7 @@ function createSpheres() {
     venus.radius = 12103.6 * 1000;
     venus.mass = 4.8685 * Math.pow(10, 24);
     venus.x = 0.723 * config.orbitingSpheres.AU;
-    venus.vy = -35.02 * 1000;
+    venus.vy = 35.02 * 1000;
 
     var earth = generateBasicPlanet();
     earth.name = 'earth';
@@ -87,7 +87,7 @@ function createSpheres() {
     };
     earth.radius = 12756.32 * 1000;
     earth.mass = 5.9742 * Math.pow(10, 24);
-    earth.x = -1 * config.orbitingSpheres.AU;
+    earth.x = 1 * config.orbitingSpheres.AU;
     earth.vy = 29.783 * 1000;
 
     var mars = generateBasicPlanet();
