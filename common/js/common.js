@@ -167,6 +167,10 @@ function toRad(angle) {
     return angle / 180 * Math.PI;
 }
 
+function toDeg(angle) {
+    return angle * 180 / Math.PI;
+}
+
 function d2h(d) {
     return (d / 256 + 1 / 512).toString(16).substring(2, 4);
 }
@@ -259,4 +263,13 @@ function addOptionsWithImages(selectId, listOfElements, initialIndex){
 
 function convertColorToRgb(sphere) {
     sphere.finalColor = '#' + d2h(sphere.color.r) + d2h(sphere.color.g) + d2h(sphere.color.b);
+}
+
+function dotProduct(vector1, vector2){
+    return vector1.x * vector2.x + vector1.y * vector2.y;
+}
+
+// only works in orbitingspheres because of constant
+function auPerDayToMPerSecond(value){
+    return value / 24 / 3600 * config.orbitingSpheres.AU;
 }

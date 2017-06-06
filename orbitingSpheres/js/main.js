@@ -4,6 +4,7 @@ var canvas = {};
 var animationId;
 
 var mousePos = {};
+var time = 0;
 
 var config = {
     size: {
@@ -54,6 +55,7 @@ function createSpheres() {
     //}
     mousePos.x = 0;
     mousePos.y = 0;
+    // data of 6. june 2017 00:00
 
     var sun = generateBasicPlanet();
     sun.name = 'sun';
@@ -62,6 +64,10 @@ function createSpheres() {
     };
     sun.radius = 696342 * 1000;
     sun.mass = 1.98892 * Math.pow(10, 30);
+    sun.x = 2.850766546470957E-03 * config.orbitingSpheres.AU;
+    sun.y = 4.956963665727667E-03 * config.orbitingSpheres.AU;
+    sun.vx = auPerDayToMPerSecond(-4.226964281155967E-06);
+    sun.vy = auPerDayToMPerSecond(6.171203031582879E-06);
 
     var merkur = generateBasicPlanet();
     merkur.name = 'mercury';
@@ -70,8 +76,10 @@ function createSpheres() {
     };
     merkur.radius = 4879.4 * 1000;
     merkur.mass = 0.33011 * Math.pow(10, 24);
-    merkur.x = 0.387 * config.orbitingSpheres.AU;
-    merkur.vy = 47.36 * 1000;
+    merkur.x = 3.563920740763323E-01 * config.orbitingSpheres.AU;
+    merkur.y = 5.717187678804200E-03 * config.orbitingSpheres.AU;
+    merkur.vx = auPerDayToMPerSecond(-5.498625279495372E-03);
+    merkur.vy = auPerDayToMPerSecond(2.939907891055230E-02);
 
     var venus = generateBasicPlanet();
     venus.name = 'venus';
@@ -80,8 +88,10 @@ function createSpheres() {
     };
     venus.radius = 12103.6 * 1000;
     venus.mass = 4.8685 * Math.pow(10, 24);
-    venus.x = 0.723 * config.orbitingSpheres.AU;
-    venus.vy = 35.02 * 1000;
+    venus.x = 3.714287363667594E-01 * config.orbitingSpheres.AU;
+    venus.y = -6.223065873025234E-01 * config.orbitingSpheres.AU;
+    venus.vx = auPerDayToMPerSecond(1.729787164697147E-02);
+    venus.vy = auPerDayToMPerSecond(1.018360946690303E-02);
 
     var earth = generateBasicPlanet();
     earth.name = 'earth';
@@ -90,8 +100,10 @@ function createSpheres() {
     };
     earth.radius = 12756.32 * 1000;
     earth.mass = 5.9742 * Math.pow(10, 24);
-    earth.x = 1 * config.orbitingSpheres.AU;
-    earth.vy = 29.783 * 1000;
+    earth.x = -2.553538585508089E-01 * config.orbitingSpheres.AU;
+    earth.y = -9.763411304535361E-01 * config.orbitingSpheres.AU;
+    earth.vx = auPerDayToMPerSecond(1.635001487036944E-02);
+    earth.vy = auPerDayToMPerSecond(-4.430797621704561E-03);
 
     var mars = generateBasicPlanet();
     mars.name = 'mars';
@@ -100,8 +112,10 @@ function createSpheres() {
     };
     mars.radius = 6792.4 * 1000;
     mars.mass = 0.64171 * Math.pow(10, 24);
-    mars.x = 1.524 * config.orbitingSpheres.AU;
-    mars.vy = 24.07 * 1000;
+    mars.x = -2.841551665529732E-01 * config.orbitingSpheres.AU;
+    mars.y = 1.572607284356505E+00 * config.orbitingSpheres.AU;
+    mars.vx = auPerDayToMPerSecond(-1.323899118392277E-02);
+    mars.vy = auPerDayToMPerSecond(-1.324079074777860E-03);
 
     var jupiter = generateBasicPlanet();
     jupiter.name = 'jupiter';
@@ -110,8 +124,10 @@ function createSpheres() {
     };
     jupiter.radius = 142984 * 1000;
     jupiter.mass = 1898.19 * Math.pow(10, 24);
-    jupiter.x = 5.204 * config.orbitingSpheres.AU;
-    jupiter.vy = 13.06 * 1000;
+    jupiter.x = -5.035296751383366E+00 * config.orbitingSpheres.AU;
+    jupiter.y = -2.079389405758550E+00 * config.orbitingSpheres.AU;
+    jupiter.vx = auPerDayToMPerSecond(2.792948935544964E-03);
+    jupiter.vy = auPerDayToMPerSecond(-6.616959801585691E-03);
 
     var saturn = generateBasicPlanet();
     saturn.name = 'saturn';
@@ -120,8 +136,10 @@ function createSpheres() {
     };
     saturn.radius = 120536 * 1000;
     saturn.mass = 568.34 * Math.pow(10, 24);
-    saturn.x = 9.582 * config.orbitingSpheres.AU;
-    saturn.vy = 9.68 * 1000;
+    saturn.x = -1.052026933700409E+00 * config.orbitingSpheres.AU;
+    saturn.y = -9.994978492278472E+00 * config.orbitingSpheres.AU;
+    saturn.vx = auPerDayToMPerSecond(5.241668381800872E-03);
+    saturn.vy = auPerDayToMPerSecond(-6.012163316021670E-04);
 
     var uranus = generateBasicPlanet();
     uranus.name = 'uranus';
@@ -130,8 +148,10 @@ function createSpheres() {
     };
     uranus.radius = 51118 * 1000;
     uranus.mass = 86.813 * Math.pow(10, 24);
-    uranus.x = 19.201 * config.orbitingSpheres.AU;
-    uranus.vy = 6.80 * 1000;
+    uranus.x = 1.808894256948102E+01 * config.orbitingSpheres.AU;
+    uranus.y = 8.362208575257883E+00 * config.orbitingSpheres.AU;
+    uranus.vx = auPerDayToMPerSecond(-1.679096933165243E-03);
+    uranus.vy = auPerDayToMPerSecond(3.386709085903006E-03);
 
     var neptune = generateBasicPlanet();
     neptune.name = 'neptune';
@@ -140,22 +160,59 @@ function createSpheres() {
     };
     neptune.radius = 49528 * 1000;
     neptune.mass = 102.413 * Math.pow(10, 24);
-    neptune.x = 30.047 * config.orbitingSpheres.AU;
-    neptune.vy = 5.43 * 1000;
+    neptune.x = 2.849083024398218E+01 * config.orbitingSpheres.AU;
+    neptune.y = -9.221924603790701E+00 * config.orbitingSpheres.AU;
+    neptune.vx = auPerDayToMPerSecond(9.453663134275120E-04);
+    neptune.vy = auPerDayToMPerSecond(3.005146529509257E-03);
 
     var moon = generateBasicPlanet();
     moon.name = 'moon';
     moon.color = {
         r: 0x51, g: 0x4d, b: 0x4a
     };
-
     moon.radius = 1738 * 1000;
     moon.mass = 7.349 * Math.pow(10, 22);
-    moon.x = 1 * config.orbitingSpheres.AU;
-    moon.y = 384400 * 1000;
-    moon.vy = 29.783 * 1000;
-    moon.vx = 1.023 * 1000;
+    moon.x = -2.575166907126450E-01 * config.orbitingSpheres.AU;
+    moon.y = -9.779348173678579E-01 * config.orbitingSpheres.AU;
+    moon.vx = auPerDayToMPerSecond(1.667315603093720E-02);
+    moon.vy = auPerDayToMPerSecond(-4.891796261925801E-03);
     moon.labelPosition = -1;
+
+    var halley = generateBasicPlanet();
+    halley.name = 'halley';
+    halley.radius = 15.3 * 1000;
+    halley.mass = 2 * Math.pow(10, 14);
+    halley.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    halley.x = -2.045192296457553E+01 * config.orbitingSpheres.AU;
+    halley.y = 2.596711161357241E+01 * config.orbitingSpheres.AU;
+    halley.vx = auPerDayToMPerSecond(8.168960874672513E-05);
+    halley.vy = auPerDayToMPerSecond(7.556015133006348E-04);
+
+    var hale = generateBasicPlanet();
+    hale.name = 'hale-bopp';
+    hale.radius = 60 * 1000;
+    hale.mass = 1.3 * Math.pow(10, 16);
+    hale.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    hale.x = 3.147734450822550E+00 * config.orbitingSpheres.AU;
+    hale.y = -1.599685285595860E+01 * config.orbitingSpheres.AU;
+    hale.vx = auPerDayToMPerSecond(4.025449982019777E-04);
+    hale.vy = auPerDayToMPerSecond(-1.963599893518909E-03);
+
+    var pluto = generateBasicPlanet();
+    pluto.name = 'pluto';
+    pluto.radius = 60 * 1000;
+    pluto.mass = 1.303 * Math.pow(10, 22);
+    pluto.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    pluto.x = 1.014124003514971E+01 * config.orbitingSpheres.AU;
+    pluto.y = -3.175483419042463E+01 * config.orbitingSpheres.AU;
+    pluto.vx = auPerDayToMPerSecond(3.051988326221818E-03);
+    pluto.vy = auPerDayToMPerSecond(3.040012335837204E-04);
 
     spheres.push(sun);
     spheres.push(merkur);
@@ -167,6 +224,11 @@ function createSpheres() {
     spheres.push(saturn);
     spheres.push(uranus);
     spheres.push(neptune);
+
+    spheres.push(pluto);
+
+    spheres.push(halley);
+    spheres.push(hale);
 }
 
 function attraction(sphere1, sphere2) {
@@ -233,6 +295,8 @@ function updateCanvas() {
         ctx.fill();
     }
     setTimeout(function () {
+        time += config.orbitingSpheres.timestep;
+        console.log(time / (365 * 24 * 3600) + ' years');
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.orbitingSpheres.fps)
 }
