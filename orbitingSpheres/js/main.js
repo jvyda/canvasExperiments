@@ -547,18 +547,15 @@ function updateCanvas() {
 }
 
 function simulatePast() {
-    spheresAct();
+    while(pastTime < currentTime) {
     pastTime += config.orbitingSpheres.timestep;
     ctx.beginPath();
     ctx.fillStyle = 'yellow';
     ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
     ctx.fillText('Simulating past: ' + (~~(pastTime / (365 * 24 * 3600)) + 1970), 0, 0);
     ctx.fill();
-    if (pastTime < currentTime) {
-        simulatePast();
-    } else {
-        requestAnimationFrame(updateCanvas);
     }
+    requestAnimationFrame(updateCanvas);
 }
 
 function setMousePos(event) {
@@ -618,7 +615,7 @@ function addRandomPlanet() {
 
 function mouseWheelEvent(event) {
     if (!event.altKey) return;
-    config.orbitingSpheres.scale_factor_factor += event.originalEvent.deltaY < 0 ? 1 : -1;
+    config.orbitingSpheres.scale_factor_factor *= event.originalEvent.deltaY < 0 ? 1.1 : 0.9;
     config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
     event.preventDefault()
 }
