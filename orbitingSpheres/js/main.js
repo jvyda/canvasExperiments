@@ -4,7 +4,8 @@ var canvas = {};
 var animationId;
 
 var mousePos = {};
-var time = 0;
+var pastTime = 0;
+var painted = [];
 
 var config = {
     size: {
@@ -18,9 +19,15 @@ var config = {
         AU: 149.6e6 * 1000,
         scale_factor_factor: 20,
         showNames: false,
-        trails: false
+        // -1 means disabled
+        trailStart: -1,
+        showMoons: false,
+        showHelp: true
     }
 };
+
+var currentTime = new Date() / 1000;
+currentTime = Math.floor(currentTime / config.orbitingSpheres.timestep) * config.orbitingSpheres.timestep;
 
 config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
 config.orbitingSpheres.labelOffset = config.orbitingSpheres.AU / 10;
@@ -36,6 +43,9 @@ function generateBasicPlanet() {
     basePlanet.vx = 0;
     basePlanet.vy = 0;
     basePlanet.labelPosition = 0;
+    basePlanet.trail = {};
+    basePlanet.start = 0;
+    basePlanet.isMoon = false;
     return basePlanet;
 }
 
@@ -55,7 +65,8 @@ function createSpheres() {
     //}
     mousePos.x = 0;
     mousePos.y = 0;
-    // data of 6. june 2017 00:00
+    // used is data from 1.1.1970
+    // commented out is data of 6. june 2017 00:00
 
     var sun = generateBasicPlanet();
     sun.name = 'sun';
@@ -64,10 +75,14 @@ function createSpheres() {
     };
     sun.radius = 696342 * 1000;
     sun.mass = 1.98892 * Math.pow(10, 30);
-    sun.x = 2.850766546470957E-03 * config.orbitingSpheres.AU;
-    sun.y = 4.956963665727667E-03 * config.orbitingSpheres.AU;
-    sun.vx = auPerDayToMPerSecond(-4.226964281155967E-06);
-    sun.vy = auPerDayToMPerSecond(6.171203031582879E-06);
+    sun.x = 4.306786483674715E-03 * config.orbitingSpheres.AU;
+    sun.y = 1.837535134108785E-03 * config.orbitingSpheres.AU;
+    sun.vx = auPerDayToMPerSecond(-1.819961544921342E-06);
+    sun.vy = auPerDayToMPerSecond(5.304893809120167E-06);
+    //sun.x = 2.850766546470957E-03 * config.orbitingSpheres.AU;
+    //sun.y = 4.956963665727667E-03 * config.orbitingSpheres.AU;
+    //sun.vx = auPerDayToMPerSecond(-4.226964281155967E-06);
+    //sun.vy = auPerDayToMPerSecond(6.171203031582879E-06);
 
     var merkur = generateBasicPlanet();
     merkur.name = 'mercury';
@@ -76,10 +91,14 @@ function createSpheres() {
     };
     merkur.radius = 4879.4 * 1000;
     merkur.mass = 0.33011 * Math.pow(10, 24);
-    merkur.x = 3.563920740763323E-01 * config.orbitingSpheres.AU;
-    merkur.y = 5.717187678804200E-03 * config.orbitingSpheres.AU;
-    merkur.vx = auPerDayToMPerSecond(-5.498625279495372E-03);
-    merkur.vy = auPerDayToMPerSecond(2.939907891055230E-02);
+    merkur.x = 2.608031036290285E-01 * config.orbitingSpheres.AU;
+    merkur.y = 1.941548012009124E-01 * config.orbitingSpheres.AU;
+    merkur.vx = auPerDayToMPerSecond(-2.240357151534085E-02);
+    merkur.vy = auPerDayToMPerSecond(2.373852851400617E-02);
+    //merkur.x = 3.563920740763323E-01 * config.orbitingSpheres.AU;
+    //merkur.y = 5.717187678804200E-03 * config.orbitingSpheres.AU;
+    //merkur.vx = auPerDayToMPerSecond(-5.498625279495372E-03);
+    //merkur.vy = auPerDayToMPerSecond(2.939907891055230E-02);
 
     var venus = generateBasicPlanet();
     venus.name = 'venus';
@@ -88,10 +107,14 @@ function createSpheres() {
     };
     venus.radius = 12103.6 * 1000;
     venus.mass = 4.8685 * Math.pow(10, 24);
-    venus.x = 3.714287363667594E-01 * config.orbitingSpheres.AU;
-    venus.y = -6.223065873025234E-01 * config.orbitingSpheres.AU;
-    venus.vx = auPerDayToMPerSecond(1.729787164697147E-02);
-    venus.vy = auPerDayToMPerSecond(1.018360946690303E-02);
+    venus.x = -3.163833272887579E-02 * config.orbitingSpheres.AU;
+    venus.y = -7.240794841588817E-01 * config.orbitingSpheres.AU;
+    venus.vx = auPerDayToMPerSecond(2.006306534672056E-02);
+    venus.vy = auPerDayToMPerSecond(-1.072254244657087E-03);
+    //venus.x = 3.714287363667594E-01 * config.orbitingSpheres.AU;
+    //venus.y = -6.223065873025234E-01 * config.orbitingSpheres.AU;
+    //venus.vx = auPerDayToMPerSecond(1.729787164697147E-02);
+    //venus.vy = auPerDayToMPerSecond(1.018360946690303E-02);
 
     var earth = generateBasicPlanet();
     earth.name = 'earth';
@@ -100,10 +123,14 @@ function createSpheres() {
     };
     earth.radius = 12756.32 * 1000;
     earth.mass = 5.9742 * Math.pow(10, 24);
-    earth.x = -2.553538585508089E-01 * config.orbitingSpheres.AU;
-    earth.y = -9.763411304535361E-01 * config.orbitingSpheres.AU;
-    earth.vx = auPerDayToMPerSecond(1.635001487036944E-02);
-    earth.vy = auPerDayToMPerSecond(-4.430797621704561E-03);
+    earth.x = -1.762267229040138E-01 * config.orbitingSpheres.AU;
+    earth.y = 9.684335265498731E-01 * config.orbitingSpheres.AU;
+    earth.vx = auPerDayToMPerSecond(-1.719568902488065E-02);
+    earth.vy = auPerDayToMPerSecond(-3.210508485900838E-03);
+    //earth.x = -2.553538585508089E-01 * config.orbitingSpheres.AU;
+    //earth.y = -9.763411304535361E-01 * config.orbitingSpheres.AU;
+    //earth.vx = auPerDayToMPerSecond(1.635001487036944E-02);
+    //earth.vy = auPerDayToMPerSecond(-4.430797621704561E-03);
 
     var mars = generateBasicPlanet();
     mars.name = 'mars';
@@ -112,10 +139,14 @@ function createSpheres() {
     };
     mars.radius = 6792.4 * 1000;
     mars.mass = 0.64171 * Math.pow(10, 24);
-    mars.x = -2.841551665529732E-01 * config.orbitingSpheres.AU;
-    mars.y = 1.572607284356505E+00 * config.orbitingSpheres.AU;
-    mars.vx = auPerDayToMPerSecond(-1.323899118392277E-02);
-    mars.vy = auPerDayToMPerSecond(-1.324079074777860E-03);
+    mars.x = 1.330411585966007E+00 * config.orbitingSpheres.AU;
+    mars.y = 4.980293609694482E-01 * config.orbitingSpheres.AU;
+    mars.vx = auPerDayToMPerSecond(-4.366714270603195E-03);
+    mars.vy = auPerDayToMPerSecond(1.430613222099020E-02);
+    //mars.x = -2.841551665529732E-01 * config.orbitingSpheres.AU;
+    //mars.y = 1.572607284356505E+00 * config.orbitingSpheres.AU;
+    //mars.vx = auPerDayToMPerSecond(-1.323899118392277E-02);
+    //mars.vy = auPerDayToMPerSecond(-1.324079074777860E-03);
 
     var jupiter = generateBasicPlanet();
     jupiter.name = 'jupiter';
@@ -124,10 +155,14 @@ function createSpheres() {
     };
     jupiter.radius = 142984 * 1000;
     jupiter.mass = 1898.19 * Math.pow(10, 24);
-    jupiter.x = -5.035296751383366E+00 * config.orbitingSpheres.AU;
-    jupiter.y = -2.079389405758550E+00 * config.orbitingSpheres.AU;
-    jupiter.vx = auPerDayToMPerSecond(2.792948935544964E-03);
-    jupiter.vy = auPerDayToMPerSecond(-6.616959801585691E-03);
+    jupiter.x = -5.006795170315146E+00 * config.orbitingSpheres.AU;
+    jupiter.y = -2.138374947442059E+00 * config.orbitingSpheres.AU;
+    jupiter.vx = auPerDayToMPerSecond(2.875828128497038E-03);
+    jupiter.vy = auPerDayToMPerSecond(-6.589043303100441E-03);
+    //jupiter.x = -5.035296751383366E+00 * config.orbitingSpheres.AU;
+    //jupiter.y = -2.079389405758550E+00 * config.orbitingSpheres.AU;
+    //jupiter.vx = auPerDayToMPerSecond(2.792948935544964E-03);
+    //jupiter.vy = auPerDayToMPerSecond(-6.616959801585691E-03);
 
     var saturn = generateBasicPlanet();
     saturn.name = 'saturn';
@@ -136,10 +171,14 @@ function createSpheres() {
     };
     saturn.radius = 120536 * 1000;
     saturn.mass = 568.34 * Math.pow(10, 24);
-    saturn.x = -1.052026933700409E+00 * config.orbitingSpheres.AU;
-    saturn.y = -9.994978492278472E+00 * config.orbitingSpheres.AU;
-    saturn.vx = auPerDayToMPerSecond(5.241668381800872E-03);
-    saturn.vy = auPerDayToMPerSecond(-6.012163316021670E-04);
+    saturn.x = 7.242418412985283E+00 * config.orbitingSpheres.AU;
+    saturn.y = 5.690983168845070E+00 * config.orbitingSpheres.AU;
+    saturn.vx = auPerDayToMPerSecond(-3.748446012560828E-03);
+    saturn.vy = auPerDayToMPerSecond(4.375007877712285E-03);
+    //saturn.x = -1.052026933700409E+00 * config.orbitingSpheres.AU;
+    //saturn.y = -9.994978492278472E+00 * config.orbitingSpheres.AU;
+    //saturn.vx = auPerDayToMPerSecond(5.241668381800872E-03);
+    //saturn.vy = auPerDayToMPerSecond(-6.012163316021670E-04);
 
     var uranus = generateBasicPlanet();
     uranus.name = 'uranus';
@@ -148,10 +187,14 @@ function createSpheres() {
     };
     uranus.radius = 51118 * 1000;
     uranus.mass = 86.813 * Math.pow(10, 24);
-    uranus.x = 1.808894256948102E+01 * config.orbitingSpheres.AU;
-    uranus.y = 8.362208575257883E+00 * config.orbitingSpheres.AU;
-    uranus.vx = auPerDayToMPerSecond(-1.679096933165243E-03);
-    uranus.vy = auPerDayToMPerSecond(3.386709085903006E-03);
+    uranus.x = -1.820862604496443E+01 * config.orbitingSpheres.AU;
+    uranus.y = -1.932694891138334E+00 * config.orbitingSpheres.AU;
+    uranus.vx = auPerDayToMPerSecond(3.858506265054555E-04);
+    uranus.vy = auPerDayToMPerSecond(-4.094769175075032E-03);
+    //uranus.x = 1.808894256948102E+01 * config.orbitingSpheres.AU;
+    //uranus.y = 8.362208575257883E+00 * config.orbitingSpheres.AU;
+    //uranus.vx = auPerDayToMPerSecond(-1.679096933165243E-03);
+    //uranus.vy = auPerDayToMPerSecond(3.386709085903006E-03);
 
     var neptune = generateBasicPlanet();
     neptune.name = 'neptune';
@@ -160,10 +203,14 @@ function createSpheres() {
     };
     neptune.radius = 49528 * 1000;
     neptune.mass = 102.413 * Math.pow(10, 24);
-    neptune.x = 2.849083024398218E+01 * config.orbitingSpheres.AU;
-    neptune.y = -9.221924603790701E+00 * config.orbitingSpheres.AU;
-    neptune.vx = auPerDayToMPerSecond(9.453663134275120E-04);
-    neptune.vy = auPerDayToMPerSecond(3.005146529509257E-03);
+    neptune.x = -1.555788564556409E+01 * config.orbitingSpheres.AU;
+    neptune.y = -2.600847718335855E+01 * config.orbitingSpheres.AU;
+    neptune.vx = auPerDayToMPerSecond(2.674515443607963E-03);
+    neptune.vy = auPerDayToMPerSecond(-1.593013793405317E-03);
+    //neptune.x = 2.849083024398218E+01 * config.orbitingSpheres.AU;
+    //neptune.y = -9.221924603790701E+00 * config.orbitingSpheres.AU;
+    //neptune.vx = auPerDayToMPerSecond(9.453663134275120E-04);
+    //neptune.vy = auPerDayToMPerSecond(3.005146529509257E-03);
 
     var moon = generateBasicPlanet();
     moon.name = 'moon';
@@ -172,11 +219,16 @@ function createSpheres() {
     };
     moon.radius = 1738 * 1000;
     moon.mass = 7.349 * Math.pow(10, 22);
-    moon.x = -2.575166907126450E-01 * config.orbitingSpheres.AU;
-    moon.y = -9.779348173678579E-01 * config.orbitingSpheres.AU;
-    moon.vx = auPerDayToMPerSecond(1.667315603093720E-02);
-    moon.vy = auPerDayToMPerSecond(-4.891796261925801E-03);
+    moon.x = -1.787960981527179E-01 * config.orbitingSpheres.AU;
+    moon.y = 9.679289211958966E-01 * config.orbitingSpheres.AU;
+    moon.vx = auPerDayToMPerSecond(-1.704844265352481E-02);
+    moon.vy = auPerDayToMPerSecond(-3.765966714598013E-03);
     moon.labelPosition = -1;
+    moon.isMoon = true;
+    //moon.x = -2.575166907126450E-01 * config.orbitingSpheres.AU;
+    //moon.y = -9.779348173678579E-01 * config.orbitingSpheres.AU;
+    //moon.vx = auPerDayToMPerSecond(1.667315603093720E-02);
+    //moon.vy = auPerDayToMPerSecond(-4.891796261925801E-03);
 
     var halley = generateBasicPlanet();
     halley.name = 'halley';
@@ -185,10 +237,14 @@ function createSpheres() {
     halley.color = {
         r: 0xff, g: 0xff, b: 0xff
     };
-    halley.x = -2.045192296457553E+01 * config.orbitingSpheres.AU;
-    halley.y = 2.596711161357241E+01 * config.orbitingSpheres.AU;
-    halley.vx = auPerDayToMPerSecond(8.168960874672513E-05);
-    halley.vy = auPerDayToMPerSecond(7.556015133006348E-04);
+    halley.x = -1.225080419980852E+01 * config.orbitingSpheres.AU;
+    halley.y = 2.336899481452066E+01 * config.orbitingSpheres.AU;
+    halley.vx = auPerDayToMPerSecond(1.544740875115658E-03);
+    halley.vy = auPerDayToMPerSecond(-1.511330565920587E-03);
+    //halley.x = -2.045192296457553E+01 * config.orbitingSpheres.AU;
+    //halley.y = 2.596711161357241E+01 * config.orbitingSpheres.AU;
+    //halley.vx = auPerDayToMPerSecond(8.168960874672513E-05);
+    //halley.vy = auPerDayToMPerSecond(7.556015133006348E-04);
 
     var hale = generateBasicPlanet();
     hale.name = 'hale-bopp';
@@ -197,10 +253,11 @@ function createSpheres() {
     hale.color = {
         r: 0xff, g: 0xff, b: 0xff
     };
-    hale.x = 3.147734450822550E+00 * config.orbitingSpheres.AU;
-    hale.y = -1.599685285595860E+01 * config.orbitingSpheres.AU;
-    hale.vx = auPerDayToMPerSecond(4.025449982019777E-04);
-    hale.vy = auPerDayToMPerSecond(-1.963599893518909E-03);
+    hale.x = 5.696327044162280E-01 * config.orbitingSpheres.AU;
+    hale.y = -2.550145577199079E+00 * config.orbitingSpheres.AU;
+    hale.vx = auPerDayToMPerSecond(-2.999393270108218E-03);
+    hale.vy = auPerDayToMPerSecond(1.369574348073783E-02);
+    hale.start = 844819200;
 
     var pluto = generateBasicPlanet();
     pluto.name = 'pluto';
@@ -209,11 +266,73 @@ function createSpheres() {
     pluto.color = {
         r: 0xff, g: 0xff, b: 0xff
     };
-    pluto.x = 1.014124003514971E+01 * config.orbitingSpheres.AU;
-    pluto.y = -3.175483419042463E+01 * config.orbitingSpheres.AU;
-    pluto.vx = auPerDayToMPerSecond(3.051988326221818E-03);
-    pluto.vy = auPerDayToMPerSecond(3.040012335837204E-04);
+    pluto.x = -3.041812591647754E+01 * config.orbitingSpheres.AU;
+    pluto.y = 2.124458945607829E+00 * config.orbitingSpheres.AU;
+    pluto.vx = auPerDayToMPerSecond(3.651488253370403E-04);
+    pluto.vy = auPerDayToMPerSecond(-3.322913885520158E-03);
+    //pluto.x = 1.014124003514971E+01 * config.orbitingSpheres.AU;
+    //pluto.y = -3.175483419042463E+01 * config.orbitingSpheres.AU;
+    //pluto.vx = auPerDayToMPerSecond(3.051988326221818E-03);
+    //pluto.vy = auPerDayToMPerSecond(3.040012335837204E-04);
 
+    var ganymede = generateBasicPlanet();
+    ganymede.name = 'ganymede';
+    ganymede.radius = 2410.3 * 1000;
+    ganymede.mass = 1.4819 * Math.pow(10, 23);
+    ganymede.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    ganymede.x = -5.000294786793547E+00 * config.orbitingSpheres.AU;
+    ganymede.y = -2.135368680550264E+00 * config.orbitingSpheres.AU;
+    ganymede.vx = auPerDayToMPerSecond(2.383220743647819E-04);
+    ganymede.vy = auPerDayToMPerSecond(-8.958091684038715E-04);
+    ganymede.labelPosition = -2;
+    ganymede.isMoon = true;
+
+    var callisto = generateBasicPlanet();
+    callisto.name = 'callisto';
+    callisto.radius = 2410.3 * 1000;
+    callisto.mass = 1.075938 * Math.pow(10, 22);
+    callisto.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    callisto.x = -5.014316341820394E+00 * config.orbitingSpheres.AU;
+    callisto.y = -2.148472290539929E+00 * config.orbitingSpheres.AU;
+    callisto.vx = auPerDayToMPerSecond(6.692668019644409E-03);
+    callisto.vy = auPerDayToMPerSecond(-9.386496662215376E-03);
+    callisto.labelPosition = -1;
+    callisto.isMoon = true;
+
+    var io = generateBasicPlanet();
+    io.name = 'io';
+    io.radius = 1821.6 * 1000;
+    io.mass = 8.931938 * Math.pow(10, 22);
+    io.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    io.x = -5.008511875885199E+00 * config.orbitingSpheres.AU;
+    io.y = -2.136136065783460E+00 * config.orbitingSpheres.AU;
+    io.vx = auPerDayToMPerSecond(-5.037518522489916E-03);
+    io.vy = auPerDayToMPerSecond(-1.269998455542522E-02);
+    io.labelPosition = 1;
+    io.isMoon = true;
+
+    var europa = generateBasicPlanet();
+    europa.name = 'europa';
+    europa.radius = 1560.8 * 1000;
+    europa.mass = 4.799844 * Math.pow(10, 22);
+    europa.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    europa.x = -5.002337203223790E+000 * config.orbitingSpheres.AU;
+    europa.y = -2.138506073413210E+00 * config.orbitingSpheres.AU;
+    europa.vx = auPerDayToMPerSecond(3.046646081285037E-03);
+    europa.vy = auPerDayToMPerSecond(1.387856950399271E-03);
+    europa.labelPosition = 2;
+    europa.isMoon = true;
+
+
+    //removed some spheres ... they go crazy and fly off....
     spheres.push(sun);
     spheres.push(merkur);
     spheres.push(venus);
@@ -221,6 +340,12 @@ function createSpheres() {
     spheres.push(moon);
     spheres.push(mars);
     spheres.push(jupiter);
+
+    spheres.push(callisto);
+    //spheres.push(ganymede);
+    //spheres.push(io);
+    //spheres.push(europa);
+
     spheres.push(saturn);
     spheres.push(uranus);
     spheres.push(neptune);
@@ -228,7 +353,7 @@ function createSpheres() {
     spheres.push(pluto);
 
     spheres.push(halley);
-    spheres.push(hale);
+    //spheres.push(hale);
 }
 
 function attraction(sphere1, sphere2) {
@@ -271,40 +396,128 @@ function spheresAct() {
 
         sphere.x += sphere.vx * config.orbitingSpheres.timestep;
         sphere.y += sphere.vy * config.orbitingSpheres.timestep;
+
+        sphere.trail[pastTime] = {y: sphere.y, x: sphere.x, vx: sphere.vx, vy: sphere.vy};
     }
 }
 
-function printSphere(sphere) {
-    console.log('name: ' + sphere.name + ' x: ' + sphere.x / config.orbitingSpheres.AU + ' y: ' + sphere.y / config.orbitingSpheres.AU + ' vx: ' + sphere.vx + ' vy:' + sphere.vy)
+function drawSpherePoint(trailPoint) {
+    if (!trailPoint) return;
+    var xCoord = ~~(trailPoint.x * config.orbitingSpheres.scale_factor);
+    var yCoord = ~~(trailPoint.y * config.orbitingSpheres.scale_factor);
+    if (xCoord > config.size.width / 2 || yCoord > config.size.height / 2 || xCoord < -config.size.width / 2 || yCoord < -config.size.height / 2) return;
+    if (painted.indexOf({x: xCoord, y: yCoord}) == -1) {
+        ctx.beginPath();
+        painted.push({x: xCoord, y: yCoord});
+        ctx.arc(xCoord, yCoord, 1, 0, 2 * Math.PI);
+        ctx.fill();
+    }
 }
 
-function updateCanvas() {
-    if(!config.orbitingSpheres.trails){
-        ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
-    }
-    spheresAct();
+function drawSpheres() {
+    painted = [];
     for (var sphereI = 0; sphereI < spheres.length; sphereI++) {
         ctx.beginPath();
         var sphere = spheres[sphereI];
         //printSphere(sphere);
         ctx.fillStyle = sphere.finalColor;
+        if (!sphere.trail[pastTime] || (!config.orbitingSpheres.showMoons && sphere.isMoon)) continue;
         if (config.orbitingSpheres.showNames) {
-            ctx.fillText(sphere.name, (sphere.x + config.orbitingSpheres.labelOffset * sphere.labelPosition) * config.orbitingSpheres.scale_factor, (sphere.y + config.orbitingSpheres.AU / 10 * sphere.labelPosition) * config.orbitingSpheres.scale_factor);
+            ctx.fillText(sphere.name, (sphere.trail[pastTime].x + config.orbitingSpheres.labelOffset * sphere.labelPosition) * config.orbitingSpheres.scale_factor,
+                (sphere.trail[pastTime].y + config.orbitingSpheres.AU / 10 * sphere.labelPosition) * config.orbitingSpheres.scale_factor);
         }
-        ctx.arc(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor, 1, 0, 2 * Math.PI);
         ctx.fill();
+        if (config.orbitingSpheres.trailStart != -1) {
+            if (config.orbitingSpheres.timestep > 0) {
+                for (var trailIndexForward = pastTime; trailIndexForward > config.orbitingSpheres.trailStart; trailIndexForward -= config.orbitingSpheres.timestep) {
+                    drawSpherePoint(sphere.trail[trailIndexForward]);
+                }
+            } else {
+                for (var trailIndexBackward = pastTime; trailIndexBackward < config.orbitingSpheres.trailStart; trailIndexBackward -= config.orbitingSpheres.timestep) {
+                    drawSpherePoint(sphere.trail[trailIndexBackward]);
+                }
+            }
+        }
+        if (pastTime in sphere.trail) {
+            drawSpherePoint(sphere.trail[pastTime]);
+        }
     }
+}
+
+function everyBodyActed() {
+    for (var index = 0; index < spheres.length; index++) {
+        if (!(pastTime in spheres[index].trail)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function printHelp() {
+    ctx.beginPath();
+    var leftTopX = config.size.width / 2 - 150;
+    var leftTopY = -config.size.height / 2 + 10;
+    ctx.fillText('HELP:', leftTopX, leftTopY);
+    ctx.fillText('[t] - show trails', leftTopX, leftTopY += 10);
+    ctx.fillText('[n] - show names', leftTopX, leftTopY += 10);
+    ctx.fillText('[m] - show moons', leftTopX, leftTopY += 10);
+    ctx.fillText('[alt] + click - add planet', leftTopX, leftTopY += 10);
+    ctx.fillText('[ctr] + click - set sun position', leftTopX, leftTopY += 10);
+    ctx.fillText('[alt] + mouse wheel - zoom', leftTopX, leftTopY += 10);
+    ctx.fillText('[left arrow] - go backward', leftTopX, leftTopY += 10);
+    ctx.fillText('[right arrow] - go forward', leftTopX, leftTopY += 10);
+    ctx.fillText('[h] - hide help', leftTopX, leftTopY += 10);
+}
+
+function updateCanvas() {
+    ctx.beginPath();
+    ctx.fillStyle = 'yellow';
+    ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
+    ctx.fillText('Current time ' + formatDateTime(~~pastTime), -config.size.width / 2, -config.size.height / 2 + 50);
+    ctx.fill();
+    if(config.orbitingSpheres.showHelp){
+        printHelp();
+    }
+    if (!everyBodyActed()) {
+        spheresAct();
+    } else {
+        // the x values are used for the new calculation, they need to be reset (using the trail points for calculation led to bugs...)
+        for (var i = 0; i < spheres.length; i++) {
+            var sphere = spheres[i];
+            var newCoord = sphere.trail[pastTime];
+            if (!newCoord) continue;
+            sphere.x = newCoord.x;
+            sphere.y = newCoord.y;
+            sphere.vy = newCoord.vy;
+            sphere.vx = newCoord.vx;
+        }
+    }
+    drawSpheres();
     setTimeout(function () {
-        time += config.orbitingSpheres.timestep;
-        console.log(time / (365 * 24 * 3600) + ' years');
+        pastTime += config.orbitingSpheres.timestep;
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.orbitingSpheres.fps)
+}
+
+function simulatePast() {
+    spheresAct();
+    pastTime += config.orbitingSpheres.timestep;
+    ctx.beginPath();
+    ctx.fillStyle = 'yellow';
+    ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
+    ctx.fillText('Simulating past: ' + (~~(pastTime / (365 * 24 * 3600)) + 1970), 0, 0);
+    ctx.fill();
+    if (pastTime < currentTime) {
+        simulatePast();
+    } else {
+        requestAnimationFrame(updateCanvas);
+    }
 }
 
 function setMousePos(event) {
     if (event.altKey) {
         addRandomPlanet();
-    } else if(event.ctrlKey) {
+    } else if (event.ctrlKey) {
         mousePos = getMousePos(canvas, event);
         mousePos.x -= config.size.width / 2;
         mousePos.y -= config.size.height / 2;
@@ -330,16 +543,20 @@ $(document).ready(function () {
     for (var i = 0; i < spheres.length; i++) {
         convertColorToRgb(spheres[i]);
     }
+    simulatePast();
 
     canvasJQuery.on('wheel', mouseWheelEvent);
     // attach it to document, because of focus errors...
     document.onkeypress = keyPressed;
-    requestAnimationFrame(updateCanvas);
+
+    document.keydown = keyPressed;
 });
+
+$(document).keydown(keyPressed);
 
 function addRandomPlanet() {
     var newPlanet = generateBasicPlanet();
-    newPlanet.name = spheres.length;
+    newPlanet.name = prompt("Name of the planet?", spheres.length + '');
     newPlanet.color = {
         r: roundedRandom(255), g: roundedRandom(255), b: roundedRandom(255)
     };
@@ -347,6 +564,7 @@ function addRandomPlanet() {
     newPlanet.mass = Math.random() * 1000 * Math.pow(10, 24);
     newPlanet.x = Math.random() * 10 * config.orbitingSpheres.AU + config.orbitingSpheres.AU / 2;
     newPlanet.vy = Math.random() * 30 * 1000;
+    newPlanet.trail[pastTime] = {y: newPlanet.y, x: newPlanet.x, vx: newPlanet.vx, vy: newPlanet.vy};
     convertColorToRgb(newPlanet);
     spheres.push(newPlanet)
 }
@@ -359,13 +577,50 @@ function mouseWheelEvent(event) {
 }
 
 function eventIsKey(event, code) {
-    return event.keyCode == code || event.charCode == code;
+    return event.keyCode == code || event.charCode == code || event.which == code;
 }
 
 function keyPressed(event) {
+    // n
     if (eventIsKey(event, 110)) {
         config.orbitingSpheres.showNames = !config.orbitingSpheres.showNames;
+        // t
     } else if (eventIsKey(event, 116)) {
-        config.orbitingSpheres.trails = !config.orbitingSpheres.trails;
+        if (config.orbitingSpheres.trailStart != -1) {
+            config.orbitingSpheres.trailStart = -1;
+        } else {
+            config.orbitingSpheres.trailStart = pastTime;
+        }
+        // left
+    } else if (eventIsKey(event, 37)) {
+        if (config.orbitingSpheres.timestep > 0) {
+            config.orbitingSpheres.timestep *= -1;
+            //if trail and reverse, the next step the trail is gone
+            if (config.orbitingSpheres.trailStart != -1) {
+                config.orbitingSpheres.trailStart = pastTime;
+            }
+        }
+        // right
+    } else if (eventIsKey(event, 39)) {
+        if (config.orbitingSpheres.timestep < 0) {
+            config.orbitingSpheres.timestep *= -1;
+            //if trail and reverse, the next step the trail is gone
+            if (config.orbitingSpheres.trailStart != -1) {
+                config.orbitingSpheres.trailStart = pastTime;
+            }
+        }
+        // m
+    } else if (eventIsKey(event, 109)) {
+        config.orbitingSpheres.showMoons = !config.orbitingSpheres.showMoons;
+    } else if(eventIsKey(event, 104)){
+        config.orbitingSpheres.showHelp = !config.orbitingSpheres.showHelp;
     }
+}
+
+function formatDateTime(input) {
+    var epoch = new Date(0);
+    epoch.setSeconds(parseInt(input));
+    var date = epoch.toISOString();
+    date = date.replace('T', ' ');
+    return date.split('.')[0].split(' ')[0];
 }
