@@ -324,12 +324,54 @@ function createSpheres() {
     europa.color = {
         r: 0xff, g: 0xff, b: 0xff
     };
-    europa.x = -5.002337203223790E+000 * config.orbitingSpheres.AU;
+    europa.x = -5.002337203223790E+00 * config.orbitingSpheres.AU;
     europa.y = -2.138506073413210E+00 * config.orbitingSpheres.AU;
     europa.vx = auPerDayToMPerSecond(3.046646081285037E-03);
     europa.vy = auPerDayToMPerSecond(1.387856950399271E-03);
     europa.labelPosition = 2;
     europa.isMoon = true;
+
+    var titan = generateBasicPlanet();
+    titan.name = 'titan';
+    titan.radius = 2575.5 * 1000;
+    titan.mass = 1.3452 * Math.pow(10, 23);
+    titan.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    titan.x = 7.244673441696904E+00 * config.orbitingSpheres.AU;
+    titan.y = 5.697951699427893E+00 * config.orbitingSpheres.AU;
+    titan.vx = auPerDayToMPerSecond(-6.773623303111430E-03);
+    titan.vy = auPerDayToMPerSecond(5.340185759944852E-03);
+    titan.labelPosition = 1;
+    titan.isMoon = true;
+
+    var rhea = generateBasicPlanet();
+    rhea.name = 'rhea';
+    rhea.radius = 763.8 * 1000;
+    rhea.mass = 2.306518 * Math.pow(10, 21);
+    rhea.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    rhea.x = 7.245697542065474E+00 * config.orbitingSpheres.AU;
+    rhea.y = 5.689741131978745E+00 * config.orbitingSpheres.AU;
+    rhea.vx = auPerDayToMPerSecond(-2.019672008534346E-03);
+    rhea.vy = auPerDayToMPerSecond(8.372192682197188E-03);
+    rhea.labelPosition = -1;
+    rhea.isMoon = true;
+
+    var dione = generateBasicPlanet();
+    dione.name = 'dione';
+    dione.radius = 561.4 * 1000;
+    dione.mass = 1.095452 * Math.pow(10, 21);
+    dione.color = {
+        r: 0xff, g: 0xff, b: 0xff
+    };
+    dione.x = 7.242265752517683E+00 * config.orbitingSpheres.AU;
+    dione.y = 5.693216743415823E+00 * config.orbitingSpheres.AU;
+    dione.vx = auPerDayToMPerSecond(-9.515946394951506E-03);
+    dione.vy = auPerDayToMPerSecond(4.282691266876490E-03);
+    dione.labelPosition = -1;
+    dione.isMoon = true;
 
 
     //removed some spheres ... they go crazy and fly off....
@@ -347,6 +389,11 @@ function createSpheres() {
     //spheres.push(europa);
 
     spheres.push(saturn);
+
+    spheres.push(titan);
+    //spheres.push(rhea);
+    //spheres.push(dione);
+
     spheres.push(uranus);
     spheres.push(neptune);
 
