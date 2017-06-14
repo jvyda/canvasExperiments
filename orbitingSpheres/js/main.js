@@ -22,8 +22,25 @@ var config = {
         // -1 means disabled
         trailStart: -1,
         showMoons: false,
-        showHelp: true
+        showHelp: true,
+        scala: 1,
+        baseTextSize: 12
     }
+};
+
+var lastDrag = {
+    x: 0,
+    y: 0
+};
+
+var toMove = {
+    x: 0,
+    y: 0
+};
+
+var scalePoint = {
+    x: 0,
+    y: 0
 };
 
 var currentTime = new Date() / 1000;
@@ -456,7 +473,7 @@ function drawSpherePoint(trailPoint) {
     if (painted.indexOf({x: xCoord, y: yCoord}) == -1) {
         ctx.beginPath();
         painted.push({x: xCoord, y: yCoord});
-        ctx.arc(xCoord, yCoord, 1, 0, 2 * Math.PI);
+        ctx.arc(trailPoint.x * config.orbitingSpheres.scale_factor, trailPoint.y * config.orbitingSpheres.scale_factor, 1 / config.orbitingSpheres.scala, 0, 2 * Math.PI);
         ctx.fill();
     }
 }
@@ -464,6 +481,7 @@ function drawSpherePoint(trailPoint) {
 function drawSpheres() {
     painted = [];
     for (var sphereI = 0; sphereI < spheres.length; sphereI++) {
+        ctx.font = ~~(config.orbitingSpheres.baseTextSize / config.orbitingSpheres.scala + 1) + "px Arial";
         ctx.beginPath();
         var sphere = spheres[sphereI];
         //printSphere(sphere);
@@ -504,20 +522,26 @@ function printHelp() {
     ctx.beginPath();
     var leftTopX = config.size.width / 2 - 150;
     var leftTopY = -config.size.height / 2 + 10;
+    var fontOffset = ~~(config.orbitingSpheres.baseTextSize / config.orbitingSpheres.scala + 1);
     ctx.fillText('HELP:', leftTopX, leftTopY);
-    ctx.fillText('[t] - show trails', leftTopX, leftTopY += 10);
-    ctx.fillText('[n] - show names', leftTopX, leftTopY += 10);
-    ctx.fillText('[m] - show moons', leftTopX, leftTopY += 10);
-    ctx.fillText('[alt] + click - add planet', leftTopX, leftTopY += 10);
-    ctx.fillText('[ctr] + click - set sun position', leftTopX, leftTopY += 10);
-    ctx.fillText('[alt] + mouse wheel - zoom', leftTopX, leftTopY += 10);
-    ctx.fillText('[left arrow] - go backward', leftTopX, leftTopY += 10);
-    ctx.fillText('[right arrow] - go forward', leftTopX, leftTopY += 10);
-    ctx.fillText('[h] - hide help', leftTopX, leftTopY += 10);
+    ctx.fillText('[t] - show trails', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[n] - show names', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[m] - show moons', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[alt] + click - add planet', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[ctr] + click - set sun position', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[left arrow] - go backward', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[right arrow] - go forward', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[r] - reset to today', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
 }
 
 function updateCanvas() {
     ctx.beginPath();
+    ctx.translate(toMove.x, toMove.y);
+    toMove.x = 0;
+    toMove.y = 0;
     ctx.fillStyle = 'yellow';
     ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
     ctx.fillText('Current time ' + formatDateTime(~~pastTime), -config.size.width / 2, -config.size.height / 2 + 50);
@@ -548,12 +572,8 @@ function updateCanvas() {
 
 function simulatePast() {
     while(pastTime < currentTime) {
-    pastTime += config.orbitingSpheres.timestep;
-    ctx.beginPath();
-    ctx.fillStyle = 'yellow';
-    ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
-    ctx.fillText('Simulating past: ' + (~~(pastTime / (365 * 24 * 3600)) + 1970), 0, 0);
-    ctx.fill();
+        spheresAct();
+        pastTime += config.orbitingSpheres.timestep;
     }
     requestAnimationFrame(updateCanvas);
 }
@@ -572,6 +592,35 @@ function setMousePos(event) {
     }
 }
 
+var mouseDown = false;
+
+function mouseClick(event){
+    console.log('click')
+    mouseDown = !mouseDown;
+    if(mouseDown){
+        var mousePos = getMousePos(canvas, event);
+        mousePos.x -= config.size.width / 2;
+        mousePos.y -= config.size.height / 2;
+        mousePos.x /= config.orbitingSpheres.scala;
+        mousePos.y /= config.orbitingSpheres.scala;
+        lastDrag = mousePos;
+    }
+}
+
+function drag(event){
+    if(mouseDown){
+        var mousePos = getMousePos(canvas, event);
+        mousePos.x -= config.size.width / 2;
+        mousePos.y -= config.size.height / 2;
+        mousePos.x /= config.orbitingSpheres.scala;
+        mousePos.y /= config.orbitingSpheres.scala;
+        toMove.x += mousePos.x - lastDrag.x;
+        toMove.y += mousePos.y - lastDrag.y;
+        lastDrag = mousePos;
+        console.log(origin)
+    }
+}
+
 
 $(document).ready(function () {
     var canvasJQuery = $("#canvas");
@@ -581,6 +630,9 @@ $(document).ready(function () {
     ctx = canvas.getContext("2d");
     canvasJQuery.css('background-color', 'rgba(0, 0, 0, 1)');
     canvas.addEventListener("click", setMousePos, false);
+    canvas.addEventListener("mousedown", mouseClick, false);
+    canvas.addEventListener("mouseup", mouseClick, false);
+    canvas.addEventListener("mousemove", drag, false);
     ctx.fillStyle = 'red';
     ctx.translate(config.size.width / 2, config.size.height / 2);
     createSpheres();
@@ -601,6 +653,7 @@ $(document).keydown(keyPressed);
 function addRandomPlanet() {
     var newPlanet = generateBasicPlanet();
     newPlanet.name = prompt("Name of the planet?", spheres.length + '');
+    if(newPlanet.name == null) return;
     newPlanet.color = {
         r: roundedRandom(255), g: roundedRandom(255), b: roundedRandom(255)
     };
@@ -614,9 +667,18 @@ function addRandomPlanet() {
 }
 
 function mouseWheelEvent(event) {
-    if (!event.altKey) return;
-    config.orbitingSpheres.scale_factor_factor *= event.originalEvent.deltaY < 0 ? 1.1 : 0.9;
-    config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
+    //config.orbitingSpheres.scale_factor_factor *= event.originalEvent.deltaY < 0 ? 1.1 : 0.9;
+    //config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
+    scalePoint = getMousePos(canvas, event);
+    scalePoint.x -= config.size.width / 2;
+    scalePoint.y -= config.size.height / 2;
+    scalePoint.x /= config.orbitingSpheres.scala;
+    scalePoint.y /= config.orbitingSpheres.scala;
+    var scaleTo = event.originalEvent.deltaY < 0 ? 1.1 : 1/1.1;
+    config.orbitingSpheres.scala *= scaleTo;
+    ctx.translate(scalePoint.x, scalePoint.y);
+    ctx.scale(scaleTo, scaleTo);
+    ctx.translate(-scalePoint.x, -scalePoint.y);
     event.preventDefault()
 }
 
@@ -656,8 +718,11 @@ function keyPressed(event) {
         // m
     } else if (eventIsKey(event, 109)) {
         config.orbitingSpheres.showMoons = !config.orbitingSpheres.showMoons;
+        // h
     } else if(eventIsKey(event, 104)){
         config.orbitingSpheres.showHelp = !config.orbitingSpheres.showHelp;
+    } else if(eventIsKey(event, 114)){
+        pastTime = currentTime;
     }
 }
 
