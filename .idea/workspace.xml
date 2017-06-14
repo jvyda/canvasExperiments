@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="orbitingSpheres:&#10;-set dates to match 6th june 2017&#10;-set timeStep to one hour to increase accuracy&#10;-adapted colors of moons">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/orbitingSpheres/js/main.js" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
     </list>
@@ -27,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.40248963">
-              <caret line="617" column="92" selection-start-line="617" selection-start-column="92" selection-end-line="617" selection-end-column="92" />
+            <state vertical-scroll-proportion="0.33298755">
+              <caret line="482" column="35" selection-start-line="482" selection-start-column="35" selection-end-line="482" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -268,8 +268,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -364,12 +364,6 @@
       <created>1491754888227</created>
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
-    </task>
-    <task id="LOCAL-00001" summary="fixed wall collision in circleBs&#10;don't regenerate the color code every time&#10;max velocity is now the current radius&#10;removed unused js in overview&#10;renamed title in overview&#10;added black border to circleBs">
-      <created>1491778368646</created>
-      <option name="number" value="00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1491778368646</updated>
     </task>
     <task id="LOCAL-00002" summary="fixed image download in clusterFilter&#10;changed the way downloadCanvas works (now also works for bigger images)&#10;added new preview image for clusterFilter">
       <created>1491780865721</created>
@@ -659,7 +653,13 @@
       <option name="project" value="LOCAL" />
       <updated>1497378332580</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today">
+      <created>1497444739557</created>
+      <option name="number" value="00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1497444739558</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -668,21 +668,21 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20072992" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24926686" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -718,7 +718,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="common:&#10;-moved recording stuff to common, maybe used somewhere else&#10;added fireWorks!&#10;-simple version of fireworks with one rocket type and one color default selected" />
     <MESSAGE value="fireWorks:&#10;-added rocket whose flares explode and add some more flares" />
     <MESSAGE value="fireWork:&#10;-replaced the slope function with a generalized function to act for flares and rockets&#10;-rockets now also work with age&#10;" />
     <MESSAGE value="fireWork:&#10;-only using one flare function&#10;" />
@@ -743,11 +742,12 @@
     <MESSAGE value="orbitingSpheres:&#10;-replaced data with actual data from NASA&#10;-added pluto, comet halley and hale bopp&#10;-added console output, how many years were simulated&#10;" />
     <MESSAGE value="orbitingSpheres:&#10;-added actual trails instead of not drawing over the canvas&#10;-added ability to reverse&#10;-we now calculate all the positions since 1970, because of reversing&#10;-changed dataset of planets to that of 1.1.1970&#10;-added jupiter moons, only callisto doesn't go crazy&#10;-only draw spheres if they are within the canvas region&#10;-added help text&#10;-added shortcut to hide help&#10;-added text indicating the current year&#10;-added shortcut to hide moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added saturn moons" />
-    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-added saturn moons" />
+    <MESSAGE value="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today" />
+    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="4" />
+      <option name="time" value="5" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1119,8 +1119,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.40248963">
-          <caret line="617" column="92" selection-start-line="617" selection-start-column="92" selection-end-line="617" selection-end-column="92" />
+        <state vertical-scroll-proportion="0.33298755">
+          <caret line="482" column="35" selection-start-line="482" selection-start-column="35" selection-end-line="482" selection-end-column="35" />
           <folding />
         </state>
       </provider>
