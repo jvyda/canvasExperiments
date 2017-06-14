@@ -205,16 +205,16 @@ function createSpheres() {
     uranus.color = {
         r: 0xaf, g: 0xd6, b: 0xdb
     };
-    uranus.radius = 51118 * 1000;
-    uranus.mass = 86.813 * Math.pow(10, 24);
+    uranus.radius = 26000 * 1000;
+    uranus.mass = 86.813 * Math.pow(10, 25);
     //uranus.x = -1.820862604496443E+01 * config.orbitingSpheres.AU;
     //uranus.y = -1.932694891138334E+00 * config.orbitingSpheres.AU;
     //uranus.vx = auPerDayToMPerSecond(3.858506265054555E-04);
     //uranus.vy = auPerDayToMPerSecond(-4.094769175075032E-03);
-    uranus.x = 1.808894256948102E+01 * config.orbitingSpheres.AU;
-    uranus.y = 8.362208575257883E+00 * config.orbitingSpheres.AU;
-    uranus.vx = auPerDayToMPerSecond(-1.679096933165243E-03);
-    uranus.vy = auPerDayToMPerSecond(3.386709085903006E-03);
+    uranus.x = 1.808894244111584E+01 * config.orbitingSpheres.AU;
+    uranus.y = 8.362208577335650E+00 * config.orbitingSpheres.AU;
+    uranus.vx = auPerDayToMPerSecond(-1.679181065414383E-03);
+    uranus.vy = auPerDayToMPerSecond(3.386740778487197E-03);
 
     var neptune = generateBasicPlanet();
     neptune.name = 'neptune';
@@ -497,15 +497,19 @@ function spheresAct(addPointToTrail) {
     }
 }
 
-function drawSpherePoint(trailPoint) {
+function drawSpherePoint(trailPoint, sphere) {
     if (!trailPoint) return;
-    var xCoord = ~~(trailPoint.x * config.orbitingSpheres.scale_factor);
-    var yCoord = ~~(trailPoint.y * config.orbitingSpheres.scale_factor);
-    if (xCoord > config.size.width / 2 || yCoord > config.size.height / 2 || xCoord < -config.size.width / 2 || yCoord < -config.size.height / 2) return;
+    var xCoord = trailPoint.x * config.orbitingSpheres.scale_factor;
+    var yCoord = trailPoint.y * config.orbitingSpheres.scale_factor;
+    if (xCoord > ctx.transformedPoint(config.size.width, 0).x ||
+        yCoord > ctx.transformedPoint(0, config.size.height).y ||
+        xCoord < ctx.transformedPoint(0, 0).x ||
+        yCoord < ctx.transformedPoint(0, 0).y) return;
     if (painted.indexOf({x: xCoord, y: yCoord}) == -1) {
         ctx.beginPath();
         painted.push({x: xCoord, y: yCoord});
-        ctx.arc(trailPoint.x * config.orbitingSpheres.scale_factor, trailPoint.y * config.orbitingSpheres.scale_factor, 1 / config.orbitingSpheres.scala, 0, 2 * Math.PI);
+        var size = sphere.isMoon ? 1 : 2;
+        ctx.arc(trailPoint.x * config.orbitingSpheres.scale_factor, trailPoint.y * config.orbitingSpheres.scale_factor, size / config.orbitingSpheres.scala, 0, 2 * Math.PI);
         ctx.fill();
     }
 }
@@ -526,16 +530,16 @@ function drawSpheres() {
         if (config.orbitingSpheres.trailStart != -1) {
             if (config.orbitingSpheres.timestep > 0) {
                 for (var trailIndexForward = pastTime; trailIndexForward > config.orbitingSpheres.trailStart; trailIndexForward -= config.orbitingSpheres.timestep) {
-                    drawSpherePoint(sphere.trail[trailIndexForward]);
+                    drawSpherePoint(sphere.trail[trailIndexForward], sphere);
                 }
             } else {
                 for (var trailIndexBackward = pastTime; trailIndexBackward < config.orbitingSpheres.trailStart; trailIndexBackward -= config.orbitingSpheres.timestep) {
-                    drawSpherePoint(sphere.trail[trailIndexBackward]);
+                    drawSpherePoint(sphere.trail[trailIndexBackward], sphere);
                 }
             }
         }
         if (pastTime in sphere.trail) {
-            drawSpherePoint(sphere.trail[pastTime]);
+            drawSpherePoint(sphere.trail[pastTime], sphere);
         }
     }
 }
@@ -574,7 +578,9 @@ function updateCanvas() {
     toMove.x = 0;
     toMove.y = 0;
     ctx.fillStyle = 'yellow';
-    ctx.clearRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height);
+    var topLeft = ctx.transformedPoint(0,0);
+    var bottomRight = ctx.transformedPoint(canvas.width,canvas.height);
+    ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
     ctx.fillText('Current time ' + formatDateTime(~~pastTime), -config.size.width / 2, -config.size.height / 2 + 50);
     ctx.fill();
     if(config.orbitingSpheres.showHelp){
@@ -663,6 +669,7 @@ $(document).ready(function () {
     canvas.addEventListener("mouseup", mouseClick, false);
     canvas.addEventListener("mousemove", drag, false);
     ctx.fillStyle = 'red';
+    trackTransforms(ctx);
     ctx.translate(config.size.width / 2, config.size.height / 2);
     createSpheres();
     for (var i = 0; i < spheres.length; i++) {
@@ -699,10 +706,7 @@ function mouseWheelEvent(event) {
     //config.orbitingSpheres.scale_factor_factor *= event.originalEvent.deltaY < 0 ? 1.1 : 0.9;
     //config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;
     scalePoint = getMousePos(canvas, event);
-    scalePoint.x -= config.size.width / 2;
-    scalePoint.y -= config.size.height / 2;
-    scalePoint.x /= config.orbitingSpheres.scala;
-    scalePoint.y /= config.orbitingSpheres.scala;
+    scalePoint = ctx.transformedPoint(scalePoint.x,scalePoint.y);
     var scaleTo = event.originalEvent.deltaY < 0 ? 1.1 : 1/1.1;
     config.orbitingSpheres.scala *= scaleTo;
     ctx.translate(scalePoint.x, scalePoint.y);
