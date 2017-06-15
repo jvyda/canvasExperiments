@@ -208,6 +208,11 @@ function createVector(tip, shaft) {
         y: tip.y - shaft.y
     };
 }
+
+function angleBetweenTwoVectors(vectorA, vectorB){
+    return Math.acos(dotProduct(vectorA, vectorB));
+}
+
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -263,6 +268,16 @@ function addOptionsWithImages(selectId, listOfElements, initialIndex) {
 
 function convertColorToRgb(sphere) {
     sphere.finalColor = '#' + d2h(sphere.color.r) + d2h(sphere.color.g) + d2h(sphere.color.b);
+}
+
+function randomColor(){
+    var color = {
+        r: roundedRandom(255),
+        g: roundedRandom(255),
+        b: roundedRandom(255)
+    };
+    addRGBStyle(color);
+    return color;
 }
 
 function dotProduct(vector1, vector2) {
