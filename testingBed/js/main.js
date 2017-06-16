@@ -3,13 +3,13 @@ var ctx;
 
 var config = {
     size: {
-        height: window.innerHeight,
-        width: window.innerWidth
+        height: 2* window.innerHeight,
+        width: 2* window.innerWidth
     },
     testingBed: {
-        maxDepth: 4,
+        maxDepth: 6,
         triangleAmount: 7,
-        side: 150
+        side: 300
     }
 };
 
@@ -23,51 +23,18 @@ var vertice = {
     triangles: []
 };
 
+
 function addTrianglesToVertice(vertice, depth) {
     depth += 1;
     addedVertices.push(vertice);
     if (depth > config.testingBed.maxDepth) return;
-    console.log('____________________VERTICE START__________________________________________________________')
+    console.log('vertice................................................................................................')
     console.log(vertice)
     var arcPerPiece = vertice.freeArc / (config.testingBed.triangleAmount - vertice.triangles.length);
-    var maxAngle = 0;
     var startingVertice;
     var endingVertice;
     for (var existTriangleI = 0; existTriangleI < vertice.triangles.length; existTriangleI++) {
         var existingTriangle = vertice.triangles[existTriangleI];
-        console.log('using triangle for search')
-        console.log(existingTriangle)
-        for (var existingVerticeI = 0; existingVerticeI < existingTriangle.vertices.length; existingVerticeI++) {
-            var existingVertice = existingTriangle.vertices[existingVerticeI];
-            console.log('using vertice as anchor')
-            console.log(existingVertice)
-            if (pointDistance(vertice, existingVertice) > 1) {
-                var mainVec = createNormalizedVector(existingVertice, vertice);
-                for (var otherTriangleI = 0; otherTriangleI < vertice.triangles.length; otherTriangleI++) {
-                    var otherTriangle = vertice.triangles[otherTriangleI];
-                    console.log('comparing with triangle')
-                    console.log(otherTriangle)
-                    for (var otherVerticeI = 0; otherVerticeI < otherTriangle.vertices.length; otherVerticeI++) {
-                        var otherVertice = otherTriangle.vertices[otherVerticeI];
-                        console.log('comparing with vertice')
-                        console.log(otherVertice)
-                        if (pointDistance(existingVertice, otherVertice) > 1 && pointDistance(otherVertice, vertice) > 1) {
-                            var secondVec = createNormalizedVector(otherVertice, vertice);
-                            var angle = angleBetweenTwoVectors(mainVec, secondVec);
-                            if (angle > maxAngle) {
-                                console.log('found angle is ' + toDeg(angle) )
-                                console.log(existingVertice)
-                                maxAngle = angle;
-                                endingVertice = existingVertice;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    for (var existTriangleI = 0; existTriangleI < vertice.triangles.length; existTriangleI++) {
-        var existingTriangle = vertice.triangles[existTriangleI];
         for (var existingVerticeI = 0; existingVerticeI < existingTriangle.vertices.length; existingVerticeI++) {
             var existingVertice = existingTriangle.vertices[existingVerticeI];
             if (pointDistance(vertice, existingVertice) > 1) {
@@ -79,7 +46,11 @@ function addTrianglesToVertice(vertice, depth) {
                         if (pointDistance(existingVertice, otherVertice) > 1 && pointDistance(otherVertice, vertice) > 1) {
                             var secondVec = createNormalizedVector(otherVertice, vertice);
                             var angle = angleBetweenTwoVectors(mainVec, secondVec);
-                            if (angle == maxAngle) {
+                            if ((Math.abs(angle - vertice.freeArc) < 0.001)) {
+                                endingVertice = otherVertice;
+                                startingVertice = existingVertice;
+                            } else if ((Math.abs(angle - (2 * Math.PI - vertice.freeArc)) < 0.001)) {
+                                endingVertice = otherVertice;
                                 startingVertice = existingVertice;
                             }
                         }
@@ -95,19 +66,117 @@ function addTrianglesToVertice(vertice, depth) {
         y: zeroY
     };
     var arc = 0;
-
+    console.log('starting and ending')
+    console.log(startingVertice);
+    console.log(endingVertice)
     var latestVertice;
     var lastVertice;
     if (vertice.freeArc < 2 * Math.PI) {
         var zeroCenter = createNormalizedVector(zero, vertice);
         var startCenter = createNormalizedVector(startingVertice, vertice);
         arc = -angleBetweenTwoVectors(startCenter, zeroCenter);
-        if (zero.y < startingVertice.y) {
+        var endCenter = createNormalizedVector(endingVertice, vertice);
+        var angleBetween = angleBetweenTwoVectors(endCenter, startCenter);
+        console.log(toDeg(arc))
+        if (zero.y < startingVertice.y
+            && !(Math.abs(Math.abs(angleBetween) - vertice.freeArc) > 0.001 && endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y > 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
+            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x <= vertice.x && vertice.x > 0 && vertice.y < 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0)
+            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0)
+            && !(endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0)
+            && !(endingVertice.x >= vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
+            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0)
+
+        ) {
             arc *= -1;
+            console.log('main')
+        } else if (Math.abs(Math.abs(angleBetween) - vertice.freeArc) > 0.001 && endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            console.log('second')
+        } else if (Math.abs(Math.abs(angleBetween) - vertice.freeArc) > 0.001 && endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            arc *= -1;
+            console.log('third')
+        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y > 0) {
+            arc *= -1;
+            arcPerPiece *= -1;
+            console.log('fourth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
+            arc *= -1;
+            arcPerPiece *= -1;
+            console.log('fifth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            console.log('sixth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x <= vertice.x && vertice.x > 0 && vertice.y < 0) {
+            arc *= -1;
+            arcPerPiece *= -1;
+            console.log('seventh')
+        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
+            arc *= -1;
+            arcPerPiece *= -1;
+            console.log('eighth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            console.log('ninth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            console.log('tenth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            console.log('tenth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            arc *= -1;
+            console.log('eleventh')
+        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            console.log('twelvth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            console.log('thirteenth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            arc *= -1;
+            console.log('fourteenth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            console.log('fifteenth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            console.log('sixteenth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            arc *= -1;
+            console.log('seventeenth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            console.log('eighteenth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            arc *= -1;
+            console.log('nineteenth')
+        } else if (endingVertice.x >= vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
+            arcPerPiece *= -1;
+            arc *= -1;
+            console.log('twentieth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0) {
+            console.log('twetyoneth')
+        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
+            arc *= -1;
+            console.log('twentytwoth')
         }
-        initialVertice = startingVertice;
         lastVertice = endingVertice;
         latestVertice = startingVertice;
+        //if((toDeg(vertice.freeArc) << 0) == 224){
+        //    arcPerPiece *= -1;
+        //}
+
     } else {
         var initialVerticeX = vertice.x + config.testingBed.side * Math.cos(arc);
         var initialVerticeY = vertice.y + config.testingBed.side * Math.sin(arc);
@@ -120,9 +189,9 @@ function addTrianglesToVertice(vertice, depth) {
         latestVertice = initialVertice;
         lastVertice = initialVertice;
     }
-    console.log(initialVertice)
-    console.log(lastVertice)
     var latestTriangle;
+    var lenght = Math.min(config.testingBed.side, vectorLenght(createVector(latestVertice, vertice)));
+    lenght = Math.min(lenght, vectorLenght(createVector(lastVertice, vertice)));
     for (var i = vertice.triangles.length; i < config.testingBed.triangleAmount; i++) {
         var triangle = {};
         triangle.vertices = [];
@@ -142,13 +211,13 @@ function addTrianglesToVertice(vertice, depth) {
             var lastToCenter = createNormalizedVector(vertice, lastVertice);
             var lastToLatest = createNormalizedVector(latestVertice, lastVertice);
             lastVertice.freeArc -= angleBetweenTwoVectors(lastToCenter, lastToLatest);
-            if (pointDistance(initialVertice, lastVertice) > 1) {
-                lastVertice.triangles.push(triangle)
-            }
+            //if (pointDistance(initialVertice, lastVertice) > 1) {
+            //    initialVertice.triangles.push(triangle)
+            //}
         } else {
             newPoint = true;
-            var newVerticeX = vertice.x + config.testingBed.side * Math.cos(arc);
-            var newVerticeY = vertice.y + config.testingBed.side * Math.sin(arc);
+            var newVerticeX = vertice.x + lenght * Math.cos(arc);
+            var newVerticeY = vertice.y + lenght * Math.sin(arc);
             newVertice.x = newVerticeX;
             newVertice.y = newVerticeY;
             newVertice.freeArc = 2 * Math.PI;
@@ -169,9 +238,9 @@ function addTrianglesToVertice(vertice, depth) {
             latestVertice = newVertice;
         }
         latestTriangle = triangle;
-        vertice.freeArc -= arcPerPiece;
+        vertice.freeArc -= Math.abs(arcPerPiece);
     }
-    initialVertice.triangles.push(latestTriangle);
+    lastVertice.triangles.push(latestTriangle);
 
     //vertice.triangles.forEach(function(triangle){
     //    triangle.vertices.forEach(function(vertice){
@@ -190,11 +259,12 @@ function drawVertice(verticeToDraw, depth) {
     for (var triangleI = 0; triangleI < verticeToDraw.triangles.length; triangleI++) {
         ctx.beginPath();
         ctx.strokeStyle = color
+        ctx.fillStyle = color
         var triangle = verticeToDraw.triangles[triangleI];
         for (var verticeI = 0; verticeI < triangle.vertices.length; verticeI++) {
             var subVertice = triangle.vertices[verticeI];
             ctx.lineTo(subVertice.x, subVertice.y);
-            ctx.fillText(~~subVertice.x + ' ' +  ~~subVertice.y + ' ', subVertice.x, subVertice.y);
+            //ctx.fillText(~~subVertice.x + ' ' + ~~subVertice.y + ' ', subVertice.x, subVertice.y);
             //ctx.fillText(~~toDeg(subVertice.freeArc) + ' ', subVertice.x, subVertice.y);
         }
         ctx.lineTo(triangle.vertices[0].x, triangle.vertices[0].y);
@@ -211,7 +281,6 @@ function drawVertice(verticeToDraw, depth) {
 }
 
 
-
 $(document).ready(function () {
     canvas = $('#canvas')[0];
     canvas.width = config.size.width;
@@ -219,7 +288,7 @@ $(document).ready(function () {
     ctx = canvas.getContext("2d");
     trackTransforms(ctx);
     ctx.translate(config.size.width / 2, config.size.height / 2);
-    ctx.font = '30px Arial';
+    ctx.font = '12px Arial';
     addTrianglesToVertice(vertice, 0);
     addTrianglesToVertice(vertice.triangles[0].vertices[1], 0)
     addTrianglesToVertice(vertice.triangles[1].vertices[1], 0)
@@ -227,7 +296,38 @@ $(document).ready(function () {
     addTrianglesToVertice(vertice.triangles[3].vertices[1], 0)
     addTrianglesToVertice(vertice.triangles[4].vertices[1], 0)
     addTrianglesToVertice(vertice.triangles[5].vertices[1], 0)
-    //addTrianglesToVertice(vertice.triangles[6].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[6].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[6].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[2].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[2].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[2].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[6].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[3].vertices[2].triangles[3].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[4].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[0].vertices[2].triangles[3].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[2].vertices[2].triangles[3].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[3].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[2].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[4].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[2].triangles[3].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[6].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[5].vertices[1].triangles[3].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[4].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[5].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1].triangles[5].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
+    addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
+    addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
+    console.log(vertice.triangles[1].vertices[2].triangles[4].vertices[1])
     console.log(vertice)
     ctx.strokeStyle = 'red';
     drawVertice(vertice, 0);
@@ -237,5 +337,35 @@ $(document).ready(function () {
     drawVertice(vertice.triangles[3].vertices[1], 0)
     drawVertice(vertice.triangles[4].vertices[1], 0)
     drawVertice(vertice.triangles[5].vertices[1], 0)
-    //drawVertice(vertice.triangles[6].vertices[1], 0)
+    drawVertice(vertice.triangles[6].vertices[1], 0)
+    drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[1], 0)
+    drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2], 0)
+    drawVertice(vertice.triangles[0].vertices[1].triangles[6].vertices[1], 0)
+    drawVertice(vertice.triangles[2].vertices[1].triangles[2].vertices[1], 0)
+    drawVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[1], 0)
+    drawVertice(vertice.triangles[0].vertices[1].triangles[2].vertices[2], 0)
+    drawVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[2], 0)
+    drawVertice(vertice.triangles[4].vertices[2].triangles[2].vertices[1], 0)
+    drawVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1], 0)
+    drawVertice(vertice.triangles[4].vertices[2].triangles[6].vertices[1], 0)
+    drawVertice(vertice.triangles[3].vertices[2].triangles[3].vertices[2], 0)
+    drawVertice(vertice.triangles[4].vertices[2].triangles[4].vertices[2], 0)
+    drawVertice(vertice.triangles[0].vertices[2].triangles[3].vertices[2], 0)
+    drawVertice(vertice.triangles[2].vertices[2].triangles[3].vertices[2], 0)
+    drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2], 0)
+    drawVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[3].vertices[2], 0)
+    drawVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[2].vertices[2], 0)
+    drawVertice(vertice.triangles[1].vertices[2].triangles[4].vertices[1], 0)
+    drawVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[2].triangles[3].vertices[2], 0)
+    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[6].vertices[2], 0)
+    drawVertice(vertice.triangles[0].vertices[1].triangles[5].vertices[1].triangles[3].vertices[2], 0)
+    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[4].vertices[2], 0)
+    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[5].vertices[2], 0)
+    drawVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[1], 0)
+    drawVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1].triangles[5].vertices[1], 0)
+    drawVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
+    drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
+    drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
 });

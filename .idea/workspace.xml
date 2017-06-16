@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testingBed/index.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testingBed/js/main.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testingBed/js/plugins.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testingBed/js/main.js" afterPath="$PROJECT_DIR$/testingBed/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +50,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testingBed/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.481328">
-              <caret line="240" column="3" selection-start-line="240" selection-start-column="3" selection-end-line="240" selection-end-column="3" />
+            <state vertical-scroll-proportion="0.34647304">
+              <caret line="267" column="47" selection-start-line="267" selection-start-column="47" selection-end-line="267" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -405,12 +402,6 @@
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
     </task>
-    <task id="LOCAL-00004" summary="changed default value for archimedean spiral&#10;added todo">
-      <created>1492004134127</created>
-      <option name="number" value="00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1492004134127</updated>
-    </task>
     <task id="LOCAL-00005" summary="only start filling the canvas with the image when the image has finished loading">
       <created>1492707492950</created>
       <option name="number" value="00005" />
@@ -699,7 +690,13 @@
       <option name="project" value="LOCAL" />
       <updated>1497458440375</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="added new unnamed project&#10;">
+      <created>1497557061643</created>
+      <option name="number" value="00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1497557061644</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -708,6 +705,7 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20072992" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -717,7 +715,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -758,8 +755,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fireWork:&#10;-only using one flare function&#10;" />
-    <MESSAGE value="fireWork:&#10;-now using different color schemes&#10;-two explosion rockets now spawn with a chance&#10;-the color scheme is changed with a chance for the second explosion (not magenta and green)&#10;-the color for an element in the trail is changed every frame to an element of the color scheme" />
     <MESSAGE value="Overview:&#10;-added fireWorks to overview" />
     <MESSAGE value="fireWorks:&#10;-instead of string replace, use concatenation for alpha setting&#10;-don't render the trailItem if the alpha is to low&#10;-reduced flare amount for primary and secondary flares&#10;-the color of the second flare is not decided upon creation of the rocket&#10;-refactored the illegalTransition function&#10;-instead of the subFlares being stored in the rocket, moved them to their own flare respectively&#10;" />
     <MESSAGE value="fireWorks:&#10;-rockets now have a chance for the first flare to have bigger heads&#10;-removing not rendered elements from lists of trails/flares/rockets&#10;-increased falling speed, so it is noticeable" />
@@ -783,11 +778,13 @@
     <MESSAGE value="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today" />
     <MESSAGE value="orbitingSpheres:&#10;-set dates to match 6th june 2017&#10;-set timeStep to one hour to increase accuracy&#10;-adapted colors of moons" />
     <MESSAGE value="orbitingSpheres:&#10;-fixed detection whether or not we need to draw the sphere&#10;-moons are only one pixel, planets two&#10;-added tracking of the transformations of the canvas" />
-    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-fixed detection whether or not we need to draw the sphere&#10;-moons are only one pixel, planets two&#10;-added tracking of the transformations of the canvas" />
+    <MESSAGE value="added new unnamed project&#10;" />
+    <MESSAGE value="added a lot of edge cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="added a lot of edge cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1162,8 +1159,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testingBed/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.481328">
-          <caret line="240" column="3" selection-start-line="240" selection-start-column="3" selection-end-line="240" selection-end-column="3" />
+        <state vertical-scroll-proportion="0.34647304">
+          <caret line="267" column="47" selection-start-line="267" selection-start-column="47" selection-end-line="267" selection-end-column="47" />
           <folding />
         </state>
       </provider>
