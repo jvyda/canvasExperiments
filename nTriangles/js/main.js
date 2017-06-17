@@ -3,13 +3,13 @@ var ctx;
 
 var config = {
     size: {
-        height: 3* window.innerHeight,
-        width: 3* window.innerWidth
+        height: 2100,
+        width: 2700
     },
     testingBed: {
         maxDepth: 6,
         triangleAmount: 7,
-        side: 200
+        side: 500
     }
 };
 
@@ -359,6 +359,9 @@ $(document).ready(function () {
     console.log(vertice.triangles[1].vertices[2].triangles[4].vertices[1])
     console.log(vertice)
     ctx.strokeStyle = 'red';
+    ctx.fillStyle = 'black'
+    ctx.fillRect(-config.size.width, -config.size.height, 2*config.size.width, 2*config.size.height)
+    ctx.fill();
     drawVertice(vertice, 0);
     drawVertice(vertice.triangles[0].vertices[1], 0)
     drawVertice(vertice.triangles[1].vertices[1], 0)
