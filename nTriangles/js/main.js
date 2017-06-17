@@ -3,13 +3,13 @@ var ctx;
 
 var config = {
     size: {
-        height: 2* window.innerHeight,
-        width: 2* window.innerWidth
+        height: 3* window.innerHeight,
+        width: 3* window.innerWidth
     },
     testingBed: {
         maxDepth: 6,
         triangleAmount: 7,
-        side: 300
+        side: 200
     }
 };
 
@@ -91,6 +91,8 @@ function addTrianglesToVertice(vertice, depth) {
             && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0)
             && !(endingVertice.x >= vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
             && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0)
+            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0)
+            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0)
 
         ) {
             arc *= -1;
@@ -170,6 +172,15 @@ function addTrianglesToVertice(vertice, depth) {
         } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
             arc *= -1;
             console.log('twentytwoth')
+        }  else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            console.log('twentytreeth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
+            arcPerPiece *= -1;
+            console.log('twentyfourth')
+        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0) {
+            arc *= -1;
+            console.log('twentyfifth')
         }
         lastVertice = endingVertice;
         latestVertice = startingVertice;
@@ -279,6 +290,24 @@ function drawVertice(verticeToDraw, depth) {
     //    })
     //})
 }
+var visited = [];
+var max = 2 * Math.PI;
+var current;
+function getMaxFreeVertice(verticeToLook){
+    verticeToLook.triangles.forEach(function(triangle){
+        triangle.vertices.forEach(function(subVertice){
+            if(pointDistance(triangle.vertices[0], triangle.vertices[1]) < 10) return;
+            if(visited.indexOf(subVertice) < 0){
+                if(subVertice.freeArc > toRad(45) && subVertice.freeArc < max) {
+                    max = subVertice.freeArc;
+                    current = subVertice;
+                }
+                visited.push(subVertice);
+                getMaxFreeVertice(subVertice)
+            }
+        });
+    })
+}
 
 
 $(document).ready(function () {
@@ -368,4 +397,16 @@ $(document).ready(function () {
     drawVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
     drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
     drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
+
+    console.log('starting dynamic')
+    for(var i = 0; i < 446; i++){
+        console.log('current i: ' + i)
+        getMaxFreeVertice(vertice);
+        visited = [];
+        max = 2* Math.PI;
+        addTrianglesToVertice(current, 0)
+        drawVertice(current, 0)
+    }
+
+    console.log(toDeg(current.freeArc))
 });
