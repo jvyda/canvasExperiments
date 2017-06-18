@@ -405,6 +405,24 @@ function getMaxFreeVertice(verticeToLook) {
         });
     })
 }
+var visitedDist = [];
+var maxDist = config.size.width;
+var currentDist;
+function getMinDistance(verticeToLook) {
+    verticeToLook.triangles.forEach(function (triangle) {
+        triangle.vertices.forEach(function (subVertice) {
+            if (visitedDist.indexOf(subVertice) < 0) {
+                var dist = pointDistance(subVertice, currentDist);
+                if (dist > 0 && dist < maxDist) {
+                    maxDist = dist;
+                }
+                visitedDist.push(subVertice);
+                getMinDistance(subVertice)
+            }
+        });
+    })
+}
+
 
 
 $(document).ready(function () {
@@ -497,7 +515,7 @@ $(document).ready(function () {
     drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
     drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
     console.log('starting dynamic')
-    for (var i = 0; i < 679; i++) {
+    for (var i = 0; i < 700; i++) {
         console.log('current i: ' + i)
         getMaxFreeVertice(vertice);
         visited = [];

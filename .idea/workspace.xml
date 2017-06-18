@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nTriangles/index.html" afterPath="$PROJECT_DIR$/nTriangles/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/nTriangles/js/main.js" afterPath="$PROJECT_DIR$/nTriangles/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -28,11 +27,11 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nTriangles/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-16.666666">
-              <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+            <state vertical-scroll-proportion="-8.0">
+              <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
               <folding>
-                <marker date="1497740410495" expanded="true" signature="604:757" placeholder="..." />
-                <marker date="1497740410495" expanded="true" signature="697:725" placeholder="..." />
+                <marker date="1497746478706" expanded="true" signature="604:757" placeholder="..." />
+                <marker date="1497746478706" expanded="true" signature="697:725" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -41,8 +40,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nTriangles/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.75153375">
-              <caret line="499" column="27" selection-start-line="499" selection-start-column="24" selection-end-line="499" selection-end-column="27" />
+            <state vertical-scroll-proportion="0.24846625">
+              <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -409,12 +408,6 @@
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
     </task>
-    <task id="LOCAL-00008" summary="increased maximum spread to 30&#10;">
-      <created>1492770840558</created>
-      <option name="number" value="00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1492770840558</updated>
-    </task>
     <task id="LOCAL-00009" summary="the new elements are now calculated while the tree is being drawn&#10;changed to use the gradient of colors not the absolut values">
       <created>1492902197746</created>
       <option name="number" value="00009" />
@@ -703,7 +696,13 @@
       <option name="project" value="LOCAL" />
       <updated>1497713511390</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="nTriangles:&#10;-improved decision algorithm for arc/direction finding, now crashes further in (even though it should hold all cases)">
+      <created>1497746378389</created>
+      <option name="number" value="00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1497746378389</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -712,6 +711,7 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20014663" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -720,7 +720,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -762,7 +761,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fireWorks:&#10;-rockets now have a chance for the first flare to have bigger heads&#10;-removing not rendered elements from lists of trails/flares/rockets&#10;-increased falling speed, so it is noticeable" />
     <MESSAGE value="fireWorks:&#10;-reduced the factor of the headsize&#10;-introduced some central variables" />
     <MESSAGE value="fireWorks:&#10;-added actual second explosion which happens after the first one" />
     <MESSAGE value="fireWorks:&#10;-added chance for trails to be far longer (secondary and primary)&#10;-don't add trails to the list if they are out of the canvas area&#10;-restructured config object&#10;-added some more values to config object" />
@@ -787,7 +785,8 @@
     <MESSAGE value="added a lot of edge cases" />
     <MESSAGE value="fucked some edge cases" />
     <MESSAGE value="nTriangles:&#10;-added overview image&#10;-resized canvas it mostly fits&#10;-made canvas background black" />
-    <option name="LAST_COMMIT_MESSAGE" value="nTriangles:&#10;-added overview image&#10;-resized canvas it mostly fits&#10;-made canvas background black" />
+    <MESSAGE value="nTriangles:&#10;-improved decision algorithm for arc/direction finding, now crashes further in (even though it should hold all cases)" />
+    <option name="LAST_COMMIT_MESSAGE" value="nTriangles:&#10;-improved decision algorithm for arc/direction finding, now crashes further in (even though it should hold all cases)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1152,19 +1151,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/nTriangles/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.666666">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+        <state vertical-scroll-proportion="-8.0">
+          <caret line="13" column="45" selection-start-line="13" selection-start-column="45" selection-end-line="13" selection-end-column="45" />
           <folding>
-            <marker date="1497740410495" expanded="true" signature="604:757" placeholder="..." />
-            <marker date="1497740410495" expanded="true" signature="697:725" placeholder="..." />
+            <marker date="1497746478706" expanded="true" signature="604:757" placeholder="..." />
+            <marker date="1497746478706" expanded="true" signature="697:725" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/nTriangles/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.75153375">
-          <caret line="499" column="27" selection-start-line="499" selection-start-column="24" selection-end-line="499" selection-end-column="27" />
+        <state vertical-scroll-proportion="0.24846625">
+          <caret line="9" column="20" selection-start-line="9" selection-start-column="20" selection-end-line="9" selection-end-column="20" />
           <folding />
         </state>
       </provider>
