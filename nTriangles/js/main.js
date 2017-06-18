@@ -74,119 +74,230 @@ function addTrianglesToVertice(vertice, depth) {
     if (vertice.freeArc < 2 * Math.PI) {
         var zeroCenter = createNormalizedVector(zero, vertice);
         var startCenter = createNormalizedVector(startingVertice, vertice);
-        arc = -angleBetweenTwoVectors(startCenter, zeroCenter);
+        arc = angleBetweenTwoVectors(startCenter, zeroCenter);
         var endCenter = createNormalizedVector(endingVertice, vertice);
         var angleBetween = angleBetweenTwoVectors(endCenter, startCenter);
-        console.log(toDeg(arc))
-        if (zero.y < startingVertice.y
-            && !(Math.abs(Math.abs(angleBetween) - vertice.freeArc) > 0.001 && endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y > 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
-            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x <= vertice.x && vertice.x > 0 && vertice.y < 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0)
-            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0)
-            && !(endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0)
-            && !(endingVertice.x >= vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0)
-            && !(endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0)
-            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0)
-            && !(endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0)
+        var endingToZeroAngle = angleBetweenTwoVectors(endCenter, zeroCenter);
+        var startingToZeroAngle = arc;
 
-        ) {
-            arc *= -1;
-            console.log('main')
-        } else if (Math.abs(Math.abs(angleBetween) - vertice.freeArc) > 0.001 && endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            console.log('second')
-        } else if (Math.abs(Math.abs(angleBetween) - vertice.freeArc) > 0.001 && endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            arc *= -1;
-            console.log('third')
-        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y > 0) {
-            arc *= -1;
-            arcPerPiece *= -1;
-            console.log('fourth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
-            arc *= -1;
-            arcPerPiece *= -1;
-            console.log('fifth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            console.log('sixth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x <= vertice.x && vertice.x > 0 && vertice.y < 0) {
-            arc *= -1;
-            arcPerPiece *= -1;
-            console.log('seventh')
-        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
-            arc *= -1;
-            arcPerPiece *= -1;
-            console.log('eighth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            console.log('ninth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            console.log('tenth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            console.log('tenth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            arc *= -1;
-            console.log('eleventh')
-        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            console.log('twelvth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            console.log('thirteenth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            arc *= -1;
-            console.log('fourteenth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            console.log('fifteenth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            console.log('sixteenth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y > vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            arc *= -1;
-            console.log('seventeenth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            console.log('eighteenth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x > 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            arc *= -1;
-            console.log('nineteenth')
-        } else if (endingVertice.x >= vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x > 0 && vertice.y > 0) {
-            arcPerPiece *= -1;
-            arc *= -1;
-            console.log('twentieth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y > vertice.y && startingVertice.y < vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0) {
-            console.log('twetyoneth')
-        } else if (endingVertice.x > vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y > 0) {
-            arc *= -1;
-            console.log('twentytwoth')
-        }  else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y < vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            console.log('twentytreeth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x > vertice.x && vertice.x < 0 && vertice.y < 0) {
-            arcPerPiece *= -1;
-            console.log('twentyfourth')
-        } else if (endingVertice.x < vertice.x && endingVertice.y < vertice.y && startingVertice.y > vertice.y && startingVertice.x < vertice.x && vertice.x < 0 && vertice.y < 0) {
-            arc *= -1;
-            console.log('twentyfifth')
+        var xOffset = vertice.x * -1;
+        var yOffset = vertice.y * -1;
+        var startingVerticeTranslated = {
+            x: startingVertice.x + xOffset,
+            y: startingVertice.y + yOffset
+        };
+
+        var endingVerticeTranslated = {
+            x: endingVertice.x + xOffset,
+            y: endingVertice.y + yOffset
+        };
+
+        if (startingVerticeTranslated.x >= 0) {
+            if (startingVerticeTranslated.y >= 0) {
+                if (endingVerticeTranslated.x >= 0) {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (startingToZeroAngle <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arcPerPiece *= -1;
+                            } else {
+                                // do nothing
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                // do nothing
+                            } else {
+                                arcPerPiece *= -1;
+                            }
+                        }
+                    } else {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            // do nothing
+                        } else {
+                            arcPerPiece *= -1;
+                        }
+                    }
+                } else {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            arcPerPiece *= -1;
+                        } else {
+                            // do nothing
+                        }
+                    } else {
+                        if (((startingToZeroAngle * -1) + Math.PI) <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arcPerPiece *= -1;
+                            } else {
+                                // do nothing
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                // do nothing
+                            } else {
+                                arcPerPiece *= -1;
+                            }
+                        }
+                    }
+                }
+            } else {
+                if (endingVerticeTranslated.x >= 0) {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            arc *= -1;
+                            arcPerPiece *= -1;
+                        } else {
+                            arc *= -1;
+                        }
+                    } else {
+                        if (startingToZeroAngle <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                            } else {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            } else {
+                                arc *= -1;
+                            }
+                        }
+                    }
+                } else {
+                    if (endingVerticeTranslated.y >= 0) {
+                        // special cases when on E on opposite, but angle only reflects 180°
+                        // start angle is bigger
+                        if (((startingToZeroAngle * -1) + Math.PI) <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                            } else {
+                                arcPerPiece *= -1;
+                                arc *= -1;
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            } else {
+                                arc *= -1;
+                            }
+                        }
+                    } else {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            arc *= -1;
+                        } else {
+                            arcPerPiece *= -1;
+                            arc *= -1;
+                        }
+                    }
+                }
+            }
+        } else {
+            if (startingVerticeTranslated.y >= 0) {
+                if (endingVerticeTranslated.x >= 0) {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            // do nothing
+                        } else {
+                            arcPerPiece *= -1;
+                        }
+                    } else {
+                        if (((startingToZeroAngle * -1) + Math.PI ) <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arcPerPiece *= -1;
+                            } else {
+                                // do nothing
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                // do nothing
+                            } else {
+                                arcPerPiece *= -1;
+                            }
+                        }
+                    }
+                } else {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (startingToZeroAngle <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arcPerPiece *= -1;
+                            } else {
+                                // do nothing
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                // do nothing
+                            } else {
+                                arcPerPiece *= -1;
+                            }
+                        }
+                    } else {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            arcPerPiece *= -1;
+                        } else {
+                            // do nothing
+                        }
+                    }
+                }
+            } else {
+                if (endingVerticeTranslated.x >= 0) {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (((startingToZeroAngle * -1) + Math.PI) <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                            } else {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            } else {
+                                arc *= -1;
+                            }
+                        }
+                    } else {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            arc *= -1;
+                            arcPerPiece *= -1;
+                        } else {
+                            arc *= -1;
+                        }
+                    }
+                } else {
+                    if (endingVerticeTranslated.y >= 0) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            arc *= -1;
+                        } else {
+                            arc *= -1;
+                            arcPerPiece *= -1;
+                        }
+                    } else {
+                        if (startingToZeroAngle <= endingToZeroAngle) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                            } else {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            }
+                        } else {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                                arc *= -1;
+                                arcPerPiece *= -1;
+                            } else {
+                                arc *= -1;
+                            }
+                        }
+                    }
+                }
+            }
         }
+
         lastVertice = endingVertice;
         latestVertice = startingVertice;
-        //if((toDeg(vertice.freeArc) << 0) == 224){
-        //    arcPerPiece *= -1;
-        //}
 
     } else {
         var initialVerticeX = vertice.x + config.testingBed.side * Math.cos(arc);
@@ -253,13 +364,6 @@ function addTrianglesToVertice(vertice, depth) {
     }
     lastVertice.triangles.push(latestTriangle);
 
-    //vertice.triangles.forEach(function(triangle){
-    //    triangle.vertices.forEach(function(vertice){
-    //        if(vertice.freeArc > 0 && addedVertices.indexOf(vertice) < 0) {
-    //            addTrianglesToVertice(vertice, depth)
-    //        }
-    //    })
-    //})
 }
 
 function drawVertice(verticeToDraw, depth) {
@@ -282,23 +386,16 @@ function drawVertice(verticeToDraw, depth) {
         ctx.stroke();
     }
 
-    //vertice.triangles.forEach(function(triangle){
-    //    triangle.vertices.forEach(function(vertice){
-    //        if(drawnVertices.indexOf(vertice) < 0) {
-    //            drawVertice(vertice, depth)
-    //        }
-    //    })
-    //})
 }
 var visited = [];
 var max = 2 * Math.PI;
 var current;
-function getMaxFreeVertice(verticeToLook){
-    verticeToLook.triangles.forEach(function(triangle){
-        triangle.vertices.forEach(function(subVertice){
-            if(pointDistance(triangle.vertices[0], triangle.vertices[1]) < 10) return;
-            if(visited.indexOf(subVertice) < 0){
-                if(subVertice.freeArc > toRad(45) && subVertice.freeArc < max) {
+function getMaxFreeVertice(verticeToLook) {
+    verticeToLook.triangles.forEach(function (triangle) {
+        triangle.vertices.forEach(function (subVertice) {
+            if (pointDistance(triangle.vertices[0], triangle.vertices[1]) < 10) return;
+            if (visited.indexOf(subVertice) < 0) {
+                if (subVertice.freeArc > toRad(45) && subVertice.freeArc < max) {
                     max = subVertice.freeArc;
                     current = subVertice;
                 }
@@ -356,7 +453,6 @@ $(document).ready(function () {
     addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
     addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
     addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
-    console.log(vertice.triangles[1].vertices[2].triangles[4].vertices[1])
     console.log(vertice)
     ctx.strokeStyle = 'red';
     ctx.fillStyle = 'black'
@@ -400,16 +496,14 @@ $(document).ready(function () {
     drawVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
     drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
     drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
-
     console.log('starting dynamic')
-    for(var i = 0; i < 446; i++){
+    for (var i = 0; i < 679; i++) {
         console.log('current i: ' + i)
         getMaxFreeVertice(vertice);
         visited = [];
-        max = 2* Math.PI;
+        max = 2 * Math.PI;
         addTrianglesToVertice(current, 0)
         drawVertice(current, 0)
     }
 
-    console.log(toDeg(current.freeArc))
 });
