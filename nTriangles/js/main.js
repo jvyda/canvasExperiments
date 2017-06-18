@@ -3,18 +3,18 @@ var ctx;
 
 var config = {
     size: {
-        height: 2100,
-        width: 2700
+        height: 2500,
+        width: 4000
     },
-    testingBed: {
-        maxDepth: 6,
-        triangleAmount: 7,
-        side: 500
+    nTriangles: {
+        triangleAmount: 25,
+        side: 500,
+        minSideSize: 25,
+        baseMinSideSize: 25,
+        verticeAmount: 1000,
+        fps: 60
     }
 };
-
-var addedVertices = [];
-var drawnVertices = [];
 
 var vertice = {
     x: 0,
@@ -24,13 +24,13 @@ var vertice = {
 };
 
 
-function addTrianglesToVertice(vertice, depth) {
-    depth += 1;
-    addedVertices.push(vertice);
-    if (depth > config.testingBed.maxDepth) return;
-    console.log('vertice................................................................................................')
-    console.log(vertice)
-    var arcPerPiece = vertice.freeArc / (config.testingBed.triangleAmount - vertice.triangles.length);
+function addTrianglesToVertice(vertice) {
+    //console.log('vertice################################################################################################')
+    //console.log(vertice)
+    if (vertice.freeArc <= 0) {
+        return
+    }
+    var arcPerPiece = vertice.freeArc / (config.nTriangles.triangleAmount - vertice.triangles.length);
     var startingVertice;
     var endingVertice;
     for (var existTriangleI = 0; existTriangleI < vertice.triangles.length; existTriangleI++) {
@@ -46,10 +46,10 @@ function addTrianglesToVertice(vertice, depth) {
                         if (pointDistance(existingVertice, otherVertice) > 1 && pointDistance(otherVertice, vertice) > 1) {
                             var secondVec = createNormalizedVector(otherVertice, vertice);
                             var angle = angleBetweenTwoVectors(mainVec, secondVec);
-                            if ((Math.abs(angle - vertice.freeArc) < 0.001)) {
+                            if ((Math.abs(angle - vertice.freeArc) < 0.000001)) {
                                 endingVertice = otherVertice;
                                 startingVertice = existingVertice;
-                            } else if ((Math.abs(angle - (2 * Math.PI - vertice.freeArc)) < 0.001)) {
+                            } else if ((Math.abs(angle - (2 * Math.PI - vertice.freeArc)) < 0.000001)) {
                                 endingVertice = otherVertice;
                                 startingVertice = existingVertice;
                             }
@@ -59,16 +59,16 @@ function addTrianglesToVertice(vertice, depth) {
             }
         }
     }
-    var zeroX = vertice.x + config.testingBed.side * Math.cos(0);
-    var zeroY = vertice.y + config.testingBed.side * Math.sin(0);
+    var zeroX = vertice.x + config.nTriangles.side * Math.cos(0);
+    var zeroY = vertice.y + config.nTriangles.side * Math.sin(0);
     var zero = {
         x: zeroX,
         y: zeroY
     };
     var arc = 0;
-    console.log('starting and ending')
-    console.log(startingVertice);
-    console.log(endingVertice)
+    //console.log('starting and ending')
+    //console.log(startingVertice);
+    //console.log(endingVertice)
     var latestVertice;
     var lastVertice;
     if (vertice.freeArc < 2 * Math.PI) {
@@ -97,20 +97,20 @@ function addTrianglesToVertice(vertice, depth) {
                 if (endingVerticeTranslated.x >= 0) {
                     if (endingVerticeTranslated.y >= 0) {
                         if (startingToZeroAngle <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arcPerPiece *= -1;
                             } else {
                                 // do nothing
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 // do nothing
                             } else {
                                 arcPerPiece *= -1;
                             }
                         }
                     } else {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             // do nothing
                         } else {
                             arcPerPiece *= -1;
@@ -118,20 +118,20 @@ function addTrianglesToVertice(vertice, depth) {
                     }
                 } else {
                     if (endingVerticeTranslated.y >= 0) {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             arcPerPiece *= -1;
                         } else {
                             // do nothing
                         }
                     } else {
                         if (((startingToZeroAngle * -1) + Math.PI) <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arcPerPiece *= -1;
                             } else {
                                 // do nothing
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 // do nothing
                             } else {
                                 arcPerPiece *= -1;
@@ -142,7 +142,7 @@ function addTrianglesToVertice(vertice, depth) {
             } else {
                 if (endingVerticeTranslated.x >= 0) {
                     if (endingVerticeTranslated.y >= 0) {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             arc *= -1;
                             arcPerPiece *= -1;
                         } else {
@@ -150,14 +150,14 @@ function addTrianglesToVertice(vertice, depth) {
                         }
                     } else {
                         if (startingToZeroAngle <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                             } else {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             } else {
@@ -170,14 +170,14 @@ function addTrianglesToVertice(vertice, depth) {
                         // special cases when on E on opposite, but angle only reflects 180°
                         // start angle is bigger
                         if (((startingToZeroAngle * -1) + Math.PI) <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                             } else {
                                 arcPerPiece *= -1;
                                 arc *= -1;
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             } else {
@@ -185,7 +185,7 @@ function addTrianglesToVertice(vertice, depth) {
                             }
                         }
                     } else {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             arc *= -1;
                         } else {
                             arcPerPiece *= -1;
@@ -198,20 +198,20 @@ function addTrianglesToVertice(vertice, depth) {
             if (startingVerticeTranslated.y >= 0) {
                 if (endingVerticeTranslated.x >= 0) {
                     if (endingVerticeTranslated.y >= 0) {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             // do nothing
                         } else {
                             arcPerPiece *= -1;
                         }
                     } else {
                         if (((startingToZeroAngle * -1) + Math.PI ) <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arcPerPiece *= -1;
                             } else {
                                 // do nothing
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 // do nothing
                             } else {
                                 arcPerPiece *= -1;
@@ -221,20 +221,20 @@ function addTrianglesToVertice(vertice, depth) {
                 } else {
                     if (endingVerticeTranslated.y >= 0) {
                         if (startingToZeroAngle <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arcPerPiece *= -1;
                             } else {
                                 // do nothing
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 // do nothing
                             } else {
                                 arcPerPiece *= -1;
                             }
                         }
                     } else {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             arcPerPiece *= -1;
                         } else {
                             // do nothing
@@ -245,14 +245,14 @@ function addTrianglesToVertice(vertice, depth) {
                 if (endingVerticeTranslated.x >= 0) {
                     if (endingVerticeTranslated.y >= 0) {
                         if (((startingToZeroAngle * -1) + Math.PI) <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                             } else {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             } else {
@@ -260,7 +260,7 @@ function addTrianglesToVertice(vertice, depth) {
                             }
                         }
                     } else {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             arc *= -1;
                             arcPerPiece *= -1;
                         } else {
@@ -269,7 +269,7 @@ function addTrianglesToVertice(vertice, depth) {
                     }
                 } else {
                     if (endingVerticeTranslated.y >= 0) {
-                        if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                        if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                             arc *= -1;
                         } else {
                             arc *= -1;
@@ -277,14 +277,14 @@ function addTrianglesToVertice(vertice, depth) {
                         }
                     } else {
                         if (startingToZeroAngle <= endingToZeroAngle) {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                             } else {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             }
                         } else {
-                            if (Math.abs(angleBetween - vertice.freeArc) > 0.01) {
+                            if (Math.abs(angleBetween - vertice.freeArc) > 0.000001) {
                                 arc *= -1;
                                 arcPerPiece *= -1;
                             } else {
@@ -300,8 +300,13 @@ function addTrianglesToVertice(vertice, depth) {
         latestVertice = startingVertice;
 
     } else {
-        var initialVerticeX = vertice.x + config.testingBed.side * Math.cos(arc);
-        var initialVerticeY = vertice.y + config.testingBed.side * Math.sin(arc);
+        visitedDist = [];
+        maxDist = config.nTriangles.side;
+        currentDist = vertice;
+        getMinDistance(vertice);
+        var lenght = maxDist;
+        var initialVerticeX = vertice.x + lenght * Math.cos(arc);
+        var initialVerticeY = vertice.y + lenght * Math.sin(arc);
         var initialVertice = {
             x: initialVerticeX,
             y: initialVerticeY,
@@ -312,9 +317,9 @@ function addTrianglesToVertice(vertice, depth) {
         lastVertice = initialVertice;
     }
     var latestTriangle;
-    var lenght = Math.min(config.testingBed.side, vectorLenght(createVector(latestVertice, vertice)));
-    lenght = Math.min(lenght, vectorLenght(createVector(lastVertice, vertice)));
-    for (var i = vertice.triangles.length; i < config.testingBed.triangleAmount; i++) {
+    //var lenght = Math.min(config.nTriangles.side, vectorLenght(createVector(latestVertice, vertice)));
+    //lenght = Math.min(lenght, vectorLenght(createVector(lastVertice, vertice)));
+    for (var i = vertice.triangles.length; i < config.nTriangles.triangleAmount; i++) {
         var triangle = {};
         triangle.vertices = [];
         triangle.vertices.push(vertice);
@@ -322,7 +327,7 @@ function addTrianglesToVertice(vertice, depth) {
         arc += arcPerPiece;
         var newPoint = false;
         var newVertice = {};
-        if (i == (config.testingBed.triangleAmount - 1)) {
+        if (i == (config.nTriangles.triangleAmount - 1)) {
             triangle.vertices.push(lastVertice);
             // in a normal circle, the last triangle needs to be added to two vertices
             // if we fill up a circle, the last is newly created, and needs to be added to three
@@ -338,6 +343,11 @@ function addTrianglesToVertice(vertice, depth) {
             //}
         } else {
             newPoint = true;
+            visitedDist = [];
+            maxDist = config.nTriangles.side;
+            currentDist = vertice;
+            getMinDistance(vertice);
+            var lenght = maxDist;
             var newVerticeX = vertice.x + lenght * Math.cos(arc);
             var newVerticeY = vertice.y + lenght * Math.sin(arc);
             newVertice.x = newVerticeX;
@@ -366,11 +376,8 @@ function addTrianglesToVertice(vertice, depth) {
 
 }
 
-function drawVertice(verticeToDraw, depth) {
-    drawnVertices.push(verticeToDraw)
-    depth++;
+function drawVertice(verticeToDraw) {
     var color = randomColor().styleRGB;
-    if (depth > config.testingBed.maxDepth) return;
     for (var triangleI = 0; triangleI < verticeToDraw.triangles.length; triangleI++) {
         ctx.beginPath();
         ctx.strokeStyle = color
@@ -390,27 +397,34 @@ function drawVertice(verticeToDraw, depth) {
 var visited = [];
 var max = 2 * Math.PI;
 var current;
+
 function getMaxFreeVertice(verticeToLook) {
-    verticeToLook.triangles.forEach(function (triangle) {
-        triangle.vertices.forEach(function (subVertice) {
-            if (pointDistance(triangle.vertices[0], triangle.vertices[1]) < 10) return;
+    for(var i = 0; i < verticeToLook.triangles.length; i++){
+        var triangle = verticeToLook.triangles[i];
+        for(var vi = 0; vi < triangle.vertices.length; vi++){
+            var subVertice = triangle.vertices[vi];
             if (visited.indexOf(subVertice) < 0) {
-                if (subVertice.freeArc > toRad(45) && subVertice.freeArc < max) {
+                if (subVertice.freeArc > toRad(20) && subVertice.freeArc < max && subVertice.freeArc > 0.1 &&
+                    pointDistance(triangle.vertices[0], triangle.vertices[1]) > config.nTriangles.minSideSize &&
+                    pointDistance(triangle.vertices[1], triangle.vertices[2]) > config.nTriangles.minSideSize &&
+                    pointDistance(triangle.vertices[2], triangle.vertices[0]) > config.nTriangles.minSideSize) {
                     max = subVertice.freeArc;
                     current = subVertice;
                 }
                 visited.push(subVertice);
                 getMaxFreeVertice(subVertice)
             }
-        });
-    })
+        }
+    }
 }
 var visitedDist = [];
-var maxDist = config.size.width;
+var maxDist = config.nTriangles.side;
 var currentDist;
 function getMinDistance(verticeToLook) {
-    verticeToLook.triangles.forEach(function (triangle) {
-        triangle.vertices.forEach(function (subVertice) {
+    for(var i = 0; i < verticeToLook.triangles.length; i++){
+        var triangle = verticeToLook.triangles[i];
+        for(var vi = 0; vi < triangle.vertices.length; vi++){
+            var subVertice = triangle.vertices[vi];
             if (visitedDist.indexOf(subVertice) < 0) {
                 var dist = pointDistance(subVertice, currentDist);
                 if (dist > 0 && dist < maxDist) {
@@ -419,109 +433,126 @@ function getMinDistance(verticeToLook) {
                 visitedDist.push(subVertice);
                 getMinDistance(subVertice)
             }
-        });
-    })
+        }
+    }
 }
 
-
+var progress;
 
 $(document).ready(function () {
     canvas = $('#canvas')[0];
+    progress = $('#progress');
     canvas.width = config.size.width;
     canvas.height = config.size.height;
     ctx = canvas.getContext("2d");
     trackTransforms(ctx);
     ctx.translate(config.size.width / 2, config.size.height / 2);
     ctx.font = '12px Arial';
-    addTrianglesToVertice(vertice, 0);
-    addTrianglesToVertice(vertice.triangles[0].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[1].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[2].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[3].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[4].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[5].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[6].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[6].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[2].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[2].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[2].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[6].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[3].vertices[2].triangles[3].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[4].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[0].vertices[2].triangles[3].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[2].vertices[2].triangles[3].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[3].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[2].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[4].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[2].triangles[3].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[6].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[5].vertices[1].triangles[3].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[4].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[5].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1].triangles[5].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
-    addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
-    addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
-    console.log(vertice)
-    ctx.strokeStyle = 'red';
     ctx.fillStyle = 'black'
-    ctx.fillRect(-config.size.width, -config.size.height, 2*config.size.width, 2*config.size.height)
+    ctx.fillRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height)
     ctx.fill();
-    drawVertice(vertice, 0);
-    drawVertice(vertice.triangles[0].vertices[1], 0)
-    drawVertice(vertice.triangles[1].vertices[1], 0)
-    drawVertice(vertice.triangles[2].vertices[1], 0)
-    drawVertice(vertice.triangles[3].vertices[1], 0)
-    drawVertice(vertice.triangles[4].vertices[1], 0)
-    drawVertice(vertice.triangles[5].vertices[1], 0)
-    drawVertice(vertice.triangles[6].vertices[1], 0)
-    drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[1], 0)
-    drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2], 0)
-    drawVertice(vertice.triangles[0].vertices[1].triangles[6].vertices[1], 0)
-    drawVertice(vertice.triangles[2].vertices[1].triangles[2].vertices[1], 0)
-    drawVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[1], 0)
-    drawVertice(vertice.triangles[0].vertices[1].triangles[2].vertices[2], 0)
-    drawVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[2], 0)
-    drawVertice(vertice.triangles[4].vertices[2].triangles[2].vertices[1], 0)
-    drawVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1], 0)
-    drawVertice(vertice.triangles[4].vertices[2].triangles[6].vertices[1], 0)
-    drawVertice(vertice.triangles[3].vertices[2].triangles[3].vertices[2], 0)
-    drawVertice(vertice.triangles[4].vertices[2].triangles[4].vertices[2], 0)
-    drawVertice(vertice.triangles[0].vertices[2].triangles[3].vertices[2], 0)
-    drawVertice(vertice.triangles[2].vertices[2].triangles[3].vertices[2], 0)
-    drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
-    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2], 0)
-    drawVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[3].vertices[2], 0)
-    drawVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[2].vertices[2], 0)
-    drawVertice(vertice.triangles[1].vertices[2].triangles[4].vertices[1], 0)
-    drawVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[2].triangles[3].vertices[2], 0)
-    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
-    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[6].vertices[2], 0)
-    drawVertice(vertice.triangles[0].vertices[1].triangles[5].vertices[1].triangles[3].vertices[2], 0)
-    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[4].vertices[2], 0)
-    drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[5].vertices[2], 0)
-    drawVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[1], 0)
-    drawVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1].triangles[5].vertices[1], 0)
-    drawVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
-    drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
-    drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
-    console.log('starting dynamic')
-    for (var i = 0; i < 700; i++) {
-        console.log('current i: ' + i)
-        getMaxFreeVertice(vertice);
-        visited = [];
-        max = 2 * Math.PI;
-        addTrianglesToVertice(current, 0)
-        drawVertice(current, 0)
+    addTrianglesToVertice(vertice, 0);
+    var actual = config.nTriangles.triangleAmount;
+    for (var i = 0; i < actual; i++) {
+        addTrianglesToVertice(vertice.triangles[i].vertices[1])
+    }
+    //addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[6].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[2].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[2].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[2].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[6].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[3].vertices[2].triangles[3].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[4].vertices[2].triangles[4].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[0].vertices[2].triangles[3].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[2].vertices[2].triangles[3].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[3].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[2].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[4].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[2].triangles[3].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[6].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[0].vertices[1].triangles[5].vertices[1].triangles[3].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[4].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[5].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1].triangles[5].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
+    //addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
+    //addTrianglesToVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
+    ctx.strokeStyle = 'red';
+    drawVertice(vertice);
+    for (var i = 0; i < actual; i++) {
+        drawVertice(vertice.triangles[i].vertices[1])
     }
 
+    //drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[1], 0)
+    //drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2], 0)
+    //drawVertice(vertice.triangles[0].vertices[1].triangles[6].vertices[1], 0)
+    //drawVertice(vertice.triangles[2].vertices[1].triangles[2].vertices[1], 0)
+    //drawVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[1], 0)
+    //drawVertice(vertice.triangles[0].vertices[1].triangles[2].vertices[2], 0)
+    //drawVertice(vertice.triangles[0].vertices[1].triangles[4].vertices[2], 0)
+    //drawVertice(vertice.triangles[4].vertices[2].triangles[2].vertices[1], 0)
+    //drawVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1], 0)
+    //drawVertice(vertice.triangles[4].vertices[2].triangles[6].vertices[1], 0)
+    //drawVertice(vertice.triangles[3].vertices[2].triangles[3].vertices[2], 0)
+    //drawVertice(vertice.triangles[4].vertices[2].triangles[4].vertices[2], 0)
+    //drawVertice(vertice.triangles[0].vertices[2].triangles[3].vertices[2], 0)
+    //drawVertice(vertice.triangles[2].vertices[2].triangles[3].vertices[2], 0)
+    //drawVertice(vertice.triangles[2].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    //drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2], 0)
+    //drawVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[3].vertices[2], 0)
+    //drawVertice(vertice.triangles[5].vertices[1].triangles[2].vertices[1].triangles[2].vertices[2], 0)
+    //drawVertice(vertice.triangles[1].vertices[2].triangles[4].vertices[1], 0)
+    //drawVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[2].triangles[3].vertices[2], 0)
+    //drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[5].vertices[2], 0)
+    //drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[2].triangles[6].vertices[2], 0)
+    //drawVertice(vertice.triangles[0].vertices[1].triangles[5].vertices[1].triangles[3].vertices[2], 0)
+    //drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[4].vertices[2], 0)
+    //drawVertice(vertice.triangles[6].vertices[1].triangles[5].vertices[1].triangles[5].vertices[2], 0)
+    //drawVertice(vertice.triangles[3].vertices[1].triangles[5].vertices[1], 0)
+    //drawVertice(vertice.triangles[3].vertices[1].triangles[6].vertices[1].triangles[5].vertices[1], 0)
+    //drawVertice(vertice.triangles[1].vertices[2].triangles[3].vertices[2].triangles[4].vertices[1], 0)
+    //drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
+    //drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
+    requestAnimationFrame(addVertice)
 });
+
+var count = 0;
+
+function addVertice(){
+    getMaxFreeVertice(vertice);
+    if(current == undefined){
+        config.nTriangles.minSideSize--;
+        resetSearch();
+        setTimeout(function () {
+            animationId = requestAnimationFrame(addVertice);
+        }, 1000 / config.nTriangles.fps)
+        return;
+    }
+    config.nTriangles.minSideSize = config.nTriangles.baseMinSideSize;
+    addTrianglesToVertice(current);
+    drawVertice(current);
+    count++;
+    progress.text(count  + ' /' + config.nTriangles.verticeAmount);
+    resetSearch();
+    if(count < config.nTriangles.verticeAmount){
+        setTimeout(function () {
+            animationId = requestAnimationFrame(addVertice);
+        }, 1000 / config.nTriangles.fps)
+    }
+}
+
+
+function resetSearch(){
+    visited = [];
+    max = 2 * Math.PI;
+    current = undefined
+}
