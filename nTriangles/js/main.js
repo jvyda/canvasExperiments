@@ -1,15 +1,19 @@
 var canvas;
 var ctx;
 
+var progress;
+var inputFields = {};
+
 var config = {
     size: {
         height: 2500,
         width: 4000
     },
     nTriangles: {
-        triangleAmount: 25,
+        triangleAmount: 7,
         side: 500,
         minSideSize: 25,
+        minArc: 20,
         baseMinSideSize: 25,
         verticeAmount: 1000,
         fps: 60
@@ -23,6 +27,18 @@ var vertice = {
     triangles: []
 };
 
+var maxDist = config.nTriangles.side;
+var visitedDist = [];
+var currentDist;
+
+
+function searchForMaxDist(vertice) {
+    visitedDist = [];
+    maxDist = config.nTriangles.side;
+    currentDist = vertice;
+    getMinDistance(vertice);
+    return maxDist;
+}
 
 function addTrianglesToVertice(vertice) {
     //console.log('vertice################################################################################################')
@@ -300,11 +316,7 @@ function addTrianglesToVertice(vertice) {
         latestVertice = startingVertice;
 
     } else {
-        visitedDist = [];
-        maxDist = config.nTriangles.side;
-        currentDist = vertice;
-        getMinDistance(vertice);
-        var lenght = maxDist;
+        var lenght = searchForMaxDist(vertice);
         var initialVerticeX = vertice.x + lenght * Math.cos(arc);
         var initialVerticeY = vertice.y + lenght * Math.sin(arc);
         var initialVertice = {
@@ -343,11 +355,7 @@ function addTrianglesToVertice(vertice) {
             //}
         } else {
             newPoint = true;
-            visitedDist = [];
-            maxDist = config.nTriangles.side;
-            currentDist = vertice;
-            getMinDistance(vertice);
-            var lenght = maxDist;
+            var lenght = searchForMaxDist(vertice);
             var newVerticeX = vertice.x + lenght * Math.cos(arc);
             var newVerticeY = vertice.y + lenght * Math.sin(arc);
             newVertice.x = newVerticeX;
@@ -404,7 +412,7 @@ function getMaxFreeVertice(verticeToLook) {
         for(var vi = 0; vi < triangle.vertices.length; vi++){
             var subVertice = triangle.vertices[vi];
             if (visited.indexOf(subVertice) < 0) {
-                if (subVertice.freeArc > toRad(20) && subVertice.freeArc < max && subVertice.freeArc > 0.1 &&
+                if (subVertice.freeArc > toRad(config.nTriangles.minArc) && subVertice.freeArc < max && subVertice.freeArc > 0.1 &&
                     pointDistance(triangle.vertices[0], triangle.vertices[1]) > config.nTriangles.minSideSize &&
                     pointDistance(triangle.vertices[1], triangle.vertices[2]) > config.nTriangles.minSideSize &&
                     pointDistance(triangle.vertices[2], triangle.vertices[0]) > config.nTriangles.minSideSize) {
@@ -417,9 +425,7 @@ function getMaxFreeVertice(verticeToLook) {
         }
     }
 }
-var visitedDist = [];
-var maxDist = config.nTriangles.side;
-var currentDist;
+
 function getMinDistance(verticeToLook) {
     for(var i = 0; i < verticeToLook.triangles.length; i++){
         var triangle = verticeToLook.triangles[i];
@@ -437,17 +443,41 @@ function getMinDistance(verticeToLook) {
     }
 }
 
-var progress;
 
-$(document).ready(function () {
-    canvas = $('#canvas')[0];
-    progress = $('#progress');
-    canvas.width = config.size.width;
-    canvas.height = config.size.height;
-    ctx = canvas.getContext("2d");
-    trackTransforms(ctx);
-    ctx.translate(config.size.width / 2, config.size.height / 2);
-    ctx.font = '12px Arial';
+function updateAndRepaint(){
+    config.nTriangles.side = inputFields['sideLength'].val();
+    var minSideSize = inputFields['minSideLength'].val();
+    if(minSideSize > 1){
+        config.nTriangles.baseMinSideSize = minSideSize;
+    } else {
+        inputFields['minSideLength'].val(config.nTriangles.baseMinSideSize)
+    }
+    maxDist = config.nTriangles.side;
+    config.nTriangles.verticeAmount = inputFields['vertices'].val();
+    var triangleAmount = inputFields['triangles'].val();
+    if(triangleAmount > 6){
+        config.nTriangles.triangleAmount = triangleAmount;
+    } else {
+        inputFields['triangles'].val(config.nTriangles.triangleAmount)
+    }
+    config.size.width = inputFields['width'].val();
+    config.size.height = inputFields['height'].val();
+    if(config.size.width != canvas.width || config.size.height != canvas.height){
+        canvas.width = config.size.width;
+        canvas.height = config.size.height;
+        ctx.translate(config.size.width / 2, config.size.height / 2);
+    }
+    vertice = {
+        x: 0,
+        y: 0,
+        freeArc: 2 * Math.PI,
+        triangles: []
+    };
+    count = 0;
+    createVertices();
+}
+
+function createVertices() {
     ctx.fillStyle = 'black'
     ctx.fillRect(-config.size.width, -config.size.height, 2 * config.size.width, 2 * config.size.height)
     ctx.fill();
@@ -489,6 +519,7 @@ $(document).ready(function () {
     ctx.strokeStyle = 'red';
     drawVertice(vertice);
     for (var i = 0; i < actual; i++) {
+        count++;
         drawVertice(vertice.triangles[i].vertices[1])
     }
 
@@ -523,6 +554,32 @@ $(document).ready(function () {
     //drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[5].vertices[2], 0)
     //drawVertice(vertice.triangles[4].vertices[1].triangles[3].vertices[2].triangles[6].vertices[2], 0)
     requestAnimationFrame(addVertice)
+}
+$(document).ready(function () {
+    canvas = $('#canvas')[0];
+    progress = $('#progress');
+    canvas.width = config.size.width;
+    canvas.height = config.size.height;
+    ctx = canvas.getContext("2d");
+
+    inputFields['sideLength'] = $('#side');
+    inputFields['minSideLength'] = $('#minSideLength');
+    inputFields['vertices'] = $('#vertices');
+    inputFields['triangles'] = $('#triangles');
+    inputFields['width'] = $('#width');
+    inputFields['height'] = $('#height');
+
+    inputFields['sideLength'].val(config.nTriangles.side);
+    inputFields['minSideLength'].val(config.nTriangles.baseMinSideSize);
+    inputFields['vertices'].val(config.nTriangles.verticeAmount);
+    inputFields['triangles'].val(config.nTriangles.triangleAmount);
+    inputFields['width'].val(config.size.width);
+    inputFields['height'].val(config.size.height);
+
+    trackTransforms(ctx);
+    ctx.translate(config.size.width / 2, config.size.height / 2);
+    ctx.font = '12px Arial';
+    createVertices();
 });
 
 var count = 0;
@@ -534,7 +591,7 @@ function addVertice(){
         resetSearch();
         setTimeout(function () {
             animationId = requestAnimationFrame(addVertice);
-        }, 1000 / config.nTriangles.fps)
+        }, 1000 / config.nTriangles.fps);
         return;
     }
     config.nTriangles.minSideSize = config.nTriangles.baseMinSideSize;

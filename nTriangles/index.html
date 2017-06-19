@@ -19,8 +19,24 @@
     your browser</a> to improve your experience.</p>
 <![endif]-->
 <div id="content">
-    Every point has 7 triangles around it.
-    Loading <span id="progress"></span> <a id="download" onclick="downloadCanvasCommon('nTriangles', canvas)">Download</a>
+    Every point has N triangles around it.
+    Calculating <span id="progress"></span>
+    <label for="side">Starting side length</label>
+    <input type="number" id="side">
+    <label for="minSideLength">Min side length</label>
+    <input type="number" id="minSideLength">
+    <label for="vertices">Max amount of points</label>
+    <input type="number" id="vertices">
+    <label for="triangles">Amount of triangles around points</label>
+    <input type="number" id="triangles">
+    <label for="width">Width</label>
+    <input type="number" id="width">
+    <label for="height">Height</label>
+    <input type="number" id="height">
+    <input type="button" value="set" onclick="updateAndRepaint()">
+
+
+ <a id="download" onclick="downloadCanvasCommon('nTriangles', canvas)">Download</a>
     <br>
     <canvas id="canvas" ></canvas>
 </div>
