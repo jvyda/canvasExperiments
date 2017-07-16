@@ -209,6 +209,7 @@ function createVector(tip, shaft) {
     };
 }
 
+// only normalized vectors
 function angleBetweenTwoVectors(vectorA, vectorB){
     return Math.acos(dotProduct(vectorA, vectorB));
 }
