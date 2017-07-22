@@ -7,8 +7,27 @@ var config = {
         width: window.innerWidth
     },
     hilbertCurve: {
-        width: 40
+        width: 5,
+        fps: 30,
+        scala: 1
     }
+};
+
+
+
+var lastDrag = {
+    x: 0,
+    y: 0
+};
+
+var toMove = {
+    x: 0,
+    y: 0
+};
+
+var scalePoint = {
+    x: 0,
+    y: 0
 };
 
 function buildSector(dots, base){
@@ -81,12 +100,6 @@ function swapMajorArea(majorArea, a, b){
     var temp = majorArea[a];
     majorArea[a] = majorArea[b];
     majorArea[b] = temp;
-}
-
-function swapSectorDiff(majorAreaA, majorAreaB, a, b){
-    var temp = majorAreaA[a];
-    majorAreaA[a] = majorAreaB[b];
-    majorAreaB[b] = temp;
 }
 
 
@@ -262,10 +275,23 @@ function paintMajorArea(majorArea){
     }
 }
 
+function updateCanvas(){
+    ctx.translate(toMove.x, toMove.y);
+    toMove.x = 0;
+    toMove.y = 0;
+    var topLeft = ctx.transformedPoint(0,0);
+    var bottomRight = ctx.transformedPoint(canvas.width,canvas.height);
+    ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
+    paintMajorArea(levels[level]);
+    setTimeout(function () {
+        animationId = requestAnimationFrame(updateCanvas);
+    }, 1000 / config.hilbertCurve.fps)
+}
+
 function paintSector(sector){
     var currentDot = sector.dotChain;
     ctx.beginPath();
-    var p = makeGlobal(currentDot, sector)
+    var p = makeGlobal(currentDot, sector);
     ctx.moveTo(p.x, p.y);
     while(currentDot != undefined){
         var point = makeGlobal(currentDot, sector);
@@ -284,13 +310,6 @@ function paintSector(sector){
     }
 }
 
-function printMajorArea(majorArea){
-    printSector(majorArea.first);
-    printSector(majorArea.second);
-    printSector(majorArea.third);
-    printSector(majorArea.fourth);
-}
-
 function translateMajorArea(majorArea, offset){
     if(majorArea.big){
         translateMajorArea(majorArea.first, offset);
@@ -305,7 +324,6 @@ function translateMajorArea(majorArea, offset){
     }
 }
 
-var fuckThis = 0;
 
 function interConnectMajorArea(majorArea){
     if(majorArea.first.big){
@@ -326,7 +344,6 @@ function interConnectMajorArea(majorArea){
         leftSectorsFourth.forEach(function(point){
             openSectors.push(point)
         });
-        fuckThis += 1;
         for(var sI = 0; sI < openSectors.length; sI++) {
             var sectorStartAndEndPoint = openSectors[sI];
             var minDistance = 50000;
@@ -498,25 +515,22 @@ function connectSectors(sectorA, sectorB, pointA, pointB){
     sectorA.link = {start: makeLocal(pointA, sectorA), end: makeLocal(pointB, sectorB), partner: sectorB};
 }
 
-
-function printSector(sector){
-    console.log('sector::::::::::::' + sector.name);
-    console.log(sector.base.x + ' ' + sector.base.y);
-    var currentDot = sector.dotChain;
-    while(currentDot != undefined){
-        console.log('x: ' + currentDot.x + ' y:' + currentDot.y);
-        currentDot = currentDot.next;
-    }
-}
-
-
+var levels = [];
+var level = 0;
 
 
 $(document).ready(function () {
-    canvas = $("#canvas")[0];
+    var canvasJQuery = $("#canvas");
+    canvas = canvasJQuery[0];
     ctx = canvas.getContext("2d");
+    trackTransforms(ctx);
     canvas.height = config.size.height;
     canvas.width = config.size.width;
+    canvas.addEventListener("mousedown", mouseClick, false);
+    canvas.addEventListener("mouseup", mouseClick, false);
+    canvas.addEventListener("mousemove", drag, false);
+    canvasJQuery.on('wheel', mouseWheelEvent);
+
     var point1 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width};
     var point2 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width/2};
     var point3 = {x: config.hilbertCurve.width, y: config.hilbertCurve.width/2};
@@ -537,6 +551,8 @@ $(document).ready(function () {
     firstMajorArea.fourth = fourthSector;
     firstMajorArea.width = 2 * firstSector.width;
     firstMajorArea.big = false;
+    level += 1;
+    levels[level] = firstMajorArea;
 
     var secondMajorArea = cloneMajorArea(firstMajorArea);
     flipMajorAreaHoriz(secondMajorArea);
@@ -558,52 +574,105 @@ $(document).ready(function () {
     firstBigMajorArea.width = firstMajorArea.width * 2;
     firstBigMajorArea.big = true;
 
-    var secondBigMajorArea = cloneMajorArea(firstBigMajorArea);
-    translateMajorArea(secondBigMajorArea, {x: 4* config.hilbertCurve.width, y: 0});
-    flipMajorAreaHoriz(secondBigMajorArea);
+    level += 1;
+    levels[level] = firstBigMajorArea;
 
-    var thirdBigMajorArea = cloneMajorArea(firstBigMajorArea);
-    translateMajorArea(thirdBigMajorArea, {x: 0, y: 4 * config.hilbertCurve.width});
-    flipMajorArea90Deg(thirdBigMajorArea);
+    for(var currentLevel = 0; currentLevel < 4; currentLevel++){
+        addLevel()
+    }
 
-    var fourthBigMajorArea = cloneMajorArea(thirdBigMajorArea);
-    translateMajorArea(fourthBigMajorArea, {x: 4 * config.hilbertCurve.width, y: 0});
-    flipMajorAreaHoriz(fourthBigMajorArea);
+    document.onkeypress = keyPressed;
 
-    var firstBiggerMajorArea = {};
-    firstBiggerMajorArea.first = firstBigMajorArea;
-    firstBiggerMajorArea.second = secondBigMajorArea;
-    firstBiggerMajorArea.third = thirdBigMajorArea;
-    firstBiggerMajorArea.fourth = fourthBigMajorArea;
-    firstBiggerMajorArea.width = firstBigMajorArea.width * 2;
-    firstBiggerMajorArea.big = true;
+    document.keydown = keyPressed;
 
-    var secondBiggerMajorArea = cloneMajorArea(firstBiggerMajorArea);
-    translateMajorArea(secondBiggerMajorArea, {x: 8* config.hilbertCurve.width, y: 0});
-    flipMajorAreaHoriz(secondBiggerMajorArea);
+    interConnectMajorArea(levels[level]);
 
-    var thirdBiggerMajorArea = cloneMajorArea(firstBiggerMajorArea);
-    translateMajorArea(thirdBiggerMajorArea, {x: 0, y: 8 * config.hilbertCurve.width});
-    flipMajorArea90Deg(thirdBiggerMajorArea);
-
-    var fourthBiggerMajorArea = cloneMajorArea(thirdBiggerMajorArea);
-    translateMajorArea(fourthBiggerMajorArea, {x: 8 * config.hilbertCurve.width, y: 0});
-    flipMajorAreaHoriz(fourthBiggerMajorArea);
-
-    var firstFinalArea = {};
-    firstFinalArea.first = firstBiggerMajorArea;
-    firstFinalArea.second = secondBiggerMajorArea;
-    firstFinalArea.third = thirdBiggerMajorArea;
-    firstFinalArea.fourth = fourthBiggerMajorArea;
-    firstFinalArea.width = firstBiggerMajorArea.width * 2;
-    firstFinalArea.big = true;
-
-    interConnectMajorArea(firstFinalArea);
-
-    paintMajorArea(firstFinalArea);
-
-    //paintMajorArea(firstFinalArea);
-
+    updateCanvas();
 });
+
+function addLevel(){
+    var lastObject = levels[level];
+    var newSecond = cloneMajorArea(lastObject);
+    flipMajorAreaHoriz(newSecond);
+    translateMajorArea(newSecond, {x: lastObject.width, y: 0});
+
+    var newThird = cloneMajorArea(lastObject);
+    flipMajorArea90Deg(newThird);
+    translateMajorArea(newThird, {x: 0, y: lastObject.width});
+
+    var newFourth = cloneMajorArea(newThird);
+    flipMajorAreaHoriz(newFourth);
+    translateMajorArea(newFourth, {x: lastObject.width, y: 0});
+
+    var newBigArea = {};
+    newBigArea.first = lastObject;
+    newBigArea.second = newSecond;
+    newBigArea.third = newThird;
+    newBigArea.fourth = newFourth;
+    newBigArea.width = lastObject.width * 2;
+    newBigArea.big = true;
+    level += 1;
+    levels[level]  = newBigArea;
+}
+
+function mouseWheelEvent(event) {
+    scalePoint = getMousePos(canvas, event);
+    scalePoint = ctx.transformedPoint(scalePoint.x,scalePoint.y);
+    var scaleTo = event.originalEvent.deltaY < 0 ? 1.1 : 1/1.1;
+    config.hilbertCurve.scala *= scaleTo;
+    ctx.translate(scalePoint.x, scalePoint.y);
+    ctx.scale(scaleTo, scaleTo);
+    ctx.translate(-scalePoint.x, -scalePoint.y);
+    event.preventDefault()
+}
+
+var mouseDown = false;
+
+function mouseClick(event){
+    mouseDown = !mouseDown;
+    if(mouseDown){
+        var mousePos = getMousePos(canvas, event);
+        mousePos.x -= config.size.width / 2;
+        mousePos.y -= config.size.height / 2;
+        mousePos.x /= config.hilbertCurve.scala;
+        mousePos.y /= config.hilbertCurve.scala;
+        lastDrag = mousePos;
+    }
+}
+
+function drag(event){
+    if(mouseDown){
+        var mousePos = getMousePos(canvas, event);
+        mousePos.x -= config.size.width / 2;
+        mousePos.y -= config.size.height / 2;
+        mousePos.x /= config.hilbertCurve.scala;
+        mousePos.y /= config.hilbertCurve.scala;
+        toMove.x += mousePos.x - lastDrag.x;
+        toMove.y += mousePos.y - lastDrag.y;
+        lastDrag = mousePos;
+    }
+}
+
+function eventIsKey(event, code) {
+    return event.keyCode == code || event.charCode == code || event.which == code;
+}
+
+function keyPressed(event) {
+    // left
+    if (eventIsKey(event, 97)) {
+        if(level > 1){
+            level -= 1;
+        }
+        // right
+    } else if (eventIsKey(event, 100)) {
+        if(level == levels.length - 1){
+            addLevel();
+            interConnectMajorArea(levels[level])
+        } else {
+            level += 1;
+        }
+    }
+}
+
 
 
