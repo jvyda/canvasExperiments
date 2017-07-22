@@ -42,7 +42,7 @@ var scalePoint = {
     y: 0
 };
 
-var currentTime = new Date() / 1000 - 18 * 24 * 3600 - 25 * 24 * 3600 - 20 * 3600;
+var currentTime = new Date() / 1000;
 currentTime = Math.floor(currentTime / config.orbitingSpheres.timestep) * config.orbitingSpheres.timestep;
 
 config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor / config.orbitingSpheres.AU;

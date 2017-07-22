@@ -265,18 +265,22 @@ function paintMajorArea(majorArea){
 function paintSector(sector){
     var currentDot = sector.dotChain;
     ctx.beginPath();
-    ctx.moveTo(sector.base.x + currentDot.x, sector.base.y + currentDot.y);
+    var p = makeGlobal(currentDot, sector)
+    ctx.moveTo(p.x, p.y);
     while(currentDot != undefined){
-        ctx.lineTo(sector.base.x + currentDot.x, sector.base.y + currentDot.y);
+        var point = makeGlobal(currentDot, sector);
+        ctx.lineTo(point.x, point.y);
         currentDot = currentDot.next;
     }
     ctx.stroke();
     if(sector.link){
-        ctx.strokeColor = 'red';
-        ctx.moveTo(sector.link.start.x, sector.link.start.y);
-        ctx.lineTo(sector.link.end.x, sector.link.end.y);
+        ctx.strokeStyle = 'red';
+        var start = makeGlobal(sector.link.start, sector);
+        ctx.moveTo(start.x, start.y);
+        var end = makeGlobal(sector.link.end, sector.link.partner);
+        ctx.lineTo(end.x, end.y);
         ctx.stroke();
-        ctx.strokeColor = 'black';
+        ctx.strokeStyle = 'black';
     }
 }
 
@@ -301,14 +305,60 @@ function translateMajorArea(majorArea, offset){
     }
 }
 
+var fuckThis = 0;
+
 function interConnectMajorArea(majorArea){
     if(majorArea.first.big){
-        interConnectMajorArea(majorArea.first);
-        interConnectMajorArea(majorArea.second);
-        interConnectMajorArea(majorArea.third);
-        interConnectMajorArea(majorArea.fourth);
+        var leftSectorsFirst = interConnectMajorArea(majorArea.first);
+        var leftSectorsSecond = interConnectMajorArea(majorArea.second);
+        var leftSectorsThird = interConnectMajorArea(majorArea.third);
+        var leftSectorsFourth = interConnectMajorArea(majorArea.fourth);
+        var openSectors = [];
+        leftSectorsFirst.forEach(function(point){
+            openSectors.push(point)
+        });
+        leftSectorsSecond.forEach(function(point){
+            openSectors.push(point)
+        });
+        leftSectorsThird.forEach(function(point){
+            openSectors.push(point)
+        });
+        leftSectorsFourth.forEach(function(point){
+            openSectors.push(point)
+        });
+        fuckThis += 1;
+        for(var sI = 0; sI < openSectors.length; sI++) {
+            var sectorStartAndEndPoint = openSectors[sI];
+            var minDistance = 50000;
+            var pointA;
+            var pointB;
+            var targetSector;
+            var originSector;
+            for(var s2 = 0; s2 < openSectors.length; s2++){
+                var otherSectorStartAndEndPoint = openSectors[s2];
+                var startStart = pointDistance(sectorStartAndEndPoint.point, otherSectorStartAndEndPoint.point);
+                if(startStart < minDistance && startStart > 0.1 && startStart <= sectorStartAndEndPoint.sec.width) {
+                    minDistance = startStart;
+                    pointA = sectorStartAndEndPoint.point;
+                    pointB = otherSectorStartAndEndPoint.point;
+                    originSector = sectorStartAndEndPoint.sec;
+                    targetSector = otherSectorStartAndEndPoint.sec;
+                }
+            }
+            if(pointA && pointB && targetSector && !targetSector.link) {
+                connectSectors(originSector, targetSector, pointA, pointB);
+            }
+        }
+        var notLinkedSectors = [];
+        for(var index = 0; index < openSectors.length; index++) {
+            var sector = openSectors[index];
+            if(!sector.sec.link){
+                notLinkedSectors.push({point: sector.point, sec: sector.sec});
+            }
+        }
+        return notLinkedSectors;
     } else {
-        interConnectSectorsInMajorArea(majorArea)
+        return interConnectSectorsInMajorArea(majorArea)
     }
 }
 
@@ -317,33 +367,67 @@ function interConnectSectorsInMajorArea(majorArea){
     var secondSectors = getFirstAndLastSector(majorArea.second);
     var thirdSectors = getFirstAndLastSector(majorArea.third);
     var fourthSectors = getFirstAndLastSector(majorArea.fourth);
-
     var sec = [firstSectors, secondSectors, thirdSectors, fourthSectors];
+
     for(var sI = 0; sI < sec.length; sI++) {
         var sectorStartAndEndPoint = sec[sI];
         var minDistance = 50000;
         var pointA;
         var pointB;
         var targetSector;
+        var originSector;
         for(var s2 = 0; s2 < sec.length; s2++){
             var otherSectorStartAndEndPoint = sec[s2];
+            if(pointDistance(sectorStartAndEndPoint.start.sec.base, otherSectorStartAndEndPoint.start.sec.base) < 0.1) continue;
             var startStart = pointDistance(sectorStartAndEndPoint.start.point, otherSectorStartAndEndPoint.start.point);
             if(startStart < minDistance && startStart > 0.1) {
                 minDistance = startStart;
                 pointA = sectorStartAndEndPoint.start.point;
                 pointB = otherSectorStartAndEndPoint.start.point;
+                originSector = sectorStartAndEndPoint.start.sec;
                 targetSector = otherSectorStartAndEndPoint.start.sec;
             }
             var startEnd = pointDistance(sectorStartAndEndPoint.start.point, otherSectorStartAndEndPoint.end.point);
-            if(startEnd < minDistance && startStart > 0.1) {
+            if(startEnd < minDistance && startEnd > 0.1) {
                 minDistance = startEnd;
                 pointA = sectorStartAndEndPoint.start.point;
                 pointB = otherSectorStartAndEndPoint.end.point;
+                originSector = sectorStartAndEndPoint.start.sec;
+                targetSector = otherSectorStartAndEndPoint.end.sec;
+            }
+            var endStart = pointDistance(sectorStartAndEndPoint.end.point, otherSectorStartAndEndPoint.start.point);
+            if(endStart < minDistance && endStart > 0.1) {
+                minDistance = endStart;
+                pointA = sectorStartAndEndPoint.end.point;
+                pointB = otherSectorStartAndEndPoint.start.point;
+                originSector = sectorStartAndEndPoint.end.sec;
+                targetSector = otherSectorStartAndEndPoint.start.sec;
+            }
+            var endEnd = pointDistance(sectorStartAndEndPoint.end.point, otherSectorStartAndEndPoint.end.point);
+            if(endEnd < minDistance && endEnd > 0.1) {
+                minDistance = endEnd;
+                pointA = sectorStartAndEndPoint.end.point;
+                pointB = otherSectorStartAndEndPoint.end.point;
+                originSector = sectorStartAndEndPoint.end.sec;
                 targetSector = otherSectorStartAndEndPoint.end.sec;
             }
         }
-        connectSectors(sectorStartAndEndPoint.start.sec, targetSector, pointA, pointB);
+        if(pointA && pointB && targetSector && !targetSector.link) {
+            connectSectors(originSector, targetSector, pointA, pointB);
+        }
     }
+
+    var notLinkedSectors = [];
+    for(var index = 0; index < sec.length; index++) {
+        var sector = sec[index];
+        if(!sector.start.sec.link){
+            notLinkedSectors.push({point: sector.start.point, sec: sector.start.sec});
+        }
+        if(!sector.end.sec.link){
+            notLinkedSectors.push({point: sector.end.point, sec: sector.end.sec});
+        }
+    }
+    return notLinkedSectors;
 }
 
 function getFirstAndLastSector(majorArea){
@@ -352,14 +436,12 @@ function getFirstAndLastSector(majorArea){
     var secondSector = {first: makeGlobal(firstPointOfSector(majorArea.second), majorArea.second), last: makeGlobal(lastPointOfSector(majorArea.second), majorArea.second), sec: majorArea.second};
     var thirdSector = {first: makeGlobal(firstPointOfSector(majorArea.third), majorArea.third), last: makeGlobal(lastPointOfSector(majorArea.third), majorArea.third), sec: majorArea.third};
     var fourthSector = {first: makeGlobal(firstPointOfSector(majorArea.fourth), majorArea.fourth), last: makeGlobal(lastPointOfSector(majorArea.fourth), majorArea.fourth), sec: majorArea.fourth};
-
     var sectors = [firstSector, secondSector, thirdSector, fourthSector];
     var separateSectors = {};
     for(var sI = 0; sI < sectors.length; sI++){
         var thisSector = sectors[sI];
         var ending = isEndingPoint(thisSector.first, sectors, thisSector);
         if(ending){
-            console.log('ending found...')
             if(!separateSectors.start){
                 separateSectors.start = {point: thisSector.first, sec: thisSector.sec };
             } else {
@@ -368,7 +450,6 @@ function getFirstAndLastSector(majorArea){
         }
         var ending2 = isEndingPoint(thisSector.last, sectors, thisSector);
         if(ending2){
-            console.log('ending found...')
             if(!separateSectors.start){
                 separateSectors.start = {point: thisSector.last, sec: thisSector.sec };
             } else {
@@ -396,6 +477,10 @@ function makeGlobal(localPoint, sector){
     return {x: localPoint.x + sector.base.x, y: localPoint.y + sector.base.y};
 }
 
+function makeLocal(globalPoint, originalSector){
+    return {x: globalPoint.x - originalSector.base.x, y: globalPoint.y - originalSector.base.y}
+}
+
 function firstPointOfSector(sector){
     return sector.dotChain;
 }
@@ -409,8 +494,8 @@ function lastPointOfSector(sector){
 }
 
 function connectSectors(sectorA, sectorB, pointA, pointB){
-    sectorB.link = {start: pointB, end: pointA};
-    sectorA.link = {start: pointA, end: pointB};
+    sectorB.link = {start: makeLocal(pointB, sectorB), end: makeLocal(pointA, sectorA), partner: sectorA};
+    sectorA.link = {start: makeLocal(pointA, sectorA), end: makeLocal(pointB, sectorB), partner: sectorB};
 }
 
 
@@ -513,9 +598,9 @@ $(document).ready(function () {
     firstFinalArea.width = firstBiggerMajorArea.width * 2;
     firstFinalArea.big = true;
 
-    interConnectMajorArea(firstBigMajorArea);
+    interConnectMajorArea(firstFinalArea);
 
-    paintMajorArea(firstBigMajorArea);
+    paintMajorArea(firstFinalArea);
 
     //paintMajorArea(firstFinalArea);
 
