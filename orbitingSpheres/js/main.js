@@ -666,8 +666,9 @@ function everyBodyActed() {
 
 function printHelp() {
     ctx.beginPath();
-    var leftTopX = config.size.width / 2 - 150;
-    var leftTopY = -config.size.height / 2 + 10;
+    var basePoint = ctx.transformedPoint(config.size.width - 250, config.orbitingSpheres.baseTextSize);
+    var leftTopX = basePoint.x;
+    var leftTopY = basePoint.y;
     var fontOffset = ~~(config.orbitingSpheres.baseTextSize / config.orbitingSpheres.scala + 1);
     ctx.fillText('HELP:', leftTopX, leftTopY);
     ctx.fillText('[t] - show trails', leftTopX, leftTopY += fontOffset);
@@ -693,9 +694,12 @@ function updateCanvas() {
     var topLeft = ctx.transformedPoint(0,0);
     var bottomRight = ctx.transformedPoint(canvas.width,canvas.height);
     ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
-    ctx.fillText('Current time ' + formatDateTime(~~pastTime), -config.size.width / 2, -config.size.height / 2 + 50);
-    ctx.fill();
-    if(config.orbitingSpheres.showHelp){
+    if(config.orbitingSpheres.scala < 12) {
+        var datePoint = ctx.transformedPoint(0, config.orbitingSpheres.baseTextSize);
+        ctx.fillText('Current time ' + formatDateTime(~~pastTime), datePoint.x, datePoint.y);
+        ctx.fill();
+    }
+    if(config.orbitingSpheres.showHelp && config.orbitingSpheres.scala < 7){
         printHelp();
     }
     if (!everyBodyActed()) {

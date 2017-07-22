@@ -9,7 +9,9 @@ var config = {
     hilbertCurve: {
         width: 5,
         fps: 30,
-        scala: 1
+        scala: 1,
+        showHelp: true,
+        baseTextSize: 12
     }
 };
 
@@ -282,10 +284,28 @@ function updateCanvas(){
     var topLeft = ctx.transformedPoint(0,0);
     var bottomRight = ctx.transformedPoint(canvas.width,canvas.height);
     ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
+    if(config.hilbertCurve.showHelp){
+        ctx.font = ~~(config.hilbertCurve.baseTextSize / config.hilbertCurve.scala + 1) + "px Arial";
+        printHelp();
+    }
     paintMajorArea(levels[level]);
     setTimeout(function () {
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.hilbertCurve.fps)
+}
+
+function printHelp() {
+    ctx.beginPath();
+    var p = ctx.transformedPoint(config.size.width - 200, 0);
+    var leftTopX = p.x;
+    var leftTopY = p.y;
+    var fontOffset = ~~(config.hilbertCurve.baseTextSize / config.hilbertCurve.scala + 1);
+    ctx.fillText('HELP:', leftTopX, leftTopY);
+    ctx.fillText('[d] - increase amount (caution!)', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[a] - decrease amount', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
 }
 
 function paintSector(sector){
@@ -671,6 +691,8 @@ function keyPressed(event) {
         } else {
             level += 1;
         }
+    } else if(eventIsKey(event, 104)){
+        config.hilbertCurve.showHelp = !config.hilbertCurve.showHelp;
     }
 }
 
