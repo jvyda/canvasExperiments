@@ -219,24 +219,6 @@ function swapSector(majorArea, a, b){
     majorArea[b] = temp;
 }
 
-function resizeMajorArea(majorArea, faktor){
-    resizeSector(majorArea.first, 1/2);
-    resizeSector(majorArea.second, 1/2);
-    resizeSector(majorArea.third, 1/2);
-    resizeSector(majorArea.fourth, 1/2);
-}
-
-function resizeSector(sector, faktor){
-    var currentDot = sector.dotChain;
-    sector.base.x *= faktor;
-    sector.base.y *= faktor;
-    while(currentDot != undefined){
-        currentDot.x *= faktor;
-        currentDot.y *= faktor;
-        currentDot = currentDot.next;
-    }
-}
-
 function cloneMajorArea(majorArea){
     var newMajorArea = {};
     if(majorArea.big){
@@ -551,7 +533,7 @@ $(document).ready(function () {
     canvas.addEventListener("mousemove", drag, false);
     canvasJQuery.on('wheel', mouseWheelEvent);
 
-    var point1 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width};
+    var point1 = {x: 0, y: config.hilbertCurve.width};
     var point2 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width/2};
     var point3 = {x: config.hilbertCurve.width, y: config.hilbertCurve.width/2};
     var firstSector = buildSector([point1, point2, point3], {x: 0, y: 0});
@@ -559,9 +541,10 @@ $(document).ready(function () {
     flipSectorHoriz(secondSector);
     translateSector(secondSector, {x: config.hilbertCurve.width, y: 0});
     var point4 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width/2};
-    var point5 = {x: config.hilbertCurve.width/2, y: 0};
+    var point5 = {x: 0, y: 0};
     var thirdSector = buildSector([point4, point5], {x: 0, y: config.hilbertCurve.width});
     var fourthSector = cloneSector(thirdSector);
+    flipSectorHoriz(fourthSector);
     translateSector(fourthSector, {x: config.hilbertCurve.width, y: 0});
 
     var firstMajorArea = {};
