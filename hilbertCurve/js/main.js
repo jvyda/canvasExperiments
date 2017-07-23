@@ -11,7 +11,9 @@ var config = {
         fps: 30,
         scala: 1,
         showHelp: true,
-        baseTextSize: 12
+        baseTextSize: 12,
+        showLinks: true,
+        randomPoints: 2
     }
 };
 
@@ -285,8 +287,13 @@ function printHelp() {
     ctx.fillText('HELP:', leftTopX, leftTopY);
     ctx.fillText('[d] - increase amount (caution!)', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[a] - decrease amount', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[r] - randomize!', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[l] - toggle links', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[j] - less random points for create', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[k] - more random points for create', leftTopX, leftTopY += fontOffset);
     ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('#random points: ' + config.hilbertCurve.randomPoints, leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
 }
 
@@ -301,7 +308,7 @@ function paintSector(sector){
         currentDot = currentDot.next;
     }
     ctx.stroke();
-    if(sector.link){
+    if(sector.link && config.hilbertCurve.showLinks){
         ctx.strokeStyle = 'red';
         var start = makeGlobal(sector.link.start, sector);
         ctx.moveTo(start.x, start.y);
@@ -533,15 +540,69 @@ $(document).ready(function () {
     canvas.addEventListener("mousemove", drag, false);
     canvasJQuery.on('wheel', mouseWheelEvent);
 
-    var point1 = {x: 0, y: config.hilbertCurve.width};
-    var point2 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width/2};
-    var point3 = {x: config.hilbertCurve.width, y: config.hilbertCurve.width/2};
+    setup(getSymbol(), false);
+
+    document.onkeypress = keyPressed;
+
+    document.keydown = keyPressed;
+
+    updateCanvas();
+});
+
+function randomSymbol(){
+    var firstPoints = [];
+    var secondPoints = [];
+    var thirdPoints = [];
+    var fourthPoints = [];
+    var points = config.hilbertCurve.randomPoints;
+    firstPoints.push({x: config.hilbertCurve.width/2, y: config.hilbertCurve.width});
+    for(var i = 0; i < points; i++){
+        firstPoints.push({x: config.hilbertCurve.width * Math.random(), y: config.hilbertCurve.width * Math.random()})
+    }
+    firstPoints.push({x: config.hilbertCurve.width, y: config.hilbertCurve.width / 2});
+    secondPoints.push({x: 0, y: config.hilbertCurve.width / 2});
+    for(var i = 0; i < points; i++){
+        secondPoints.push({x: config.hilbertCurve.width * Math.random(), y: config.hilbertCurve.width * Math.random()})
+    }
+    secondPoints.push({x: config.hilbertCurve.width/2, y: config.hilbertCurve.width});
+
+    thirdPoints.push({x: config.hilbertCurve.width/2, y: 0});
+    for(var i = 0; i < points; i++){
+        thirdPoints.push({x: config.hilbertCurve.width * Math.random(), y: config.hilbertCurve.width * Math.random()})
+    }
+    thirdPoints.push({x: config.hilbertCurve.width/2, y: config.hilbertCurve.width});
+    fourthPoints.push({x: config.hilbertCurve.width/2, y: 0});
+    for(var i = 0; i < points; i++){
+        fourthPoints.push({x: config.hilbertCurve.width * Math.random(), y: config.hilbertCurve.width * Math.random()})
+    }
+    fourthPoints.push({x: config.hilbertCurve.width / 2, y: config.hilbertCurve.width});
+
+
+    var firstSector = buildSector(firstPoints, {x: 0, y: 0});
+    var secondSector = buildSector(secondPoints, {x: config.hilbertCurve.width, y: 0});
+    var thirdSector = buildSector(thirdPoints, {x: 0, y: config.hilbertCurve.width});
+    var fourthSector = buildSector(fourthPoints, {x: config.hilbertCurve.width, y: config.hilbertCurve.width});
+
+    var firstMajorArea = {};
+    firstMajorArea.first = firstSector;
+    firstMajorArea.second = secondSector;
+    firstMajorArea.third = thirdSector;
+    firstMajorArea.fourth = fourthSector;
+    firstMajorArea.width = 2 * firstSector.width;
+    firstMajorArea.big = false;
+    return firstMajorArea;
+}
+
+function getSymbol() {
+    var point1 = {x:  config.hilbertCurve.width / 2, y: config.hilbertCurve.width};
+    var point2 = {x: config.hilbertCurve.width / 2, y: config.hilbertCurve.width / 2};
+    var point3 = {x: config.hilbertCurve.width, y: config.hilbertCurve.width / 2};
     var firstSector = buildSector([point1, point2, point3], {x: 0, y: 0});
     var secondSector = cloneSector(firstSector);
     flipSectorHoriz(secondSector);
     translateSector(secondSector, {x: config.hilbertCurve.width, y: 0});
-    var point4 = {x: config.hilbertCurve.width/2, y: config.hilbertCurve.width/2};
-    var point5 = {x: 0, y: 0};
+    var point4 = {x: config.hilbertCurve.width / 2, y: config.hilbertCurve.width / 2};
+    var point5 = {x:  config.hilbertCurve.width / 2, y: 0};
     var thirdSector = buildSector([point4, point5], {x: 0, y: config.hilbertCurve.width});
     var fourthSector = cloneSector(thirdSector);
     flipSectorHoriz(fourthSector);
@@ -554,6 +615,15 @@ $(document).ready(function () {
     firstMajorArea.fourth = fourthSector;
     firstMajorArea.width = 2 * firstSector.width;
     firstMajorArea.big = false;
+    return firstMajorArea;
+}
+function setup(firstMajorArea, keepLevelCount){
+    var oldLevels = 0;
+    if(keepLevelCount){
+        oldLevels = level;
+    }
+    levels = [];
+    level = 0;
     level += 1;
     levels[level] = firstMajorArea;
 
@@ -579,19 +649,18 @@ $(document).ready(function () {
 
     level += 1;
     levels[level] = firstBigMajorArea;
-
-    for(var currentLevel = 0; currentLevel < 4; currentLevel++){
-        addLevel()
+    if(!keepLevelCount){
+        for(var currentLevel = 0; currentLevel < 4; currentLevel++){
+            addLevel()
+        }
+    } else {
+        for(var currentLevel = 2; currentLevel < oldLevels; currentLevel++){
+            addLevel()
+        }
     }
 
-    document.onkeypress = keyPressed;
-
-    document.keydown = keyPressed;
-
     interConnectMajorArea(levels[level]);
-
-    updateCanvas();
-});
+}
 
 function addLevel(){
     var lastObject = levels[level];
@@ -663,7 +732,7 @@ function eventIsKey(event, code) {
 function keyPressed(event) {
     // left
     if (eventIsKey(event, 97)) {
-        if(level > 1){
+        if(level > 0){
             level -= 1;
         }
         // right
@@ -676,6 +745,16 @@ function keyPressed(event) {
         }
     } else if(eventIsKey(event, 104)){
         config.hilbertCurve.showHelp = !config.hilbertCurve.showHelp;
+    } else if(eventIsKey(event, 114)){
+        setup(randomSymbol(), true);
+    } else if(eventIsKey(event, 108)){
+        config.hilbertCurve.showLinks = !config.hilbertCurve.showLinks;
+    } else if(eventIsKey(event, 106)){
+        if(config.hilbertCurve.randomPoints > 0){
+            config.hilbertCurve.randomPoints--;
+        }
+    } else if(eventIsKey(event, 107)){
+        config.hilbertCurve. randomPoints++;
     }
 }
 
