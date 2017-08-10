@@ -8,24 +8,26 @@ var config = {
     },
     hilbertCurve: {
         width: 5,
-        fps: 30,
-        scala: 1,
-        showHelp: true,
-        baseTextSize: 12,
         showLinks: true,
         randomPoints: 2
     },
     dragonCurve: {
         width: 250,
-        count: 0,
-        colors: 4,
-        dragonLevel: 15
+        colors: 6,
+        dragonLevel: 15,
+        maxLevel: 25
     },
-    mode: 2
+    general: {
+        mode: 2,
+        showHelp: true,
+        baseTextSize: 12,
+        scala: 1,
+        fps: 30
+    }
 };
 
-
-
+var hilbertAnimation = 1;
+var dragonCurveAnimation = 1;
 
 var lastDrag = {
     x: 0,
@@ -279,17 +281,19 @@ function manageDrag() {
     toMove.x = 0;
     toMove.y = 0;
 }
-function updateCanvas(){
+function drawHilbert(){
     manageDrag();
     clearCanvas();
-    if(config.hilbertCurve.showHelp){
-        ctx.font = ~~(config.hilbertCurve.baseTextSize / config.hilbertCurve.scala + 1) + "px Arial";
+    if(config.general.showHelp){
+        ctx.font = ~~(config.general.baseTextSize / config.general.scala + 1) + "px Arial";
         printHelp();
     }
     paintMajorArea(levels[level]);
     setTimeout(function () {
-        animationId = requestAnimationFrame(updateCanvas);
-    }, 1000 / config.hilbertCurve.fps)
+        if(hilbertAnimation){
+            hilbertAnimation = requestAnimationFrame(drawHilbert);
+        }
+    }, 1000 / config.general.fps)
 }
 
 function printHelp() {
@@ -297,7 +301,7 @@ function printHelp() {
     var p = ctx.transformedPoint(config.size.width - 200, 0);
     var leftTopX = p.x;
     var leftTopY = p.y;
-    var fontOffset = ~~(config.hilbertCurve.baseTextSize / config.hilbertCurve.scala + 1);
+    var fontOffset = ~~(config.general.baseTextSize / config.general.scala + 1);
     ctx.fillText('HELP:', leftTopX, leftTopY);
     ctx.fillText('[d] - increase amount (caution!)', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[a] - decrease amount', leftTopX, leftTopY += fontOffset);
@@ -309,6 +313,7 @@ function printHelp() {
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
     ctx.fillText('#random points: ' + config.hilbertCurve.randomPoints, leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[m] - toggle hilbert/dragoncurve', leftTopX, leftTopY += fontOffset);
 }
 
 function paintSector(sector){
@@ -554,7 +559,6 @@ $(document).ready(function () {
     canvas.addEventListener("mouseup", mouseClick, false);
     canvas.addEventListener("mousemove", drag, false);
     canvasJQuery.on('wheel', mouseWheelEvent);
-    ctx.lineWidth=0.5;
     //
     //setup(getSymbol(), false);
     //
@@ -562,43 +566,73 @@ $(document).ready(function () {
 
     document.keydown = keyPressed;
     //
-    //updateCanvas();
-    createDragonCurve();
-    drawDragonCurve();
+    if(config.general.mode == 1){
+        startHilbert();
+    } else {
+        startDragonCurve();
+    }
 });
 
-var firstSegmentStart = {x: 0, y: 0};
-var firstSegmentEnd = {x: config.dragonCurve.width, y: 0};
-rotatePoint(firstSegmentStart, firstSegmentEnd, 45);
-var secondSegmentEnd = {x: firstSegmentEnd.x + config.dragonCurve.width, y: firstSegmentEnd.y};
-rotatePoint(firstSegmentEnd, secondSegmentEnd, -45);
-var segment = {point: firstSegmentStart, next: undefined, col: randomColor()};
-var segment2 = {point: firstSegmentEnd, next: undefined, col: randomColor()};
-segment.next = segment2;
-var segment3 = {point: secondSegmentEnd, next: undefined, col: randomColor()};
-segment2.next = segment3;
+function startHilbert(){
+    setup(getSymbol(), false);
+    hilbertAnimation = requestAnimationFrame(drawHilbert)
+}
 
-var dragonCurve = segment;
-
+function startDragonCurve(){
+    initialDragonCurveSetup();
+    createDragonCurve();
+    dragonCurveAnimation = requestAnimationFrame(drawDragonCurve);
+}
 var dragonCurves = [];
-dragonCurves[-1] = dragonCurve;
+var currentDragonCurve;
+function initialDragonCurveSetup(){
+    var firstSegmentStart = {x: 0, y: 0};
+    var firstSegmentEnd = {x: config.dragonCurve.width, y: 0};
+    rotatePoint(firstSegmentStart, firstSegmentEnd, 45);
+    var secondSegmentEnd = {x: firstSegmentEnd.x + config.dragonCurve.width, y: firstSegmentEnd.y};
+    rotatePoint(firstSegmentEnd, secondSegmentEnd, -45);
+    var segment = {point: firstSegmentStart, next: undefined, col: randomColor()};
+    var segment2 = {point: firstSegmentEnd, next: undefined, col: randomColor()};
+    segment.next = segment2;
+    var segment3 = {point: secondSegmentEnd, next: undefined, col: randomColor()};
+    segment2.next = segment3;
+
+    var initialDragonCurve = segment;
+    initialDragonCurve.meta = {
+        count: 3,
+        colorStepSize: 3 / config.dragonCurve.colors << 0
+    };
+
+    dragonCurves[0] = copyDragonCurve(initialDragonCurve);
+    currentDragonCurve = dragonCurves[0];
+}
+
+
+
+function addLevelToDragonCurve(){
+    var count = 0;
+    var segmentI = 1;
+    var currentSegmentStart = copyDragonCurve(currentDragonCurve);
+    var currentSegment = currentSegmentStart;
+    while(currentSegment.next != undefined){
+        splitAndRotateSegment(currentSegment, 45, segmentI);
+        currentSegment = currentSegment.next.next;
+        count += 2;
+        segmentI++;
+    }
+    currentSegmentStart.meta = {
+        count: count,
+        colorStepSize: count / config.dragonCurve.colors << 0
+    };
+    dragonCurves.push(currentSegmentStart);
+}
 
 function createDragonCurve(){
-    config.dragonCurve.count = 3;
-    for(var i = 0; i < config.dragonCurve.dragonLevel; i++){
-        var segmentI = 1;
-        var currentSegment = dragonCurve;
-        while(currentSegment.next != undefined){
-            splitAndRotateSegment(currentSegment, 45, segmentI);
-            currentSegment = currentSegment.next.next;
-            config.dragonCurve.count++;
-            segmentI++;
-        }
-        dragonCurves[i] = copyDragonCurve(dragonCurve);
-        console.log(dragonCurve)
+    for(var i = 1; i < config.dragonCurve.dragonLevel; i++){
+       currentDragonCurve = dragonCurves[i - 1];
+       addLevelToDragonCurve();
     }
-    config.dragonCurve.colorStepSize = config.dragonCurve.count / config.dragonCurve.colors << 0;
-    console.log(dragonCurves)
+    updateDragonCurveObject();
 }
 
 function copyDragonCurve(existing){
@@ -613,11 +647,15 @@ function copyDragonCurve(existing){
             g: existing.col.g,
             b: existing.col.b,
             styleRGB: existing.col.styleRGB
+        },
+        meta: {
+            count: existing.meta.count,
+            colorStepSize: existing.meta.colorStepSize
         }
     };
-    var currentItem = existing;
+    var currentItem = existing.next;
     var newCurrentItem = newDragonCurve;
-    while(currentItem.next != undefined){
+    while(currentItem != undefined){
         var copyItem = {
             point: {
                 x: currentItem.point.x,
@@ -666,27 +704,54 @@ function splitAndRotateSegment(segment, direction, iteration){
 function drawDragonCurve(){
     clearCanvas();
     manageDrag();
-    var currentSegment = dragonCurves[config.dragonCurve.dragonLevel - 1];
+    if(config.general.showHelp){
+        printMetaData(ctx, currentDragonCurve);
+    }
+    var currentSegment = currentDragonCurve;
+    ctx.beginPath();
     ctx.moveTo(currentSegment.point.x, currentSegment.point.y);
     var cnt = 0;
-    console.log('repaint')
     while(currentSegment.next != undefined){
         var end = currentSegment.next.point;
         ctx.lineTo(end.x, end.y);
-        if((cnt % config.dragonCurve.colorStepSize) == 0){
-            console.log('changing color to...' + currentSegment.col.styleRGB)
+        cnt++;
+        if((cnt % currentDragonCurve.meta.colorStepSize) == 0){
             ctx.strokeStyle = currentSegment.col.styleRGB;
             ctx.stroke();
             ctx.beginPath();
             ctx.moveTo(end.x, end.y);
         }
-        cnt++;
         currentSegment = currentSegment.next;
     }
+    currentDragonCurve.meta.colorStepSize = cnt / config.dragonCurve.colors << 0
+
     ctx.stroke();
     setTimeout(function () {
-        animationId = requestAnimationFrame(drawDragonCurve);
-    }, 1000 / config.hilbertCurve.fps)
+        if(dragonCurveAnimation){
+            dragonCurveAnimation = requestAnimationFrame(drawDragonCurve);
+        }
+    }, 1000 / config.general.fps)
+}
+
+function printMetaData(ctx, dragonCurve){
+    var basePoint = ctx.transformedPoint(config.size.width - 250 - 250, config.general.baseTextSize);
+    var leftTopX = basePoint.x;
+    var leftTopY = basePoint.y;
+    var fontOffset = ~~(config.general.baseTextSize / config.general.scala + 1) + 10;
+    ctx.fillText('Info:', leftTopX, leftTopY);
+    ctx.fillText('Iterations: ' + config.dragonCurve.dragonLevel, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('Count: ' + dragonCurve.meta.count, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('Colors: ' + config.dragonCurve.colors, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('HELP: ', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[a] - decrease iterations', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[d] - increase iterations ', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[j] - decrease colors ', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[k] - increase colors', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[m] - toggle hilbert/dragoncurve', leftTopX, leftTopY += fontOffset);
 }
 
 function randomSymbol(){
@@ -831,7 +896,7 @@ function mouseWheelEvent(event) {
     scalePoint = getMousePos(canvas, event);
     scalePoint = ctx.transformedPoint(scalePoint.x,scalePoint.y);
     var scaleTo = event.originalEvent.deltaY < 0 ? 1.1 : 1/1.1;
-    config.hilbertCurve.scala *= scaleTo;
+    config.general.scala *= scaleTo;
     ctx.translate(scalePoint.x, scalePoint.y);
     ctx.scale(scaleTo, scaleTo);
     ctx.translate(-scalePoint.x, -scalePoint.y);
@@ -846,8 +911,8 @@ function mouseClick(event){
         var mousePos = getMousePos(canvas, event);
         mousePos.x -= config.size.width / 2;
         mousePos.y -= config.size.height / 2;
-        mousePos.x /= config.hilbertCurve.scala;
-        mousePos.y /= config.hilbertCurve.scala;
+        mousePos.x /= config.general.scala;
+        mousePos.y /= config.general.scala;
         lastDrag = mousePos;
     }
 }
@@ -857,8 +922,8 @@ function drag(event){
         var mousePos = getMousePos(canvas, event);
         mousePos.x -= config.size.width / 2;
         mousePos.y -= config.size.height / 2;
-        mousePos.x /= config.hilbertCurve.scala;
-        mousePos.y /= config.hilbertCurve.scala;
+        mousePos.x /= config.general.scala;
+        mousePos.y /= config.general.scala;
         toMove.x += mousePos.x - lastDrag.x;
         toMove.y += mousePos.y - lastDrag.y;
         lastDrag = mousePos;
@@ -869,19 +934,27 @@ function eventIsKey(event, code) {
     return event.keyCode == code || event.charCode == code || event.which == code;
 }
 
+function updateDragonCurveObject(){
+    currentDragonCurve = dragonCurves[config.dragonCurve.dragonLevel - 1];
+}
+
+
 function keyPressed(event) {
     // left
     if (eventIsKey(event, 97)) {
-        if(config.mode == 1){
+        if(config.general.mode == 1){
             if(level > 0){
                 level -= 1;
             }
         } else {
-            config.dragonCurve.dragonLevel--;
+            if(config.dragonCurve.dragonLevel > 1) {
+                config.dragonCurve.dragonLevel--;
+                updateDragonCurveObject();
+            }
         }
         // right
     } else if (eventIsKey(event, 100)) {
-        if(config.mode == 1){
+        if(config.general.mode == 1){
             if(level == levels.length - 1){
                 addLevel();
                 interConnectMajorArea(levels[level])
@@ -889,20 +962,50 @@ function keyPressed(event) {
                 level += 1;
             }
         } else {
-            config.dragonCurve.dragonLevel++;
+            if(config.dragonCurve.dragonLevel < config.dragonCurve.maxLevel) {
+                config.dragonCurve.dragonLevel++;
+                if(config.dragonCurve.dragonLevel > dragonCurves.length){
+                    addLevelToDragonCurve();
+                    updateDragonCurveObject();
+                } else {
+                    updateDragonCurveObject();
+                }
+            }
         }
     } else if(eventIsKey(event, 104)){
-        config.hilbertCurve.showHelp = !config.hilbertCurve.showHelp;
+        config.general.showHelp = !config.general.showHelp;
     } else if(eventIsKey(event, 114)){
         setup(randomSymbol(), true);
     } else if(eventIsKey(event, 108)){
         config.hilbertCurve.showLinks = !config.hilbertCurve.showLinks;
     } else if(eventIsKey(event, 106)){
-        if(config.hilbertCurve.randomPoints > 0){
-            config.hilbertCurve.randomPoints--;
+        if(config.general.mode == 1){
+            if(config.hilbertCurve.randomPoints > 0){
+                config.hilbertCurve.randomPoints--;
+            }
+        } else {
+            if(config.dragonCurve.colors > 0){
+                config.dragonCurve.colors--;
+            }
         }
     } else if(eventIsKey(event, 107)){
-        config.hilbertCurve. randomPoints++;
+        if(config.general.mode == 1){
+            config.hilbertCurve. randomPoints++;
+        } else {
+            config.dragonCurve.colors++;
+        }
+    } else if(eventIsKey(event, 109)){
+        if(config.general.mode == 1){
+            config.general.mode = 2;
+            cancelAnimationFrame(hilbertAnimation);
+            hilbertAnimation = undefined;
+            startDragonCurve();
+        } else {
+            config.general.mode = 1;
+            cancelAnimationFrame(dragonCurveAnimation);
+            dragonCurveAnimation = undefined;
+            startHilbert();
+        }
     }
 }
 
