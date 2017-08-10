@@ -723,7 +723,8 @@ function drawDragonCurve(){
         }
         currentSegment = currentSegment.next;
     }
-    currentDragonCurve.meta.colorStepSize = cnt / config.dragonCurve.colors << 0
+    //updating the stepsize once per drawing, is needed, because we retrieve the actual number here
+    currentDragonCurve.meta.colorStepSize = cnt / config.dragonCurve.colors << 0;
 
     ctx.stroke();
     setTimeout(function () {
