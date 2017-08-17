@@ -15,7 +15,8 @@ var config = {
         width: 250,
         colors: 6,
         dragonLevel: 15,
-        maxLevel: 25
+        maxLevel: 25,
+        lengthRatio: 2
     },
     general: {
         mode: 2,
@@ -585,21 +586,102 @@ function startDragonCurve(){
 }
 var dragonCurves = [];
 var currentDragonCurve;
-function initialDragonCurveSetup(){
-    var firstSegmentStart = {x: 0, y: 0};
-    var firstSegmentEnd = {x: config.dragonCurve.width, y: 0};
-    rotatePoint(firstSegmentStart, firstSegmentEnd, 45);
-    var secondSegmentEnd = {x: firstSegmentEnd.x + config.dragonCurve.width, y: firstSegmentEnd.y};
-    rotatePoint(firstSegmentEnd, secondSegmentEnd, -45);
-    var segment = {point: firstSegmentStart, next: undefined, col: randomColor()};
-    var segment2 = {point: firstSegmentEnd, next: undefined, col: randomColor()};
+function rectTangleDragonCurve() {
+    var firstPoint = {x: 0, y: 0};
+    var secondPoint = {x: 0, y: config.dragonCurve.width};
+    //rotatePoint(firstPoint, secondPoint, 45);
+    var thirdPoint = {x: secondPoint.x + config.dragonCurve.width, y: secondPoint.y};
+    //rotatePoint(secondPoint, thirdPoint, -45);
+    var segment = {point: firstPoint, next: undefined, col: randomColor()};
+    var segment2 = {point: secondPoint, next: undefined, col: randomColor()};
     segment.next = segment2;
-    var segment3 = {point: secondSegmentEnd, next: undefined, col: randomColor()};
+    var segment3 = {point: thirdPoint, next: undefined, col: randomColor()};
     segment2.next = segment3;
+    var fourthPoint = {x: thirdPoint.x, y: firstPoint.y};
+    var segment4 = {point: fourthPoint, next: undefined, col: randomColor()};
+    segment3.next = segment4;
 
-    var initialDragonCurve = segment;
+    var fifthPoint = {x: fourthPoint.x, y: fourthPoint.y - config.dragonCurve.width};
+    var segment5 = {point: fifthPoint, next: undefined, col: randomColor()};
+
+    segment4.next = segment5;
+
+    var sixthPoint = {x: fifthPoint.x - config.dragonCurve.width, y: fifthPoint.y};
+    var segmen6 = {point: sixthPoint, next: undefined, col: randomColor()};
+    segment5.next = segmen6;
+
+    var seventhPoint = {x: firstPoint.x, y: firstPoint.y};
+    var segment7 = {point: seventhPoint, next: undefined, col: randomColor()}
+    segmen6.next = segment7;
+    return segment;
+}
+
+function standardDragonCurve(){
+    var firstPoint = {x: 0, y: 0};
+    var secondPoint = {x: config.dragonCurve.width, y: 0};
+    rotatePoint(firstPoint, secondPoint, 45);
+    var thirdPoint = {x: secondPoint.x + config.dragonCurve.width, y: secondPoint.y};
+    rotatePoint(secondPoint, thirdPoint, -45);
+    var segment = {point: firstPoint, next: undefined, col: randomColor()};
+    var segment2 = {point: secondPoint, next: undefined, col: randomColor()};
+    segment.next = segment2;
+    var segment3 = {point: thirdPoint, next: undefined, col: randomColor()};
+    segment2.next = segment3;
+    return segment;
+}
+
+function fillingDragonCurve(){
+    var firstPoint = {x: 0, y: 0};
+    var firstSegement = {point: firstPoint, next: undefined, col:randomColor()};
+
+    var lastSegment = firstSegement;
+    var directions = [
+        {
+            x: 0, y: 1
+        },
+        {
+            x: 1, y: 0
+        },
+        {
+            x: 0, y: -1
+        },
+        {
+            x: -1, y: 0
+        }
+    ];
+
+    var segmentCounter = 0;
+
+    var stepSize = 1;
+
+    for(var i = 1; i < 3; i++){
+        for(var s = 0; s < directions.length; s++){
+            for(var step = 0; step < stepSize; step++){
+                var point = addDirectionToPoint(lastSegment.point, directions[s], config.dragonCurve.width, 1);
+                var newSegment = {point: point, next: undefined, col: randomColor()};
+                lastSegment.next = newSegment;
+                lastSegment = newSegment;
+            }
+            segmentCounter++;
+            if(segmentCounter % 2 == 0){
+                stepSize++;
+            }
+        }
+    }
+    return firstSegement;
+}
+
+function addDirectionToPoint(point, direction, amount, strength){
+    return {
+        x: point.x + amount * direction.x * strength,
+        y: point.y + amount * direction.y * strength
+    }
+}
+
+function initialDragonCurveSetup(){
+    var initialDragonCurve =  fillingDragonCurve();
     initialDragonCurve.meta = {
-        count: 3,
+        count: 5,
         colorStepSize: 3 / config.dragonCurve.colors << 0
     };
 
@@ -678,7 +760,7 @@ function copyDragonCurve(existing){
 
 function splitAndRotateSegment(segment, direction, iteration){
     var segmentLength = pointDistance(segment.point, segment.next.point);
-    var heightC = segmentLength / 2;
+    var heightC = segmentLength / config.dragonCurve.lengthRatio;
     var segmentVector = createNormalizedVector(segment.next.point, segment.point);
     var segmentMiddle = {
         x: segment.point.x + segmentLength / 2 * segmentVector.x,
@@ -743,12 +825,15 @@ function printMetaData(ctx, dragonCurve){
     ctx.fillText('Iterations: ' + config.dragonCurve.dragonLevel, leftTopX, leftTopY += fontOffset);
     ctx.fillText('Count: ' + dragonCurve.meta.count, leftTopX, leftTopY += fontOffset);
     ctx.fillText('Colors: ' + config.dragonCurve.colors, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('Length ratio: ' + Math.round(1/ config.dragonCurve.lengthRatio * 1000) / 1000, leftTopX, leftTopY += fontOffset);
     ctx.fillText('', leftTopX, leftTopY += fontOffset);
     ctx.fillText('HELP: ', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[a] - decrease iterations', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[d] - increase iterations ', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[j] - decrease colors ', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[k] - increase colors', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[v] - decrease length ratio', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[b] - increase length ratio', leftTopX, leftTopY += fontOffset);
     ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
@@ -991,7 +1076,7 @@ function keyPressed(event) {
         }
     } else if(eventIsKey(event, 107)){
         if(config.general.mode == 1){
-            config.hilbertCurve. randomPoints++;
+            config.hilbertCurve.randomPoints++;
         } else {
             config.dragonCurve.colors++;
         }
@@ -1006,6 +1091,24 @@ function keyPressed(event) {
             cancelAnimationFrame(dragonCurveAnimation);
             dragonCurveAnimation = undefined;
             startHilbert();
+        }
+        // g
+    } else if(eventIsKey(event, 118)){
+        if(config.general.mode == 2){
+            config.dragonCurve.lengthRatio -= 0.1;
+            cancelAnimationFrame(dragonCurveAnimation);
+            dragonCurveAnimation = undefined;
+            dragonCurves = [];
+            startDragonCurve();
+        }
+        //h
+    } else if(eventIsKey(event, 98)) {
+        if(config.general.mode == 2){
+            config.dragonCurve.lengthRatio += 0.1;
+            cancelAnimationFrame(dragonCurveAnimation);
+            dragonCurveAnimation = undefined;
+            dragonCurves = [];
+            startDragonCurve();
         }
     }
 }

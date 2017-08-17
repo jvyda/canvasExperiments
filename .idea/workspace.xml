@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hilbertCurve/index.html" afterPath="$PROJECT_DIR$/spaceFillingCurves/index.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hilbertCurve/js/main.js" afterPath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/hilbertCurve/js/plugins.js" afterPath="$PROJECT_DIR$/spaceFillingCurves/js/plugins.js" />
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/overview/index.html" afterPath="$PROJECT_DIR$/overview/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" afterPath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,18 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.36514524">
-              <caret line="707" column="0" selection-start-line="707" selection-start-column="0" selection-end-line="707" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="673" column="72" selection-start-line="672" selection-start-column="3" selection-end-line="673" selection-end-column="72" />
+            <state vertical-scroll-proportion="0.5306749">
+              <caret line="1106" column="42" selection-start-line="1106" selection-start-column="31" selection-end-line="1106" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -111,8 +98,8 @@
         <option value="$PROJECT_DIR$/dotLines/js/main.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
         <option value="$PROJECT_DIR$/hilbertCurve/js/main.js" />
-        <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/index.html" />
+        <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
       </list>
     </option>
@@ -123,10 +110,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="19" />
-    <option name="width" value="1918" />
-    <option name="height" value="1060" />
+    <option name="x" value="1921" />
+    <option name="y" value="619" />
+    <option name="width" value="1364" />
+    <option name="height" value="748" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -153,7 +140,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,6 +239,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -347,18 +334,6 @@
       <created>1491754888227</created>
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Triangles:&#10;-moved background and colorscheme selector to top left of canvas&#10;-canvas now stretches over all the screen &#10;-added ability to select a background color&#10;Common:&#10;-msDropdown with roundedBorders false as default&#10;">
-      <created>1494667580626</created>
-      <option name="number" value="00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1494667580626</updated>
-    </task>
-    <task id="LOCAL-00022" summary="circleBs:&#10;-canvas is now all over the page and controls within the canvas">
-      <created>1494668134761</created>
-      <option name="number" value="00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1494668134761</updated>
     </task>
     <task id="LOCAL-00023" summary="dotLines:&#10;-canvas now covers all the screen&#10;common:&#10;-created top class for all the controls, not usable with the canvas dropdowns">
       <created>1494668641574</created>
@@ -642,16 +617,27 @@
       <option name="project" value="LOCAL" />
       <updated>1502316620016</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve">
+      <created>1502396810730</created>
+      <option name="number" value="00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1502396810734</updated>
+    </task>
+    <task id="LOCAL-00071" summary="fixed name of spaceFillingCurve">
+      <created>1502397328873</created>
+      <option name="number" value="00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1502397328873</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="19" width="1918" height="1060" extended-state="6" />
+    <frame x="1921" y="619" width="1364" height="748" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.10636079" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21480939" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24921794" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -664,6 +650,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24921794" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35317862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -678,9 +665,9 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28005865" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24926686" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17558022" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21480939" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24921794" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35317862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -701,8 +688,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="orbitingSpheres:&#10;-added moon&#10;-added a option to indicate an offset of the label (needed because moon is very close)" />
-    <MESSAGE value="various:&#10;-chaned red/green/blue/alpha to r/g/b/a&#10;orbitingSpheres:&#10;-added option to override trails or not&#10;-now ctrl needed to place the sun&#10;-new planets have a random color" />
     <MESSAGE value="orbitingSpheres:&#10;-replaced data with actual data from NASA&#10;-added pluto, comet halley and hale bopp&#10;-added console output, how many years were simulated&#10;" />
     <MESSAGE value="orbitingSpheres:&#10;-added actual trails instead of not drawing over the canvas&#10;-added ability to reverse&#10;-we now calculate all the positions since 1970, because of reversing&#10;-changed dataset of planets to that of 1.1.1970&#10;-added jupiter moons, only callisto doesn't go crazy&#10;-only draw spheres if they are within the canvas region&#10;-added help text&#10;-added shortcut to hide help&#10;-added text indicating the current year&#10;-added shortcut to hide moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added saturn moons" />
@@ -726,7 +711,9 @@
     <MESSAGE value="hilbertCurve:&#10;-added alternative pattern" />
     <MESSAGE value="hilbertCurve:&#10;-added possibility to randomize the patterns&#10;-added hotkey to toggle links" />
     <MESSAGE value="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)" />
-    <option name="LAST_COMMIT_MESSAGE" value="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)" />
+    <MESSAGE value="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve" />
+    <MESSAGE value="fixed name of spaceFillingCurve" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed name of spaceFillingCurve" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -964,13 +951,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1017,7 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.0041494">
           <caret line="214" column="18" selection-start-line="214" selection-start-column="18" selection-end-line="214" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,7 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.2219918">
           <caret line="4" column="29" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1033,7 +1011,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33224756">
           <caret line="133" column="11" selection-start-line="133" selection-start-column="11" selection-end-line="133" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1041,15 +1018,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21161826">
           <caret line="194" column="12" selection-start-line="194" selection-start-column="12" selection-end-line="194" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="324" column="4" selection-start-line="324" selection-start-column="4" selection-end-line="324" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1057,7 +1025,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="113" column="86" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="86" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1065,15 +1032,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overview/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.666666">
-          <caret line="34" column="27" selection-start-line="34" selection-start-column="27" selection-end-line="34" selection-end-column="27" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,18 +1046,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3456">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4624">
+          <caret line="24" column="72" selection-start-line="24" selection-start-column="72" selection-end-line="24" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.86722">
+          <caret line="351" column="4" selection-start-line="351" selection-start-column="4" selection-end-line="351" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="673" column="72" selection-start-line="672" selection-start-column="3" selection-end-line="673" selection-end-column="72" />
+        <state vertical-scroll-proportion="0.42634854">
+          <caret line="615" column="37" selection-start-line="615" selection-start-column="37" selection-end-line="615" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36514524">
-          <caret line="707" column="0" selection-start-line="707" selection-start-column="0" selection-end-line="707" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5306749">
+          <caret line="1106" column="42" selection-start-line="1106" selection-start-column="31" selection-end-line="1106" selection-end-column="42" />
           <folding />
         </state>
       </provider>
