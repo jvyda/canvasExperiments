@@ -16,7 +16,8 @@ var config = {
         colors: 6,
         dragonLevel: 15,
         maxLevel: 25,
-        lengthRatio: 2
+        lengthRatio: 2,
+        initialLayout: 0
     },
     hTree: {
         width: 400,
@@ -25,7 +26,7 @@ var config = {
         startLevel: 5
     },
     general: {
-        mode: 3,
+        mode: 1,
         showHelp: true,
         baseTextSize: 12,
         scala: 1,
@@ -712,6 +713,9 @@ function updateHTreeObject(){
 
 var dragonCurves = [];
 var currentDragonCurve;
+
+var initialDragonCurveFunctions = [standardDragonCurve, rectTangleDragonCurve, fillingDragonCurve];
+
 function rectTangleDragonCurve() {
     var firstPoint = {x: 0, y: 0};
     var secondPoint = {x: 0, y: config.dragonCurve.width};
@@ -805,7 +809,7 @@ function addDirectionToPoint(point, direction, amount, strength){
 }
 
 function initialDragonCurveSetup(){
-    var initialDragonCurve =  fillingDragonCurve();
+    var initialDragonCurve =  initialDragonCurveFunctions[config.dragonCurve.initialLayout]();
     initialDragonCurve.meta = {
         count: 5,
         colorStepSize: 3 / config.dragonCurve.colors << 0
@@ -952,6 +956,7 @@ function printMetaData(ctx, dragonCurve){
     ctx.fillText('Count: ' + dragonCurve.meta.count, leftTopX, leftTopY += fontOffset);
     ctx.fillText('Colors: ' + config.dragonCurve.colors, leftTopX, leftTopY += fontOffset);
     ctx.fillText('Length ratio: ' + Math.round(1/ config.dragonCurve.lengthRatio * 1000) / 1000, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('Initial layout: ' + config.dragonCurve.initialLayout, leftTopX, leftTopY += fontOffset);
     ctx.fillText('', leftTopX, leftTopY += fontOffset);
     ctx.fillText('HELP: ', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[a] - decrease iterations', leftTopX, leftTopY += fontOffset);
@@ -960,6 +965,7 @@ function printMetaData(ctx, dragonCurve){
     ctx.fillText('[k] - increase colors', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[v] - decrease length ratio', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[b] - increase length ratio', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[i] - switch initial layout', leftTopX, leftTopY += fontOffset);
     ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
@@ -1152,7 +1158,7 @@ function updateDragonCurveObject(){
 
 
 function keyPressed(event) {
-    // left
+    // a
     if (eventIsKey(event, 97)) {
         if(config.general.mode == 1){
             if(level > 0){
@@ -1169,8 +1175,10 @@ function keyPressed(event) {
                 updateHTreeObject();
             }
         }
-        // right
-    } else if (eventIsKey(event, 100)) {
+
+    }
+    // d
+    else if (eventIsKey(event, 100)) {
         if(config.general.mode == 1){
             if(level == levels.length - 1){
                 addLevel();
@@ -1198,13 +1206,17 @@ function keyPressed(event) {
                 }
             }
         }
-    } else if(eventIsKey(event, 104)){
+    } // h
+    else if(eventIsKey(event, 104)){
         config.general.showHelp = !config.general.showHelp;
-    } else if(eventIsKey(event, 114)){
+    } // r
+    else if(eventIsKey(event, 114)){
         setup(randomSymbol(), true);
-    } else if(eventIsKey(event, 108)){
+    } // l
+    else if(eventIsKey(event, 108)){
         config.hilbertCurve.showLinks = !config.hilbertCurve.showLinks;
-    } else if(eventIsKey(event, 106)){
+    } // j
+    else if(eventIsKey(event, 106)){
         if(config.general.mode == 1){
             if(config.hilbertCurve.randomPoints > 0){
                 config.hilbertCurve.randomPoints--;
@@ -1214,13 +1226,15 @@ function keyPressed(event) {
                 config.dragonCurve.colors--;
             }
         }
-    } else if(eventIsKey(event, 107)){
+    } // k
+    else if(eventIsKey(event, 107)){
         if(config.general.mode == 1){
             config.hilbertCurve.randomPoints++;
         } else {
             config.dragonCurve.colors++;
         }
-    } else if(eventIsKey(event, 109)){
+    } // m
+    else if(eventIsKey(event, 109)){
         if(config.general.mode == 1){
             config.general.mode = 2;
             cancelAnimationFrame(hilbertAnimation);
@@ -1237,8 +1251,9 @@ function keyPressed(event) {
             dragonCurveAnimation = undefined;
             startHTree();
         }
-        // g
-    } else if(eventIsKey(event, 118)){
+
+    } // v
+    else if(eventIsKey(event, 118)){
         if(config.general.mode == 2){
             config.dragonCurve.lengthRatio -= 0.1;
             cancelAnimationFrame(dragonCurveAnimation);
@@ -1246,10 +1261,21 @@ function keyPressed(event) {
             dragonCurves = [];
             startDragonCurve();
         }
-        //h
-    } else if(eventIsKey(event, 98)) {
+
+    } // b
+    else if(eventIsKey(event, 98)) {
         if(config.general.mode == 2){
             config.dragonCurve.lengthRatio += 0.1;
+            cancelAnimationFrame(dragonCurveAnimation);
+            dragonCurveAnimation = undefined;
+            dragonCurves = [];
+            startDragonCurve();
+        }
+    } // i
+    else if(eventIsKey(event, 105)){
+        if(config.general.mode == 2){
+            config.dragonCurve.initialLayout++;
+            config.dragonCurve.initialLayout %= initialDragonCurveFunctions.length;
             cancelAnimationFrame(dragonCurveAnimation);
             dragonCurveAnimation = undefined;
             dragonCurves = [];

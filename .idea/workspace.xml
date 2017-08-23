@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" afterPath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -28,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.6753112">
-              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.11099585">
+              <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -39,7 +38,7 @@
         <entry file="file://$PROJECT_DIR$/common/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="197" column="16" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="16" />
+              <caret line="193" column="15" selection-start-line="193" selection-start-column="15" selection-end-line="193" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -346,12 +345,6 @@
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
     </task>
-    <task id="LOCAL-00024" summary="jsTree:&#10;-removed height &amp; width config&#10;-removed oil effect&#10;- showing noise image will cause it to appear behind the canvas with an opacity of 0.5&#10;-moved a lot of config into the advanced tab&#10;-canvas is now the background of the whole page (not really working on mobile...)&#10;Triangles:&#10;-moved picker to next row for mobile">
-      <created>1494676596222</created>
-      <option name="number" value="00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1494676596222</updated>
-    </task>
     <task id="LOCAL-00025" summary="common:&#10;-moved recording stuff to common, maybe used somewhere else&#10;added fireWorks!&#10;-simple version of fireworks with one rocket type and one color default selected">
       <created>1495134338032</created>
       <option name="number" value="00025" />
@@ -640,7 +633,13 @@
       <option name="project" value="LOCAL" />
       <updated>1503002438262</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="spaceFillingCurves:&#10;-added hTree">
+      <created>1503521875981</created>
+      <option name="number" value="00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1503521875982</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -649,6 +648,7 @@
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.097497396" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -657,7 +657,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -699,7 +698,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="orbitingSpheres:&#10;-added actual trails instead of not drawing over the canvas&#10;-added ability to reverse&#10;-we now calculate all the positions since 1970, because of reversing&#10;-changed dataset of planets to that of 1.1.1970&#10;-added jupiter moons, only callisto doesn't go crazy&#10;-only draw spheres if they are within the canvas region&#10;-added help text&#10;-added shortcut to hide help&#10;-added text indicating the current year&#10;-added shortcut to hide moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added saturn moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today" />
     <MESSAGE value="orbitingSpheres:&#10;-set dates to match 6th june 2017&#10;-set timeStep to one hour to increase accuracy&#10;-adapted colors of moons" />
@@ -724,7 +722,8 @@
     <MESSAGE value="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve" />
     <MESSAGE value="fixed name of spaceFillingCurve" />
     <MESSAGE value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
-    <option name="LAST_COMMIT_MESSAGE" value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
+    <MESSAGE value="spaceFillingCurves:&#10;-added hTree" />
+    <option name="LAST_COMMIT_MESSAGE" value="spaceFillingCurves:&#10;-added hTree" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1082,15 +1081,15 @@
     <entry file="file://$PROJECT_DIR$/common/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="197" column="16" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="16" />
+          <caret line="193" column="15" selection-start-line="193" selection-start-column="15" selection-end-line="193" selection-end-column="15" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.6753112">
-          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.11099585">
+          <caret line="28" column="15" selection-start-line="28" selection-start-column="15" selection-end-line="28" selection-end-column="15" />
           <folding />
         </state>
       </provider>
