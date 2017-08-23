@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" afterPath="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -27,8 +28,18 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5306749">
-              <caret line="1106" column="42" selection-start-line="1106" selection-start-column="31" selection-end-line="1106" selection-end-column="42" />
+            <state vertical-scroll-proportion="-0.6753112">
+              <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/common/js/common.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="197" column="16" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -94,12 +105,12 @@
         <option value="$PROJECT_DIR$/nTriangles/index.html" />
         <option value="$PROJECT_DIR$/nTriangles/js/main.js" />
         <option value="$PROJECT_DIR$/hilbertCurve/index.html" />
-        <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/dotLines/js/main.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
         <option value="$PROJECT_DIR$/hilbertCurve/js/main.js" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/index.html" />
         <option value="$PROJECT_DIR$/overview/index.html" />
+        <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
       </list>
     </option>
@@ -110,10 +121,10 @@
     <detection-done>true</detection-done>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1921" />
-    <option name="y" value="619" />
-    <option name="width" value="1364" />
-    <option name="height" value="748" />
+    <option name="x" value="1" />
+    <option name="y" value="19" />
+    <option name="width" value="1918" />
+    <option name="height" value="1060" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -140,6 +151,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,7 +250,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -334,12 +345,6 @@
       <created>1491754888227</created>
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
-    </task>
-    <task id="LOCAL-00023" summary="dotLines:&#10;-canvas now covers all the screen&#10;common:&#10;-created top class for all the controls, not usable with the canvas dropdowns">
-      <created>1494668641574</created>
-      <option name="number" value="00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1494668641574</updated>
     </task>
     <task id="LOCAL-00024" summary="jsTree:&#10;-removed height &amp; width config&#10;-removed oil effect&#10;- showing noise image will cause it to appear behind the canvas with an opacity of 0.5&#10;-moved a lot of config into the advanced tab&#10;-canvas is now the background of the whole page (not really working on mobile...)&#10;Triangles:&#10;-moved picker to next row for mobile">
       <created>1494676596222</created>
@@ -629,14 +634,20 @@
       <option name="project" value="LOCAL" />
       <updated>1502397328873</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio">
+      <created>1503002438262</created>
+      <option name="number" value="00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1503002438262</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1921" y="619" width="1364" height="748" extended-state="6" />
+    <frame x="1" y="19" width="1918" height="1060" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21480939" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.097497396" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -688,7 +699,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="orbitingSpheres:&#10;-replaced data with actual data from NASA&#10;-added pluto, comet halley and hale bopp&#10;-added console output, how many years were simulated&#10;" />
     <MESSAGE value="orbitingSpheres:&#10;-added actual trails instead of not drawing over the canvas&#10;-added ability to reverse&#10;-we now calculate all the positions since 1970, because of reversing&#10;-changed dataset of planets to that of 1.1.1970&#10;-added jupiter moons, only callisto doesn't go crazy&#10;-only draw spheres if they are within the canvas region&#10;-added help text&#10;-added shortcut to hide help&#10;-added text indicating the current year&#10;-added shortcut to hide moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added saturn moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today" />
@@ -713,7 +723,8 @@
     <MESSAGE value="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)" />
     <MESSAGE value="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve" />
     <MESSAGE value="fixed name of spaceFillingCurve" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed name of spaceFillingCurve" />
+    <MESSAGE value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
+    <option name="LAST_COMMIT_MESSAGE" value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1060,13 +1071,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.86722">
-          <caret line="351" column="4" selection-start-line="351" selection-start-column="4" selection-end-line="351" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42634854">
@@ -1075,10 +1079,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="197" column="16" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5306749">
-          <caret line="1106" column="42" selection-start-line="1106" selection-start-column="31" selection-end-line="1106" selection-end-column="42" />
+        <state vertical-scroll-proportion="-0.6753112">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
           <folding />
         </state>
       </provider>

@@ -191,6 +191,14 @@ function createNormalizedVector(tip, shaft) {
     return vect;
 }
 
+function rotate90Deg(vec){
+    var temp = vec.x;
+    vec.x = vec.y;
+    vec.y = temp;
+    vec.y *= -1;
+    return vec;
+}
+
 function vectorLenght(vect) {
     return Math.sqrt(vect.x * vect.x + vect.y * vect.y);
 }

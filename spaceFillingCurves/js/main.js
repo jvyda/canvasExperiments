@@ -18,8 +18,14 @@ var config = {
         maxLevel: 25,
         lengthRatio: 2
     },
+    hTree: {
+        width: 400,
+        maxLevel: 20,
+        treeLevel: 0,
+        startLevel: 5
+    },
     general: {
-        mode: 2,
+        mode: 3,
         showHelp: true,
         baseTextSize: 12,
         scala: 1,
@@ -29,6 +35,8 @@ var config = {
 
 var hilbertAnimation = 1;
 var dragonCurveAnimation = 1;
+var hTreeAnimation = 1;
+
 
 var lastDrag = {
     x: 0,
@@ -314,7 +322,7 @@ function printHelp() {
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
     ctx.fillText('#random points: ' + config.hilbertCurve.randomPoints, leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
-    ctx.fillText('[m] - toggle hilbert/dragoncurve', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[m] - switch to dragonCurve', leftTopX, leftTopY += fontOffset);
 }
 
 function paintSector(sector){
@@ -567,10 +575,12 @@ $(document).ready(function () {
 
     document.keydown = keyPressed;
     //
-    if(config.general.mode == 1){
-        startHilbert();
-    } else {
-        startDragonCurve();
+
+    switch(config.general.mode){
+        case 1: startHilbert(); break;
+        case 2: startDragonCurve(); break;
+        default:
+        case 3: startHTree(); break;
     }
 });
 
@@ -584,6 +594,122 @@ function startDragonCurve(){
     createDragonCurve();
     dragonCurveAnimation = requestAnimationFrame(drawDragonCurve);
 }
+
+var hTreeLevels = [];
+var currentHTree = {};
+
+function addLevelToHtree(){
+    var levelToDerivateFrom = cloneHTree(currentHTree);
+    var newHTreeLevel = [];
+    for(var lineI = 0; lineI < levelToDerivateFrom.length; lineI++){
+        var oldLine = levelToDerivateFrom[lineI];
+        var lenght = pointDistance(oldLine.start, oldLine.end);
+        var lineVec = createNormalizedVector(oldLine.start, oldLine.end);
+        var rotatedVec =  rotate90Deg(lineVec);
+        lenght /= Math.sqrt(2);
+        lenght /= 2;
+        if(oldLine.start.edge){
+            oldLine.start.edge = false;
+            var newPointA = {x: oldLine.start.x + rotatedVec.x * lenght, y: oldLine.start.y + rotatedVec.y * lenght, edge: true};
+            var newPointB = {x: oldLine.start.x - rotatedVec.x * lenght, y: oldLine.start.y - rotatedVec.y * lenght, edge: true};
+            newHTreeLevel.push({start: newPointA, end: newPointB})
+        }
+        if(oldLine.end.edge){
+            oldLine.end.edge = false;
+            var newPointA = {x: oldLine.end.x + rotatedVec.x * lenght, y: oldLine.end.y + rotatedVec.y * lenght, edge: true};
+            var newPointB = {x: oldLine.end.x - rotatedVec.x * lenght, y: oldLine.end.y - rotatedVec.y * lenght, edge: true};
+            newHTreeLevel.push({start: newPointA, end: newPointB})
+        }
+        newHTreeLevel.push(oldLine);
+    }
+    return newHTreeLevel;
+}
+
+function startHTree(){
+    hTreeLevels = [];
+    config.hTree.treeLevel = 0;
+    var initialHTree = initialSetupOfHtree();
+    hTreeLevels.push(initialHTree);
+    updateHTreeObject();
+    while(config.hTree.treeLevel < config.hTree.startLevel){
+        addLevelToHTreeStructure();
+    }
+    hTreeAnimation = requestAnimationFrame(drawHTree)
+}
+
+function addLevelToHTreeStructure(){
+    hTreeLevels.push(addLevelToHtree());
+    config.hTree.treeLevel++;
+    updateHTreeObject();
+}
+
+function initialSetupOfHtree(){
+    var start = {x: 0, y: 0, edge: true};
+    var end = {x: config.hTree.width, y: 0, edge: true};
+
+    return [{start: start, end: end}];
+}
+
+function cloneHTree(htree){
+    var newHTree = [];
+    for(var lineI = 0; lineI < htree.length; lineI++){
+        var oldLine = htree[lineI];
+        newHTree.push({
+                        start:
+                            {
+                                x: oldLine.start.x,
+                                y:oldLine.start.y,
+                                edge: oldLine.start.edge
+                            },
+                        end:
+                            {
+                                x: oldLine.end.x,
+                                y:oldLine.end.y,
+                                edge: oldLine.end.edge
+                            }
+                        })
+    }
+    return newHTree;
+}
+
+function drawHTreeHelp(){
+    var basePoint = ctx.transformedPoint(config.size.width - 250 - 250, config.general.baseTextSize);
+    var leftTopX = basePoint.x;
+    var leftTopY = basePoint.y;
+    var fontOffset = ~~(config.general.baseTextSize / config.general.scala + 1) + 10;
+    ctx.fillText('Info:', leftTopX, leftTopY);
+    ctx.fillText('Level: ' + config.hTree.treeLevel, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('Lines: ' + currentHTree.length, leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[a] - decrease level', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[d] - increase level', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[m] - switch to hilbert curve', leftTopX, leftTopY += fontOffset);
+}
+
+function drawHTree(){
+    clearCanvas();
+    manageDrag();
+    if(config.general.showHelp){
+        drawHTreeHelp();
+    }
+    ctx.beginPath();
+    ctx.strokeStyle = 'black';
+    for(var lineI = 0; lineI < currentHTree.length; lineI++){
+        var line = currentHTree[lineI];
+        ctx.moveTo(line.start.x, line.start.y);
+        ctx.lineTo(line.end.x, line.end.y);
+    }
+    ctx.stroke();
+    setTimeout(function () {
+        if(hTreeAnimation){
+            hTreeAnimation = requestAnimationFrame(drawHTree);
+        }
+    }, 1000 / config.general.fps)
+}
+
+function updateHTreeObject(){
+    currentHTree = hTreeLevels[config.hTree.treeLevel];
+}
+
 var dragonCurves = [];
 var currentDragonCurve;
 function rectTangleDragonCurve() {
@@ -837,7 +963,7 @@ function printMetaData(ctx, dragonCurve){
     ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
-    ctx.fillText('[m] - toggle hilbert/dragoncurve', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('[m] - switch to hTree', leftTopX, leftTopY += fontOffset);
 }
 
 function randomSymbol(){
@@ -1032,10 +1158,15 @@ function keyPressed(event) {
             if(level > 0){
                 level -= 1;
             }
-        } else {
+        } else if(config.general.mode == 2) {
             if(config.dragonCurve.dragonLevel > 1) {
                 config.dragonCurve.dragonLevel--;
                 updateDragonCurveObject();
+            }
+        } else if(config.general.mode == 3){
+            if(config.hTree.treeLevel > 0){
+                config.hTree.treeLevel--;
+                updateHTreeObject();
             }
         }
         // right
@@ -1047,7 +1178,7 @@ function keyPressed(event) {
             } else {
                 level += 1;
             }
-        } else {
+        } else if(config.general.mode == 2) {
             if(config.dragonCurve.dragonLevel < config.dragonCurve.maxLevel) {
                 config.dragonCurve.dragonLevel++;
                 if(config.dragonCurve.dragonLevel > dragonCurves.length){
@@ -1055,6 +1186,15 @@ function keyPressed(event) {
                     updateDragonCurveObject();
                 } else {
                     updateDragonCurveObject();
+                }
+            }
+        } else if(config.general.mode == 3){
+            if(config.hTree.treeLevel < config.hTree.maxLevel){
+                if(config.hTree.treeLevel + 1 >= hTreeLevels.length){
+                    addLevelToHTreeStructure();
+                } else {
+                    config.hTree.treeLevel++;
+                    updateHTreeObject();
                 }
             }
         }
@@ -1086,11 +1226,16 @@ function keyPressed(event) {
             cancelAnimationFrame(hilbertAnimation);
             hilbertAnimation = undefined;
             startDragonCurve();
-        } else {
+        } else if(config.general.mode == 3) {
             config.general.mode = 1;
+            cancelAnimationFrame(hTreeAnimation);
+            hTreeAnimation = undefined;
+            startHilbert();
+        } else if(config.general.mode == 2){
+            config.general.mode = 3;
             cancelAnimationFrame(dragonCurveAnimation);
             dragonCurveAnimation = undefined;
-            startHilbert();
+            startHTree();
         }
         // g
     } else if(eventIsKey(event, 118)){
