@@ -53,13 +53,13 @@ function analyzePictureFun(){
         cannyEdgeDetector();
         setTimeout(function(){
             findHoughLines();
-            console.log('houghLines: ' + houghLines.length);
+            console.log('HoughLines: ' + houghLines.length);
             setTimeout(function(){
                 findFiniteLines();
-                console.log('finite lines: ' + finiteLines.length);
+                console.log('Finite lines: ' + finiteLines.length);
                 setTimeout(function(){
                     connectLines();
-                    console.log('bodies: ' + finalBodies.length);
+                    console.log('Bodies: ' + finalBodies.length);
                     setTimeout(function(){
                         redrawImage();
                         info.text('Lines: ' + finiteLines.length);
@@ -82,8 +82,6 @@ function analyzeNewImage(){
 
     if (file) {
         reader.readAsDataURL(file);
-    } else {
-        img.src = "";
     }
 }
 
@@ -138,7 +136,7 @@ function findHoughLines(){
     var tenth = (h.length / 10) << 0;
     for (var i = 0; i < h.length; i++) {
         if(i % tenth == 0) {
-            updateProgress('Hough Lines: '+i +'/'+ h.length);
+            updateProgress('Hough Lines: '+ i +'/'+ h.length);
         }
         var rho = h[i][0];
         var theta = h[i][1];
@@ -165,11 +163,10 @@ function findHoughLines(){
 
 function findFiniteLines() {
     finiteLines = [];
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    var tenth = (houghLines.length / 10) << 0;
+    var tenth = (houghLines.length / 100) << 0;
     for (var lineI = 0; lineI < houghLines.length; lineI++) {
         if(lineI % tenth == 0) {
-            updateProgress('Finite Lines: ' + lineI +'/'+ houghLines.length);
+            updateProgress('Finite Lines: ' + lineI +'/'+ houghLines.length + ': ' + (lineI/houghLines.length*100 << 0) + '%');
         }
         var line = houghLines[lineI];
         var vec = createNormalizedVector(line.start, line.end);
@@ -240,12 +237,12 @@ function findFiniteLines() {
 
 function connectLines() {
     finalBodies = [];
-    var tenth = (finiteLines.length / 10) << 0;
+    var tenth = (finiteLines.length / 100) << 0;
     var cnt = 0;
     finiteLines.forEach(function (line) {
         cnt++;
         if(cnt % tenth == 0){
-            updateProgress('connecting lines ' +cnt + '/' + finiteLines.length)
+            updateProgress('connecting lines ' +cnt + '/' + finiteLines.length + ': ' + (cnt/finiteLines.length*100 << 0) + '%')
         }
         if (line.attached) return;
         var newBody = [];

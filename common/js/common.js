@@ -289,6 +289,20 @@ function randomColor(){
     return color;
 }
 
+function randomColorWithAtLeastLumen(atLeastLum){
+    var currentLum = 0;
+    var col;
+    do {
+        col = randomColor();
+        currentLum = calculateLum(col);
+    } while(currentLum < atLeastLum);
+    return col;
+}
+
+function calculateLum(col){
+    return 0.2126 * col.r + 0.7152 * col.g + 0.0722 * col.b;
+}
+
 function dotProduct(vector1, vector2) {
     return vector1.x * vector2.x + vector1.y * vector2.y;
 }
@@ -362,4 +376,16 @@ function trackTransforms(ctx) {
         pt.y = y;
         return pt.matrixTransform(xform.inverse());
     }
+}
+
+function setCoordinateToColor(x, y, color) {
+    var indexForCoordinate = getIndexForCoordinate(x, y) << 0;
+    imageData.data[indexForCoordinate] = color.r;
+    imageData.data[indexForCoordinate + 1] = color.g;
+    imageData.data[indexForCoordinate + 2] = color.b;
+    imageData.data[indexForCoordinate + 3] = color.alpha *  255;
+}
+
+function eventIsKey(event, code) {
+    return event.keyCode == code || event.charCode == code || event.which == code;
 }
