@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="added balls project to imitate a game&#10;added unfinished voronoi (currently only onion like konvex hulls)">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="balls:&#10;- fixed bounce of rects&#10;- added rebound buff&#10;- added gameover check and screen&#10;- fixed bug that set the start point of still spawning balls to the location of the first ball which crashed. it will only happen on the next shot.&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/balls/js/main.js" afterPath="$PROJECT_DIR$/balls/js/main.js" />
     </list>
@@ -27,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/balls/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.58921164">
-              <caret line="243" column="19" selection-start-line="243" selection-start-column="19" selection-end-line="243" selection-end-column="19" />
+            <state vertical-scroll-proportion="-0.60580915">
+              <caret line="348" column="53" selection-start-line="348" selection-start-column="53" selection-end-line="348" selection-end-column="53" />
               <folding />
             </state>
           </provider>
@@ -173,7 +173,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -354,7 +354,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -449,12 +449,6 @@
       <created>1491754888227</created>
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
-    </task>
-    <task id="LOCAL-00029" summary="fireWork:&#10;-now using different color schemes&#10;-two explosion rockets now spawn with a chance&#10;-the color scheme is changed with a chance for the second explosion (not magenta and green)&#10;-the color for an element in the trail is changed every frame to an element of the color scheme">
-      <created>1495152956391</created>
-      <option name="number" value="00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1495152956391</updated>
     </task>
     <task id="LOCAL-00030" summary="Overview:&#10;-added fireWorks to overview">
       <created>1495153365220</created>
@@ -744,7 +738,13 @@
       <option name="project" value="LOCAL" />
       <updated>1508447559561</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="balls:&#10;- more colorful&#10;- shaft of new shot vector is the position of the first ball of the impact of the first ball&#10;- if no rects are left, reset immediately &#10;- changed some stuff for collision (still bad)">
+      <created>1508503619511</created>
+      <option name="number" value="00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1508503619512</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -803,7 +803,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added new unnamed project&#10;" />
     <MESSAGE value="added a lot of edge cases" />
     <MESSAGE value="fucked some edge cases" />
     <MESSAGE value="nTriangles:&#10;-added overview image&#10;-resized canvas it mostly fits&#10;-made canvas background black" />
@@ -828,7 +827,8 @@
     <MESSAGE value="added nailIt&#10;-currently not a good version..." />
     <MESSAGE value="added jsfeat to version control&#10;added a template project for easier bootstrapping&#10;added currently unNamed project (descirbing name was conJoined)" />
     <MESSAGE value="added balls project to imitate a game&#10;added unfinished voronoi (currently only onion like konvex hulls)" />
-    <option name="LAST_COMMIT_MESSAGE" value="added balls project to imitate a game&#10;added unfinished voronoi (currently only onion like konvex hulls)" />
+    <MESSAGE value="balls:&#10;- more colorful&#10;- shaft of new shot vector is the position of the first ball of the impact of the first ball&#10;- if no rects are left, reset immediately &#10;- changed some stuff for collision (still bad)" />
+    <option name="LAST_COMMIT_MESSAGE" value="balls:&#10;- more colorful&#10;- shaft of new shot vector is the position of the first ball of the impact of the first ball&#10;- if no rects are left, reset immediately &#10;- changed some stuff for collision (still bad)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1085,7 +1085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="56" column="6" selection-start-line="56" selection-start-column="6" selection-end-line="56" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,7 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33298755">
           <caret line="43" column="9" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1160,6 +1158,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="275" column="0" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.533195">
+          <caret line="457" column="9" selection-start-line="457" selection-start-column="9" selection-end-line="457" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/balls/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.60580915">
+          <caret line="348" column="53" selection-start-line="348" selection-start-column="53" selection-end-line="348" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="244" column="56" selection-start-line="244" selection-start-column="23" selection-end-line="244" selection-end-column="56" />
           <folding />
         </state>
       </provider>
@@ -1179,30 +1200,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="5" selection-start-line="28" selection-start-column="2" selection-end-line="33" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.533195">
-          <caret line="457" column="9" selection-start-line="457" selection-start-column="9" selection-end-line="457" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="244" column="56" selection-start-line="244" selection-start-column="23" selection-end-line="244" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/balls/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.58921164">
-          <caret line="243" column="19" selection-start-line="243" selection-start-column="19" selection-end-line="243" selection-end-column="19" />
           <folding />
         </state>
       </provider>

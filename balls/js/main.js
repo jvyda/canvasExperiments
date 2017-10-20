@@ -14,7 +14,8 @@ var config = {
         horizontalSize: window.innerHeight / 10,
         verticalSize: window.innerHeight / 10,
         balls: 10,
-        speed: 10
+        speed: 10,
+        reboundBuffChance: 0.25
     },
     general: {
         fps: 30
@@ -32,7 +33,12 @@ var animationId = {};
 var balls = [];
 
 var rects = [];
+var gameOver = false;
+
+var buffs = [];
+var reboundBalls = 0;
 var mouseDown = false;
+var newStartPoint;
 
 var colors = [
     {
@@ -61,6 +67,7 @@ var colors = [
 colors.forEach(addRGBStyle)
 
 function setPoint(event){
+    mouseStart = newStartPoint;
     if(spawning) return;
     if(mouseDown == false){
         mouseDown = true;
@@ -101,13 +108,33 @@ function setTip(event) {
 
 function updateCanvas() {
     ctx.clearRect(0, 0, config.size.width, config.size.height);
-    ballsAct();
-    paintBalls();
+    if(gameOver){
+        ctx.fillText('gameover: ' + config.balls.balls, config.size.width / 2, config.size.height / 2);
+    }
     paintRects();
-    paintIndicator();
+    paintBuffs();
+    if(!gameOver){
+        paintBalls();
+        paintIndicator();
+        ballsAct();
+    }
     setTimeout(function () {
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.general.fps)
+}
+
+function paintBuffs(){
+    buffs.forEach(paintBuff);
+}
+
+function paintBuff(buff){
+    ctx.beginPath();
+    ctx.fillStyle="#E6E6FA";
+    ctx.rect(buff.xPos, buff.yPos, buff.width, buff.height);
+    ctx.fill();
+    ctx.fillStyle = 'black';
+    ctx.fillText(buff.duration, buff.xPos + 20, buff.yPos + 20);
+    ctx.stroke();
 }
 
 function paintIndicator(){
@@ -121,12 +148,24 @@ function paintIndicator(){
         ctx.stroke();
     }
     ctx.fillText(toSpawn, 0, config.size.height - 20);
+    if(reboundBalls > 0){
+        ctx.fillText(reboundBalls, 0, config.size.height - 40);
+    }
     ctx.stroke();
 }
 
 function rectsAct(){
     rects.forEach(function(rect){
         rect.yPos += config.balls.verticalSize;
+        if(rect.yPos > config.size.height - 50){
+            gameOver = true;
+        }
+    });
+    buffs.forEach(function(buff, index, array){
+        buff.yPos += config.balls.verticalSize;
+        if(buff.yPos > config.size.height - 50){
+            array.splice(index, 1);
+        }
     });
     config.balls.balls++;
     toSpawn = config.balls.balls;
@@ -174,7 +213,7 @@ function ballsAct(){
     newSpawnSet = false;
     if(rects.length == 0){
         rectsAct();
-        mouseStart = {x: balls[0].x, y: config.size.height - 25};
+        newStartPoint = {x: balls[0].x, y: config.size.height - 25};
         balls = [];
         return;
     }
@@ -202,11 +241,16 @@ function ballAct(ball){
     }
 
     if((ball.y + ball.radius) > config.size.height) {
-        if(!newSpawnSet){
-            mouseStart = {x: ball.x, y: config.size.height - 25};
-            newSpawnSet = true;
+        if(reboundBalls <= 0){
+            if(!newSpawnSet){
+                newStartPoint = {x: ball.x, y: config.size.height - 25};
+                newSpawnSet = true;
+            }
+            ball.done = true;
+        }  else {
+            reboundBalls--;
+            ball.vec.y *= -1;
         }
-        ball.done = true
     }
 
     var nextX = ball.x;
@@ -226,22 +270,19 @@ function ballAct(ball){
         var bottomLeftY = rect.yPos + rect.height;
 
         if(ballLeftX < topRightX && ballRightX > rect.xPos && ballBottomY > rect.yPos && ballTopY < bottomLeftY) {
-            if(ballLeftX - ball.radius < rect.xPos){
+            var centerX = rect.xPos + rect.width / 2;
+            var centerY = rect.yPos + rect.height / 2;
+            var rectCenterToBallCenter = createNormalizedVector(ball, {x: centerX, y: centerY});
+            var normalLevel = createNormalizedVector({x: centerX, y: centerY}, {x: centerX + 10, y: centerY});
+            var angle = angleBetweenTwoVectors(rectCenterToBallCenter, normalLevel);
+
+            if(angle < toRad(45)){
                 ball.vec.x *= -1;
-            } else if(ballTopY - ball.radius < rect.yPos){
+            } else if(angle < toRad(135)){
                 ball.vec.y *= -1;
-            } else if(ballRightX + ball.radius > topRightX){
+            } else if(angle < toRad(180)){
                 ball.vec.x *= -1;
-            } else if(ballBottomY + ball.radius > bottomLeftY){
-                ball.vec.y *= -1;
-            } else if(pointDistance(ball, {x: rect.xPos, y: rect.yPos}) < 15 ||
-                pointDistance(ball, {x: rect.xPos, y: bottomLeftY}) < 15 ||
-                pointDistance(ball, {x: topRightX, y: rect.yPos}) < 15||
-                pointDistance(ball, {x: topRightX, y: bottomLeftY}) < 15) {
-                ball.vec.x *= -1;
-                ball.vec.y *= -1;
-                console.log('edge case')
-            } else {
+            }  else {
                 console.log('__rect__')
                 console.log(rect.xPos)
                 console.log(rect.yPos)
@@ -257,6 +298,24 @@ function ballAct(ball){
             if(rect.points <= 0){
                 array.splice(index, 1);
             }
+        } else {
+            return;
+        }
+
+    });
+
+    buffs.forEach(function(buff, index, array){
+        if(found || buff.points == 0) return;
+        var topRightX = buff.xPos + buff.width;
+        //var bottomRightX = buff.xPos + buff.width;
+        //var bottomRightY = buff.yPos + buff.height;
+        var bottomLeftY = buff.yPos + buff.height;
+
+        if(ballLeftX < topRightX && ballRightX > buff.xPos && ballBottomY > buff.yPos && ballTopY < bottomLeftY) {
+            buff.points--;
+            found = true;
+            buff.effect();
+            array.splice(index, 1);
         } else {
             return;
         }
@@ -286,6 +345,29 @@ function addSomeRects(){
             rects.push(rect);
         }
     }
+
+    if(Math.random() < config.balls.reboundBuffChance){
+        var buff = {
+            xPos: ((Math.random() * config.balls.rowElements) << 0) * config.balls.horizontalSize,
+            yPos: 1 * config.balls.verticalSize,
+            height: config.balls.verticalSize - 5,
+            width: config.balls.horizontalSize - 5,
+            duration: (Math.random() * config.balls.balls + 1) << 0,
+            effect: function() {
+                reboundBalls += buff.duration;
+            }
+        };
+        var blocked = false;
+        rects.forEach(function(rectToTest){
+            if(blocked) return;
+            if(rectToTest.xPos == buff.xPos && rectToTest.yPos == buff.yPos){
+                blocked = true;
+            }
+        });
+        if(!blocked){
+            buffs.push(buff);
+        }
+    }
 }
 
 function setEndPoint(event){
@@ -295,7 +377,7 @@ function setEndPoint(event){
 }
 
 $(document).ready(function () {
-    mouseStart = {x: config.size.width / 2, y: config.size.height - 25}
+    newStartPoint = {x: config.size.width / 2, y: config.size.height - 25}
     toSpawn = config.balls.balls;
     canvas = $("#canvas")[0];
     ctx = canvas.getContext("2d");
