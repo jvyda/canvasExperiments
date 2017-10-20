@@ -23,7 +23,7 @@ var config = {
 
 var toSpawn = 0;
 var spawning = false;
-var increment = false;
+var newSpawnSet = false;
 
 var mouseStart = {};
 var mouseStop = {};
@@ -34,12 +34,37 @@ var balls = [];
 var rects = [];
 var mouseDown = false;
 
+var colors = [
+    {
+        r: 0xf2, g: 0x69, b: 0x12
+    }, {
+        r: 0xf3, g: 0x8c, b: 0x14
+    }, {
+        r: 0xf4, g: 0xaf, b: 0x16
+    }, {
+        r: 0xf4, g: 0xd1, b: 0x17
+    }, {
+        r: 0xf5, g: 0xf3, b: 0x19
+    }, {
+        r: 0xd7, g: 0xf6, b: 0x1b
+    }, {
+        r: 0xb7, g: 0xf6, b: 0x1d
+    }, {
+        r: 0x98, g: 0xf7, b: 0x1f
+    }, {
+        r: 0x79, g: 0xf8, b: 0x21
+    }, {
+        r: 0x5a, g: 0xf8, b: 0x23
+    }
+];
+
+colors.forEach(addRGBStyle)
 
 function setPoint(event){
     if(spawning) return;
     if(mouseDown == false){
         mouseDown = true;
-        setShaft(event)
+        //setShaft(event)
     } else {
         mouseDown = false;
         spawning = true;
@@ -54,7 +79,7 @@ function startBall(cnt){
     var ball = {
         x: mouseStart.x,
         y: mouseStart.y,
-        radius: 2,
+        radius: 4,
         vec: vec
     };
     balls.push(ball);
@@ -77,7 +102,6 @@ function setTip(event) {
 function updateCanvas() {
     ctx.clearRect(0, 0, config.size.width, config.size.height);
     ballsAct();
-    rectsAct();
     paintBalls();
     paintRects();
     paintIndicator();
@@ -87,6 +111,10 @@ function updateCanvas() {
 }
 
 function paintIndicator(){
+    ctx.beginPath();
+    ctx.strokeStyle='black';
+    ctx.fillStyle='black';
+
     if(mouseDown){
         ctx.moveTo(mouseStart.x, mouseStart.y);
         ctx.lineTo(mouseStop.x, mouseStop.y);
@@ -97,16 +125,13 @@ function paintIndicator(){
 }
 
 function rectsAct(){
-    if(increment){
-        rects.forEach(function(rect){
-            rect.yPos += config.balls.verticalSize;
-        });
-        config.balls.balls++;
-        toSpawn = config.balls.balls;
-        addSomeRects();
-        increment = false;
-        spawning = false;
-    }
+    rects.forEach(function(rect){
+        rect.yPos += config.balls.verticalSize;
+    });
+    config.balls.balls++;
+    toSpawn = config.balls.balls;
+    addSomeRects();
+    spawning = false;
 }
 
 function paintBalls(){
@@ -119,10 +144,23 @@ function paintRects(){
 
 function paintRect(rect){
     ctx.beginPath();
+    ctx.strokeStyle="#ffffff";
+    var col = getColor(rect.points, rect.maxPoints);
+    if(col == undefined){
+        ctx.fillStyle = 'white'
+    } else {
+        ctx.fillStyle = col.styleRGB;
+    }
     ctx.rect(rect.xPos, rect.yPos, rect.width, rect.height);
-    ctx.stroke();
+    ctx.fill();
+    ctx.fillStyle = 'black';
     ctx.fillText(rect.points, rect.xPos + 20, rect.yPos + 20);
     ctx.stroke();
+}
+
+function getColor(value, maxValue){
+    var percent = value / maxValue;
+    return colors[(colors.length * percent - 1)<<0];
 }
 
 function paintBall(ball){
@@ -133,14 +171,21 @@ function paintBall(ball){
 
 function ballsAct(){
     balls.forEach(ballAct);
+    newSpawnSet = false;
+    if(rects.length == 0){
+        rectsAct();
+        mouseStart = {x: balls[0].x, y: config.size.height - 25};
+        balls = [];
+        return;
+    }
     balls.forEach(function(ball, index, array){
         if(ball.done){
             array.splice(index, 1);
         }
     });
 
-    if(balls.length == 0 && !increment && spawning){
-        increment = true;
+    if(balls.length == 0 && spawning){
+        rectsAct();
     }
 }
 
@@ -157,36 +202,55 @@ function ballAct(ball){
     }
 
     if((ball.y + ball.radius) > config.size.height) {
+        if(!newSpawnSet){
+            mouseStart = {x: ball.x, y: config.size.height - 25};
+            newSpawnSet = true;
+        }
         ball.done = true
     }
 
-    var nextX = ball.x + ball.vec.x * config.balls.speed;
-    var nextY = ball.y + ball.vec.y * config.balls.speed;
+    var nextX = ball.x;
+    var nextY = ball.y;
 
-    //var ballBottomY = nextY + ball.radius;
-    //var ballLeftX = nextX - ball.radius;
-    //var ballTopY = nextY - ball.radius;
-    //var ballTopX = nextX - ball.radius;
-    //var ballRightX = nextX + ball.radius;
+    var ballBottomY = nextY + ball.radius;
+    var ballLeftX = nextX - ball.radius;
+    var ballTopY = nextY - ball.radius;
+    var ballRightX = nextX + ball.radius;
 
     var found = false;
     rects.forEach(function(rect, index, array){
-        if(found) return;
+        if(found || rect.points == 0) return;
         var topRightX = rect.xPos + rect.width;
         //var bottomRightX = rect.xPos + rect.width;
         //var bottomRightY = rect.yPos + rect.height;
         var bottomLeftY = rect.yPos + rect.height;
 
-        if(nextX < topRightX && nextX > rect.xPos && nextY > rect.yPos && nextY < bottomLeftY) {
-            if(ball.x < rect.xPos){
+        if(ballLeftX < topRightX && ballRightX > rect.xPos && ballBottomY > rect.yPos && ballTopY < bottomLeftY) {
+            if(ballLeftX - ball.radius < rect.xPos){
                 ball.vec.x *= -1;
-            }
-            else if(ball.y < rect.yPos){
+            } else if(ballTopY - ball.radius < rect.yPos){
                 ball.vec.y *= -1;
-            } else if(ball.x > topRightX){
+            } else if(ballRightX + ball.radius > topRightX){
                 ball.vec.x *= -1;
-            } else if(ball.y > bottomLeftY){
+            } else if(ballBottomY + ball.radius > bottomLeftY){
                 ball.vec.y *= -1;
+            } else if(pointDistance(ball, {x: rect.xPos, y: rect.yPos}) < 15 ||
+                pointDistance(ball, {x: rect.xPos, y: bottomLeftY}) < 15 ||
+                pointDistance(ball, {x: topRightX, y: rect.yPos}) < 15||
+                pointDistance(ball, {x: topRightX, y: bottomLeftY}) < 15) {
+                ball.vec.x *= -1;
+                ball.vec.y *= -1;
+                console.log('edge case')
+            } else {
+                console.log('__rect__')
+                console.log(rect.xPos)
+                console.log(rect.yPos)
+                console.log(rect.height)
+                console.log(rect.width)
+                console.log('__ball__')
+                console.log(ball.x)
+                console.log(ball.y)
+                console.log(ball.radius)
             }
             rect.points--;
             found = true;
@@ -208,7 +272,8 @@ function addSomeRects(){
             yPos: 1 * config.balls.verticalSize,
             height: config.balls.verticalSize - 5,
             width: config.balls.horizontalSize - 5,
-            points: config.balls.balls
+            points: config.balls.balls,
+            maxPoints: config.balls.balls
         };
         var exists = false;
         rects.forEach(function(rectToTest){
@@ -230,6 +295,7 @@ function setEndPoint(event){
 }
 
 $(document).ready(function () {
+    mouseStart = {x: config.size.width / 2, y: config.size.height - 25}
     toSpawn = config.balls.balls;
     canvas = $("#canvas")[0];
     ctx = canvas.getContext("2d");
