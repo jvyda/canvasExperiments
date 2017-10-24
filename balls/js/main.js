@@ -15,7 +15,8 @@ var config = {
         verticalSize: window.innerHeight / 10,
         balls: 10,
         speed: 10,
-        reboundBuffChance: 0.25
+        reboundBuffChance: 0.25,
+        portalChance: 0.1
     },
     general: {
         fps: 30
@@ -36,11 +37,13 @@ var rects = [];
 var gameOver = false;
 
 var buffs = [];
+var portals = [];
 var reboundBalls = 0;
 var mouseDown = false;
 var newStartPoint;
 
 var fourtyFiveDegrees = toRad(45);
+var portalCounter = 1;
 var oneHundredThirtyFriveDegrees = toRad(135);
 var oneHundredEightyDegrees = toRad(180);
 
@@ -68,7 +71,7 @@ var colors = [
     }
 ];
 
-colors.forEach(addRGBStyle)
+colors.forEach(addRGBStyle);
 
 function setPoint(event){
     mouseStart = newStartPoint;
@@ -140,6 +143,7 @@ function updateCanvas() {
     if(!caseApplied){
         if(!gameOver){
             paintRects();
+            paintPortals();
             paintBuffs();
             paintBalls();
             paintIndicator();
@@ -149,6 +153,28 @@ function updateCanvas() {
     setTimeout(function () {
         animationId = requestAnimationFrame(updateCanvas);
     }, 1000 / config.general.fps)
+}
+
+function paintPortals(){
+    portals.forEach(paintPortal)
+}
+function paintPortal(portal){
+    ctx.beginPath();
+    ctx.fillStyle = 'orange';
+    ctx.rect(portal.source.xPos, portal.source.yPos, portal.source.width, portal.source.height);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'lightBlue';
+    ctx.rect(portal.target.xPos, portal.target.yPos, portal.target.width, portal.target.height);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.fillStyle = 'black';
+    ctx.fillText(portal.source.linkedWith, portal.source.xPos, portal.source.yPos + portal.source.height / 2);
+    ctx.fillText(portal.target.linkedWith, portal.target.xPos, portal.target.yPos + portal.target.height / 2);
+    ctx.fill();
+
 }
 
 var objectsToDisplay = [];
@@ -223,6 +249,13 @@ function rectsAct(){
             gameOver = true;
         }
     });
+    portals.forEach(function(portal, index, array){
+        portal.source.yPos += config.balls.verticalSize;
+        portal.target.yPos += config.balls.verticalSize;
+        if(portal.source.yPos > config.size.height - 50){
+            array.splice(index, 1);
+        }
+    });
     buffs.forEach(function(buff, index, array){
         buff.yPos += config.balls.verticalSize;
         if(buff.yPos > config.size.height - 50){
@@ -266,6 +299,7 @@ function getColor(value, maxValue){
 
 function paintBall(ball){
     ctx.beginPath();
+    ctx.fillStyle = 'black';
     ctx.arc(ball.x,ball.y,ball.radius,0,2*Math.PI);
     ctx.fill();
 }
@@ -340,9 +374,8 @@ function ballAct(ball){
             var centerX = rect.xPos + rect.width / 2;
             var centerY = rect.yPos + rect.height / 2;
             var rectCenterToBallCenter = createNormalizedVector(ball, {x: centerX, y: centerY});
-            var normalLevel = createNormalizedVector({x: centerX, y: centerY}, {x: centerX + 10, y: centerY});
+            var normalLevel = createNormalizedVector({x: centerX + 10, y: centerY}, {x: centerX, y: centerY});
             var angle = angleBetweenTwoVectors(rectCenterToBallCenter, normalLevel);
-
             if(angle < fourtyFiveDegrees){
                 ball.vec.x *= -1;
             } else if(angle < oneHundredThirtyFriveDegrees){
@@ -364,7 +397,7 @@ function ballAct(ball){
                 var centerX2 = rect.xPos + rect.width / 2;
                 var centerY2 = rect.yPos + rect.height / 2;
                 var rectCenterToBallCenter2 = createNormalizedVector(ball, {x: centerX2, y: centerY2});
-                var normalLevel2 = createNormalizedVector({x: centerX2, y: centerY2}, {x: centerX2 + 10, y: centerY2});
+                var normalLevel2 = createNormalizedVector({x: centerX2 + 10, y: centerY2}, {x: centerX2, y: centerY2});
                 var angle2 = angleBetweenTwoVectors(rectCenterToBallCenter2, normalLevel2);
 
                 if (angle2 < fourtyFiveDegrees) {
@@ -387,6 +420,8 @@ function ballAct(ball){
 
     });
 
+    found = false;
+
     buffs.forEach(function(buff, index, array){
         if(found || buff.points == 0) return;
         var topRightX = buff.xPos + buff.width;
@@ -397,11 +432,34 @@ function ballAct(ball){
         if(ballLeftX < topRightX && ballRightX > buff.xPos && ballBottomY > buff.yPos && ballTopY < bottomLeftY) {
             buff.points--;
             found = true;
-            buff.effect();
+            buff.effect(ball);
             array.splice(index, 1);
         } else {
             return;
         }
+
+    });
+    found = false;
+    portals.forEach(function(portal, index, array){
+        function portalCollision(portal, ball){
+            if(found) return;
+            var topRightX = portal.xPos + portal.width;
+            //var bottomRightX = portal.xPos + portal.width;
+            //var bottomRightY = portal.yPos + portal.height;
+            var bottomLeftY = portal.yPos + portal.height;
+            if(ballLeftX < topRightX && ballRightX > portal.xPos && ballBottomY > portal.yPos && ballTopY < bottomLeftY) {
+                found = true;
+                portal.effect(ball);
+            } else {
+                return;
+            }
+        }
+
+        portalCollision(portal.source, ball);
+        if(!found){
+            portalCollision(portal.target, ball)
+        }
+
 
     })
 }
@@ -414,11 +472,104 @@ function addSomeRects(){
             height: config.balls.verticalSize - 5,
             width: config.balls.horizontalSize - 5,
             duration: (Math.random() * config.balls.balls + 1) << 0,
-            effect: function() {
+            effect: function(ball) {
                 reboundBalls += buff.duration;
             }
         };
         buffs.push(buff);
+    }
+
+    if(Math.random() < config.balls.portalChance)
+    {
+        var source = {
+            xPos: ((Math.random() * config.balls.rowElements) << 0) * config.balls.horizontalSize,
+            yPos: ((Math.random() * config.balls.rows) << 0) * config.balls.verticalSize + config.balls.verticalSize / 2 - 7.5,
+            height: 15,
+            width: config.balls.verticalSize - 5,
+            linkedWith: portalCounter
+        };
+        var target = {
+            xPos: ((Math.random() * config.balls.rowElements) << 0) * config.balls.horizontalSize,
+            yPos: ((Math.random() * config.balls.rows) << 0) * config.balls.verticalSize + config.balls.verticalSize / 2 - 7.5,
+            height: 15,
+            width: config.balls.verticalSize - 5,
+            linkedWith: portalCounter
+        };
+
+        portalCounter++;
+        var centerX =  target.xPos + target.width / 2;
+        var centerY =  target.yPos + target.height / 2;
+        var base = createNormalizedVector({x: centerX, y: centerY}, {x : centerX + 10, y: centerY});
+        var lowerRight = createNormalizedVector({x: centerX, y: centerY}, {x: target.xPos + target.width, y: target.yPos + target.height});
+        var lowerLeft = createNormalizedVector({x: centerX, y: centerY}, {x: target.xPos, y: target.yPos + target.height});
+        target.angles = [angleBetweenTwoVectors(base, lowerRight), angleBetweenTwoVectors(base, lowerLeft)];
+        source.angles = [angleBetweenTwoVectors(base, lowerRight), angleBetweenTwoVectors(base, lowerLeft)];
+
+        var blocked = false;
+        if(target.yPos == source.yPos && target.xPos == source.xPos){
+            blocked = true;
+        }
+        buffs.forEach(function (buffToTest){
+            if(exists) return;
+            var sourceCenter = {
+                x: source.xPos + source.width / 2,
+                y: source.yPos + source.height / 2
+            };
+            if(sourceCenter.x > buffToTest.xPos && sourceCenter.x < (buffToTest.xPos + buffToTest.width) && sourceCenter.y > buffToTest.yPos && sourceCenter.y < (buffToTest.yPos + buffToTest.height)){
+                exists = true;
+            }
+            var targetCenter = {
+                x: target.xPos + target.width / 2,
+                y: target.yPos + target.height / 2
+            };
+            if(targetCenter.x > buffToTest.xPos && targetCenter.x < (buffToTest.xPos + buffToTest.width) && targetCenter.y > buffToTest.yPos && targetCenter.y < (buffToTest.yPos + buffToTest.height)){
+                exists = true;
+            }
+        });
+
+        function collisionWithPortal(ball, thisOne, partner){
+            var centerX = thisOne.xPos + thisOne.width / 2;
+            var centerY = thisOne.yPos + thisOne.height / 2;
+
+            var xOffset = ball.x - thisOne.xPos;
+            var yOffset = ball.y - thisOne.yPos;
+            var rectCenterToBallCenter = createNormalizedVector(ball, {x: centerX, y: centerY});
+            var normalLevel = createNormalizedVector({x: centerX + 10, y: centerY}, {x: centerX, y: centerY});
+            var angle = angleBetweenTwoVectors(rectCenterToBallCenter, normalLevel);
+            if(angle < thisOne.angles[0]){
+                ball.x = partner.xPos - ball.radius;
+                ball.y = partner.yPos + yOffset;
+            } else if(angle < thisOne.angles[1]){
+                if(ball.vec.y > 0){
+                    ball.y = partner.yPos + partner.height + ball.radius;
+                    ball.x = partner.xPos + xOffset;
+                } else {
+                    ball.y = partner.yPos - ball.radius;
+                    ball.x = partner.xPos + xOffset;
+                }
+            } else if(angle < oneHundredEightyDegrees){
+                ball.x = partner.xPos + partner.width + ball.radius;
+                ball.y = partner.yPos + yOffset;
+            }
+
+        }
+        // orange
+        source.effect = function(ball) {
+           collisionWithPortal(ball, source, target);
+        };
+
+        //blue
+        target.effect = function(ball) {
+            collisionWithPortal(ball, target, source);
+        };
+
+        var portal = {
+            source: source,
+            target: target
+        };
+        if(!blocked){
+            portals.push(portal)
+        }
     }
 
     var rectAmount = ((Math.random() * 9) << 0) + 1;
@@ -444,6 +595,23 @@ function addSomeRects(){
                 exists = true;
             }
         });
+        portals.forEach(function (portalToTest){
+            if(exists) return;
+            var sourceCenter = {
+                x: portalToTest.source.xPos + portalToTest.source.width / 2,
+                y: portalToTest.source.yPos + portalToTest.source.height / 2
+            };
+            if(sourceCenter.x > rect.xPos && sourceCenter.x < (rect.xPos + rect.width) && sourceCenter.y > rect.yPos && sourceCenter.y < (rect.yPos + rect.height)){
+                exists = true;
+            }
+            var targetCenter = {
+                x: portalToTest.target.xPos + portalToTest.target.width / 2,
+                y: portalToTest.target.yPos + portalToTest.target.height / 2
+            };
+            if(targetCenter.x > rect.xPos && targetCenter.x < (rect.xPos + rect.width) && targetCenter.y > rect.yPos && targetCenter.y < (rect.yPos + rect.height)){
+                exists = true;
+            }
+        });
         if(!exists){
             rects.push(rect);
         }
@@ -459,9 +627,9 @@ function setEndPoint(event){
 
 
 function buildBuffGradient(buff){
-    var yellowMagenta=ctx.createRadialGradient(buff.xPos + config.balls.horizontalSize / 2, buff.yPos + config.balls.verticalSize / 2, 5, buff.xPos + config.balls.horizontalSize / 2, buff.yPos + config.balls.verticalSize / 2, config.balls.horizontalSize / 2);
-    yellowMagenta.addColorStop(0, "magenta");
-    yellowMagenta.addColorStop(1, "yellow");
+    var yellowMagenta = ctx.createRadialGradient(buff.xPos + buff.width / 2, buff.yPos + buff.height / 2,  0, buff.xPos + buff.width / 2, buff.yPos + buff.height / 2, buff.width / 2);
+    yellowMagenta.addColorStop(0 ,"yellow");
+    yellowMagenta.addColorStop(1, "DarkMagenta");
     return yellowMagenta;
 }
 
