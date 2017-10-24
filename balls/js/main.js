@@ -16,7 +16,8 @@ var config = {
         balls: 10,
         speed: 10,
         reboundBuffChance: 0.25,
-        portalChance: 0.1
+        portalChance: 0.1,
+        simulationDepth: 5000
     },
     general: {
         fps: 30
@@ -95,7 +96,8 @@ function startBall(cnt){
         x: mouseStart.x,
         y: mouseStart.y,
         radius: 4,
-        vec: vec
+        vec: vec,
+        simulation: false
     };
     balls.push(ball);
     setTimeout(function(){
@@ -213,18 +215,40 @@ function paintBuff(buff){
     ctx.stroke();
 }
 
+function paintPrediction(){
+    var vec = createNormalizedVector(mouseStop, mouseStart);
+    var prediction = {
+        x: mouseStart.x,
+        y: mouseStart.y,
+        radius: 4,
+        vec: vec,
+        simulation: true
+    };
+
+    ctx.beginPath();
+    ctx.strokeStyle = 'red';
+    ctx.moveTo(prediction.x, prediction.y);
+    var cnt = 0;
+    while(prediction.y < config.size.height  && cnt < config.balls.simulationDepth) {
+        ballAct(prediction);
+        ctx.lineTo(prediction.x, prediction.y);
+        cnt++;
+    }
+    ctx.stroke();
+
+}
+
 function paintIndicator(){
     ctx.beginPath();
     ctx.strokeStyle='black';
     ctx.fillStyle='black';
 
     if(mouseDown){
-        ctx.moveTo(mouseStart.x, mouseStart.y);
-        ctx.lineTo(mouseStop.x, mouseStop.y);
-        ctx.stroke();
+        paintPrediction();
     }
+    ctx.beginPath();
     ctx.fillStyle = 'red';
-    ctx.rect(0, config.size.height - 30, toSpawn * 10, 10);
+    ctx.rect(0, config.size.height - 30, (toSpawn / config.balls.balls) * config.size.width / 2, 10);
     ctx.fill();
     ctx.beginPath();
     ctx.fillStyle = 'black';
@@ -342,7 +366,7 @@ function ballAct(ball){
         ball.vec.y *= -1;
     }
 
-    if((ball.y + ball.radius) > config.size.height) {
+    if((ball.y + ball.radius) > config.size.height && !ball.simulation) {
         if(reboundBalls <= 0){
             if(!newSpawnSet){
                 newStartPoint = {x: ball.x, y: config.size.height - 25};
@@ -408,10 +432,11 @@ function ballAct(ball){
                     ball.vec.x *= -1;
                 }
             }
-
-            rect.points--;
+            if(!ball.simulation) {
+                rect.points--;
+            }
             found = true;
-            if(rect.points <= 0){
+            if(rect.points <= 0 && !ball.simulation){
                 array.splice(index, 1);
             }
         } else {
@@ -429,7 +454,7 @@ function ballAct(ball){
         //var bottomRightY = buff.yPos + buff.height;
         var bottomLeftY = buff.yPos + buff.height;
 
-        if(ballLeftX < topRightX && ballRightX > buff.xPos && ballBottomY > buff.yPos && ballTopY < bottomLeftY) {
+        if(ballLeftX < topRightX && ballRightX > buff.xPos && ballBottomY > buff.yPos && ballTopY < bottomLeftY && !ball.simulation) {
             buff.points--;
             found = true;
             buff.effect(ball);

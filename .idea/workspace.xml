@@ -27,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/balls/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22406639">
-              <caret line="216" column="20" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="20" />
+            <state vertical-scroll-proportion="4.107884">
+              <caret line="220" column="21" selection-start-line="220" selection-start-column="11" selection-end-line="220" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -450,12 +450,6 @@
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
     </task>
-    <task id="LOCAL-00032" summary="fireWorks:&#10;-rockets now have a chance for the first flare to have bigger heads&#10;-removing not rendered elements from lists of trails/flares/rockets&#10;-increased falling speed, so it is noticeable">
-      <created>1495237893032</created>
-      <option name="number" value="00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1495237893032</updated>
-    </task>
     <task id="LOCAL-00033" summary="fireWorks:&#10;-reduced the factor of the headsize&#10;-introduced some central variables">
       <created>1495238550729</created>
       <option name="number" value="00033" />
@@ -744,7 +738,13 @@
       <option name="project" value="LOCAL" />
       <updated>1508792822652</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;">
+      <created>1508871458899</created>
+      <option name="number" value="00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1508871458924</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -754,6 +754,7 @@
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23149113" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24853373" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -762,7 +763,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -803,7 +803,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="nTriangles:&#10;-added overview image&#10;-resized canvas it mostly fits&#10;-made canvas background black" />
     <MESSAGE value="nTriangles:&#10;-improved decision algorithm for arc/direction finding, now crashes further in (even though it should hold all cases)" />
     <MESSAGE value="nTriangles:&#10;-added method to determine the min distance to another vertice (currently not needed, as it does not fix the error)" />
     <MESSAGE value="nTriangles:&#10;-fixed float comparisons&#10;-calculating the minimal length to the next vertice for the lenght of the new vertice&#10;-considering the distances to all the vertices in the triangle when selecting a vertice&#10;-added requestAnimation instead of direct recursive loop&#10;-added progress indicator&#10;-added download button" />
@@ -828,7 +827,8 @@
     <MESSAGE value="balls:&#10;- more colorful&#10;- shaft of new shot vector is the position of the first ball of the impact of the first ball&#10;- if no rects are left, reset immediately &#10;- changed some stuff for collision (still bad)" />
     <MESSAGE value="balls:&#10;- fixed bounce of rects&#10;- added rebound buff&#10;- added gameover check and screen&#10;- fixed bug that set the start point of still spawning balls to the location of the first ball which crashed. it will only happen on the next shot.&#10;" />
     <MESSAGE value="balls:&#10;- additional fix for collision with edges of rects (collision now done after the reaction as well, to see if the reaction was kinda correct)&#10;- fixed clicking without moving&#10;- added an simple way of handling an event moving over the screen (startcondition, condition, postevent and reset)&#10;- buffs now hold a gradient from magenta to yellow&#10;- added bars to indicate the numbers for rebounds and balls&#10;- moved spawning of buffs in front of rects so that the chance is actually defined and more likely on mobile (less place for rects)&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="balls:&#10;- additional fix for collision with edges of rects (collision now done after the reaction as well, to see if the reaction was kinda correct)&#10;- fixed clicking without moving&#10;- added an simple way of handling an event moving over the screen (startcondition, condition, postevent and reset)&#10;- buffs now hold a gradient from magenta to yellow&#10;- added bars to indicate the numbers for rebounds and balls&#10;- moved spawning of buffs in front of rects so that the chance is actually defined and more likely on mobile (less place for rects)&#10;" />
+    <MESSAGE value="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1199,8 +1199,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/balls/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22406639">
-          <caret line="216" column="20" selection-start-line="216" selection-start-column="20" selection-end-line="216" selection-end-column="20" />
+        <state vertical-scroll-proportion="4.107884">
+          <caret line="220" column="21" selection-start-line="220" selection-start-column="11" selection-end-line="220" selection-end-column="21" />
           <folding />
         </state>
       </provider>
