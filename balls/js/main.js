@@ -16,7 +16,7 @@ var config = {
         balls: 10,
         speed: 10,
         reboundBuffChance: 0.25,
-        portalChance: 0.1,
+        portalChance: 0.07,
         simulationDepth: 5000
     },
     general: {
@@ -97,7 +97,8 @@ function startBall(cnt){
         y: mouseStart.y,
         radius: 4,
         vec: vec,
-        simulation: false
+        simulation: false,
+        maxBounces: -1
     };
     balls.push(ball);
     setTimeout(function(){
@@ -222,14 +223,15 @@ function paintPrediction(){
         y: mouseStart.y,
         radius: 4,
         vec: vec,
-        simulation: true
+        simulation: true,
+        bounces: 2
     };
 
     ctx.beginPath();
-    ctx.strokeStyle = 'red';
+    ctx.strokeStyle = 'black';
     ctx.moveTo(prediction.x, prediction.y);
     var cnt = 0;
-    while(prediction.y < config.size.height  && cnt < config.balls.simulationDepth) {
+    while(prediction.bounces > 0 && cnt < config.balls.simulationDepth) {
         ballAct(prediction);
         ctx.lineTo(prediction.x, prediction.y);
         cnt++;
@@ -248,7 +250,7 @@ function paintIndicator(){
     }
     ctx.beginPath();
     ctx.fillStyle = 'red';
-    ctx.rect(0, config.size.height - 30, (toSpawn / config.balls.balls) * config.size.width / 2, 10);
+    ctx.rect(0, config.size.height - 30, (balls.length / config.balls.balls) * config.size.width / 2, 10);
     ctx.fill();
     ctx.beginPath();
     ctx.fillStyle = 'black';
@@ -277,6 +279,10 @@ function rectsAct(){
         portal.source.yPos += config.balls.verticalSize;
         portal.target.yPos += config.balls.verticalSize;
         if(portal.source.yPos > config.size.height - 50){
+            array.splice(index, 1);
+            return;
+        }
+        if(portal.target.yPos > config.size.height - 50){
             array.splice(index, 1);
         }
     });
@@ -360,10 +366,16 @@ function ballAct(ball){
 
     if ((ball.x + ball.radius) > config.size.width || (ball.x - ball.radius) < 0) {
         ball.vec.x *= -1;
+        if(ball.bounces > 0){
+            ball.bounces--;
+        }
     }
 
     if (ball.y - ball.radius < 0) {
         ball.vec.y *= -1;
+        if(ball.bounces > 0){
+            ball.bounces--;
+        }
     }
 
     if((ball.y + ball.radius) > config.size.height && !ball.simulation) {
@@ -406,6 +418,9 @@ function ballAct(ball){
                 ball.vec.y *= -1;
             } else if(angle < oneHundredEightyDegrees){
                 ball.vec.x *= -1;
+            }
+            if(ball.bounces > 0){
+                ball.bounces--;
             }
 
 
