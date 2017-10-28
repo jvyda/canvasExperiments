@@ -17,12 +17,24 @@ var config = {
         speed: 10,
         reboundBuffChance: 0.25,
         portalChance: 0.07,
-        simulationDepth: 5000
+        simulationDepth: 5000,
+        restartTaps: 3,
+        tapsFactor: 2,
+        resetTapsDecreaseInterval: 2
     },
     general: {
         fps: 30
     }
 };
+
+var mobile = 'ontouchstart' in window;
+
+
+if(mobile){
+    config.balls.tapsFactor = 3;
+}
+
+var timeouts = [];
 
 var toSpawn = 0;
 var spawning = false;
@@ -74,13 +86,58 @@ var colors = [
 
 colors.forEach(addRGBStyle);
 
+var restartRect = {
+    x: 0, y: 0, width: config.size.width * 0.2, height: config.size.height * 0.2
+};
+
+function isInRect(point, rect){
+    return point.x > rect.x && point.x < (rect.x + rect.width) && point.y > rect.y && rect.y < (rect.y + rect.height);
+}
+
+var doRestart = 0;
+var restarting = false;
+
 function setPoint(event){
+
+    var point = getMousePos(canvas, event);
+    if(isInRect(point, restartRect)){
+        doRestart++;
+        console.log(doRestart)
+        if(doRestart >= config.balls.restartTaps * config.balls.tapsFactor){
+            console.log('Restarting');
+            timeouts.forEach(function(timeout){
+                clearTimeout(timeout);
+            });
+            timeouts = [];
+            restarting = true;
+            rects = [];
+            buffs = [];
+            portals = [];
+            balls = [];
+            portalCounter = 1;
+            config.balls.balls = 10;
+            mouseDown = false;
+            mouseStop = {};
+            spawnStuff();
+            doRestart = 0;
+            // verrrrry cheap hack
+            // I couldnt get the mouse events to stop, because on mobile twice as much are sent
+            // so after resetting it, balls still spawned, because the event was triggered and therefore came into the lower
+            // lines of code... and spawned balls
+            timeouts.push(setTimeout(function(){
+                restarting = false;
+                spawning = false;
+                console.log('reseting restarting flag...')
+            }, 250));
+            return;
+        }
+    }
+    //setShaft(event)
     mouseStart = newStartPoint;
     if(spawning) return;
-    if(mouseDown == false){
+    if(!mouseDown){
         mouseDown = true;
-        mouseStop = getMousePos(canvas, event);
-        //setShaft(event)
+        mouseStop = point;
     } else {
         mouseDown = false;
         spawning = true;
@@ -100,10 +157,13 @@ function startBall(cnt){
         simulation: false,
         maxBounces: -1
     };
-    balls.push(ball);
-    setTimeout(function(){
-        startBall(cnt - 1);
-    }, 250)
+    if(!restarting) {
+        balls.push(ball);
+        timeouts.push(setTimeout(function(){
+            if(restarting) return;
+            startBall(cnt - 1);
+        }, 250))
+    }
 }
 
 function setShaft(event) {
@@ -144,7 +204,7 @@ function updateCanvas() {
     });
 
     if(!caseApplied){
-        if(!gameOver){
+        if(!gameOver && !restarting){
             paintRects();
             paintPortals();
             paintBuffs();
@@ -249,7 +309,7 @@ function paintIndicator(){
         paintPrediction();
     }
     ctx.beginPath();
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = 'lightBlue';
     ctx.rect(0, config.size.height - 30, (balls.length / config.balls.balls) * config.size.width / 2, 10);
     ctx.fill();
     ctx.beginPath();
@@ -294,8 +354,21 @@ function rectsAct(){
     });
     config.balls.balls++;
     toSpawn = config.balls.balls;
-    addSomeRects();
+    spawnStuff();
+    updateCookieStorage();
     spawning = false;
+}
+
+function updateCookieStorage(){
+    var objectToStore = {
+        rects: rects,
+        balls: config.balls.balls,
+        buffs: buffs,
+        portals: portals
+    };
+
+    Cookies.remove('balls');
+    Cookies.set('balls', objectToStore);
 }
 
 function paintBalls(){
@@ -345,11 +418,11 @@ function ballsAct(){
         if(ball.done){
             array.splice(index, 1);
         }
+        if(array.length == 0 && spawning){
+            rectsAct();
+        }
     });
 
-    if(balls.length == 0 && spawning){
-        rectsAct();
-    }
 }
 
 var placeHolder = {x: config.size.width / 2, y: config.size.height};
@@ -504,7 +577,7 @@ function ballAct(ball){
     })
 }
 
-function addSomeRects(){
+function spawnStuff(){
     if(Math.random() < config.balls.reboundBuffChance){
         var buff = {
             xPos: ((Math.random() * config.balls.rowElements) << 0) * config.balls.horizontalSize,
@@ -549,50 +622,19 @@ function addSomeRects(){
         if(target.yPos == source.yPos && target.xPos == source.xPos){
             blocked = true;
         }
-        buffs.forEach(function (buffToTest){
-            if(exists) return;
-            var sourceCenter = {
-                x: source.xPos + source.width / 2,
-                y: source.yPos + source.height / 2
-            };
-            if(sourceCenter.x > buffToTest.xPos && sourceCenter.x < (buffToTest.xPos + buffToTest.width) && sourceCenter.y > buffToTest.yPos && sourceCenter.y < (buffToTest.yPos + buffToTest.height)){
-                exists = true;
-            }
-            var targetCenter = {
-                x: target.xPos + target.width / 2,
-                y: target.yPos + target.height / 2
-            };
-            if(targetCenter.x > buffToTest.xPos && targetCenter.x < (buffToTest.xPos + buffToTest.width) && targetCenter.y > buffToTest.yPos && targetCenter.y < (buffToTest.yPos + buffToTest.height)){
-                exists = true;
-            }
-        });
+        if(!blocked)
+        blocked = blocked || overlaysRect(source);
+        if(!blocked)
+        blocked = blocked || overlaysBuff(source);
+        if(!blocked)
+        blocked = blocked || overlaysPortal(source);
+        if(!blocked)
+        blocked = blocked || overlaysRect(target);
+        if(!blocked)
+        blocked = blocked || overlaysBuff(target);
+        if(!blocked)
+        blocked = blocked || overlaysPortal(target);
 
-        function collisionWithPortal(ball, thisOne, partner){
-            var centerX = thisOne.xPos + thisOne.width / 2;
-            var centerY = thisOne.yPos + thisOne.height / 2;
-
-            var xOffset = ball.x - thisOne.xPos;
-            var yOffset = ball.y - thisOne.yPos;
-            var rectCenterToBallCenter = createNormalizedVector(ball, {x: centerX, y: centerY});
-            var normalLevel = createNormalizedVector({x: centerX + 10, y: centerY}, {x: centerX, y: centerY});
-            var angle = angleBetweenTwoVectors(rectCenterToBallCenter, normalLevel);
-            if(angle < thisOne.angles[0]){
-                ball.x = partner.xPos - ball.radius;
-                ball.y = partner.yPos + yOffset;
-            } else if(angle < thisOne.angles[1]){
-                if(ball.vec.y > 0){
-                    ball.y = partner.yPos + partner.height + ball.radius;
-                    ball.x = partner.xPos + xOffset;
-                } else {
-                    ball.y = partner.yPos - ball.radius;
-                    ball.x = partner.xPos + xOffset;
-                }
-            } else if(angle < oneHundredEightyDegrees){
-                ball.x = partner.xPos + partner.width + ball.radius;
-                ball.y = partner.yPos + yOffset;
-            }
-
-        }
         // orange
         source.effect = function(ball) {
            collisionWithPortal(ball, source, target);
@@ -623,35 +665,11 @@ function addSomeRects(){
             maxPoints: config.balls.balls
         };
         var exists = false;
-        rects.forEach(function(rectToTest){
-            if(exists) return;
-            if(rectToTest.xPos == rect.xPos && rectToTest.yPos == rect.yPos){
-                exists = true;
-            }
-        });
-        buffs.forEach(function(buffToTest){
-            if(exists) return;
-            if(buffToTest.xPos == rect.xPos && buffToTest.yPos == rect.yPos){
-                exists = true;
-            }
-        });
-        portals.forEach(function (portalToTest){
-            if(exists) return;
-            var sourceCenter = {
-                x: portalToTest.source.xPos + portalToTest.source.width / 2,
-                y: portalToTest.source.yPos + portalToTest.source.height / 2
-            };
-            if(sourceCenter.x > rect.xPos && sourceCenter.x < (rect.xPos + rect.width) && sourceCenter.y > rect.yPos && sourceCenter.y < (rect.yPos + rect.height)){
-                exists = true;
-            }
-            var targetCenter = {
-                x: portalToTest.target.xPos + portalToTest.target.width / 2,
-                y: portalToTest.target.yPos + portalToTest.target.height / 2
-            };
-            if(targetCenter.x > rect.xPos && targetCenter.x < (rect.xPos + rect.width) && targetCenter.y > rect.yPos && targetCenter.y < (rect.yPos + rect.height)){
-                exists = true;
-            }
-        });
+        exists = exists || overlaysRect(rect);
+        exists = exists || overlaysBuff(rect);
+        exists = exists || overlaysPortal(rect);
+
+
         if(!exists){
             rects.push(rect);
         }
@@ -665,6 +683,51 @@ function setEndPoint(event){
     }
 }
 
+function overlaysRect(rect){
+    var exists = false;
+    rects.forEach(function(rectToTest){
+        if(exists) return;
+        if(rectToTest.xPos == rect.xPos && rectToTest.yPos == rect.yPos){
+            exists = true;
+        }
+    });
+
+    return exists;
+}
+
+function overlaysBuff(rect){
+    var exists = false;
+    buffs.forEach(function(buffToTest){
+        if(exists) return;
+        if(buffToTest.xPos == rect.xPos && buffToTest.yPos == rect.yPos){
+            exists = true;
+        }
+    });
+    return exists;
+}
+
+function overlaysPortal(rect){
+    var exists = false;
+    portals.forEach(function (portalToTest){
+        if(exists) return;
+        var sourceCenter = {
+            x: portalToTest.source.xPos + portalToTest.source.width / 2,
+            y: portalToTest.source.yPos + portalToTest.source.height / 2
+        };
+        if(sourceCenter.x > rect.xPos && sourceCenter.x < (rect.xPos + rect.width) && sourceCenter.y > rect.yPos && sourceCenter.y < (rect.yPos + rect.height)){
+            exists = true;
+        }
+        var targetCenter = {
+            x: portalToTest.target.xPos + portalToTest.target.width / 2,
+            y: portalToTest.target.yPos + portalToTest.target.height / 2
+        };
+        if(targetCenter.x > rect.xPos && targetCenter.x < (rect.xPos + rect.width) && targetCenter.y > rect.yPos && targetCenter.y < (rect.yPos + rect.height)){
+            exists = true;
+        }
+    });
+
+    return exists;
+}
 
 function buildBuffGradient(buff){
     var yellowMagenta = ctx.createRadialGradient(buff.xPos + buff.width / 2, buff.yPos + buff.height / 2,  0, buff.xPos + buff.width / 2, buff.yPos + buff.height / 2, buff.width / 2);
@@ -672,6 +735,33 @@ function buildBuffGradient(buff){
     yellowMagenta.addColorStop(1, "DarkMagenta");
     return yellowMagenta;
 }
+
+function collisionWithPortal(ball, thisOne, partner){
+    var centerX = thisOne.xPos + thisOne.width / 2;
+    var centerY = thisOne.yPos + thisOne.height / 2;
+
+    var xOffset = ball.x - thisOne.xPos;
+    var yOffset = ball.y - thisOne.yPos;
+    var rectCenterToBallCenter = createNormalizedVector(ball, {x: centerX, y: centerY});
+    var normalLevel = createNormalizedVector({x: centerX + 10, y: centerY}, {x: centerX, y: centerY});
+    var angle = angleBetweenTwoVectors(rectCenterToBallCenter, normalLevel);
+    if(angle < thisOne.angles[0]){
+        ball.x = partner.xPos - ball.radius;
+        ball.y = partner.yPos + yOffset;
+    } else if(angle < thisOne.angles[1]){
+        if(ball.vec.y > 0){
+            ball.y = partner.yPos + partner.height + ball.radius;
+            ball.x = partner.xPos + xOffset;
+        } else {
+            ball.y = partner.yPos - ball.radius;
+            ball.x = partner.xPos + xOffset;
+        }
+    } else if(angle < oneHundredEightyDegrees){
+        ball.x = partner.xPos + partner.width + ball.radius;
+        ball.y = partner.yPos + yOffset;
+    }
+}
+
 
 
 $(document).ready(function () {
@@ -686,6 +776,7 @@ $(document).ready(function () {
     canvas.addEventListener("mousemove", setEndPoint, false);
     // Set up touch events for mobile, etc
     canvas.addEventListener("touchstart", function (e) {
+        if(restarting) return;
         mousePos = getTouchPos(canvas, e);
         var touch = e.touches[0];
         var mouseEvent = new MouseEvent("mousedown", {
@@ -696,11 +787,13 @@ $(document).ready(function () {
     }, false);
 
     canvas.addEventListener("touchend", function (e) {
+        if(restarting) return;
         var mouseEvent = new MouseEvent("mouseup", {
         });
         canvas.dispatchEvent(mouseEvent);
     }, false);
     canvas.addEventListener("touchmove", function (e) {
+        if(restarting) return;
         var touch = e.touches[0];
 
         mousePos = getTouchPos(canvas, e);
@@ -719,8 +812,42 @@ $(document).ready(function () {
             y: touchEvent.touches[0].clientY - rect.top
         };
     }
-    addSomeRects();
+    var possibleBalls = Cookies.getJSON('balls');
+    if(possibleBalls == undefined){
+        spawnStuff();
+    } else {
+        buffs = possibleBalls.buffs;
+        portals = possibleBalls.portals;
+        rects = possibleBalls.rects;
+
+        // it doesnt store functions
+        buffs.forEach(function(buff){
+            buff.effect = function(ball) {
+                reboundBalls += buff.duration;
+            }
+        });
+
+        portals.forEach(function(portal){
+            portal.source.effect = function(ball) {
+                collisionWithPortal(ball, portal.source, portal.target);
+            };
+
+            //blue
+            portal.target.effect = function(ball) {
+                collisionWithPortal(ball, portal.target, portal.source);
+            };
+        });
+
+
+        config.balls.balls = possibleBalls.balls;
+    }
     requestAnimationFrame(updateCanvas);
+
+    setInterval(function(){
+        if(doRestart > 0){
+            doRestart--;
+        }
+    }, config.balls.resetTapsDecreaseInterval * 1000)
 });
 
 

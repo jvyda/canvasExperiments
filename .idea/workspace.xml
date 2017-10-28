@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/js/js.cookie.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/balls/index.html" afterPath="$PROJECT_DIR$/balls/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/balls/js/main.js" afterPath="$PROJECT_DIR$/balls/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -27,8 +29,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/balls/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3713693">
-              <caret line="422" column="28" selection-start-line="422" selection-start-column="21" selection-end-line="422" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.47717842">
+              <caret line="825" column="46" selection-start-line="825" selection-start-column="46" selection-end-line="825" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -39,29 +41,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="221" column="48" selection-start-line="221" selection-start-column="48" selection-end-line="221" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/balls/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-              <folding>
-                <marker date="1508439690980" expanded="true" signature="599:752" placeholder="..." />
-                <marker date="1508439690980" expanded="true" signature="692:720" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/circleBs/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="33" column="5" selection-start-line="28" selection-start-column="2" selection-end-line="33" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -173,7 +152,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -355,6 +333,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -449,12 +428,6 @@
       <created>1491754888227</created>
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
-    </task>
-    <task id="LOCAL-00034" summary="fireWorks:&#10;-added actual second explosion which happens after the first one">
-      <created>1495311031771</created>
-      <option name="number" value="00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1495311031771</updated>
     </task>
     <task id="LOCAL-00035" summary="fireWorks:&#10;-added chance for trails to be far longer (secondary and primary)&#10;-don't add trails to the list if they are out of the canvas area&#10;-restructured config object&#10;-added some more values to config object">
       <created>1495319636146</created>
@@ -744,7 +717,13 @@
       <option name="project" value="LOCAL" />
       <updated>1508873431092</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;">
+      <created>1509014894803</created>
+      <option name="number" value="00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1509014894804</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -803,7 +782,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="nTriangles:&#10;-added method to determine the min distance to another vertice (currently not needed, as it does not fix the error)" />
     <MESSAGE value="nTriangles:&#10;-fixed float comparisons&#10;-calculating the minimal length to the next vertice for the lenght of the new vertice&#10;-considering the distances to all the vertices in the triangle when selecting a vertice&#10;-added requestAnimation instead of direct recursive loop&#10;-added progress indicator&#10;-added download button" />
     <MESSAGE value="nTriangles:&#10;-added possibility to set config via ui" />
     <MESSAGE value="nTriangles:&#10;-added zooming and panning&#10;-canvas size is now inner dimensions&#10;-changed default side to 250&#10;-fixed angle searching not working with small lengths&#10;-added color property to each vertice&#10;-for zooming we need to constanlty repaint the canvas&#10;&#10;" />
@@ -828,22 +806,16 @@
     <MESSAGE value="balls:&#10;- additional fix for collision with edges of rects (collision now done after the reaction as well, to see if the reaction was kinda correct)&#10;- fixed clicking without moving&#10;- added an simple way of handling an event moving over the screen (startcondition, condition, postevent and reset)&#10;- buffs now hold a gradient from magenta to yellow&#10;- added bars to indicate the numbers for rebounds and balls&#10;- moved spawning of buffs in front of rects so that the chance is actually defined and more likely on mobile (less place for rects)&#10;" />
     <MESSAGE value="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;" />
     <MESSAGE value="balls:&#10;- added a prediction to indicate in which direction the balls are going to fly" />
-    <option name="LAST_COMMIT_MESSAGE" value="balls:&#10;- added a prediction to indicate in which direction the balls are going to fly" />
+    <MESSAGE value="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/triangles/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44183564">
-          <caret line="23" column="33" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/circleBs/css/circleBs.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.6666665">
@@ -1169,10 +1141,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/balls/js/main.js">
+    <entry file="file://$PROJECT_DIR$/balls/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3713693">
-          <caret line="422" column="28" selection-start-line="422" selection-start-column="21" selection-end-line="422" selection-end-column="28" />
+        <state vertical-scroll-proportion="0.4610459">
+          <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
+          <folding>
+            <marker date="1509203157300" expanded="true" signature="599:752" placeholder="..." />
+            <marker date="1509203157300" expanded="true" signature="692:720" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/circleBs/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45850623">
+          <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1185,21 +1168,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/balls/index.html">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="19" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-          <folding>
-            <marker date="1508439690980" expanded="true" signature="599:752" placeholder="..." />
-            <marker date="1508439690980" expanded="true" signature="692:720" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="3.9180498">
+          <caret line="579" column="0" selection-start-line="579" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/circleBs/js/main.js">
+    <entry file="file://$PROJECT_DIR$/balls/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="33" column="5" selection-start-line="28" selection-start-column="2" selection-end-line="33" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.47717842">
+          <caret line="825" column="46" selection-start-line="825" selection-start-column="46" selection-end-line="825" selection-end-column="46" />
           <folding />
         </state>
       </provider>
