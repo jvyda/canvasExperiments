@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/common/js/js.cookie.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kolakoski/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kolakoski/js/main.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/kolakoski/js/plugins.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/balls/index.html" afterPath="$PROJECT_DIR$/balls/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/balls/js/main.js" afterPath="$PROJECT_DIR$/balls/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -18,7 +18,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -26,11 +26,31 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/balls/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.47717842">
-              <caret line="825" column="46" selection-start-line="825" selection-start-column="46" selection-end-line="825" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="816" column="21" selection-start-line="816" selection-start-column="21" selection-end-line="816" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/kolakoski/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4294606">
+              <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kolakoski/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -62,8 +82,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/clusterFilter/js/main.js" />
-        <option value="$PROJECT_DIR$/spirals/js/main.js" />
         <option value="$PROJECT_DIR$/collatzConjecture/js/main.js" />
         <option value="$PROJECT_DIR$/triangles/js/main.js" />
         <option value="$PROJECT_DIR$/circleBs/js/main.js" />
@@ -113,6 +131,8 @@
         <option value="$PROJECT_DIR$/voronoi/js/main.js" />
         <option value="$PROJECT_DIR$/balls/index.html" />
         <option value="$PROJECT_DIR$/balls/js/main.js" />
+        <option value="$PROJECT_DIR$/kolakoski/index.html" />
+        <option value="$PROJECT_DIR$/kolakoski/js/main.js" />
       </list>
     </option>
   </component>
@@ -152,7 +172,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -170,8 +189,18 @@
               <option name="myItemId" value="canvasExperiments" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+          </PATH>
+          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="voronoi" />
+              <option name="myItemId" value="canvasExperiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="canvasExperiments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kolakoski" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -185,145 +214,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="voronoi" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fireWorks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fireWorks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="circleBs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="circleBs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="balls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="canvasExperiments" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="balls" />
+              <option name="myItemId" value="kolakoski" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -333,6 +224,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -360,15 +252,15 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/unNamed" />
       <recent name="$PROJECT_DIR$/overview/img" />
       <recent name="$PROJECT_DIR$/nailIt/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common/js" />
     </key>
   </component>
   <component name="RunManager">
@@ -428,18 +320,6 @@
       <created>1491754888227</created>
       <option name="number" value="Default" />
       <updated>1491754888227</updated>
-    </task>
-    <task id="LOCAL-00035" summary="fireWorks:&#10;-added chance for trails to be far longer (secondary and primary)&#10;-don't add trails to the list if they are out of the canvas area&#10;-restructured config object&#10;-added some more values to config object">
-      <created>1495319636146</created>
-      <option name="number" value="00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1495319636146</updated>
-    </task>
-    <task id="LOCAL-00036" summary="fireWorks:&#10;-fixed objects without eventFun not being able to explode twice (only relevant for flares)&#10;-added chance for flares to explode twice, primary has chance reduced because of lag, secondary not working, because secondary has no eventFun">
-      <created>1495375024202</created>
-      <option name="number" value="00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1495375024202</updated>
     </task>
     <task id="LOCAL-00037" summary="fireWorks:&#10;-changed forEach to normal for loops, it seems performance is better">
       <created>1495388504487</created>
@@ -723,7 +603,19 @@
       <option name="project" value="LOCAL" />
       <updated>1509014894804</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="balls:&#10;- added ability to reset&#10;- state of the field (rects, buffs, portals, balls) is now stored in cookies and read out&#10;- changed ball indicator to light blue&#10;- reworked spawn blocking detection&#10;&#10;Common:&#10;-added cookie.js dependency">
+      <created>1509216403104</created>
+      <option name="number" value="00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1509216403105</updated>
+    </task>
+    <task id="LOCAL-00085" summary="two colors work">
+      <created>1509461613135</created>
+      <option name="number" value="00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1509461613136</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -782,8 +674,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="nTriangles:&#10;-fixed float comparisons&#10;-calculating the minimal length to the next vertice for the lenght of the new vertice&#10;-considering the distances to all the vertices in the triangle when selecting a vertice&#10;-added requestAnimation instead of direct recursive loop&#10;-added progress indicator&#10;-added download button" />
-    <MESSAGE value="nTriangles:&#10;-added possibility to set config via ui" />
     <MESSAGE value="nTriangles:&#10;-added zooming and panning&#10;-canvas size is now inner dimensions&#10;-changed default side to 250&#10;-fixed angle searching not working with small lengths&#10;-added color property to each vertice&#10;-for zooming we need to constanlty repaint the canvas&#10;&#10;" />
     <MESSAGE value="added initial version of hilbertCurve" />
     <MESSAGE value="orbitingSpheres:&#10;-fixed weight of some spheres&#10;-added third dimension to calculation" />
@@ -807,7 +697,9 @@
     <MESSAGE value="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;" />
     <MESSAGE value="balls:&#10;- added a prediction to indicate in which direction the balls are going to fly" />
     <MESSAGE value="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;" />
+    <MESSAGE value="balls:&#10;- added ability to reset&#10;- state of the field (rects, buffs, portals, balls) is now stored in cookies and read out&#10;- changed ball indicator to light blue&#10;- reworked spawn blocking detection&#10;&#10;Common:&#10;-added cookie.js dependency" />
+    <MESSAGE value="two colors work" />
+    <option name="LAST_COMMIT_MESSAGE" value="two colors work" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -816,20 +708,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/circleBs/css/circleBs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6666665">
-          <caret line="7" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/triangles/css/triangles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9216">
-          <caret line="32" column="10" selection-start-line="32" selection-start-column="10" selection-end-line="32" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/jsTree/css/jsTree.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2704">
@@ -1145,10 +1023,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4610459">
           <caret line="24" column="40" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
-          <folding>
-            <marker date="1509203157300" expanded="true" signature="599:752" placeholder="..." />
-            <marker date="1509203157300" expanded="true" signature="692:720" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1156,6 +1030,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45850623">
           <caret line="36" column="22" selection-start-line="36" selection-start-column="22" selection-end-line="36" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.9180498">
+          <caret line="579" column="0" selection-start-line="579" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/balls/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="816" column="21" selection-start-line="816" selection-start-column="21" selection-end-line="816" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1168,18 +1056,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js">
+    <entry file="file://$PROJECT_DIR$/kolakoski/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.9180498">
-          <caret line="579" column="0" selection-start-line="579" selection-start-column="0" selection-end-line="579" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/balls/js/main.js">
+    <entry file="file://$PROJECT_DIR$/kolakoski/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.47717842">
-          <caret line="825" column="46" selection-start-line="825" selection-start-column="46" selection-end-line="825" selection-end-column="46" />
+        <state vertical-scroll-proportion="0.4294606">
+          <caret line="23" column="22" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
           <folding />
         </state>
       </provider>
