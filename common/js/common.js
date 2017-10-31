@@ -389,3 +389,7 @@ function setCoordinateToColor(x, y, color) {
 function eventIsKey(event, code) {
     return event.keyCode == code || event.charCode == code || event.which == code;
 }
+
+function randomInteger(n){
+    return (Math.random() * n) << 0
+}
