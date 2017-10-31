@@ -9,20 +9,28 @@ var config = {
         height: window.innerHeight
     },
     kolakoski: {
-        width: Math.min(15, window.innerWidth / (20 * 2)),
+        width: Math.min(25, window.innerWidth / (20 * 2)),
         center: {
             x: window.innerWidth / 2,
             y: window.innerHeight / 2
         },
-        sequences: 12,
-        sequenceLength: 20,
+        sequences: 7,
+        sequenceLength: 50,
         piePart: 0.75,
-        pieStartingPoint: 0.66,
-        rainbowFrequency: 0.1,
+        pieStartingPoint: 0.63,
+        rainbowFrequency: 0.01,
         digits: [1, 2],
-        paintDigits: [1, 2, 3, 4],
-        fullSizeBlocks: false,
-        paintAll: false
+        paintDigits: [1, 2],
+        fullSizing: {
+            active: false,
+            arc: 0.01,
+            width: 1
+        },
+        paintAll: true
+    },
+    general: {
+        fps: 30,
+        scala: 1
     }
 };
 
@@ -90,16 +98,17 @@ function renderSequence(sequence, radius, width, sequenceLevel){
     var arcPerDigit = totalArc / (getSum(sequence));
 
     var startArc = - 2 * Math.PI * config.kolakoski.pieStartingPoint;
-    if(!config.kolakoski.fullSizeBlocks){
-        width -= 1;
+    if(!config.kolakoski.fullSizing.active){
+        width -= config.kolakoski.fullSizing.width;
     }
     for(var i = 0; i < sequence.length; i++){
         if(config.kolakoski.paintAll || config.kolakoski.paintDigits.indexOf(sequence[i]) > -1) {
             ctx.beginPath();
-            ctx.strokeStyle = getNextRainbowColor().styleRGB;
+            ctx.strokeStyle = rainbowColors[(i / sequence.length * rainbowColors.length) << 0].styleRGB;
+            //ctx.strokeStyle = colors[sequence[i]];
             var arcTargetToPaint = startArc + arcPerDigit * sequence[i];
-            if(!config.kolakoski.fullSizeBlocks){
-                arcTargetToPaint -= 0.01;
+            if(!config.kolakoski.fullSizing.active){
+                arcTargetToPaint -= config.kolakoski.fullSizing.arc;
             }
             ctx.arc(config.kolakoski.center.x, config.kolakoski.center.y, radius, startArc, arcTargetToPaint);
             ctx.lineWidth = width;
@@ -118,7 +127,7 @@ function getNextRainbowColor(){
     return color;
 }
 
-var color = ['', 'red', 'green', 'yellow', 'blue', 'orange', 'black', 'brown'];
+var colors = ['', 'red', 'green', 'yellow', 'blue', 'orange', 'black', 'brown'];
 
 function getSum(sequence){
     var sum = 0;
@@ -155,17 +164,87 @@ function getInsertValue(){
 var globalCounter = 0;
 var rainbowColors = [];
 
+function updateCanvas(){
+    ctx.clearRect(0, 0, config.size.width, config.size.height);
+    ctx.translate(toMove.x, toMove.y);
+    toMove.x = 0;
+    toMove.y = 0;
+    for(var s = 0; s < sequence.length; s++){
+        renderSequence(sequence[s], sequence.length * config.kolakoski.width - s * config.kolakoski.width, config.kolakoski.width, s);
+    }
+    setTimeout(function () {
+        animationId = requestAnimationFrame(updateCanvas);
+    }, 1000 / config.general.fps)
+}
+
 $(document).ready(function () {
-    canvas = $("#canvas")[0];
+    var canvasJQuery = $("#canvas");
+    canvas = canvasJQuery[0];
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
     canvas.height = config.size.height;
+    canvas.addEventListener("mousedown", mouseClick, false);
+    canvas.addEventListener("mouseup", mouseClick, false);
+    canvas.addEventListener("mousemove", drag, false);
+    canvasJQuery.on('wheel', mouseWheelEvent);
+    trackTransforms(ctx);
 
     fillWithSpecialStartBecauseThisSucks();
     generateSequence();
     rainbowColors = createRainbowColors();
 
-    for(var s = 0; s < sequence.length; s++){
-        renderSequence(sequence[s], sequence.length * config.kolakoski.width - s * config.kolakoski.width, config.kolakoski.width, s);
-    }
+
+    requestAnimationFrame(updateCanvas);
+
+
 });
+
+var lastDrag = {
+    x: 0,
+    y: 0
+};
+
+var toMove = {
+    x: 0,
+    y: 0
+};
+
+var scalePoint = {
+    x: 0,
+    y: 0
+};
+
+
+var mouseDown = false;
+
+function mouseClick(event){
+    mouseDown = !mouseDown;
+    if(mouseDown){
+        var mousePos = getMousePos(canvas, event);
+        mousePos.x /= config.general.scala;
+        mousePos.y /= config.general.scala;
+        lastDrag = mousePos;
+    }
+}
+
+function drag(event){
+    if(mouseDown){
+        var mousePos = getMousePos(canvas, event);
+        mousePos.x /= config.general.scala;
+        mousePos.y /= config.general.scala;
+        toMove.x += mousePos.x - lastDrag.x;
+        toMove.y += mousePos.y - lastDrag.y;
+        lastDrag = mousePos;
+    }
+}
+
+function mouseWheelEvent(event) {
+    scalePoint = getMousePos(canvas, event);
+    scalePoint = ctx.transformedPoint(scalePoint.x, scalePoint.y);
+    var scaleTo = event.originalEvent.deltaY < 0 ? 1.1 : 1/1.1;
+    config.general.scala *= scaleTo;
+    ctx.translate(scalePoint.x, scalePoint.y);
+    ctx.scale(scaleTo, scaleTo);
+    ctx.translate(-scalePoint.x, -scalePoint.y);
+    event.preventDefault()
+}
