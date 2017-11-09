@@ -49,7 +49,9 @@ config.fireWorks = {
         radius: 2,
         rocketHeadAlphaFactor: 0.995,
         secondExplosionChance: 0.2
-    }
+    },
+    rainbowFrequency: 0.01,
+    rainBowChance: 0.1
 };
 
 var mouseStart;
@@ -136,6 +138,7 @@ function generateDefaultFlare() {
     defaultFlare.secondExplosionDone = false;
     defaultFlare.radius = config.fireWorks.primaryFlare.radius;
     defaultFlare.postFun = defaultPostSlopeFun;
+    defaultFlare.isRainbow = false;
     return defaultFlare;
 }
 
@@ -182,25 +185,33 @@ function startRocket() {
         firstExplosionDone: false,
         secondExplosionDone: false,
         longerFlare: Math.random() < config.fireWorks.primaryFlare.longerFlareChance,
-        longerSecondaryFlare: Math.random() < config.fireWorks.secondaryFlare.longerFlareChance
+        longerSecondaryFlare: Math.random() < config.fireWorks.secondaryFlare.longerFlareChance,
+        colorIndex: 0
     };
-    var colorSchemeToUse = colorSchemes[1];
-    var secondColorSchemeToUse = colorSchemes[2];
 
-    var illegal = false;
-    if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
-        // just for eva, no magenta/red and green combination
-        do {
-            colorSchemeToUse = randomElement(colorSchemes);
-            secondColorSchemeToUse = randomElement(colorSchemes);
-            illegal = isIllegalColorTransition(colorSchemeToUse, rocket.colorSchemes[0]);
-            illegal = illegal || isIllegalColorTransition(secondColorSchemeToUse, rocket.colorSchemes[0]);
-            illegal = illegal || isIllegalColorTransition(colorSchemeToUse, secondColorSchemeToUse);
-        } while (illegal);
+    var isRainbow = Math.random() < config.fireWorks.rainBowChance;
+    if(!isRainbow){
+        var colorSchemeToUse = colorSchemes[1];
+        var secondColorSchemeToUse = colorSchemes[2];
+
+        var illegal = false;
+        if (Math.random() < config.fireWorks.secondaryFlare.colorChangeChance) {
+            // just for eva, no magenta/red and green combination
+            do {
+                colorSchemeToUse = randomElement(colorSchemes);
+                secondColorSchemeToUse = randomElement(colorSchemes);
+                illegal = isIllegalColorTransition(colorSchemeToUse, rocket.colorSchemes[0]);
+                illegal = illegal || isIllegalColorTransition(secondColorSchemeToUse, rocket.colorSchemes[0]);
+                illegal = illegal || isIllegalColorTransition(colorSchemeToUse, secondColorSchemeToUse);
+            } while (illegal);
+        }
+        rocket.colorSchemes.push(colorSchemeToUse);
+        rocket.colorSchemes.push(secondColorSchemeToUse);
+        converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
+    } else {
+        rocket.colorSchemes = [rainbowColors, rainbowColors, rainbowColors];
+        rocket.isRainbow = true;
     }
-    rocket.colorSchemes.push(colorSchemeToUse);
-    rocket.colorSchemes.push(secondColorSchemeToUse);
-    converColorToRgbaWithAlphaPlaceholderStyle(rocket.color);
 
     if (Math.random() < config.fireWorks.primaryFlare.flareHeadChance) {
         rocket.drawHead = true;
@@ -211,8 +222,21 @@ function startRocket() {
 function renderFlareTrailItem(trailItem, flare) {
     if (trailItem.alpha < config.fireWorks.minAlpha)  return;
     var color = randomElement(flare.colorScheme);
+    if(flare.isRainbow){
+        color = normalFlare(trailItem, flare)
+    }
+    // cheap fix, for some reason it was undefined...
+    if(color === undefined){
+       color = randomElement(flare.colorScheme);
+    }
     color.alpha = trailItem.alpha;
     setCoordinateToColor(trailItem.x << 0, trailItem.y << 0, color);
+}
+
+function normalFlare(trailItem, flare){
+    var color = flare.colorScheme[trailItem.colorIndex];
+    trailItem.colorIndex %= flare.colorScheme.length;
+    return color;
 }
 
 function setCoordinateToColor(x, y, color) {
@@ -232,11 +256,13 @@ function drawRocket(rocket) {
     }
     for(var mainFlareI = 0; mainFlareI < rocket.flares.length; mainFlareI++){
         var mainFlare = rocket.flares[mainFlareI];
+        mainFlare.colorIndex++;
         for(var mainFlareTrailI = 0; mainFlareTrailI < mainFlare.trail.length; mainFlareTrailI++){
             renderFlareTrailItem(mainFlare.trail[mainFlareTrailI], mainFlare)
         }
         for(var subFlareI = 0; subFlareI < mainFlare.flares.length; subFlareI++){
             var subFlare = mainFlare.flares[subFlareI];
+            subFlare.colorIndex++;
             for(var subFlareTrailI = 0; subFlareTrailI < subFlare.trail.length; subFlareTrailI++){
                 renderFlareTrailItem(subFlare.trail[subFlareTrailI], subFlare)
             }
@@ -401,6 +427,8 @@ function createFlare(object, baseFlare, flareAmount, colorScheme, parameter) {
         if (parameter.longerFlare) {
             newFlare.maxAge = randomNumberButAtLeast(config.size.height, config.size.height / 20);
         }
+        newFlare.isRainbow = object.isRainbow;
+        newFlare.colorIndex = 0;
         newFlare.colorScheme = colorScheme;
         newFlare.nVec = normalizeVector(vec);
         newFlare.x = object.x;
@@ -412,7 +440,9 @@ function createFlare(object, baseFlare, flareAmount, colorScheme, parameter) {
 
 function defaultPostSlopeFun(object) {
     if (!object.dead && object.y < config.size.height && object.x < config.size.width) {
-        object.trail.push({x: object.x, y: object.y, alpha: object.alpha});
+        object.trail.push({x: object.x, y: object.y, alpha: object.alpha, colorIndex: object.colorIndex});
+        // colorIndex is for increasing the index in the rainbow color scheme
+        object.colorIndex += 3;
     }
     for (var trailIndex = 0; trailIndex < object.trail.length; trailIndex++) {
         var trailItem = object.trail[trailIndex];
@@ -464,6 +494,8 @@ function setTip(event) {
     startRocket();
 }
 
+var rainbowColors = [];
+
 $(document).ready(function () {
     canvas = $('#canvas')[0];
     canvas.width = config.size.width;
@@ -472,5 +504,7 @@ $(document).ready(function () {
     $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
     imageData_default = ctx.getImageData(0, 0, config.size.width, config.size.height);
     imageData = ctx.getImageData(0, 0, config.size.width, config.size.height);
+    rainbowColors = createRainbowColors(config.fireWorks.rainbowFrequency);
+    rainbowColors.forEach(converColorToRgbaWithAlphaPlaceholderStyle);
     requestAnimationFrame(updateCanvas);
 });

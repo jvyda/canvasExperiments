@@ -139,21 +139,6 @@ function getSum(sequence){
 
 var newValueCounter = -1;
 
-function createRainbowColors(){
-    var frequency = config.kolakoski.rainbowFrequency;
-    var colors = [];
-    var most = 2 * Math.PI / frequency;
-    for (var i = 0; i < most; ++i) {
-        var red   = Math.sin(frequency * i + 0) * 127 + 128;
-        var green = Math.sin(frequency * i + 2) * 127 + 128;
-        var blue  = Math.sin(frequency * i + 4) * 127 + 128;
-        var color = {r: red << 0, g: green << 0, b: blue << 0};
-        addRGBStyle(color);
-        colors.push(color)
-    }
-    return colors;
-}
-
 
 function getInsertValue(){
     newValueCounter++;
@@ -191,8 +176,7 @@ $(document).ready(function () {
 
     fillWithSpecialStartBecauseThisSucks();
     generateSequence();
-    rainbowColors = createRainbowColors();
-
+    rainbowColors = createRainbowColors(config.kolakoski.rainbowFrequency);
 
     requestAnimationFrame(updateCanvas);
 
