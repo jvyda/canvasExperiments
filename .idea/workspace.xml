@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="overview:&#10;- added unNamed to overview">
-      <change beforePath="" afterPath="$PROJECT_DIR$/overview/img/unNamed_preview.png" />
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="overview:">
+      <change beforePath="" afterPath="$PROJECT_DIR$/overview/img/kolaKoski_preview.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/kolakoski/index.html" afterPath="$PROJECT_DIR$/kolaKoski/index.html" />
+      <change beforePath="$PROJECT_DIR$/kolakoski/js/main.js" afterPath="$PROJECT_DIR$/kolaKoski/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/kolakoski/js/plugins.js" afterPath="$PROJECT_DIR$/kolaKoski/js/plugins.js" />
       <change beforePath="$PROJECT_DIR$/overview/index.html" afterPath="$PROJECT_DIR$/overview/index.html" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -23,11 +26,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/kolaKoski/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="64" lean-forward="false" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+              <folding>
+                <marker date="1512131505635" expanded="true" signature="603:756" ph="..." />
+                <marker date="1512131505635" expanded="true" signature="696:724" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/overview/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
-              <caret line="36" column="67" lean-forward="false" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
+            <state relative-caret-position="476">
+              <caret line="28" column="73" lean-forward="false" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -64,7 +80,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/collatzConjecture/js/main.js" />
         <option value="$PROJECT_DIR$/triangles/js/main.js" />
         <option value="$PROJECT_DIR$/circleBs/js/main.js" />
         <option value="$PROJECT_DIR$/common/css/main.css" />
@@ -114,6 +129,7 @@
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/kolakoski/js/main.js" />
         <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
+        <option value="$PROJECT_DIR$/kolaKoski/index.html" />
         <option value="$PROJECT_DIR$/overview/index.html" />
       </list>
     </option>
@@ -153,6 +169,11 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="kolaKoski" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
@@ -283,14 +304,7 @@
       <workItem from="1510257749660" duration="4514000" />
       <workItem from="1511898172157" duration="495000" />
       <workItem from="1512055929966" duration="74000" />
-      <workItem from="1512129218567" duration="2050000" />
-    </task>
-    <task id="LOCAL-00039" summary="fireWorks:&#10;-changed controls to be two independent mouse clicks instead of dragging, dragging lagged and did not work on mobile">
-      <created>1495778831491</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1495778831491</updated>
+      <workItem from="1512129218567" duration="2588000" />
     </task>
     <task id="LOCAL-00040" summary="orbitingSpheres:&#10;-added it!">
       <created>1496513279754</created>
@@ -628,11 +642,18 @@
       <option name="project" value="LOCAL" />
       <updated>1509485279317</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="overview:&#10;- added unNamed to overview">
+      <created>1512131383662</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1512131383662</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7133000" />
+    <option name="totallyTimeSpent" value="7671000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -995,13 +1016,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kolakoski/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1023,7 +1037,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/kolakoski/js/main.js">
+    <entry file="file://$PROJECT_DIR$/kolaKoski/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="178" column="75" lean-forward="false" selection-start-line="178" selection-start-column="75" selection-end-line="178" selection-end-column="75" />
@@ -1048,10 +1062,21 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/kolaKoski/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="64" lean-forward="false" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+          <folding>
+            <marker date="1512131505635" expanded="true" signature="603:756" ph="..." />
+            <marker date="1512131505635" expanded="true" signature="696:724" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/overview/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="67" lean-forward="false" selection-start-line="36" selection-start-column="67" selection-end-line="36" selection-end-column="67" />
+        <state relative-caret-position="476">
+          <caret line="28" column="73" lean-forward="false" selection-start-line="28" selection-start-column="73" selection-end-line="28" selection-end-column="73" />
           <folding />
         </state>
       </provider>
