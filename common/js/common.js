@@ -192,11 +192,7 @@ function createNormalizedVector(tip, shaft) {
 }
 
 function rotate90Deg(vec){
-    var temp = vec.x;
-    vec.x = vec.y;
-    vec.y = temp;
-    vec.y *= -1;
-    return vec;
+    return {x: vec.y, y: vec.x * -1}
 }
 
 function vectorLenght(vect) {
@@ -406,4 +402,19 @@ function createRainbowColors(frequency){
         colors.push(color)
     }
     return colors;
+}
+
+
+function getPoint(basePoint, arc, distance){
+    return  {
+        x:  basePoint.x + distance * Math.cos(arc),
+        y:  basePoint.y + distance * Math.sin(arc)
+    }
+}
+
+function getPointVec(basePoint, vec, distance){
+    return {
+        x: basePoint.x + vec.x * distance,
+        y: basePoint.y + vec.y * distance
+    }
 }
