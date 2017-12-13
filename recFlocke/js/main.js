@@ -38,7 +38,7 @@ var config = {
                 lengthDir: 1 + morphAmount,
                 amountOfSpreads: 4,
                 amountOfSpreadsRange: [1, 5],
-                amountOfSpreadsDir: 1 + morphAmount,
+                amountOfSpreadsDir: 0,
                 arc: thatAngle,
                 arcRange: [thatAngle, thatAngle],
                 arcDir: 0,
@@ -63,7 +63,7 @@ var config = {
         fps: 30,
         morphDistance: morphAmount,
         lineWidthMethod: {
-            innerWidth: 8,
+            innerWidth: 9,
             outerWidth: 9
         }
     }
@@ -94,7 +94,7 @@ function createSpreadOptions(){
         length: valueInRange(config.flocke.structures.spread.lengthRange),
         lengthDir: randomDirection(),
         amountOfSpreads: valueInRange(config.flocke.structures.spread.amountOfSpreadsRange),
-        amountOfSpreadsDir: randomDirection(),
+        amountOfSpreadsDir: 0,
         arc: valueInRange(config.flocke.structures.spread.arcRange),
         arcDir: 0,
         spreadDistance: valueInRange(config.flocke.structures.spread.spreadDistanceRange),
@@ -136,8 +136,10 @@ structureFun.push({fun: createSpreadStructure, optFun: createSpreadOptions, opt:
 structureFun.push({fun: createConjoinedStructure, optFun: createConjoinedOptions, opt: config.flocke.structures.conjoined});
 
 var alternativeFlocke;
+var lastFlocke  = -1;
 $(document).ready(function () {
     canvas = $("#canvas")[0];
+    $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
     canvas.height = config.size.height;
@@ -152,7 +154,8 @@ $(document).ready(function () {
 });
 
 function morphAndPaint(){
-    var newFlocke = morphAround(alternativeFlocke);
+    var newFlocke = morphAround(alternativeFlocke, lastFlocke);
+    lastFlocke = newFlocke;
     paintAlternativeFlocke(newFlocke);
     setTimeout(function () {
         requestAnimationFrame(morphAndPaint);
@@ -312,7 +315,7 @@ function doItManually(struct){
 function doItViaLineWidth(struct) {
     ctx.beginPath();
     ctx.lineWidth = config.flocke.lineWidthMethod.outerWidth;
-    ctx.strokeStyle = 'black';
+    ctx.strokeStyle = 'white';
     paintStruct(struct);
     ctx.stroke();
     ctx.beginPath();
@@ -414,12 +417,15 @@ function createSpreadStructure(pole, flocke, depth, funToUse, startPoint){
         spreadLineLower.next = spreadLineMiddle;
         newStruct.lines.push(spreadLineUpper);
         newStruct.lines.push(spreadLineLower);
-        var newCentralPoint = {
-            point: pointInLine
-        };
-        centralLine.next = newCentralPoint;
-        centralLine = newCentralPoint;
+
     }
+    var newCentralPoint = {
+        // end point is better to be further away than latest central point
+        // TODO why + distance * 2?
+        point: getPoint(startPoint, pole.arc, funToUse.opt.length + distance * 2)
+    };
+    centralLine.next = newCentralPoint;
+    centralLine = newCentralPoint;
     newStruct.lines.push(centralLinetoAdd);
     newStruct.endPoint = centralLine.point;
     return newStruct;
@@ -492,7 +498,8 @@ function getBaseStruct(funToUse) {
 }
 
 
-function morphAround(alternativeFlocke){
+function morphAround(alternativeFlocke, lastFlocke){
+    lastFlocke = lastFlocke != -1 ? lastFlocke : alternativeFlocke;
     var newFlocke = createBasicEquallyDistributedFlocke();
 
     var structConfigToUse = [];
@@ -506,16 +513,62 @@ function morphAround(alternativeFlocke){
         var depth = 0;
         structConfigToUse.forEach(function(structConfig, index){
             var newlyCreatedStructToReplace = structConfig.structDefinition.fun(pole, newFlocke, depth, structConfigToUse[index].structDefinition, getFarthestStruct(pole, newFlocke));
-            pole.structs.push(newlyCreatedStructToReplace);
             if (structConfig.structDefinition.fun === createConjoinedStructure && alternativeFlocke.poles.indexOf(pole) === alternativeFlocke.poles.length - 1 && depth > 0){
                 fixConjoined(depth, newFlocke);
             }
+            if(structConfig.structDefinition.fun === createSpreadStructure){
+                morphSizesInSpread(newlyCreatedStructToReplace, lastFlocke.poles[0].structs[depth], structConfigToUse[index].structDefinition.opt, pole)
+            }
+            pole.structs.push(newlyCreatedStructToReplace);
             depth++;
         })
     });
     return newFlocke;
 }
 
+
+function morphSizesInSpread(spreadStruct, oldStruct, opts, pole){
+    // last line is the center line
+    for(var lineIndex = 0; lineIndex < spreadStruct.lines.length - 1; lineIndex++){
+        var line = spreadStruct.lines[lineIndex];
+        var pointInMiddle = line.next;
+        var distance;
+        // #spreads can change.. they do not exist yet....
+        if(oldStruct.lines[lineIndex]){
+            distance = pointDistance(oldStruct.lines[lineIndex].point, oldStruct.lines[lineIndex].next.point);
+        } else {
+            distance = 1;
+        }
+        var newPoint = getPointVec(pointInMiddle.point, createNormalizedVector(line.point, pointInMiddle.point), distance * (opts.spreadDistanceDir));
+        line.point = newPoint;
+    }
+    // currently disabled, would add another spread, but is to abrupt and also buggy..
+    if(false && Math.random() < 0.01){
+        opts.amountOfSpreads += 1;
+        var lastPointOfCenterLine = spreadStruct.lines[spreadStruct.lines.length - 1].next.point;
+        var arc = pole.arc;
+        var lowerPoint = getPoint(lastPointOfCenterLine, pole.arc + toRad(arc), 1);
+        var upperPoint = getPoint(lastPointOfCenterLine, pole.arc - toRad(arc), 1);
+        var spreadLineUpper = {
+            point: upperPoint
+        };
+        var spreadLineMiddle = {
+            point: lastPointOfCenterLine
+        };
+        spreadLineUpper.next = spreadLineMiddle;
+        var spreadLineLower = {
+            point: lowerPoint
+        };
+        spreadLineLower.next = spreadLineMiddle;
+        var oldCenterLine = spreadStruct.lines[spreadStruct.lines.length -1];
+        spreadStruct.lines.splice(spreadStruct.lines.length - 1, 1);
+        spreadStruct.lines.push(spreadLineUpper);
+        spreadStruct.lines.push(spreadLineLower);
+        oldCenterLine.next.point = getPoint(lastPointOfCenterLine, pole.arc, 25);
+        spreadStruct.lines.push(oldCenterLine);
+    }
+
+}
 
 function getIncreasedValues(usedOptions, possibleOptions){
     var newOptions = {};
