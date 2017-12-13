@@ -22,10 +22,7 @@ var config = {
                 arc: thatAngle,
                 arcRange: [thatAngle, thatAngle],
                 sideLength: 60,
-                sideLengthRange: [60, 60],
-                // TODO rework this
-                endLength: 60,
-                endLengthRange: [50, 80]
+                sideLengthRange: [60, 60]
             },
             baseLine: {
                 length: 25,
@@ -62,8 +59,7 @@ var config = {
 function createDoubleEdgedOptions(){
     return {
         arc: valueInRange(config.flocke.structures.doubleEdged.arcRange),
-        sideLength: valueInRange(config.flocke.structures.doubleEdged.sideLengthRange),
-        endLength: valueInRange(config.flocke.structures.doubleEdged.endLengthRange)
+        sideLength: valueInRange(config.flocke.structures.doubleEdged.sideLengthRange)
     }
 }
 
@@ -85,7 +81,7 @@ function createSpreadOptions(){
 function createConjoinedOptions(){
     return {
         length: valueInRange(config.flocke.structures.conjoined.lengthRange),
-        amountOfSpreads: valueInRange(config.flocke.structures.conjoined.branchPositionRange),
+        branchPositionRange: valueInRange(config.flocke.structures.conjoined.branchPositionRange),
         arcUp: valueInRange(config.flocke.structures.conjoined.arcUpRange)
     }
 }
@@ -109,13 +105,7 @@ var topFlocke = {
     arc: 2 * Math.PI * 0.25
 };
 
-var alternativeFlocke = {
-    poles: [],
-    center: {
-        x: config.size.width / 2,
-        y: config.size.height / 2
-    }
-};
+
 
 var structureFun = [];
 structureFun.push({fun: createBaseLineStructure, optFun: createBaseLineOptions, opt: config.flocke.structures.baseLine});
@@ -129,9 +119,20 @@ $(document).ready(function () {
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
     canvas.height = config.size.height;
+    var alternativeFlocke = {
+        poles: [],
+        center: {
+            x: config.size.width / 2,
+            y: config.size.height / 2
+        }
+    };
     createAlternativeFlocke();
     paintAlternativeFlocke();
-
+    setTimeout(function(){
+        morphAround();
+        console.log('new?')
+        paintAlternativeFlocke();
+    }, 2000)
     //createFlocke({x: config.size.width / 2, y: config.size.height / 2}, topFlocke, 1);
 
 });
@@ -187,13 +188,13 @@ function createFlocke(baseCenter, flocke, depth) {
     //createFlocke({x: flocke.vertices[0].top.x, y: flocke.vertices[0].top.y}, flocke.vertices[0].flocke, depth + 1)
 }
 
-function fixConjoined(depth) {
+function fixConjoined(depth, flocke) {
     return;
-    var lastPole = alternativeFlocke.poles[alternativeFlocke.poles.length - 1];
+    var lastPole = flocke.poles[flocke.poles.length - 1];
     var lastStructure = lastPole.structs[depth];
     var lastLine = lastStructure.lines[lastStructure.lines.length - 2];
     var lastPoint = getLastInLine(lastLine);
-    var firstPole = alternativeFlocke.poles[0];
+    var firstPole = flocke.poles[0];
     var firstStructure = firstPole.structs[depth];
     var firstLine = firstStructure.lines[lastStructure.lines.length - 3];
     var firstPoint = getLastInLine(firstLine);
@@ -220,15 +221,16 @@ function createAlternativeFlocke() {
         } else {
             options = funPtr.opt;
         }
-        structureFunsToUse.push({fun: funPtr.fun, opt: options});
+        structureFunsToUse.push({fun: funPtr.fun, opt: options, defaultOpt: funPtr.opt});
     }
 
     alternativeFlocke.poles.forEach(function (pole) {
         var depth = 0;
         structureFunsToUse.forEach(function(funToUse){
-            funToUse.fun(pole, alternativeFlocke, depth, funToUse.opt);
+            var newStructCreated = funToUse.fun(pole, alternativeFlocke, depth, funToUse, getFarthestStruct(pole, alternativeFlocke));
+            pole.structs.push(newStructCreated);
             if (funToUse.fun === createConjoinedStructure && alternativeFlocke.poles.indexOf(pole) === alternativeFlocke.poles.length - 1 && depth > 0){
-                fixConjoined(depth);
+                fixConjoined(depth, alternativeFlocke);
             }
             depth++;
         })
@@ -289,6 +291,7 @@ function doItViaLineWidth(struct) {
 }
 
 function paintAlternativeFlocke() {
+    ctx.clearRect(0, 0, config.size.width, config.size.height);
     alternativeFlocke.poles.forEach(function (pole) {
         pole.structs.forEach(function (struct) {
             doItViaLineWidth(struct);
@@ -298,29 +301,26 @@ function paintAlternativeFlocke() {
 }
 
 
-function createBaseLineStructure(pole, flocke, depth, options) {
-    var startPoint = getFarthestStruct(pole, flocke);
-    var newStruct = getBaseStruct();
+function createBaseLineStructure(pole, flocke, depth, funToUse, startPoint) {
+    var newStruct = getBaseStruct(funToUse);
 
     var centerLine = {
         point: startPoint
     };
 
     var centerEnd = {
-        point: getPoint(startPoint, pole.arc, options.length)
+        point: getPoint(startPoint, pole.arc, funToUse.opt.length)
     };
 
     centerLine.next = centerEnd;
     newStruct.lines.push(centerLine);
     newStruct.endPoint = centerEnd.point;
-    pole.structs.push(newStruct);
-
+    return newStruct;
 }
 
-function createDoubleEdgeStructure(pole, flocke, depth, options) {
-    var startPoint = getFarthestStruct(pole, flocke);
-    var newStruct = getBaseStruct();
-    var lowerMiddlePoint = getPoint(startPoint, pole.arc + toRad(options.arc), options.sideLength);
+function createDoubleEdgeStructure(pole, flocke, depth, funToUse,  startPoint) {
+    var newStruct = getBaseStruct(funToUse);
+    var lowerMiddlePoint = getPoint(startPoint, pole.arc + toRad(funToUse.opt.arc), funToUse.opt.sideLength);
     var lowerLineStart = {
         point: startPoint, next: undefined
     };
@@ -331,14 +331,14 @@ function createDoubleEdgeStructure(pole, flocke, depth, options) {
     lowerLineStart.next = lowerLineMiddle;
 
     var lowerLineEnd = {
-        point:  getPoint(lowerMiddlePoint, pole.arc - toRad(options.arc), options.sideLength),
+        point:  getPoint(lowerMiddlePoint, pole.arc - toRad(funToUse.opt.arc), funToUse.opt.sideLength),
         next: undefined
     };
     lowerLineMiddle.next = lowerLineEnd;
 
     newStruct.lines.push(lowerLineStart);
 
-    var upperMiddlePoint = getPoint(startPoint, pole.arc - toRad(options.arc), options.sideLength);
+    var upperMiddlePoint = getPoint(startPoint, pole.arc - toRad(funToUse.opt.arc), funToUse.opt.sideLength);
     var upperLineStart = {
         point: startPoint, next: undefined
     };
@@ -349,29 +349,25 @@ function createDoubleEdgeStructure(pole, flocke, depth, options) {
     upperLineStart.next = upperLineMiddle;
 
     var upperLineEnd = {
-        point: getPoint(upperMiddlePoint, pole.arc + toRad(options.arc), options.sideLength),
+        point: getPoint(upperMiddlePoint, pole.arc + toRad(funToUse.opt.arc), funToUse.opt.sideLength),
         next: undefined
     };
     upperLineMiddle.next = upperLineEnd;
     newStruct.lines.push(upperLineStart);
     newStruct.endPoint = upperLineEnd.point;
 
-    var arc = angleBetweenTwoVectors(createNormalizedVector(lowerMiddlePoint, startPoint), createNormalizedVector(upperLineEnd.point, startPoint));
-    console.log(toDeg(arc))
-    pole.structs.push(newStruct)
-
+    return newStruct;
 }
 
-function createSpreadStructure(pole, flocke, depth, options){
-    var startPoint = getFarthestStruct(pole, flocke);
-    var newStruct = getBaseStruct();
-    var distance = options.length / options.amountOfSpreads;
+function createSpreadStructure(pole, flocke, depth, funToUse, startPoint){
+    var newStruct = getBaseStruct(funToUse);
+    var distance = funToUse.opt.length / funToUse.opt.amountOfSpreads;
     var centralLine = {point: startPoint};
     var centralLinetoAdd = centralLine;
-    for(var spreadI = 0; spreadI < options.amountOfSpreads; spreadI++){
+    for(var spreadI = 0; spreadI < funToUse.opt.amountOfSpreads; spreadI++){
         var pointInLine = getPoint(startPoint, pole.arc, distance * (spreadI + 1));
-        var lowerPoint = getPoint(pointInLine, pole.arc + toRad(options.arc), options.spreadDistance);
-        var upperPoint = getPoint(pointInLine, pole.arc - toRad(options.arc), options.spreadDistance);
+        var lowerPoint = getPoint(pointInLine, pole.arc + toRad(funToUse.opt.arc), funToUse.opt.spreadDistance);
+        var upperPoint = getPoint(pointInLine, pole.arc - toRad(funToUse.opt.arc), funToUse.opt.spreadDistance);
         var spreadLineUpper = {
             point: upperPoint
         };
@@ -393,38 +389,37 @@ function createSpreadStructure(pole, flocke, depth, options){
     }
     newStruct.lines.push(centralLinetoAdd);
     newStruct.endPoint = centralLine.point;
-    pole.structs.push(newStruct);
+    return newStruct;
 }
 
-function createConjoinedStructure(pole, flocke, depth, options){
-    var startPoint = getFarthestStruct(pole, flocke);
-    var newStruct = getBaseStruct();
+function createConjoinedStructure(pole, flocke, depth, funToUse, startPoint){
+    var newStruct = getBaseStruct(funToUse);
     var innerFactor = 25;
     var targetFactor = 60;
     var upperLine = {
-        point: getPoint(startPoint, pole.arc, options.branchPosition)
+        point: getPoint(startPoint, pole.arc, funToUse.opt.branchPosition)
     };
     var nextUpper = {
-        point: getPoint(upperLine.point, pole.arc - 2 * toRad(options.arcUp), depth * innerFactor)
+        point: getPoint(upperLine.point, pole.arc - 2 * toRad(funToUse.opt.arcUp), depth * innerFactor)
     };
 
     upperLine.next = nextUpper;
     var finalUpper = {
-        point: getPoint(upperLine.point, pole.arc - toRad(options.arcUp), depth * targetFactor)
+        point: getPoint(upperLine.point, pole.arc - toRad(funToUse.opt.arcUp), depth * targetFactor)
     };
     nextUpper.next = finalUpper;
     newStruct.lines.push(upperLine);
 
     var lowerLine = {
-        point: getPoint(startPoint, pole.arc, options.branchPosition)
+        point: getPoint(startPoint, pole.arc, funToUse.opt.branchPosition)
     };
     var nextLower = {
-        point: getPoint(lowerLine.point, pole.arc + 2 * toRad(options.arcUp), depth * innerFactor)
+        point: getPoint(lowerLine.point, pole.arc + 2 * toRad(funToUse.opt.arcUp), depth * innerFactor)
     };
 
     lowerLine.next = nextLower;
     var finalLower = {
-        point: getPoint(lowerLine.point, pole.arc + toRad(options.arcUp), depth * targetFactor)
+        point: getPoint(lowerLine.point, pole.arc + toRad(funToUse.opt.arcUp), depth * targetFactor)
     };
     nextLower.next = finalLower;
     newStruct.lines.push(lowerLine);
@@ -433,7 +428,7 @@ function createConjoinedStructure(pole, flocke, depth, options){
     };
 
     var centralEndPoint = {
-        point: getPoint(startPoint, pole.arc, options.length)
+        point: getPoint(startPoint, pole.arc, funToUse.opt.length)
     };
     centralLine.next = centralEndPoint;
     if(flocke.poles.length > 0 && false){
@@ -447,7 +442,7 @@ function createConjoinedStructure(pole, flocke, depth, options){
     }
     newStruct.lines.push(centralLine);
     newStruct.endPoint = centralEndPoint.point;
-    pole.structs.push(newStruct);
+    return newStruct;
 }
 
 
@@ -459,9 +454,60 @@ function getLastInLine(line){
     return lineToUse;
 }
 
-function getBaseStruct() {
-    return {lines: [], points: []}
+function getBaseStruct(funToUse) {
+    return {lines: [], points: [], structDefinition: funToUse}
 }
+
+
+function morphAround(){
+    var newFlocke = {
+        poles: [],
+        center: {
+            x: config.size.width / 2,
+            y: config.size.height / 2
+        }
+    };
+    alternativeFlocke.poles.forEach(function (pole) {
+        newFlocke.poles.push({
+            structs: [],
+            arc: pole.arc
+        });
+    });
+
+    var oldStructs = [];
+
+    alternativeFlocke.poles[0].structs.forEach(function(struct){
+        struct.structDefinition.opt = getIncreasedValues(struct.structDefinition.opt, struct.structDefinition.defaultOpt);
+        oldStructs.push(struct);
+    });
+
+
+    newFlocke.poles.forEach(function (pole, poleIndex, arrayOfPoles) {
+        var depth = 0;
+        oldStructs.forEach(function(newStruct, index, arrayOfStructs){
+            var newlyCreatedStructToReplace = newStruct.structDefinition.fun(pole, newFlocke, depth, oldStructs[index].structDefinition, getFarthestStruct(pole, newFlocke));
+            pole.structs.push(newlyCreatedStructToReplace);
+            if (newStruct.structDefinition.fun === createConjoinedStructure && alternativeFlocke.poles.indexOf(pole) === alternativeFlocke.poles.length - 1 && depth > 0){
+                fixConjoined(depth, newFlocke);
+            }
+            depth++;
+        })
+    });
+
+    alternativeFlocke = newFlocke;
+}
+
+
+function getIncreasedValues(usedOptions, possibleOptions){
+    var newOptions = {};
+    for(var option in usedOptions){
+        if(possibleOptions[option + 'Range']){
+            newOptions[option] = valueInRange(possibleOptions[option + 'Range']);
+        }
+    }
+    return newOptions;
+}
+
 
 function getFarthestStruct(pole, flocke) {
     var foundStruct;
