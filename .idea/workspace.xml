@@ -25,8 +25,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2122">
-              <caret line="128" column="4" lean-forward="false" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+            <state relative-caret-position="351">
+              <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="113" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -330,14 +330,7 @@
       <workItem from="1512482995839" duration="1420000" />
       <workItem from="1512561139625" duration="14525000" />
       <workItem from="1512585411928" duration="6387000" />
-      <workItem from="1513160207902" duration="6785000" />
-    </task>
-    <task id="LOCAL-00042" summary="orbitingSpheres:&#10;-fixed preview&#10;-fixed hotkey for showing names">
-      <created>1496516809222</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1496516809222</updated>
+      <workItem from="1513160207902" duration="6848000" />
     </task>
     <task id="LOCAL-00043" summary="orbitingSpheres:&#10;-fixed zooming and showing names in firefox">
       <created>1496519076723</created>
@@ -675,11 +668,18 @@
       <option name="project" value="LOCAL" />
       <updated>1512592147968</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="first change to morphing the flocke">
+      <created>1513168725226</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1513168725227</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45866000" />
+    <option name="totallyTimeSpent" value="45929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -741,7 +741,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="hilbertCurves:&#10;-added help display&#10;&#10;&#10;orbitingSpheres:&#10;-help and date is now always visible with zooming (hide when zooming too much)" />
     <MESSAGE value="hilbertCurve:&#10;-added alternative pattern" />
     <MESSAGE value="hilbertCurve:&#10;-added possibility to randomize the patterns&#10;-added hotkey to toggle links" />
     <MESSAGE value="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)" />
@@ -766,7 +765,8 @@
     <MESSAGE value="overview:&#10;- added unNamed to overview" />
     <MESSAGE value="overview:&#10;-added kolaKoski" />
     <MESSAGE value="added recFlocke" />
-    <option name="LAST_COMMIT_MESSAGE" value="added recFlocke" />
+    <MESSAGE value="first change to morphing the flocke" />
+    <option name="LAST_COMMIT_MESSAGE" value="first change to morphing the flocke" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1107,8 +1107,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2122">
-          <caret line="128" column="4" lean-forward="false" selection-start-line="128" selection-start-column="4" selection-end-line="128" selection-end-column="4" />
+        <state relative-caret-position="351">
+          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="113" selection-end-column="2" />
           <folding />
         </state>
       </provider>

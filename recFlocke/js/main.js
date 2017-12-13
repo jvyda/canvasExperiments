@@ -105,7 +105,13 @@ var topFlocke = {
     arc: 2 * Math.PI * 0.25
 };
 
-
+var alternativeFlocke = {
+    poles: [],
+    center: {
+        x: config.size.width / 2,
+        y: config.size.height / 2
+    }
+};
 
 var structureFun = [];
 structureFun.push({fun: createBaseLineStructure, optFun: createBaseLineOptions, opt: config.flocke.structures.baseLine});
@@ -119,13 +125,6 @@ $(document).ready(function () {
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
     canvas.height = config.size.height;
-    var alternativeFlocke = {
-        poles: [],
-        center: {
-            x: config.size.width / 2,
-            y: config.size.height / 2
-        }
-    };
     createAlternativeFlocke();
     paintAlternativeFlocke();
     setTimeout(function(){
