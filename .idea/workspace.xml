@@ -25,8 +25,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="113" selection-end-column="2" />
+            <state relative-caret-position="1071">
+              <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -81,6 +81,7 @@
       <find>options</find>
       <find>fixConjoined</find>
       <find>morphAr</find>
+      <find>alternativeFlocke</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -174,8 +175,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,12 +198,12 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="spirals" type="462c0819:PsiDirectoryNode" />
+              <item name="triangles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="spirals" type="462c0819:PsiDirectoryNode" />
+              <item name="triangles" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -330,14 +331,9 @@
       <workItem from="1512482995839" duration="1420000" />
       <workItem from="1512561139625" duration="14525000" />
       <workItem from="1512585411928" duration="6387000" />
-      <workItem from="1513160207902" duration="6848000" />
-    </task>
-    <task id="LOCAL-00043" summary="orbitingSpheres:&#10;-fixed zooming and showing names in firefox">
-      <created>1496519076723</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1496519076723</updated>
+      <workItem from="1513160207902" duration="11058000" />
+      <workItem from="1513177451317" duration="572000" />
+      <workItem from="1513181465916" duration="1503000" />
     </task>
     <task id="LOCAL-00044" summary="orbitingSpheres:&#10;-adapted orbiting directions">
       <created>1496559121363</created>
@@ -675,11 +671,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513168725227</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="minor error on commit">
+      <created>1513168784835</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1513168784835</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45929000" />
+    <option name="totallyTimeSpent" value="52214000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -741,7 +744,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="hilbertCurve:&#10;-added alternative pattern" />
     <MESSAGE value="hilbertCurve:&#10;-added possibility to randomize the patterns&#10;-added hotkey to toggle links" />
     <MESSAGE value="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)" />
     <MESSAGE value="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve" />
@@ -766,7 +768,8 @@
     <MESSAGE value="overview:&#10;-added kolaKoski" />
     <MESSAGE value="added recFlocke" />
     <MESSAGE value="first change to morphing the flocke" />
-    <option name="LAST_COMMIT_MESSAGE" value="first change to morphing the flocke" />
+    <MESSAGE value="minor error on commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="minor error on commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -986,13 +989,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/triangles/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="258" column="79" lean-forward="false" selection-start-line="258" selection-start-column="79" selection-end-line="258" selection-end-column="79" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/balls/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1060,19 +1056,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spirals/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="50" selection-end-column="90" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="10336">
           <caret line="608" column="41" lean-forward="false" selection-start-line="608" selection-start-column="41" selection-end-line="608" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1080,7 +1067,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6919">
           <caret line="407" column="9" lean-forward="false" selection-start-line="407" selection-start-column="9" selection-end-line="407" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1088,9 +1074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,10 +1088,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/spirals/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="833">
+          <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="50" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/triangles/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4233">
+          <caret line="249" column="35" lean-forward="false" selection-start-line="245" selection-start-column="3" selection-end-line="249" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="351">
-          <caret line="107" column="0" lean-forward="false" selection-start-line="107" selection-start-column="0" selection-end-line="113" selection-end-column="2" />
+        <state relative-caret-position="1071">
+          <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
           <folding />
         </state>
       </provider>
