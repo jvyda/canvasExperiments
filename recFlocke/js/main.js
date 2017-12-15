@@ -20,8 +20,8 @@ var config = {
         structureAmount: 4,
         structures: {
             doubleEdged: {
-                arc: thatAngle,
-                arcRange: [thatAngle, thatAngle],
+                arc: thatAngle/2,
+                arcRange: [thatAngle/2, thatAngle/2],
                 arcDir: 0,
                 sideLength: 60,
                 sideLengthRange: [60, 60],

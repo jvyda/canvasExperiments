@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/retroFlocke/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/retroFlocke/js/main.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/retroFlocke/js/plugins.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/recFlocke/js/main.js" afterPath="$PROJECT_DIR$/recFlocke/js/main.js" />
     </list>
@@ -25,21 +28,31 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4998">
-              <caret line="575" column="24" lean-forward="true" selection-start-line="575" selection-start-column="24" selection-end-line="575" selection-end-column="24" />
+            <state relative-caret-position="374">
+              <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/retroFlocke/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recFlocke/index.html">
+        <entry file="file://$PROJECT_DIR$/retroFlocke/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state relative-caret-position="340">
+              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding>
-                <marker date="1512576627880" expanded="true" signature="603:756" ph="..." />
-                <marker date="1512576627880" expanded="true" signature="696:724" ph="..." />
+                <marker date="1513351915063" expanded="true" signature="605:758" ph="..." />
+                <marker date="1513351915063" expanded="true" signature="698:726" ph="..." />
               </folding>
             </state>
           </provider>
@@ -57,8 +70,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>color</find>
-      <find>randomElement</find>
       <find>flares[</find>
       <find>flares.push</find>
       <find>flareite</find>
@@ -87,9 +98,12 @@
       <find>width</find>
       <find>innerWidt</find>
       <find>false &amp;&amp;</find>
+      <find>flocke</find>
+      <find>css</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
+      <replace>retroFlocke</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -101,8 +115,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/common/css/main.css" />
-        <option value="$PROJECT_DIR$/dotLines/index.html" />
         <option value="$PROJECT_DIR$/circleBs/index.html" />
         <option value="$PROJECT_DIR$/dotLines/css/dotLines.css" />
         <option value="$PROJECT_DIR$/triangles/index.html" />
@@ -151,6 +163,8 @@
         <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/recFlocke/index.html" />
+        <option value="$PROJECT_DIR$/retroFlocke/index.html" />
+        <option value="$PROJECT_DIR$/retroFlocke/js/main.js" />
         <option value="$PROJECT_DIR$/recFlocke/js/main.js" />
       </list>
     </option>
@@ -204,12 +218,12 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="triangles" type="462c0819:PsiDirectoryNode" />
+              <item name="retroFlocke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="triangles" type="462c0819:PsiDirectoryNode" />
+              <item name="retroFlocke" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -245,15 +259,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common/js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/overview/img" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/unNamed" />
       <recent name="$PROJECT_DIR$/nailIt/img" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -343,14 +357,7 @@
       <workItem from="1513177451317" duration="572000" />
       <workItem from="1513181465916" duration="3307000" />
       <workItem from="1513194936414" duration="5540000" />
-      <workItem from="1513351227008" duration="191000" />
-    </task>
-    <task id="LOCAL-00046" summary="various:&#10;-chaned red/green/blue/alpha to r/g/b/a&#10;orbitingSpheres:&#10;-added option to override trails or not&#10;-now ctrl needed to place the sun&#10;-new planets have a random color">
-      <created>1496590044819</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1496590044820</updated>
+      <workItem from="1513351227008" duration="1850000" />
     </task>
     <task id="LOCAL-00047" summary="orbitingSpheres:&#10;-replaced data with actual data from NASA&#10;-added pluto, comet halley and hale bopp&#10;-added console output, how many years were simulated&#10;">
       <created>1496764661387</created>
@@ -688,11 +695,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513203352469</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="recFlocke:&#10;-don't render the flocke twice, if the widths are the same">
+      <created>1513351438994</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1513351438994</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59749000" />
+    <option name="totallyTimeSpent" value="61408000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -701,7 +715,8 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32896066" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -713,7 +728,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24853373" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -740,6 +754,42 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
       <collection />
@@ -754,7 +804,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve" />
     <MESSAGE value="fixed name of spaceFillingCurve" />
     <MESSAGE value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
     <MESSAGE value="spaceFillingCurves:&#10;-added hTree" />
@@ -779,7 +828,8 @@
     <MESSAGE value="minor error on commit" />
     <MESSAGE value="first version of morphing" />
     <MESSAGE value="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length" />
-    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length" />
+    <MESSAGE value="recFlocke:&#10;-don't render the flocke twice, if the widths are the same" />
+    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-don't render the flocke twice, if the widths are the same" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -788,20 +838,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/jsTree/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="81" selection-end-column="88" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/imageCreator/js/color_functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="302" column="10" lean-forward="false" selection-start-line="302" selection-start-column="9" selection-end-line="302" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/imageCreator/js/imageCreationFunctions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1070,6 +1106,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6919">
           <caret line="407" column="9" lean-forward="false" selection-start-line="407" selection-start-column="9" selection-end-line="407" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1094,6 +1131,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="674">
+          <caret line="503" column="61" lean-forward="false" selection-start-line="503" selection-start-column="2" selection-end-line="503" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1105,17 +1149,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
+    <entry file="file://$PROJECT_DIR$/retroFlocke/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="503" column="61" lean-forward="false" selection-start-line="503" selection-start-column="2" selection-end-line="503" selection-end-column="61" />
+        <state relative-caret-position="340">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <marker date="1513351915063" expanded="true" signature="605:758" ph="..." />
+            <marker date="1513351915063" expanded="true" signature="698:726" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/retroFlocke/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4998">
-          <caret line="575" column="24" lean-forward="true" selection-start-line="575" selection-start-column="24" selection-end-line="575" selection-end-column="24" />
+        <state relative-caret-position="374">
+          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
           <folding />
         </state>
       </provider>
