@@ -318,12 +318,13 @@ function doItViaLineWidth(struct) {
     ctx.strokeStyle = 'white';
     paintStruct(struct);
     ctx.stroke();
-    ctx.beginPath();
-    ctx.strokeStyle = 'white';
-    ctx.lineWidth = config.flocke.lineWidthMethod.innerWidth;
-    paintStruct(struct);
-
-    ctx.stroke();
+    if(config.flocke.lineWidthMethod.innerWidth !== config.flocke.lineWidthMethod.innerWidth) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = config.flocke.lineWidthMethod.innerWidth;
+        paintStruct(struct);
+        ctx.stroke();
+    }
 }
 
 function paintAlternativeFlocke(alternativeFlocke) {
@@ -543,7 +544,8 @@ function morphSizesInSpread(spreadStruct, oldStruct, opts, pole){
         line.point = newPoint;
     }
     // currently disabled, would add another spread, but is to abrupt and also buggy..
-    if(false && Math.random() < 0.01){
+    // the bugginess is generally caused, by the whole not reusing it stuff.... it forgets things and recalcuates stuff...
+    if(false && Math.random() < 0.001){
         opts.amountOfSpreads += 1;
         var lastPointOfCenterLine = spreadStruct.lines[spreadStruct.lines.length - 1].next.point;
         var arc = pole.arc;
@@ -562,10 +564,10 @@ function morphSizesInSpread(spreadStruct, oldStruct, opts, pole){
         spreadLineLower.next = spreadLineMiddle;
         var oldCenterLine = spreadStruct.lines[spreadStruct.lines.length -1];
         spreadStruct.lines.splice(spreadStruct.lines.length - 1, 1);
-        spreadStruct.lines.push(spreadLineUpper);
-        spreadStruct.lines.push(spreadLineLower);
+        //spreadStruct.lines.push(spreadLineUpper);
+        //spreadStruct.lines.push(spreadLineLower);
         oldCenterLine.next.point = getPoint(lastPointOfCenterLine, pole.arc, 25);
-        spreadStruct.lines.push(oldCenterLine);
+        //spreadStruct.lines.push(oldCenterLine);
     }
 
 }

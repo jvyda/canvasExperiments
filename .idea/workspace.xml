@@ -25,8 +25,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2338">
-              <caret line="543" column="69" lean-forward="false" selection-start-line="543" selection-start-column="69" selection-end-line="543" selection-end-column="69" />
+            <state relative-caret-position="4998">
+              <caret line="575" column="24" lean-forward="true" selection-start-line="575" selection-start-column="24" selection-end-line="575" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -57,7 +57,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rainbowColors</find>
       <find>color</find>
       <find>randomElement</find>
       <find>flares[</find>
@@ -85,6 +84,9 @@
       <find>.css</find>
       <find>lastF</find>
       <find>arc</find>
+      <find>width</find>
+      <find>innerWidt</find>
+      <find>false &amp;&amp;</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -181,8 +183,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,6 +216,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -340,14 +342,8 @@
       <workItem from="1513160207902" duration="11058000" />
       <workItem from="1513177451317" duration="572000" />
       <workItem from="1513181465916" duration="3307000" />
-      <workItem from="1513194936414" duration="4067000" />
-    </task>
-    <task id="LOCAL-00045" summary="orbitingSpheres:&#10;-added moon&#10;-added a option to indicate an offset of the label (needed because moon is very close)">
-      <created>1496560252377</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1496560252377</updated>
+      <workItem from="1513194936414" duration="5540000" />
+      <workItem from="1513351227008" duration="191000" />
     </task>
     <task id="LOCAL-00046" summary="various:&#10;-chaned red/green/blue/alpha to r/g/b/a&#10;orbitingSpheres:&#10;-added option to override trails or not&#10;-now ctrl needed to place the sun&#10;-new planets have a random color">
       <created>1496590044819</created>
@@ -685,11 +681,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513189370501</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length">
+      <created>1513203352468</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1513203352469</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58085000" />
+    <option name="totallyTimeSpent" value="59749000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -751,7 +754,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="hilbertCurve:&#10;-added dragonCurve! (currently over hilbertCurve, hilbertCurve going to be renamed)" />
     <MESSAGE value="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve" />
     <MESSAGE value="fixed name of spaceFillingCurve" />
     <MESSAGE value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
@@ -776,7 +778,8 @@
     <MESSAGE value="first change to morphing the flocke" />
     <MESSAGE value="minor error on commit" />
     <MESSAGE value="first version of morphing" />
-    <option name="LAST_COMMIT_MESSAGE" value="first version of morphing" />
+    <MESSAGE value="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length" />
+    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1067,7 +1070,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6919">
           <caret line="407" column="9" lean-forward="false" selection-start-line="407" selection-start-column="9" selection-end-line="407" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1107,14 +1109,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="674">
           <caret line="503" column="61" lean-forward="false" selection-start-line="503" selection-start-column="2" selection-end-line="503" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2338">
-          <caret line="543" column="69" lean-forward="false" selection-start-line="543" selection-start-column="69" selection-end-line="543" selection-end-column="69" />
+        <state relative-caret-position="4998">
+          <caret line="575" column="24" lean-forward="true" selection-start-line="575" selection-start-column="24" selection-end-line="575" selection-end-column="24" />
           <folding />
         </state>
       </provider>
