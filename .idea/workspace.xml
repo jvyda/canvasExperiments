@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/retroFlocke/index.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/retroFlocke/js/main.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/retroFlocke/js/plugins.js" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/recFlocke/js/main.js" afterPath="$PROJECT_DIR$/recFlocke/js/main.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,11 +22,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
               <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -115,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/circleBs/index.html" />
         <option value="$PROJECT_DIR$/dotLines/css/dotLines.css" />
         <option value="$PROJECT_DIR$/triangles/index.html" />
         <option value="$PROJECT_DIR$/circleBs/css/circleBs.css" />
@@ -166,6 +172,7 @@
         <option value="$PROJECT_DIR$/retroFlocke/index.html" />
         <option value="$PROJECT_DIR$/retroFlocke/js/main.js" />
         <option value="$PROJECT_DIR$/recFlocke/js/main.js" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -203,28 +210,6 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="recFlocke" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="recFlocke" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="retroFlocke" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="retroFlocke" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -357,14 +342,7 @@
       <workItem from="1513177451317" duration="572000" />
       <workItem from="1513181465916" duration="3307000" />
       <workItem from="1513194936414" duration="5540000" />
-      <workItem from="1513351227008" duration="1850000" />
-    </task>
-    <task id="LOCAL-00047" summary="orbitingSpheres:&#10;-replaced data with actual data from NASA&#10;-added pluto, comet halley and hale bopp&#10;-added console output, how many years were simulated&#10;">
-      <created>1496764661387</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1496764661387</updated>
+      <workItem from="1513351227008" duration="2035000" />
     </task>
     <task id="LOCAL-00048" summary="orbitingSpheres:&#10;-added actual trails instead of not drawing over the canvas&#10;-added ability to reverse&#10;-we now calculate all the positions since 1970, because of reversing&#10;-changed dataset of planets to that of 1.1.1970&#10;-added jupiter moons, only callisto doesn't go crazy&#10;-only draw spheres if they are within the canvas region&#10;-added help text&#10;-added shortcut to hide help&#10;-added text indicating the current year&#10;-added shortcut to hide moons">
       <created>1497376950707</created>
@@ -702,11 +680,18 @@
       <option name="project" value="LOCAL" />
       <updated>1513351438994</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke">
+      <created>1513353096959</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1513353096959</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61408000" />
+    <option name="totallyTimeSpent" value="61593000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -804,7 +789,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="fixed name of spaceFillingCurve" />
     <MESSAGE value="spaceFillingCurve:&#10;-added two different other layouts&#10;-added input for setting the lenght ratio" />
     <MESSAGE value="spaceFillingCurves:&#10;-added hTree" />
     <MESSAGE value="spaceFillingCurves:&#10;-added the different layouts to dragonCurve" />
@@ -829,7 +813,8 @@
     <MESSAGE value="first version of morphing" />
     <MESSAGE value="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length" />
     <MESSAGE value="recFlocke:&#10;-don't render the flocke twice, if the widths are the same" />
-    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-don't render the flocke twice, if the widths are the same" />
+    <MESSAGE value="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke" />
+    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -838,13 +823,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/imageCreator/js/imageCreationFunctions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="21" column="15" lean-forward="false" selection-start-line="21" selection-start-column="15" selection-end-line="21" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/plugins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1172,6 +1150,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="22" />
           <folding />
         </state>
       </provider>
