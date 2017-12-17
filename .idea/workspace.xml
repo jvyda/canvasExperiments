@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="finally added gitignore">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/chillFlocke/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/chillFlocke/js/main.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/chillFlocke/js/plugins.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/recFlocke/js/main.js" afterPath="$PROJECT_DIR$/recFlocke/js/main.js" />
     </list>
@@ -35,11 +38,44 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="674">
-              <caret line="82" column="49" lean-forward="false" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
+            <state relative-caret-position="381">
+              <caret line="679" column="0" lean-forward="true" selection-start-line="679" selection-start-column="0" selection-end-line="685" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/chillFlocke/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/chillFlocke/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+              <folding>
+                <marker date="1513533282792" expanded="true" signature="605:758" ph="..." />
+                <marker date="1513533282792" expanded="true" signature="698:726" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="799" column="37" lean-forward="true" selection-start-line="798" selection-start-column="56" selection-end-line="799" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -57,15 +93,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>90</find>
-      <find>toRad</find>
-      <find>config.flocke.structures.conjoined</find>
-      <find>createdouble</find>
-      <find>optFun</find>
-      <find>endLength</find>
-      <find>doubleEdged</find>
-      <find>sideLength</find>
-      <find>options</find>
       <find>fixConjoined</find>
       <find>morphAr</find>
       <find>alternativeFlocke</find>
@@ -85,12 +112,23 @@
       <find>get</find>
       <find>randomelemen</find>
       <find>smaller</find>
-      <find>console.log</find>
       <find>maxAGe</find>
+      <find>.paused</find>
+      <find>flocke.</find>
+      <find>ini</find>
+      <find>// p</find>
+      <find>keyPressed</find>
+      <find>keyPress</find>
+      <find>console.log</find>
+      <find>canvas</find>
+      <find>.flocke.</find>
+      <find>paused</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
       <replace>retroFlocke</replace>
+      <replace>chillFlocke.</replace>
+      <replace>.chillFlocke.</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -102,8 +140,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dotLines/css/dotLines.css" />
-        <option value="$PROJECT_DIR$/triangles/index.html" />
         <option value="$PROJECT_DIR$/circleBs/css/circleBs.css" />
         <option value="$PROJECT_DIR$/triangles/css/triangles.css" />
         <option value="$PROJECT_DIR$/jsTree/css/jsTree.css" />
@@ -152,7 +188,9 @@
         <option value="$PROJECT_DIR$/retroFlocke/index.html" />
         <option value="$PROJECT_DIR$/retroFlocke/js/main.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/chillFlocke/index.html" />
         <option value="$PROJECT_DIR$/recFlocke/js/main.js" />
+        <option value="$PROJECT_DIR$/chillFlocke/js/main.js" />
       </list>
     </option>
   </component>
@@ -195,12 +233,34 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="chillFlocke" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="chillFlocke" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="recFlocke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="recFlocke" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="spaceFillingCurves" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="spaceFillingCurves" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -235,15 +295,15 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/js" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/overview/img" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/unNamed" />
       <recent name="$PROJECT_DIR$/nailIt/img" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/common/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -337,14 +397,7 @@
       <workItem from="1513382898520" duration="246000" />
       <workItem from="1513383159583" duration="284000" />
       <workItem from="1513515761196" duration="1137000" />
-      <workItem from="1513527035022" duration="6109000" />
-    </task>
-    <task id="LOCAL-00049" summary="orbitingSpheres:&#10;-added saturn moons">
-      <created>1497378332580</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1497378332580</updated>
+      <workItem from="1513527035022" duration="7268000" />
     </task>
     <task id="LOCAL-00050" summary="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today">
       <created>1497444739557</created>
@@ -682,22 +735,30 @@
       <option name="project" value="LOCAL" />
       <updated>1513353277118</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="recFlocke:&#10;-added endless flock generation... looks a bit too fast currently">
+      <created>1513533173448</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1513533173449</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70034000" />
+    <option name="totallyTimeSpent" value="71193000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.116145834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.116145834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -784,7 +845,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="spaceFillingCurves:&#10;-added hTree" />
     <MESSAGE value="spaceFillingCurves:&#10;-added the different layouts to dragonCurve" />
     <MESSAGE value="added nailIt&#10;-currently not a good version..." />
     <MESSAGE value="added jsfeat to version control&#10;added a template project for easier bootstrapping&#10;added currently unNamed project (descirbing name was conJoined)" />
@@ -809,7 +869,8 @@
     <MESSAGE value="recFlocke:&#10;-don't render the flocke twice, if the widths are the same" />
     <MESSAGE value="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke" />
     <MESSAGE value="finally added gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="finally added gitignore" />
+    <MESSAGE value="recFlocke:&#10;-added endless flock generation... looks a bit too fast currently" />
+    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-added endless flock generation... looks a bit too fast currently" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -818,20 +879,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/plugins.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/flags/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1030,13 +1077,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13974">
-          <caret line="822" column="9" lean-forward="false" selection-start-line="822" selection-start-column="9" selection-end-line="822" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kolaKoski/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1068,13 +1108,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10336">
-          <caret line="608" column="41" lean-forward="false" selection-start-line="608" selection-start-column="41" selection-end-line="608" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/common/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6919">
@@ -1093,13 +1126,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="50" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/triangles/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4233">
-          <caret line="249" column="35" lean-forward="false" selection-start-line="245" selection-start-column="3" selection-end-line="249" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1132,6 +1158,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/triangles/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="246" column="36" lean-forward="false" selection-start-line="246" selection-start-column="30" selection-end-line="246" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="1149" column="0" lean-forward="true" selection-start-line="1149" selection-start-column="0" selection-end-line="1149" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1143,10 +1185,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/chillFlocke/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding>
+            <marker date="1513533282792" expanded="true" signature="605:758" ph="..." />
+            <marker date="1513533282792" expanded="true" signature="698:726" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="799" column="37" lean-forward="true" selection-start-line="798" selection-start-column="56" selection-end-line="799" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="82" column="49" lean-forward="false" selection-start-line="82" selection-start-column="49" selection-end-line="82" selection-end-column="49" />
+        <state relative-caret-position="381">
+          <caret line="679" column="0" lean-forward="true" selection-start-line="679" selection-start-column="0" selection-end-line="685" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/chillFlocke/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -4,16 +4,14 @@ var canvas = {};
 
 var verticesAmount = 6;
 var thatAngle = toDeg(2 * Math.PI / verticesAmount);
-var morphAmount = 0.03;
-
-var morpthMultiplikator = 3;
+var morphAmount = 0.003;
 
 var config = {
     size: {
         width: window.innerWidth,
         height: window.innerHeight
     },
-    flocke: {
+    chillFlocke: {
         vertices: verticesAmount,
         newFlockSizeFactor: 0.4,
         poleLengthFactor: 0.6,
@@ -27,22 +25,12 @@ var config = {
                 arcDir: 0,
                 sideLength: 60,
                 sideLengthRange: [60, 60],
-                sideLengthDir: 1 + morphAmount,
-                small: {
-                    arc: thatAngle /2,
-                    arcDir: 0,
-                    sideLength: 5,
-                    sideLengthDir: 1 + morphAmount * morpthMultiplikator
-                }
+                sideLengthDir: 1.05
             },
             baseLine: {
                 length: 25,
                 lengthRange: [5, 40],
-                lengthDir: 1 + morphAmount,
-                small: {
-                    length: 5,
-                    lengthDir: 1 + morphAmount * morpthMultiplikator
-                }
+                lengthDir: 1 + morphAmount
             },
             spread: {
                 length: 100,
@@ -56,17 +44,7 @@ var config = {
                 arcDir: 0,
                 spreadDistance: 30,
                 spreadDistanceRange: [25, 50],
-                spreadDistanceDir: 1 + morphAmount,
-                small: {
-                    length: 5,
-                    lengthDir: 1 + morphAmount * morpthMultiplikator,
-                    amountOfSpreads: 4,
-                    amountOfSpreadsDir: 0,
-                    arc: thatAngle,
-                    arcDir: 0,
-                    spreadDistance: 5,
-                    spreadDistanceDir: 1 + morphAmount * morpthMultiplikator
-                }
+                spreadDistanceDir: 1 + morphAmount
             },
             conjoined: {
                 length: 100,
@@ -78,18 +56,12 @@ var config = {
                 arcUp: thatAngle,
                 arcUpRange: [thatAngle, thatAngle],
                 arcUpDir: 0,
-                small: {
-                    length: 1,
-                    lengthDir: 1 + morphAmount * morpthMultiplikator,
-                    branchPosition: 1,
-                    branchPositionDir: 1 + morphAmount * morpthMultiplikator,
-                    arcUp: thatAngle,
-                    arcUpDir: 0
-                }
+                arcDown: 70
             }
         },
         rangeChance: 0.5,
-        fps: 10,
+        fps: 30,
+        paused: false,
         morphDistance: morphAmount,
         lineWidthMethod: {
             innerWidth: 9,
@@ -99,45 +71,45 @@ var config = {
 };
 
 function randomDirection(){
-    return randomElement([1 + config.flocke.morphDistance, 1 - config.flocke.morphDistance]);
+    return randomElement([1 + config.chillFlocke.morphDistance, 1 - config.chillFlocke.morphDistance]);
 }
 
 function createDoubleEdgedOptions(){
     return {
-        arc: valueInRange(config.flocke.structures.doubleEdged.arcRange),
+        arc: valueInRange(config.chillFlocke.structures.doubleEdged.arcRange),
         arcDir:0,
-        sideLength: valueInRange(config.flocke.structures.doubleEdged.sideLengthRange),
+        sideLength: valueInRange(config.chillFlocke.structures.doubleEdged.sideLengthRange),
         sideLengthDir: randomDirection()
     }
 }
 
 function createBaseLineOptions(){
     return {
-        length: valueInRange(config.flocke.structures.baseLine.lengthRange),
+        length: valueInRange(config.chillFlocke.structures.baseLine.lengthRange),
         lengthDir: randomDirection()
     }
 }
 
 function createSpreadOptions(){
     return {
-        length: valueInRange(config.flocke.structures.spread.lengthRange),
+        length: valueInRange(config.chillFlocke.structures.spread.lengthRange),
         lengthDir: randomDirection(),
-        amountOfSpreads: valueInRange(config.flocke.structures.spread.amountOfSpreadsRange),
+        amountOfSpreads: valueInRange(config.chillFlocke.structures.spread.amountOfSpreadsRange),
         amountOfSpreadsDir: 0,
-        arc: valueInRange(config.flocke.structures.spread.arcRange),
+        arc: valueInRange(config.chillFlocke.structures.spread.arcRange),
         arcDir: 0,
-        spreadDistance: valueInRange(config.flocke.structures.spread.spreadDistanceRange),
+        spreadDistance: valueInRange(config.chillFlocke.structures.spread.spreadDistanceRange),
         spreadDistanceDir: randomDirection()
     }
 }
 
 function createConjoinedOptions(){
     return {
-        length: valueInRange(config.flocke.structures.conjoined.lengthRange),
+        length: valueInRange(config.chillFlocke.structures.conjoined.lengthRange),
         lengthDir: randomDirection(),
-        branchPosition: valueInRange(config.flocke.structures.conjoined.branchPositionRange),
+        branchPosition: valueInRange(config.chillFlocke.structures.conjoined.branchPositionRange),
         branchPositionDir: randomDirection(),
-        arcUp: valueInRange(config.flocke.structures.conjoined.arcUpRange),
+        arcUp: valueInRange(config.chillFlocke.structures.conjoined.arcUpRange),
         arcUpDir: 0
     }
 }
@@ -150,19 +122,19 @@ function valueInRange(range){
 
 
 var flockVerticeFun = function (depth) {
-    return config.flocke.vertices;
+    return config.chillFlocke.vertices;
 };
 
 var topFlocke = {
-    size: config.flocke.initialSize,
+    size: config.chillFlocke.initialSize,
     arc: 2 * Math.PI * 0.25
 };
 
 var structureFun = [];
-structureFun.push({fun: createBaseLineStructure, optFun: createBaseLineOptions, opt: config.flocke.structures.baseLine, small: config.flocke.structures.baseLine.small});
-structureFun.push({fun: createDoubleEdgeStructure, optFun: createDoubleEdgedOptions, opt: config.flocke.structures.doubleEdged, small:config.flocke.structures.doubleEdged.small});
-structureFun.push({fun: createSpreadStructure, optFun: createSpreadOptions, opt: config.flocke.structures.spread, small:config.flocke.structures.spread.small});
-structureFun.push({fun: createConjoinedStructure, optFun: createConjoinedOptions, opt: config.flocke.structures.conjoined, small:config.flocke.structures.conjoined.small});
+structureFun.push({fun: createBaseLineStructure, optFun: createBaseLineOptions, opt: config.chillFlocke.structures.baseLine});
+structureFun.push({fun: createDoubleEdgeStructure, optFun: createDoubleEdgedOptions, opt: config.chillFlocke.structures.doubleEdged});
+structureFun.push({fun: createSpreadStructure, optFun: createSpreadOptions, opt: config.chillFlocke.structures.spread});
+structureFun.push({fun: createConjoinedStructure, optFun: createConjoinedOptions, opt: config.chillFlocke.structures.conjoined});
 
 var alternativeFlocke;
 var lastFlocke  = -1;
@@ -172,29 +144,29 @@ $(document).ready(function () {
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
     canvas.height = config.size.height;
-
     document.onkeypress = keyPressed;
+
     alternativeFlocke = createAlternativeFlocke();
     paintAlternativeFlocke(alternativeFlocke);
     setTimeout(function () {
         requestAnimationFrame(morphAndPaint);
-    }, 1000 / config.flocke.fps)
+    }, 1000 / config.chillFlocke.fps)
     //createFlocke({x: config.size.width / 2, y: config.size.height / 2}, topFlocke, 1);
 
 });
 
 function morphAndPaint(){
-    var newFlocke = config.flocke.paused ? lastFlocke : morphAround(alternativeFlocke, lastFlocke);
+    var newFlocke = config.chillFlocke.paused ? lastFlocke : morphAround(alternativeFlocke, lastFlocke);
     lastFlocke = newFlocke;
     paintAlternativeFlocke(newFlocke);
     setTimeout(function () {
         requestAnimationFrame(morphAndPaint);
-    }, 1000 / config.flocke.fps)
+    }, 1000 / config.chillFlocke.fps)
 }
 
 
 function createFlocke(baseCenter, flocke, depth) {
-    if (depth > config.flocke.maxDepth) return;
+    if (depth > config.chillFlocke.maxDepth) return;
     flocke.vertices = [];
     flocke.center = {
         x: baseCenter.x + flocke.size * Math.cos(flocke.arc),
@@ -212,7 +184,7 @@ function createFlocke(baseCenter, flocke, depth) {
             x: x,
             y: y,
             representingAngle: arc,
-            flocke: {size: flocke.size * config.flocke.newFlockSizeFactor, arc: arc}
+            flocke: {size: flocke.size * config.chillFlocke.newFlockSizeFactor, arc: arc}
         })
     }
 
@@ -224,8 +196,8 @@ function createFlocke(baseCenter, flocke, depth) {
     ctx.stroke();
 
     flocke.vertices.forEach(function (vertex) {
-        var x = vertex.x + flocke.size * config.flocke.poleLengthFactor * Math.cos(vertex.representingAngle);
-        var y = vertex.y + flocke.size * config.flocke.poleLengthFactor * Math.sin(vertex.representingAngle);
+        var x = vertex.x + flocke.size * config.chillFlocke.poleLengthFactor * Math.cos(vertex.representingAngle);
+        var y = vertex.y + flocke.size * config.chillFlocke.poleLengthFactor * Math.sin(vertex.representingAngle);
         ctx.moveTo(vertex.x, vertex.y);
         ctx.lineTo(x, y);
         vertex.top = {
@@ -264,7 +236,7 @@ function createBasicEquallyDistributedFlocke() {
             y: config.size.height / 2
         }
     };
-    var stepSize = 2 * Math.PI / config.flocke.vertices;
+    var stepSize = 2 * Math.PI / config.chillFlocke.vertices;
     var actualStartingAngle = 0;
     for (var arc = actualStartingAngle; arc <= (2 * Math.PI - 0.1 + actualStartingAngle); arc += stepSize) {
         basicFlocke.poles.push({
@@ -278,8 +250,8 @@ function createBasicEquallyDistributedFlocke() {
 function createAlternativeFlocke() {
     var alternativeFlocke = createBasicEquallyDistributedFlocke();
     var structureFunsToUse =  [];
-    for(var i = 0; i < config.flocke.structureAmount; i++){
-        var useRange  = Math.random() < 0;
+    for(var i = 0; i < config.chillFlocke.structureAmount    ; i++){
+        var useRange  = Math.random() < config.chillFlocke.rangeChance;
         var options;
         var funPtr = randomElement(structureFun);
         if(useRange){
@@ -287,7 +259,6 @@ function createAlternativeFlocke() {
         } else {
             options = funPtr.opt;
         }
-        options.age = i * changeInterval;
         structureFunsToUse.push({fun: funPtr.fun, opt: options, defaultOpt: funPtr.opt});
     }
 
@@ -295,7 +266,6 @@ function createAlternativeFlocke() {
         var depth = 0;
         structureFunsToUse.forEach(function(funToUse){
             var newStructCreated = funToUse.fun(pole, alternativeFlocke, depth, funToUse, getFarthestStruct(pole, alternativeFlocke));
-            newStructCreated.age = funToUse.opt.age;
             pole.structs.push(newStructCreated);
             if (funToUse.fun === createConjoinedStructure && alternativeFlocke.poles.indexOf(pole) === alternativeFlocke.poles.length - 1 && depth > 0){
                 fixConjoined(depth, alternativeFlocke);
@@ -329,8 +299,8 @@ function doItManually(struct){
         while(nextPoint !== undefined){
             var vec = createNormalizedVector(nextPoint.point, firstPoint.point);
             var normalVector = rotate90Deg(vec);
-            var lowerPoint = getPointVec(firstPoint.point, normalVector, config.flocke.lineWidthMethod.innerWidth / 2);
-            var upperPoint = getPointVec(firstPoint.point, normalVector, -config.flocke.lineWidthMethod.innerWidth / 2);
+            var lowerPoint = getPointVec(firstPoint.point, normalVector, config.chillFlocke.lineWidthMethod.innerWidth / 2);
+            var upperPoint = getPointVec(firstPoint.point, normalVector, -config.chillFlocke.lineWidthMethod.innerWidth / 2);
             var lowerTarget = getPointVec(lowerPoint, vec, pointDistance(nextPoint.point, firstPoint.point));
             var upperTarget = getPointVec(upperPoint, vec, pointDistance(nextPoint.point, firstPoint.point));
             ctx.moveTo(lowerPoint.x, lowerPoint.y);
@@ -346,14 +316,14 @@ function doItManually(struct){
 
 function doItViaLineWidth(struct) {
     ctx.beginPath();
-    ctx.lineWidth = config.flocke.lineWidthMethod.outerWidth;
+    ctx.lineWidth = config.chillFlocke.lineWidthMethod.outerWidth;
     ctx.strokeStyle = 'white';
     paintStruct(struct);
     ctx.stroke();
-    if(config.flocke.lineWidthMethod.innerWidth !== config.flocke.lineWidthMethod.innerWidth) {
+    if(config.chillFlocke.lineWidthMethod.innerWidth !== config.chillFlocke.lineWidthMethod.innerWidth) {
         ctx.beginPath();
         ctx.strokeStyle = 'white';
-        ctx.lineWidth = config.flocke.lineWidthMethod.innerWidth;
+        ctx.lineWidth = config.chillFlocke.lineWidthMethod.innerWidth;
         paintStruct(struct);
         ctx.stroke();
     }
@@ -527,68 +497,35 @@ function getLastInLine(line){
 }
 
 function getBaseStruct(funToUse) {
-    return {lines: [], points: [], structDefinition: funToUse, age: 0}
+    return {lines: [], points: [], structDefinition: funToUse}
 }
 
-
-function createNewOriginalStruct() {
-    var useRange = Math.random() < 0;
-
-    var options;
-    var funPtr = randomElement(structureFun);
-    if (useRange) {
-        options = funPtr.optFun();
-    } else {
-        options = funPtr.small;
-    }
-    options.age = 0;
-    return {fun: funPtr.fun, opt: options, defaultOpt: funPtr.opt};
-}
-
-function useStructDefinitionToAddToFlocke(newFlocke, newStructFunctions, initialDepth) {
-    newFlocke.poles.forEach(function (pole) {
-        var depth = initialDepth;
-        newStructFunctions.forEach(function (funToUse) {
-            var newStructCreated = funToUse.fun(pole, newFlocke, depth, funToUse, getFarthestStruct(pole, newFlocke));
-            if(funToUse.fun === createSpreadStructure && false){
-                morphSizesInSpread(newStructCreated, lastFlocke.poles[0].structs[depth], funToUse.opt, pole)
-            }
-            newStructCreated.age = funToUse.opt.age;
-            pole.structs.push(newStructCreated);
-            depth++;
-        })
-    });
-}
-
-var cnt = 0;
-var changeInterval = 30;
 
 function morphAround(alternativeFlocke, lastFlocke){
     lastFlocke = lastFlocke != -1 ? lastFlocke : alternativeFlocke;
     var newFlocke = createBasicEquallyDistributedFlocke();
-    var newStructs = [];
-    newStructs.push(createNewOriginalStruct());
-    cnt++;
-    if(cnt % changeInterval === 0){
-        useStructDefinitionToAddToFlocke(newFlocke, newStructs, 0);
-    }
 
     var structConfigToUse = [];
-    lastFlocke.poles[0].structs.forEach(function(struct){
-        struct.structDefinition.opt = getIncreasedValues(struct.structDefinition.opt, struct.structDefinition.defaultOpt, struct.age);
-        struct.structDefinition.opt.age = struct.age + 1;
+    alternativeFlocke.poles[0].structs.forEach(function(struct){
+        struct.structDefinition.opt = getIncreasedValues(struct.structDefinition.opt, struct.structDefinition.defaultOpt);
         structConfigToUse.push(struct);
     });
 
-    if(cnt % changeInterval === 0){
-        structConfigToUse.splice(structConfigToUse.length - 1, 1);
-    }
 
-    var usableStructDefinitions = structConfigToUse.map(function(structConfig) {
-        return structConfig.structDefinition;
+    newFlocke.poles.forEach(function (pole) {
+        var depth = 0;
+        structConfigToUse.forEach(function(structConfig, index){
+            var newlyCreatedStructToReplace = structConfig.structDefinition.fun(pole, newFlocke, depth, structConfigToUse[index].structDefinition, getFarthestStruct(pole, newFlocke));
+            if (structConfig.structDefinition.fun === createConjoinedStructure && alternativeFlocke.poles.indexOf(pole) === alternativeFlocke.poles.length - 1 && depth > 0){
+                fixConjoined(depth, newFlocke);
+            }
+            if(structConfig.structDefinition.fun === createSpreadStructure){
+                morphSizesInSpread(newlyCreatedStructToReplace, lastFlocke.poles[0].structs[depth], structConfigToUse[index].structDefinition.opt, pole)
+            }
+            pole.structs.push(newlyCreatedStructToReplace);
+            depth++;
+        })
     });
-
-    useStructDefinitionToAddToFlocke(newFlocke, usableStructDefinitions, newStructs.length);
     return newFlocke;
 }
 
@@ -637,12 +574,11 @@ function morphSizesInSpread(spreadStruct, oldStruct, opts, pole){
 
 }
 
-
-var maxAge = changeInterval * 3;
-function getIncreasedValues(usedOptions, possibleOptions, age){
+function getIncreasedValues(usedOptions, possibleOptions){
     var newOptions = {};
     for(var option in usedOptions){
         if(possibleOptions[option + 'Range']){
+            var allowedRange = possibleOptions[option + 'Range'];
             var currentOptionValue = usedOptions[option];
             var newValue = 0;
             var direction = usedOptions[option + 'Dir'];
@@ -650,8 +586,22 @@ function getIncreasedValues(usedOptions, possibleOptions, age){
             if(direction == 0){
                 newValue = currentOptionValue;
             } else {
-                newDirection = age < (maxAge / 2) ? Math.abs(newDirection) : 1 - morphAmount * morpthMultiplikator;
-                newValue = currentOptionValue * newDirection;
+                var possibleValue = currentOptionValue * direction;
+                if(direction > 1){
+                    if(possibleValue < allowedRange[1]){
+                        newValue = currentOptionValue * direction;
+                    } else {
+                        newDirection = 1 - config.chillFlocke.morphDistance;
+                        newValue = currentOptionValue;
+                    }
+                } else {
+                    if(possibleValue > allowedRange[0]){
+                        newValue = currentOptionValue * direction;
+                    } else {
+                        newDirection = 1 + config.chillFlocke.morphDistance;
+                        newValue = currentOptionValue;
+                    }
+                }
             }
             newOptions[option + 'Dir'] = newDirection;
             newOptions[option] = newValue;
@@ -681,6 +631,6 @@ function getFarthestStruct(pole, flocke) {
 function keyPressed(event) {
     // p
     if (eventIsKey(event, 112)) {
-        config.flocke.paused = !config.flocke.paused;
+        config.chillFlocke.paused = !config.chillFlocke.paused;
     }
 }
