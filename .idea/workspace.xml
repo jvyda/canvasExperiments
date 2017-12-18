@@ -2,11 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/chillFlocke/index.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/chillFlocke/js/main.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/chillFlocke/js/plugins.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/flocke/img/chillFlocke_preview.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/flocke/img/recFlocke_preview.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/flocke/img/retroFlocke_preview.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/flocke/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/overview/img/flocke_preview.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/recFlocke/js/main.js" afterPath="$PROJECT_DIR$/recFlocke/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/chillFlocke/index.html" afterPath="$PROJECT_DIR$/flocke/chillFlocke/index.html" />
+      <change beforePath="$PROJECT_DIR$/chillFlocke/js/main.js" afterPath="$PROJECT_DIR$/flocke/chillFlocke/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/chillFlocke/js/plugins.js" afterPath="$PROJECT_DIR$/flocke/chillFlocke/js/plugins.js" />
+      <change beforePath="$PROJECT_DIR$/overview/index.html" afterPath="$PROJECT_DIR$/overview/index.html" />
+      <change beforePath="$PROJECT_DIR$/recFlocke/index.html" afterPath="$PROJECT_DIR$/flocke/recFlocke/index.html" />
+      <change beforePath="$PROJECT_DIR$/recFlocke/js/main.js" afterPath="$PROJECT_DIR$/flocke/recFlocke/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/recFlocke/js/plugins.js" afterPath="$PROJECT_DIR$/flocke/recFlocke/js/plugins.js" />
+      <change beforePath="$PROJECT_DIR$/retroFlocke/index.html" afterPath="$PROJECT_DIR$/flocke/retroFlocke/index.html" />
+      <change beforePath="$PROJECT_DIR$/retroFlocke/js/main.js" afterPath="$PROJECT_DIR$/flocke/retroFlocke/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/retroFlocke/js/plugins.js" afterPath="$PROJECT_DIR$/flocke/retroFlocke/js/plugins.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,31 +36,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recFlocke/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-              <folding>
-                <marker date="1512576627880" expanded="true" signature="603:756" ph="..." />
-                <marker date="1512576627880" expanded="true" signature="696:724" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="381">
-              <caret line="679" column="0" lean-forward="true" selection-start-line="679" selection-start-column="0" selection-end-line="685" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/chillFlocke/js/main.js">
+        <entry file="file://$PROJECT_DIR$/flocke/chillFlocke/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -58,14 +46,70 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flocke/recFlocke/js/main.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chillFlocke/index.html">
+        <entry file="file://$PROJECT_DIR$/overview/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flocke/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flocke/recFlocke/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+              <folding>
+                <marker date="1513608785403" expanded="true" signature="615:768" ph="..." />
+                <marker date="1513608785403" expanded="true" signature="708:736" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/flocke/chillFlocke/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
               <folding>
-                <marker date="1513533282792" expanded="true" signature="605:758" ph="..." />
-                <marker date="1513533282792" expanded="true" signature="698:726" ph="..." />
+                <marker date="1513607484941" expanded="true" signature="617:770" ph="..." />
+                <marker date="1513607484941" expanded="true" signature="710:738" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/flocke/retroFlocke/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+              <folding>
+                <marker date="1513607484969" expanded="true" signature="617:770" ph="..." />
+                <marker date="1513607484969" expanded="true" signature="710:738" ph="..." />
               </folding>
             </state>
           </provider>
@@ -74,8 +118,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="112">
-              <caret line="799" column="37" lean-forward="true" selection-start-line="798" selection-start-column="56" selection-end-line="799" selection-end-column="37" />
+            <state relative-caret-position="13583">
+              <caret line="799" column="37" lean-forward="false" selection-start-line="798" selection-start-column="56" selection-end-line="799" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -140,8 +184,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/circleBs/css/circleBs.css" />
-        <option value="$PROJECT_DIR$/triangles/css/triangles.css" />
         <option value="$PROJECT_DIR$/jsTree/css/jsTree.css" />
         <option value="$PROJECT_DIR$/fireWorks/css/circleBs.css" />
         <option value="$PROJECT_DIR$/jsTree/index.html" />
@@ -182,7 +224,6 @@
         <option value="$PROJECT_DIR$/kolakoski/js/main.js" />
         <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
         <option value="$PROJECT_DIR$/kolaKoski/index.html" />
-        <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/recFlocke/index.html" />
         <option value="$PROJECT_DIR$/retroFlocke/index.html" />
@@ -191,6 +232,9 @@
         <option value="$PROJECT_DIR$/chillFlocke/index.html" />
         <option value="$PROJECT_DIR$/recFlocke/js/main.js" />
         <option value="$PROJECT_DIR$/chillFlocke/js/main.js" />
+        <option value="$PROJECT_DIR$/overview/index.html" />
+        <option value="$PROJECT_DIR$/flocke/index.html" />
+        <option value="$PROJECT_DIR$/flocke/recFlocke/index.html" />
       </list>
     </option>
   </component>
@@ -222,6 +266,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -233,41 +278,47 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="flocke" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="flocke" type="462c0819:PsiDirectoryNode" />
               <item name="chillFlocke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="chillFlocke" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="flocke" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="flocke" type="462c0819:PsiDirectoryNode" />
               <item name="recFlocke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="recFlocke" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="flocke" type="462c0819:PsiDirectoryNode" />
+              <item name="retroFlocke" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="spaceFillingCurves" type="462c0819:PsiDirectoryNode" />
+              <item name="overview" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="spaceFillingCurves" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="overview" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -295,15 +346,16 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flocke" />
+      <recent name="$PROJECT_DIR$/common/js" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/flocke" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/overview/img" />
       <recent name="$PROJECT_DIR$/" />
       <recent name="$PROJECT_DIR$/unNamed" />
-      <recent name="$PROJECT_DIR$/nailIt/img" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/common/js" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -397,14 +449,8 @@
       <workItem from="1513382898520" duration="246000" />
       <workItem from="1513383159583" duration="284000" />
       <workItem from="1513515761196" duration="1137000" />
-      <workItem from="1513527035022" duration="7268000" />
-    </task>
-    <task id="LOCAL-00050" summary="orbitingSpheres:&#10;-added zooming to a point instead of the origin&#10;-added mouse panning&#10;-changed controls&#10;-don't add a planet if the name dialog returned with cancel&#10;-added a button to reset to today">
-      <created>1497444739557</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1497444739558</updated>
+      <workItem from="1513527035022" duration="7387000" />
+      <workItem from="1513607445950" duration="1940000" />
     </task>
     <task id="LOCAL-00051" summary="orbitingSpheres:&#10;-set dates to match 6th june 2017&#10;-set timeStep to one hour to increase accuracy&#10;-adapted colors of moons">
       <created>1497451282016</created>
@@ -742,22 +788,26 @@
       <option name="project" value="LOCAL" />
       <updated>1513533173449</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="recFlocke:&#10;-added pausing ability&#10;&#10;added chillFlocke, which is bascially the recFlocke, but with slower morph and also doesn't change the structs">
+      <created>1513534343736</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1513534343736</updated>
+    </task>
+    <option name="localTasksCounter" value="100" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71193000" />
+    <option name="totallyTimeSpent" value="73252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.116145834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.116145834" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32804233" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -769,6 +819,8 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -845,7 +897,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="spaceFillingCurves:&#10;-added the different layouts to dragonCurve" />
     <MESSAGE value="added nailIt&#10;-currently not a good version..." />
     <MESSAGE value="added jsfeat to version control&#10;added a template project for easier bootstrapping&#10;added currently unNamed project (descirbing name was conJoined)" />
     <MESSAGE value="added balls project to imitate a game&#10;added unfinished voronoi (currently only onion like konvex hulls)" />
@@ -870,7 +921,8 @@
     <MESSAGE value="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke" />
     <MESSAGE value="finally added gitignore" />
     <MESSAGE value="recFlocke:&#10;-added endless flock generation... looks a bit too fast currently" />
-    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-added endless flock generation... looks a bit too fast currently" />
+    <MESSAGE value="recFlocke:&#10;-added pausing ability&#10;&#10;added chillFlocke, which is bascially the recFlocke, but with slower morph and also doesn't change the structs" />
+    <option name="LAST_COMMIT_MESSAGE" value="recFlocke:&#10;-added pausing ability&#10;&#10;added chillFlocke, which is bascially the recFlocke, but with slower morph and also doesn't change the structs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -879,27 +931,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/flags/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="18" column="29" lean-forward="false" selection-start-line="18" selection-start-column="29" selection-end-line="18" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nTriangles/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="31" column="51" lean-forward="false" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="113" column="86" lean-forward="false" selection-start-line="113" selection-start-column="22" selection-end-line="113" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1084,21 +1115,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overview/img/clusterFilter_preview.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/overview/img/unNamed_preview.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overview/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/kolaKoski/index.html">
@@ -1136,14 +1155,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/retroFlocke/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/retroFlocke/js/main.js">
+    <entry file="file://$PROJECT_DIR$/flocke/retroFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
@@ -1162,7 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
           <caret line="246" column="36" lean-forward="false" selection-start-line="246" selection-start-column="30" selection-end-line="246" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1178,45 +1189,93 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="0" lean-forward="false" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
-          <folding>
-            <marker date="1512576627880" expanded="true" signature="603:756" ph="..." />
-            <marker date="1512576627880" expanded="true" signature="696:724" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chillFlocke/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <marker date="1513533282792" expanded="true" signature="605:758" ph="..." />
-            <marker date="1513533282792" expanded="true" signature="698:726" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="799" column="37" lean-forward="true" selection-start-line="798" selection-start-column="56" selection-end-line="799" selection-end-column="37" />
+        <state relative-caret-position="13583">
+          <caret line="799" column="37" lean-forward="false" selection-start-line="798" selection-start-column="56" selection-end-line="799" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/recFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="679" column="0" lean-forward="true" selection-start-line="679" selection-start-column="0" selection-end-line="685" selection-end-column="1" />
+        <state relative-caret-position="11543">
+          <caret line="679" column="0" lean-forward="false" selection-start-line="679" selection-start-column="0" selection-end-line="685" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/chillFlocke/js/main.js">
+    <entry file="file://$PROJECT_DIR$/flocke/chillFlocke/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flocke/recFlocke/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="12" column="33" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/img/clusterFilter_preview.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="24" column="51" lean-forward="false" selection-start-line="24" selection-start-column="51" selection-end-line="24" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flocke/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="17" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flocke/recFlocke/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="16" lean-forward="false" selection-start-line="24" selection-start-column="16" selection-end-line="24" selection-end-column="16" />
+          <folding>
+            <marker date="1513608785403" expanded="true" signature="615:768" ph="..." />
+            <marker date="1513608785403" expanded="true" signature="708:736" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flocke/chillFlocke/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="22" lean-forward="false" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+          <folding>
+            <marker date="1513607484941" expanded="true" signature="617:770" ph="..." />
+            <marker date="1513607484941" expanded="true" signature="710:738" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flocke/retroFlocke/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <marker date="1513607484969" expanded="true" signature="617:770" ph="..." />
+            <marker date="1513607484969" expanded="true" signature="710:738" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
