@@ -418,3 +418,7 @@ function getPointVec(basePoint, vec, distance){
         y: basePoint.y + vec.y * distance
     }
 }
+
+function valueInRange(range){
+    return range[0] + ((range[1] - range[0]) * Math.random()) << 0;
+}

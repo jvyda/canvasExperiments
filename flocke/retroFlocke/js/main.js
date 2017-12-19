@@ -51,7 +51,10 @@ var config = {
                 arcDown: 70
             }
         },
-        rangeChance: 0.5,
+        rangeChance: 0.5
+    },
+    flocke: {
+        vertices: verticesAmount,
         lineWidthMethod: {
             innerWidth: 8,
             outerWidth: 9
@@ -91,17 +94,9 @@ function createConjoinedOptions(){
 }
 
 
-function valueInRange(range){
-    return range[0] + ((range[1] - range[0]) * Math.random()) << 0;
-}
-
-
-
-
-
 
 var flockVerticeFun = function (depth) {
-    return config.retroFlocke.vertices;
+    return config.flocke.vertices;
 };
 
 var topFlocke = {
@@ -202,7 +197,7 @@ function fixConjoined(depth) {
 }
 
 function createAlternativeFlocke() {
-    var stepSize = 2 * Math.PI / config.retroFlocke.vertices;
+    var stepSize = 2 * Math.PI / config.flocke.vertices;
     var actualStartingAngle = 0;
     for (var arc = actualStartingAngle; arc <= (2 * Math.PI - 0.1 + actualStartingAngle); arc += stepSize) {
         alternativeFlocke.poles.push({
@@ -239,56 +234,6 @@ function createAlternativeFlocke() {
 
 }
 
-function paintStruct(struct) {
-    struct.lines.forEach(function (line) {
-        var curPoint = line.point;
-        ctx.moveTo(curPoint.x, curPoint.y);
-        do {
-            line = line.next;
-            if (line === undefined) break;
-            curPoint = line.point;
-            ctx.lineTo(curPoint.x, curPoint.y)
-        } while (true)
-    });
-}
-
-// not gonna bother, very.. buggy
-function doItManually(struct){
-    struct.lines.forEach(function (line) {
-        var firstPoint = line;
-        var nextPoint = line.next !== undefined ? line.next : undefined;
-        while(nextPoint !== undefined){
-            var vec = createNormalizedVector(nextPoint.point, firstPoint.point);
-            var normalVector = rotate90Deg(vec);
-            var lowerPoint = getPointVec(firstPoint.point, normalVector, config.retroFlocke.lineWidthMethod.innerWidth / 2);
-            var upperPoint = getPointVec(firstPoint.point, normalVector, -config.retroFlocke.lineWidthMethod.innerWidth / 2);
-            var lowerTarget = getPointVec(lowerPoint, vec, pointDistance(nextPoint.point, firstPoint.point));
-            var upperTarget = getPointVec(upperPoint, vec, pointDistance(nextPoint.point, firstPoint.point));
-            ctx.moveTo(lowerPoint.x, lowerPoint.y);
-            ctx.lineTo(lowerTarget.x, lowerTarget.y);
-            ctx.moveTo(upperPoint.x, upperPoint.y);
-            ctx.lineTo(upperTarget.x, upperTarget.y);
-            firstPoint = firstPoint.next;
-            nextPoint = firstPoint.next !== undefined ? line.next : undefined;
-        }
-    });
-}
-
-
-function doItViaLineWidth(struct) {
-    ctx.beginPath();
-    ctx.lineWidth = config.retroFlocke.lineWidthMethod.outerWidth;
-    ctx.strokeStyle = 'white';
-    paintStruct(struct);
-    ctx.stroke();
-    if(config.retroFlocke.lineWidthMethod.innerWidth !== config.retroFlocke.lineWidthMethod.innerWidth) {
-        ctx.beginPath();
-        ctx.strokeStyle = 'white';
-        ctx.lineWidth = config.retroFlocke.lineWidthMethod.innerWidth;
-        paintStruct(struct);
-        ctx.stroke();
-    }
-}
 
 function paintAlternativeFlocke() {
     alternativeFlocke.poles.forEach(function (pole) {
@@ -452,31 +397,7 @@ function createConjoinedStructure(pole, flocke, depth, options){
     pole.structs.push(newStruct);
 }
 
-
-function getLastInLine(line){
-    var lineToUse = line;
-    while(lineToUse.next !== undefined){
-        lineToUse = lineToUse.next;
-    }
-    return lineToUse;
-}
-
 function getBaseStruct() {
     return {lines: [], points: []}
 }
 
-function getFarthestStruct(pole, flocke) {
-    var foundStruct;
-    var currentMaxDistance = 0;
-    if (pole.structs.length === 0) {
-        return flocke.center;
-    }
-    pole.structs.forEach(function (struct) {
-        var structPointDistance = pointDistance(struct.endPoint, flocke.center);
-        if (structPointDistance > currentMaxDistance) {
-            currentMaxDistance = structPointDistance;
-            foundStruct = struct;
-        }
-    });
-    return foundStruct.endPoint;
-}
