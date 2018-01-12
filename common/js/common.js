@@ -397,7 +397,7 @@ function createRainbowColors(frequency){
         var red   = Math.sin(frequency * i + 0) * 127 + 128;
         var green = Math.sin(frequency * i + 2) * 127 + 128;
         var blue  = Math.sin(frequency * i + 4) * 127 + 128;
-        var color = {r: red << 0, g: green << 0, b: blue << 0};
+        var color = {r: red << 0, g: green << 0, b: blue << 0, a: 255};
         addRGBStyle(color);
         colors.push(color)
     }
@@ -421,4 +421,8 @@ function getPointVec(basePoint, vec, distance){
 
 function valueInRange(range){
     return range[0] + ((range[1] - range[0]) * Math.random()) << 0;
+}
+
+function spliceRandomElement(array){
+    return array.splice((Math.random() * array.length) <<0, 1)[0];
 }
