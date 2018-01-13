@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="added labyrin">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="maZe:&#10;-changed color similarity check to be of distance instead of just a tolerance in rgb values&#10;-added bounds check for probable points to it wont overflow in the right">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
-      <change beforePath="$PROJECT_DIR$/flags/js/main.js" afterPath="$PROJECT_DIR$/flags/js/main.js" />
       <change beforePath="$PROJECT_DIR$/maZe/js/main.js" afterPath="$PROJECT_DIR$/maZe/js/main.js" />
-      <change beforePath="$PROJECT_DIR$/orbitingSpheres/js/main.js" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,8 +26,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="-295">
+              <caret line="75" column="47" lean-forward="false" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -38,8 +36,8 @@
       <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="434" column="80" lean-forward="false" selection-start-line="434" selection-start-column="75" selection-end-line="434" selection-end-column="80" />
+            <state relative-caret-position="9367">
+              <caret line="551" column="1" lean-forward="false" selection-start-line="551" selection-start-column="1" selection-end-line="551" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -70,9 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.flocke.</find>
-      <find>.verti</find>
-      <find>inner</find>
       <find>doIt</find>
       <find>fixConjoined</find>
       <find>getfar</find>
@@ -100,6 +95,9 @@
       <find>keyPressed</find>
       <find>cnt</find>
       <find>probablePoints.push(</find>
+      <find>tiles</find>
+      <find>lineWidth</find>
+      <find>20</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -108,6 +106,7 @@
       <replace>.chillFlocke.</replace>
       <replace>.recFlocke.</replace>
       <replace>checkBoundsAndAdd(probablePoints,</replace>
+      <replace>6</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$</dir>
@@ -203,7 +202,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -253,6 +251,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -394,14 +393,9 @@
       <workItem from="1515017513647" duration="10000" />
       <workItem from="1515756622349" duration="14581000" />
       <workItem from="1515787996884" duration="1072000" />
-      <workItem from="1515799454014" duration="8235000" />
-    </task>
-    <task id="LOCAL-00057" summary="nTriangles:&#10;-improved decision algorithm for arc/direction finding, now crashes further in (even though it should hold all cases)">
-      <created>1497746378389</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1497746378389</updated>
+      <workItem from="1515799454014" duration="10254000" />
+      <workItem from="1515851446373" duration="158000" />
+      <workItem from="1515854065486" duration="812000" />
     </task>
     <task id="LOCAL-00058" summary="nTriangles:&#10;-added method to determine the min distance to another vertice (currently not needed, as it does not fix the error)">
       <created>1497747526318</created>
@@ -739,18 +733,25 @@
       <option name="project" value="LOCAL" />
       <updated>1515788676401</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="maZe:&#10;-changed color similarity check to be of distance instead of just a tolerance in rgb values&#10;-added bounds check for probable points to it wont overflow in the right">
+      <created>1515840506186</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1515840506187</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="102595000" />
+    <option name="totallyTimeSpent" value="105584000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -764,6 +765,7 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -841,7 +843,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;" />
     <MESSAGE value="balls:&#10;- added a prediction to indicate in which direction the balls are going to fly" />
     <MESSAGE value="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;" />
     <MESSAGE value="balls:&#10;- added ability to reset&#10;- state of the field (rects, buffs, portals, balls) is now stored in cookies and read out&#10;- changed ball indicator to light blue&#10;- reworked spawn blocking detection&#10;&#10;Common:&#10;-added cookie.js dependency" />
@@ -866,7 +867,8 @@
     <MESSAGE value="flocke:&#10;-created flocke common to contain some methods which are used more (still needs a lot of refactoring)" />
     <MESSAGE value="added maZe!" />
     <MESSAGE value="overview:&#10;-added maZe to overview" />
-    <option name="LAST_COMMIT_MESSAGE" value="overview:&#10;-added maZe to overview" />
+    <MESSAGE value="maZe:&#10;-changed color similarity check to be of distance instead of just a tolerance in rgb values&#10;-added bounds check for probable points to it wont overflow in the right" />
+    <option name="LAST_COMMIT_MESSAGE" value="maZe:&#10;-changed color similarity check to be of distance instead of just a tolerance in rgb values&#10;-added bounds check for probable points to it wont overflow in the right" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1158,7 +1160,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="655" column="20" lean-forward="false" selection-start-line="655" selection-start-column="20" selection-end-line="655" selection-end-column="20" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1166,7 +1167,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="573" column="6" lean-forward="true" selection-start-line="573" selection-start-column="6" selection-end-line="575" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1181,6 +1181,28 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="40" lean-forward="true" selection-start-line="6" selection-start-column="40" selection-end-line="6" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9367">
+          <caret line="551" column="1" lean-forward="false" selection-start-line="551" selection-start-column="1" selection-end-line="551" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-295">
+          <caret line="75" column="47" lean-forward="false" selection-start-line="75" selection-start-column="47" selection-end-line="75" selection-end-column="47" />
           <folding />
         </state>
       </provider>
@@ -1193,30 +1215,6 @@
             <marker date="1515779382554" expanded="true" signature="598:751" ph="..." />
             <marker date="1515779382554" expanded="true" signature="691:719" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flags/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="434" column="80" lean-forward="false" selection-start-line="434" selection-start-column="75" selection-end-line="434" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

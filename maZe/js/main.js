@@ -15,7 +15,7 @@ var config = {
     }
 };
 
-// upper left corder is startpoint
+// upper left corner is startpoint
 var leftTile = function (startPoint, ctx) {
     ctx.beginPath();
     var leftLower = {x: startPoint.x, y: startPoint.y + config.maZe.tileSize / 2};
@@ -64,7 +64,7 @@ var rightTileCircle = function (startPoint, ctx) {
     ctx.stroke();
 };
 
-var tiles = [[leftTileCircle, rightTileCircle], [leftTile, rightTile]];
+var tileGroups = [[leftTileCircle, rightTileCircle], [leftTile, rightTile]];
 
 $(document).ready(function () {
     canvas = $("#canvas")[0];
@@ -73,7 +73,7 @@ $(document).ready(function () {
 
 
     canvas.height = config.size.height;
-    setupWithThisTiles(randomElement(tiles));
+    setupWithThisTiles(randomElement(tileGroups));
 });
 
 function setupWithThisTiles(tiles) {
@@ -110,7 +110,9 @@ function checkBoundsAndAdd(list, point){
 }
 
 
+// results in 101 different colors
 var rainbow = createRainbowColors(1 / 16);
+// max distance from top left corner
 var max = Math.sqrt(Math.pow(config.size.width + config.maZe.tileSize, 2) + Math.pow(config.size.height + config.maZe.tileSize, 2));
 
 function fillPointsWithColorWithTimeout(points) {
@@ -121,6 +123,7 @@ function fillPointsWithColorWithTimeout(points) {
     // right
    // var pointToDo = points.splice(points.length -1, 1)[0];
     var imageData = ctx.getImageData(pointToDo.x, pointToDo.y, 1, 1).data;
+    // if it is white (just checked for red color channel) we need to paint it
     if (imageData[0] === 0) {
         var index = Math.sqrt(pointToDo.x * pointToDo.x + pointToDo.y * pointToDo.y);
         var color = rainbow[(index / max * 100) << 0];
@@ -134,106 +137,3 @@ function fillPointsWithColorWithTimeout(points) {
         });
     }
 }
-
-
-// taken from here https://gist.github.com/binarymax/4071852
-function floodfill(x, y, fillcolor, ctx, width, height, tolerance) {
-    var img = ctx.getImageData(0, 0, width, height);
-    var data = img.data;
-    var length = data.length;
-    var Q = [];
-    var currentIndex = (x + y * width) * 4;
-    var rightColorBorder = currentIndex, leftColorBorder = currentIndex, currentRowRightBorder, currentRowLeftBorder,
-        rowWidth = width * 4;
-    var targetcolor = {
-        r: data[currentIndex],
-        g: data[currentIndex + 1],
-        b: data[currentIndex + 2],
-        a: data[currentIndex + 3]
-    };
-
-    if (!pixelCompare(currentIndex, targetcolor, fillcolor, data, length, tolerance)) {
-        return false;
-    }
-    Q.push(currentIndex);
-    while (Q.length) {
-        currentIndex = Q.pop();
-        if (pixelCompareAndSet(currentIndex, targetcolor, fillcolor, data, length, tolerance)) {
-            rightColorBorder = currentIndex;
-            leftColorBorder = currentIndex;
-            currentRowLeftBorder = ((currentIndex / rowWidth) << 0) * rowWidth; //left bound
-            currentRowRightBorder = currentRowLeftBorder + rowWidth - 4;//right bound
-            if(((currentRowLeftBorder / rowWidth) << 0) !== ((currentRowRightBorder / rowWidth) << 0) || (currentRowRightBorder % width) < (currentRowRightBorder % width)){
-                continue;
-            }
-            while (currentRowLeftBorder < (leftColorBorder -= 4) && pixelCompareAndSet(leftColorBorder, targetcolor, fillcolor, data, length, tolerance)) ; //go left until edge hit
-            while (currentRowRightBorder > (rightColorBorder += 4) && pixelCompareAndSet(rightColorBorder, targetcolor, fillcolor, data, length, tolerance)) ; //go right until edge hit
-            for (var currentCell = leftColorBorder + 4; currentCell < (rightColorBorder - 4); currentCell += 4) {
-                if (currentCell - rowWidth >= 0 && pixelCompare(currentCell - rowWidth, targetcolor, fillcolor, data, length, tolerance)) Q.push(currentCell - rowWidth); //queue y-1
-                if (currentCell + rowWidth < length && pixelCompare(currentCell + rowWidth, targetcolor, fillcolor, data, length, tolerance)) Q.push(currentCell + rowWidth); //queue y+1
-            }
-        }
-    }
-    ctx.putImageData(img, 0, 0);
-}
-var cnt = 0;
-
-function pixelCompare(i, targetcolor, fillcolor, data, length, tolerance) {
-    if (i < 0 || i >= length) return false; //out of bounds
-    if (data[i + 3] === 0) return true;  //surface is invisible
-
-    //target is same as fill
-    if (
-        (targetcolor.a === fillcolor.a) &&
-        (targetcolor.r === fillcolor.r) &&
-        (targetcolor.g === fillcolor.g) &&
-        (targetcolor.b === fillcolor.b)
-    ) {
-        return false;
-    }
-
-
-    //target matches surface
-    if (
-        (targetcolor.a === data[i + 3]) &&
-        (targetcolor.r === data[i]) &&
-        (targetcolor.g === data[i + 1]) &&
-        (targetcolor.b === data[i + 2])
-    ) {
-        return true;
-    }
-
-    /*
-    if (
-        Math.abs(targetcolor.a - data[i + 3]) <= (255 - tolerance) &&
-        Math.abs(targetcolor.r - data[i]) <= tolerance &&
-        Math.abs(targetcolor.g - data[i + 1]) <= tolerance &&
-        Math.abs(targetcolor.b - data[i + 2]) <= tolerance
-    ) return true; //target to surface within tolerance
-*/
-    cnt ++;
-    var currentColor = {
-        r: data[i],
-        g: data[i + 1],
-        b: data[i + 2],
-        a: data[i + 3]
-    };
-    var distance = colorDistanceWithAlpha(targetcolor, currentColor);
-    if (distance < tolerance) {
-        return true;
-    }
-    return false; //no match
-}
-
-function pixelCompareAndSet(i, targetcolor, fillcolor, data, length, tolerance) {
-    if (pixelCompare(i, targetcolor, fillcolor, data, length, tolerance)) {
-        //fill the color
-        data[i] = fillcolor.r;
-        data[i + 1] = fillcolor.g;
-        data[i + 2] = fillcolor.b;
-        data[i + 3] = fillcolor.a;
-        return true;
-    }
-    return false;
-}
-
