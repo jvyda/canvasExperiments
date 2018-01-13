@@ -426,3 +426,26 @@ function valueInRange(range){
 function spliceRandomElement(array){
     return array.splice((Math.random() * array.length) <<0, 1)[0];
 }
+
+function colorDistance(colora, colorb) {
+    var rmean = ( colora.r + colorb.r) / 2;
+    var r = colora.r - colorb.r;
+    var g = colora.g - colorb.g;
+    var b = colora.b - colorb.b;
+    return Math.sqrt((((512 + rmean) * r * r) >> 8) + 4 * g * g + (((767 - rmean) * b * b) >> 8));
+}
+
+function colorDistanceWithAlpha(colora, colorb) {
+   /* max((r₁-r₂)², (r₁-r₂ - a₁+a₂)²) +
+        max((g₁-g₂)², (g₁-g₂ - a₁+a₂)²) +
+        max((b₁-b₂)², (b₁-b₂ - a₁+a₂)²)*/
+    var rDiff = colora.r - colorb.r;
+    var rDiffSquared = Math.pow(rDiff, 2);
+    var gDiff = colora.g - colorb.g;
+    var gDiffSquared = Math.pow(gDiff, 2);
+    var bDiff = colora.b - colorb.b;
+    var bDiffSquared = Math.pow(bDiff, 2);
+    var aSum = colora.a + colorb.a;
+    var colorADif = Math.pow(aSum, 2);
+   return Math.max(rDiffSquared, Math.pow(rDiff - aSum, 2)) + Math.max(gDiffSquared, Math.pow(gDiff- aSum, 2)) + Math.max(bDiffSquared, Math.pow(bDiff- aSum, 2));
+}

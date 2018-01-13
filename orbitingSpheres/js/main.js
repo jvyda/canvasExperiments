@@ -145,6 +145,7 @@ function createSpheres() {
     earth.vx = auPerDayToMPerSecond(1.635001487036944E-02);
     earth.vy = auPerDayToMPerSecond(-4.430797621704561E-03);
     earth.vz = auPerDayToMPerSecond(-2.101776519643229E-08);
+    earth.link = venus;
 
     var mars = generateBasicPlanet();
     mars.name = 'mars';
@@ -652,8 +653,21 @@ function drawSpheres() {
         if (pastTime in sphere.trail) {
             drawSpherePoint(sphere.trail[pastTime], sphere);
         }
+        if(false && sphere.link && (cnt % 50) === 0){
+            ctx.scale(5,5)
+            ctx.beginPath();
+            ctx.strokeStyle = 'yellow';
+            ctx.lineWidth = 0.1;
+            ctx.moveTo(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor);
+            ctx.lineTo(sphere.link.x * config.orbitingSpheres.scale_factor, sphere.link.y * config.orbitingSpheres.scale_factor);
+            ctx.stroke();
+            ctx.scale(0.2, 0.2)
+        }
     }
+    cnt++;
 }
+
+var cnt = 0;
 
 function everyBodyActed() {
     for (var index = 0; index < spheres.length; index++) {
@@ -693,7 +707,7 @@ function updateCanvas() {
     ctx.fillStyle = 'yellow';
     var topLeft = ctx.transformedPoint(0,0);
     var bottomRight = ctx.transformedPoint(canvas.width,canvas.height);
-    ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
+    //ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
     if(config.orbitingSpheres.scala < 12) {
         var datePoint = ctx.transformedPoint(0, config.orbitingSpheres.baseTextSize);
         ctx.fillText('Current time ' + formatDateTime(~~pastTime), datePoint.x, datePoint.y);
