@@ -470,6 +470,7 @@ function floodfill(x, y, fillcolor, ctx, width, height, tolerance) {
         return false;
     }
     Q.push(currentIndex);
+    var used = {};
     while (Q.length) {
         currentIndex = Q.pop();
         if (pixelCompareAndSet(currentIndex, targetcolor, fillcolor, data, length, tolerance)) {
@@ -477,14 +478,25 @@ function floodfill(x, y, fillcolor, ctx, width, height, tolerance) {
             leftColorBorder = currentIndex;
             currentRowLeftBorder = ((currentIndex / rowWidth) << 0) * rowWidth; //left bound
             currentRowRightBorder = currentRowLeftBorder + rowWidth - 4;//right bound
-            if(((currentRowLeftBorder / rowWidth) << 0) !== ((currentRowRightBorder / rowWidth) << 0) || (currentRowRightBorder % width) < (currentRowRightBorder % width)){
-                continue;
-            }
             while (currentRowLeftBorder < (leftColorBorder -= 4) && pixelCompareAndSet(leftColorBorder, targetcolor, fillcolor, data, length, tolerance)) ; //go left until edge hit
             while (currentRowRightBorder > (rightColorBorder += 4) && pixelCompareAndSet(rightColorBorder, targetcolor, fillcolor, data, length, tolerance)) ; //go right until edge hit
-            for (var currentCell = leftColorBorder + 4; currentCell < (rightColorBorder - 4); currentCell += 4) {
-                if (currentCell - rowWidth >= 0 && pixelCompare(currentCell - rowWidth, targetcolor, fillcolor, data, length, tolerance)) Q.push(currentCell - rowWidth); //queue y-1
-                if (currentCell + rowWidth < length && pixelCompare(currentCell + rowWidth, targetcolor, fillcolor, data, length, tolerance)) Q.push(currentCell + rowWidth); //queue y+1
+            for (var currentCell = leftColorBorder + 4; currentCell < (rightColorBorder); currentCell += 4) {
+                //queue y-1
+                var lower = currentCell - rowWidth;
+                if (lower >= 0 && pixelCompare(lower, targetcolor, fillcolor, data, length, tolerance)) {
+                    if(!(lower in used)){
+                        Q.push(lower);
+                        used[lower] = 1;
+                    }
+                }
+                //queue y+1
+                var upper = currentCell + rowWidth;
+                if (upper < length && pixelCompare(upper, targetcolor, fillcolor, data, length, tolerance)) {
+                    if(!(upper in used)){
+                        Q.push(upper);
+                        used[upper] = 1;
+                    }
+                }
             }
         }
     }

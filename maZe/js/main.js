@@ -9,7 +9,7 @@ var config = {
         height: window.innerHeight
     },
     maZe: {
-        tileSize: 40,
+        tileSize: 20,
         safetyOffset: 5,
         colorDistance: 40000
     }
@@ -64,17 +64,24 @@ var rightTileCircle = function (startPoint, ctx) {
     ctx.stroke();
 };
 
+var boxTile = function (startPoint, ctx) {
+    ctx.beginPath();
+    var leftUpper = {x: startPoint.x + config.maZe.tileSize / 2, y: startPoint.y};
+    ctx.moveTo(leftUpper.x, leftUpper.y);
+    var leftLower = {x: startPoint.x + config.maZe.tileSize / 2, y: startPoint.y + config.maZe.tileSize};
+    ctx.lineTo(leftLower.x, leftLower.y);
+    ctx.stroke();
+
+    ctx.beginPath();
+    var leftCenter = {x: startPoint.x, y: startPoint.y + config.maZe.tileSize / 2};
+    ctx.moveTo(leftCenter.x, leftCenter.y);
+    var rightLower = {x: startPoint.x + config.maZe.tileSize, y: startPoint.y + config.maZe.tileSize / 2};
+    ctx.lineTo(rightLower.x, rightLower.y);
+    ctx.stroke();
+};
+
+
 var tileGroups = [[leftTileCircle, rightTileCircle], [leftTile, rightTile]];
-
-$(document).ready(function () {
-    canvas = $("#canvas")[0];
-    ctx = canvas.getContext("2d");
-    canvas.width = config.size.width;
-
-
-    canvas.height = config.size.height;
-    setupWithThisTiles(randomElement(tileGroups));
-});
 
 function setupWithThisTiles(tiles) {
     ctx.clearRect(0, 0, config.size.height, config.size.width);
@@ -111,22 +118,24 @@ function checkBoundsAndAdd(list, point){
 
 
 // results in 101 different colors
-var rainbow = createRainbowColors(1 / 16);
+var rainbow = createRainbowColors(1/16);
 // max distance from top left corner
 var max = Math.sqrt(Math.pow(config.size.width + config.maZe.tileSize, 2) + Math.pow(config.size.height + config.maZe.tileSize, 2));
+var startOffset = (rainbow.length * Math.random()) << 0;
 
 function fillPointsWithColorWithTimeout(points) {
     // random
     var pointToDo = spliceRandomElement(points);
     // left
-   // var pointToDo = points.slice(0, 1)[0];
+   // var pointToDo = points.splice(0, 1)[0];
     // right
-   // var pointToDo = points.splice(points.length -1, 1)[0];
+   // var pointToDo = points.splice(points.length - 1, 1)[0];
     var imageData = ctx.getImageData(pointToDo.x, pointToDo.y, 1, 1).data;
     // if it is white (just checked for red color channel) we need to paint it
     if (imageData[0] === 0) {
-        var index = Math.sqrt(pointToDo.x * pointToDo.x + pointToDo.y * pointToDo.y);
-        var color = rainbow[(index / max * 100) << 0];
+        var distance = Math.sqrt(pointToDo.x * pointToDo.x + pointToDo.y * pointToDo.y);
+        var index = ((startOffset + distance / max * 100) << 0) % rainbow.length;
+        var color = rainbow[index];
         color.a = 255;
         floodfill(pointToDo.x, pointToDo.y, color, ctx, config.size.width, config.size.height, config.maZe.colorDistance);
     }
@@ -137,3 +146,18 @@ function fillPointsWithColorWithTimeout(points) {
         });
     }
 }
+
+
+
+
+$(document).ready(function () {
+    canvas = $("#canvas")[0];
+    ctx = canvas.getContext("2d");
+    canvas.width = config.size.width;
+
+
+    canvas.height = config.size.height;
+    setupWithThisTiles(randomElement(tileGroups));
+});
+
+
