@@ -480,7 +480,7 @@ function floodfill(x, y, fillcolor, ctx, width, height, tolerance) {
             currentRowRightBorder = currentRowLeftBorder + rowWidth - 4;//right bound
             while (currentRowLeftBorder < (leftColorBorder -= 4) && pixelCompareAndSet(leftColorBorder, targetcolor, fillcolor, data, length, tolerance)) ; //go left until edge hit
             while (currentRowRightBorder > (rightColorBorder += 4) && pixelCompareAndSet(rightColorBorder, targetcolor, fillcolor, data, length, tolerance)) ; //go right until edge hit
-            for (var currentCell = leftColorBorder + 4; currentCell < (rightColorBorder); currentCell += 4) {
+            for (var currentCell = leftColorBorder + 4; currentCell < (rightColorBorder - 4); currentCell += 4) {
                 //queue y-1
                 var lower = currentCell - rowWidth;
                 if (lower >= 0 && pixelCompare(lower, targetcolor, fillcolor, data, length, tolerance)) {
