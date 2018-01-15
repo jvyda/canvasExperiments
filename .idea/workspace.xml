@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
       <change beforePath="$PROJECT_DIR$/maZe/js/main.js" afterPath="$PROJECT_DIR$/maZe/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -26,8 +25,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
-              <caret line="366" column="47" lean-forward="false" selection-start-line="366" selection-start-column="47" selection-end-line="366" selection-end-column="47" />
+            <state relative-caret-position="638">
+              <caret line="377" column="49" lean-forward="false" selection-start-line="377" selection-start-column="49" selection-end-line="377" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -36,7 +35,7 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="237">
+            <state relative-caret-position="13583">
               <caret line="799" column="41" lean-forward="false" selection-start-line="799" selection-start-column="41" selection-end-line="799" selection-end-column="41" />
               <folding />
             </state>
@@ -46,8 +45,8 @@
       <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/common/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="487">
-              <caret line="480" column="71" lean-forward="false" selection-start-line="480" selection-start-column="71" selection-end-line="480" selection-end-column="71" />
+            <state relative-caret-position="8143">
+              <caret line="479" column="71" lean-forward="false" selection-start-line="479" selection-start-column="71" selection-end-line="479" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -212,7 +211,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -268,6 +266,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,14 +416,8 @@
       <workItem from="1515946556081" duration="199000" />
       <workItem from="1515950831890" duration="4823000" />
       <workItem from="1515968504210" duration="13000" />
-      <workItem from="1516027673858" duration="10290000" />
-    </task>
-    <task id="LOCAL-00060" summary="nTriangles:&#10;-added possibility to set config via ui">
-      <created>1497861328382</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1497861328383</updated>
+      <workItem from="1516027673858" duration="11002000" />
+      <workItem from="1516047110356" duration="1034000" />
     </task>
     <task id="LOCAL-00061" summary="nTriangles:&#10;-added zooming and panning&#10;-canvas size is now inner dimensions&#10;-changed default side to 250&#10;-fixed angle searching not working with small lengths&#10;-added color property to each vertice&#10;-for zooming we need to constanlty repaint the canvas&#10;&#10;">
       <created>1498426224806</created>
@@ -762,32 +755,40 @@
       <option name="project" value="LOCAL" />
       <updated>1515955646098</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="maZe:&#10;-added two more tile sets&#10;-changed the probable points to be definable per tile&#10;-mouse click floods the area you clicked on">
+      <created>1516042813228</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1516042813229</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="122139000" />
+    <option name="totallyTimeSpent" value="123885000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -864,7 +865,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="balls:&#10;- added ability to reset&#10;- state of the field (rects, buffs, portals, balls) is now stored in cookies and read out&#10;- changed ball indicator to light blue&#10;- reworked spawn blocking detection&#10;&#10;Common:&#10;-added cookie.js dependency" />
     <MESSAGE value="two colors work" />
     <MESSAGE value="added kolakoski" />
     <MESSAGE value="kolaKoski:&#10;- changed it to be rainbowColors&#10;- added options to ignore some numbers&#10;- reworked initial part of algorithm" />
@@ -889,7 +889,8 @@
     <MESSAGE value="maZe:&#10;-changed color similarity check to be of distance instead of just a tolerance in rgb values&#10;-added bounds check for probable points to it wont overflow in the right" />
     <MESSAGE value="maZe:&#10;-moved floodFill to commons" />
     <MESSAGE value="common:&#10;-floodfill: added a check if we painted the index already, sometimes it added the same again and again..&#10;&#10;maZe:&#10;-reduced initial size&#10;-added boxTile for testing purposes mainly&#10;-colors start at a random position, yellow can be in the center" />
-    <option name="LAST_COMMIT_MESSAGE" value="common:&#10;-floodfill: added a check if we painted the index already, sometimes it added the same again and again..&#10;&#10;maZe:&#10;-reduced initial size&#10;-added boxTile for testing purposes mainly&#10;-colors start at a random position, yellow can be in the center" />
+    <MESSAGE value="maZe:&#10;-added two more tile sets&#10;-changed the probable points to be definable per tile&#10;-mouse click floods the area you clicked on" />
+    <option name="LAST_COMMIT_MESSAGE" value="maZe:&#10;-added two more tile sets&#10;-changed the probable points to be definable per tile&#10;-mouse click floods the area you clicked on" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1207,15 +1208,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/common/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="480" column="71" lean-forward="false" selection-start-line="480" selection-start-column="71" selection-end-line="480" selection-end-column="71" />
+        <state relative-caret-position="8143">
+          <caret line="479" column="71" lean-forward="false" selection-start-line="479" selection-start-column="71" selection-end-line="479" selection-end-column="71" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
+        <state relative-caret-position="13583">
           <caret line="799" column="41" lean-forward="false" selection-start-line="799" selection-start-column="41" selection-end-line="799" selection-end-column="41" />
           <folding />
         </state>
@@ -1234,8 +1235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="366" column="47" lean-forward="false" selection-start-line="366" selection-start-column="47" selection-end-line="366" selection-end-column="47" />
+        <state relative-caret-position="638">
+          <caret line="377" column="49" lean-forward="false" selection-start-line="377" selection-start-column="49" selection-end-line="377" selection-end-column="49" />
           <folding />
         </state>
       </provider>

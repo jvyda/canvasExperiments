@@ -312,18 +312,31 @@ function setupWithThisTiles(tiles) {
     ctx.clearRect(0, 0, config.size.height, config.size.width);
     //randomElement(tiles)({x: 0, y: 0}, ctx);
     //return;
-    var probablePoints = [];
+    var tileCoordinates = [];
     for (var x = 0; x < config.size.width; x += config.maZe.tileSize) {
         for (var y = 0; y < config.size.height; y += config.maZe.tileSize) {
-            var interestingPoints = randomElement(tiles)({x: x, y: y}, ctx);
-            probablePoints = probablePoints.concat(interestingPoints);
+           tileCoordinates.push({x: x, y: y});
         }
     }
+    drawTile(tileCoordinates, tiles, []);
+}
 
-    probablePoints = probablePoints.filter(function(point){
-        return point.x < config.size.width && point.x > 0 && point.y < config.size.height && point.y > 0;
-    });
-    fillPointsWithColorWithTimeout(probablePoints)
+function drawTile(tileCoordinatesLeft, tiles, probablePoints){
+    for(var i = 0; i < 10 && tileCoordinatesLeft.length > 0; i++){
+        var coordinateToDraw = spliceRandomElement(tileCoordinatesLeft);
+        var interestingPoints = randomElement(tiles)({x: coordinateToDraw.x, y: coordinateToDraw.y}, ctx);
+        probablePoints = probablePoints.concat(interestingPoints);
+    }
+    if(tileCoordinatesLeft.length === 0){
+        probablePoints = probablePoints.filter(function(point){
+            return point.x < config.size.width && point.x > 0 && point.y < config.size.height && point.y > 0;
+        });
+        fillPointsWithColorWithTimeout(probablePoints)
+    } else {
+        requestAnimationFrame(function () {
+            drawTile(tileCoordinatesLeft, tiles, probablePoints);
+        });
+    }
 }
 
 function checkBoundsAndAdd(list, point){
@@ -362,7 +375,7 @@ function fillPointsWithColorWithTimeout(points) {
 
     if (points.length > 0) {
         requestAnimationFrame(function () {
-            fillPointsWithColorWithTimeout(points)
+            fillPointsWithColorWithTimeout(points);
         });
     }
 }
