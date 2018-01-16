@@ -212,7 +212,7 @@ var leftToRightUpwards = function(startPoint, ctx){
 
     var paintablePoints = [];
     paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.safetyOffset}); // top left
-    paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize - config.maZe.safetyOffset}); // bottom right
+    paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2 - config.maZe.safetyOffset}); // right center
     return paintablePoints;
 };
 
@@ -225,7 +225,7 @@ var leftToRightDownwards = function(startPoint, ctx){
     ctx.stroke();
 
     var paintablePoints = [];
-    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize - config.maZe.safetyOffset}); // bottom left
+    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2 - config.maZe.safetyOffset}); // left middle
     paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.safetyOffset}); // top right
     return paintablePoints;
 };
@@ -251,9 +251,9 @@ var fullX = function(startPoint, ctx){
 
     var paintablePoints = [];
     paintablePoints.push({x: startPoint.x + config.maZe.tileSize / 2, y: startPoint.y + config.maZe.safetyOffset}); // top middle
-    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2}); // center left
-    paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2}); // center right
-    paintablePoints.push({x: startPoint.x + config.maZe.tileSize / 2, y: startPoint.y + config.maZe.tileSize - config.maZe.safetyOffset}); // bottom middle
+    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2 - config.maZe.safetyOffset}); // center left
+    paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2 - config.maZe.safetyOffset}); // center right
+    paintablePoints.push({x: startPoint.x + config.maZe.tileSize / 2 - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize - config.maZe.safetyOffset}); // bottom middle
 
     return paintablePoints;
 };
@@ -316,8 +316,8 @@ var rightY = function(startPoint, ctx){
     ctx.stroke();
 
     var paintablePoints = [];
-    paintablePoints.push({x: startPoint.x + config.maZe.tileSize / 2, y: startPoint.y + config.maZe.tileSize - config.maZe.safetyOffset}); // bottom middle
-    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2}); // center left
+    paintablePoints.push({x: startPoint.x + config.maZe.tileSize / 2 + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2 + config.maZe.safetyOffset}); // center
+    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2 - config.maZe.safetyOffset}); // center left
     paintablePoints.push({x: startPoint.x + config.maZe.tileSize / 2 + config.maZe.safetyOffset, y: startPoint.y + config.maZe.safetyOffset}); // upper middle
     return paintablePoints;
 };
@@ -363,8 +363,10 @@ function drawTile(tileCoordinatesLeft, tiles, probablePoints){
         probablePoints = probablePoints.concat(interestingPoints);
     }
     if(tileCoordinatesLeft.length === 0){
-        probablePoints = probablePoints.filter(function(point){
-            return point.x < config.size.width && point.x > 0 && point.y < config.size.height && point.y > 0;
+        probablePoints = probablePoints.map(function(point){
+            point.x = Math.min(point.x, config.size.width - 1);
+            point.y = Math.min(point.y, config.size.height - 1);
+            return point;
         });
         states.initDone = true;
         fillPointsWithColorWithTimeout(probablePoints)
