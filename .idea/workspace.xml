@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
       <change beforePath="$PROJECT_DIR$/maZe/js/main.js" afterPath="$PROJECT_DIR$/maZe/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
@@ -22,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="638">
-              <caret line="377" column="49" lean-forward="false" selection-start-line="377" selection-start-column="49" selection-end-line="377" selection-end-column="49" />
+            <state relative-caret-position="-178">
+              <caret line="362" column="60" lean-forward="true" selection-start-line="362" selection-start-column="60" selection-end-line="362" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -42,10 +43,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/common/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8143">
+            <state relative-caret-position="408">
               <caret line="479" column="71" lean-forward="false" selection-start-line="479" selection-start-column="71" selection-end-line="479" selection-end-column="71" />
               <folding />
             </state>
@@ -77,7 +78,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>fixcon</find>
       <find>.vertices</find>
       <find>innerW</find>
       <find>getBase</find>
@@ -107,6 +107,7 @@
       <find>used</find>
       <find>CONSOLE</find>
       <find>console</find>
+      <find>tileGrou</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -177,8 +178,8 @@
         <option value="$PROJECT_DIR$/maZe/index.html" />
         <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/flags/js/main.js" />
-        <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/maZe/js/main.js" />
+        <option value="$PROJECT_DIR$/common/js/common.js" />
       </list>
     </option>
   </component>
@@ -211,6 +212,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -266,7 +268,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -417,14 +418,8 @@
       <workItem from="1515950831890" duration="4823000" />
       <workItem from="1515968504210" duration="13000" />
       <workItem from="1516027673858" duration="11002000" />
-      <workItem from="1516047110356" duration="1034000" />
-    </task>
-    <task id="LOCAL-00061" summary="nTriangles:&#10;-added zooming and panning&#10;-canvas size is now inner dimensions&#10;-changed default side to 250&#10;-fixed angle searching not working with small lengths&#10;-added color property to each vertice&#10;-for zooming we need to constanlty repaint the canvas&#10;&#10;">
-      <created>1498426224806</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1498426224806</updated>
+      <workItem from="1516047110356" duration="1100000" />
+      <workItem from="1516053203992" duration="2980000" />
     </task>
     <task id="LOCAL-00062" summary="added initial version of hilbertCurve">
       <created>1500242595415</created>
@@ -762,11 +757,18 @@
       <option name="project" value="LOCAL" />
       <updated>1516042813229</updated>
     </task>
-    <option name="localTasksCounter" value="110" />
+    <task id="LOCAL-00110" summary="maZe:&#10;-rendering the borders now happens with requestAnimationFrame, because it can take a long time if the resolution is big and you get feedback this way">
+      <created>1516048349016</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1516048349020</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="123885000" />
+    <option name="totallyTimeSpent" value="126931000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -865,7 +867,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="two colors work" />
     <MESSAGE value="added kolakoski" />
     <MESSAGE value="kolaKoski:&#10;- changed it to be rainbowColors&#10;- added options to ignore some numbers&#10;- reworked initial part of algorithm" />
     <MESSAGE value="overview:&#10;- added unNamed to overview" />
@@ -890,11 +891,12 @@
     <MESSAGE value="maZe:&#10;-moved floodFill to commons" />
     <MESSAGE value="common:&#10;-floodfill: added a check if we painted the index already, sometimes it added the same again and again..&#10;&#10;maZe:&#10;-reduced initial size&#10;-added boxTile for testing purposes mainly&#10;-colors start at a random position, yellow can be in the center" />
     <MESSAGE value="maZe:&#10;-added two more tile sets&#10;-changed the probable points to be definable per tile&#10;-mouse click floods the area you clicked on" />
-    <option name="LAST_COMMIT_MESSAGE" value="maZe:&#10;-added two more tile sets&#10;-changed the probable points to be definable per tile&#10;-mouse click floods the area you clicked on" />
+    <MESSAGE value="maZe:&#10;-rendering the borders now happens with requestAnimationFrame, because it can take a long time if the resolution is big and you get feedback this way" />
+    <option name="LAST_COMMIT_MESSAGE" value="maZe:&#10;-rendering the borders now happens with requestAnimationFrame, because it can take a long time if the resolution is big and you get feedback this way" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="14" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1206,14 +1208,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8143">
-          <caret line="479" column="71" lean-forward="false" selection-start-line="479" selection-start-column="71" selection-end-line="479" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13583">
@@ -1235,8 +1229,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="377" column="49" lean-forward="false" selection-start-line="377" selection-start-column="49" selection-end-line="377" selection-end-column="49" />
+        <state relative-caret-position="-178">
+          <caret line="362" column="60" lean-forward="true" selection-start-line="362" selection-start-column="60" selection-end-line="362" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="479" column="71" lean-forward="false" selection-start-line="479" selection-start-column="71" selection-end-line="479" selection-end-column="71" />
           <folding />
         </state>
       </provider>

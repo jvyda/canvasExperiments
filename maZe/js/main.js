@@ -15,6 +15,10 @@ var config = {
     }
 };
 
+var states = {
+    initDone: false
+};
+
 // upper left corner is startpoint
 var leftTile = function (startPoint, ctx) {
     ctx.beginPath();
@@ -137,6 +141,40 @@ var upSideSplitX = function (startPoint, ctx) {
     paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2});
     return paintablePoints;
 };
+
+var upSideSplitXL = function (startPoint, ctx) {
+    ctx.beginPath();
+    var leftUpper = {x: startPoint.x, y: startPoint.y};
+    ctx.moveTo(leftUpper.x, leftUpper.y);
+    var leftMiddle = {x: startPoint.x + config.maZe.tileSize * 0.25, y: startPoint.y + config.maZe.tileSize / 2};
+    ctx.lineTo(leftMiddle.x, leftMiddle.y);
+    var leftLower = {x: startPoint.x, y: startPoint.y + config.maZe.tileSize};
+    ctx.lineTo(leftLower.x, leftLower.y);
+    ctx.stroke();
+
+
+    var paintablePoints = [];
+    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2});
+    paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2});
+    return paintablePoints;
+};
+
+var upSideSplitXR = function (startPoint, ctx) {
+    ctx.beginPath();
+    var rightUpper = {x: startPoint.x + config.maZe.tileSize, y: startPoint.y};
+    ctx.moveTo(rightUpper.x, rightUpper.y);
+    var rightMiddle = {x: startPoint.x + config.maZe.tileSize * 0.75, y: startPoint.y + config.maZe.tileSize / 2};
+    ctx.lineTo(rightMiddle.x, rightMiddle.y);
+    var rightLower = {x: startPoint.x + config.maZe.tileSize, y: startPoint.y + config.maZe.tileSize};
+    ctx.lineTo(rightLower.x, rightLower.y);
+    ctx.stroke();
+
+    var paintablePoints = [];
+    paintablePoints.push({x: startPoint.x + config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2});
+    paintablePoints.push({x: startPoint.x + config.maZe.tileSize - config.maZe.safetyOffset, y: startPoint.y + config.maZe.tileSize / 2});
+    return paintablePoints;
+};
+
 
 var lyingSplitX = function (startPoint, ctx) {
     ctx.beginPath();
@@ -305,9 +343,6 @@ var leftY = function(startPoint, ctx){
     return paintablePoints;
 };
 
-
-var tileGroups = [[leftTileCircle, rightTileCircle], [leftTile, rightTile], [upSideSplitX, lyingSplitX], [leftToRightDownwards, leftToRightUpwards, fullX, normalY, upsideY, leftY, rightY]];
-
 function setupWithThisTiles(tiles) {
     ctx.clearRect(0, 0, config.size.height, config.size.width);
     //randomElement(tiles)({x: 0, y: 0}, ctx);
@@ -331,6 +366,7 @@ function drawTile(tileCoordinatesLeft, tiles, probablePoints){
         probablePoints = probablePoints.filter(function(point){
             return point.x < config.size.width && point.x > 0 && point.y < config.size.height && point.y > 0;
         });
+        states.initDone = true;
         fillPointsWithColorWithTimeout(probablePoints)
     } else {
         requestAnimationFrame(function () {
@@ -382,6 +418,9 @@ function fillPointsWithColorWithTimeout(points) {
 
 
 function mouseClick(event){
+    if(!states.initDone){
+        return;
+    }
     var mousePos = getMousePos(canvas, event);
     var data = ctx.getImageData(mousePos.x, mousePos.y, 1, 1).data;
     // only for black space, which has alpha = 0
@@ -399,6 +438,14 @@ $(document).ready(function () {
     canvas.addEventListener("mousedown", mouseClick, false);
 
     canvas.height = config.size.height;
+
+    var tileGroups = [
+        [leftTileCircle, rightTileCircle],
+        [leftTile, rightTile],
+        [upSideSplitX, lyingSplitX],
+        [leftToRightDownwards, leftToRightUpwards, fullX, normalY, upsideY, leftY, rightY]
+    ];
+
     setupWithThisTiles(randomElement(tileGroups));
 });
 
