@@ -15,6 +15,7 @@ var config = {
     }
 };
 
+
 var states = {
     initDone: false
 };
@@ -350,7 +351,7 @@ function setupWithThisTiles(tiles) {
     var tileCoordinates = [];
     for (var x = 0; x < config.size.width; x += config.maZe.tileSize) {
         for (var y = 0; y < config.size.height; y += config.maZe.tileSize) {
-           tileCoordinates.push({x: x, y: y});
+            tileCoordinates.push({x: x, y: y});
         }
     }
     drawTile(tileCoordinates, tiles, []);
@@ -371,18 +372,9 @@ function drawTile(tileCoordinatesLeft, tiles, probablePoints){
         states.initDone = true;
         fillPointsWithColorWithTimeout(probablePoints)
     } else {
-        requestAnimationFrame(function () {
-            drawTile(tileCoordinatesLeft, tiles, probablePoints);
-        });
+        drawTile(tileCoordinatesLeft, tiles, probablePoints);
     }
 }
-
-function checkBoundsAndAdd(list, point){
-    if(point.x < config.size.width && point.x > 0 && point.y < config.size.height && point.y > 0){
-        list.push(point)
-    }
-}
-
 
 // results in 101 different colors
 var rainbow = createRainbowColors(1/16);
@@ -404,11 +396,11 @@ function fillForPoint(pointToDo) {
 
 function fillPointsWithColorWithTimeout(points) {
     // random
-     var pointToDo = spliceRandomElement(points);
+    var pointToDo = spliceRandomElement(points);
     // left
     //var pointToDo = points.splice(0, 1)[0];
     // right
-   // var pointToDo = points.splice(points.length - 1, 1)[0];
+    // var pointToDo = points.splice(points.length - 1, 1)[0];
     fillForPoint(pointToDo);
 
     if (points.length > 0) {
@@ -419,25 +411,13 @@ function fillPointsWithColorWithTimeout(points) {
 }
 
 
-function mouseClick(event){
-    if(!states.initDone){
-        return;
-    }
-    var mousePos = getMousePos(canvas, event);
-    var data = ctx.getImageData(mousePos.x, mousePos.y, 1, 1).data;
-    // only for black space, which has alpha = 0
-    if(data[3] === 0) {
-        fillForPoint(mousePos);
-    }
-}
-
-
 $(document).ready(function () {
     canvas = $("#canvas")[0];
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
-
-    canvas.addEventListener("mousedown", mouseClick, false);
+    $(document).keydown(shutdown);
+    window.addEventListener("mousedown", shutdown, false);
+    window.addEventListener("mousemove", mouseMove, false);
 
     canvas.height = config.size.height;
 
@@ -450,4 +430,17 @@ $(document).ready(function () {
 
     setupWithThisTiles(randomElement(tileGroups));
 });
+
+
+function mouseMove(event){
+    if(Math.abs(event.movementX) > 1 || Math.abs(event.movementY) > 1) {
+        shutdown()
+    }
+}
+function shutdown(){
+
+    // gets the other process and quits it
+    require('electron').remote.require('electron').app.quit();
+}
+
 
