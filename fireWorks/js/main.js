@@ -231,6 +231,9 @@ function renderFlareTrailItem(trailItem, flare) {
     }
     color.alpha = trailItem.alpha;
     setCoordinateToColor(trailItem.x << 0, trailItem.y << 0, color);
+    setCoordinateToColor((trailItem.x << 0) + 1, trailItem.y << 0, color);
+    setCoordinateToColor((trailItem.x << 0) + 1, (trailItem.y << 0) + 1, color);
+    setCoordinateToColor(trailItem.x << 0, (trailItem.y << 0) + 1, color);
 }
 
 function normalFlare(trailItem, flare){
