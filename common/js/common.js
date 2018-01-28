@@ -562,3 +562,8 @@ function pixelCompareAndSet(i, targetcolor, fillcolor, data, length, tolerance) 
     }
     return false;
 }
+
+function translate(point, offset){
+    point.x += offset.x;
+    point.y += offset.y;
+}

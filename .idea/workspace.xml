@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/index.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/main.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/package.json" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/res/css/main.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/res/css/normalize.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/res/img/ava.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/res/js/common.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/res/js/jquery.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/maZe/electron/res/js/maZe.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/glOwing/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/glOwing/js/main.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/glOwing/js/plugins.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/maZe/js/main.js" afterPath="$PROJECT_DIR$/maZe/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/common/js/common.js" afterPath="$PROJECT_DIR$/common/js/common.js" />
+      <change beforePath="$PROJECT_DIR$/nTriangles/js/main.js" afterPath="$PROJECT_DIR$/nTriangles/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,54 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/maZe/electron/index.html">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/glOwing/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-              <folding>
-                <marker date="1516746323093" expanded="true" signature="516:669" ph="..." />
-                <marker date="1516746323093" expanded="true" signature="609:637" ph="..." />
-              </folding>
+            <state relative-caret-position="249">
+              <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
       <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/maZe/electron/res/js/common.js">
+        <entry file="file://$PROJECT_DIR$/common/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-161">
-              <caret line="220" column="15" lean-forward="false" selection-start-line="220" selection-start-column="15" selection-end-line="220" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="maZe.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/maZe/electron/res/js/maZe.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1244">
-              <caret line="419" column="4" lean-forward="false" selection-start-line="419" selection-start-column="4" selection-end-line="419" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/maZe/electron/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/maZe/electron/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+            <state relative-caret-position="9639">
+              <caret line="567" column="23" lean-forward="false" selection-start-line="567" selection-start-column="23" selection-end-line="567" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -97,7 +59,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>width</find>
       <find>cleanre</find>
       <find>clean</find>
       <find>zoom</find>
@@ -109,7 +70,6 @@
       <find>rainbow</find>
       <find>keypress</find>
       <find>keyPressed</find>
-      <find>cnt</find>
       <find>probablePoints.push(</find>
       <find>tiles</find>
       <find>lineWidth</find>
@@ -127,6 +87,8 @@
       <find>updateMousePos</find>
       <find>getmouse</find>
       <find>mousepos</find>
+      <find>start</find>
+      <find>cnt</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -149,8 +111,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/nTriangles/index.html" />
-        <option value="$PROJECT_DIR$/hilbertCurve/index.html" />
         <option value="$PROJECT_DIR$/dotLines/js/main.js" />
         <option value="$PROJECT_DIR$/hilbertCurve/js/main.js" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/index.html" />
@@ -168,7 +128,6 @@
         <option value="$PROJECT_DIR$/balls/js/main.js" />
         <option value="$PROJECT_DIR$/kolakoski/index.html" />
         <option value="$PROJECT_DIR$/kolakoski/js/main.js" />
-        <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
         <option value="$PROJECT_DIR$/kolaKoski/index.html" />
         <option value="$PROJECT_DIR$/retroFlocke/index.html" />
         <option value="$PROJECT_DIR$/retroFlocke/js/main.js" />
@@ -185,14 +144,12 @@
         <option value="$PROJECT_DIR$/flocke/chillFlocke/js/main.js" />
         <option value="$PROJECT_DIR$/flocke/js/flockeCommon.js" />
         <option value="$PROJECT_DIR$/flocke/retroFlocke/js/main.js" />
-        <option value="$PROJECT_DIR$/nTriangles/js/main.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
         <option value="$PROJECT_DIR$/labyRinth/index.html" />
         <option value="$PROJECT_DIR$/labyRinth/js/main.js" />
         <option value="$PROJECT_DIR$/maZe/index.html" />
         <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/flags/js/main.js" />
-        <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/maZe/electron/maZe.js" />
         <option value="$PROJECT_DIR$/maZe/electron/res/js/common.js" />
         <option value="$PROJECT_DIR$/maZe/electron/package.json" />
@@ -200,6 +157,11 @@
         <option value="$PROJECT_DIR$/maZe/js/main.js" />
         <option value="$PROJECT_DIR$/maZe/electron/res/js/maZe.js" />
         <option value="$PROJECT_DIR$/maZe/electron/main.js" />
+        <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
+        <option value="$PROJECT_DIR$/nTriangles/js/main.js" />
+        <option value="$PROJECT_DIR$/glOwing/index.html" />
+        <option value="$PROJECT_DIR$/common/js/common.js" />
+        <option value="$PROJECT_DIR$/glOwing/js/main.js" />
       </list>
     </option>
   </component>
@@ -252,19 +214,18 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="collatzConjecture" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="collatzConjecture" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
@@ -275,24 +236,18 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="jsTree" type="462c0819:PsiDirectoryNode" />
+              <item name="glOwing" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="jsTree" type="462c0819:PsiDirectoryNode" />
+              <item name="glOwing" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="maZe" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="maZe" type="462c0819:PsiDirectoryNode" />
-              <item name="electron" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
@@ -333,18 +288,18 @@
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/maZe/electron/res/js" />
+      <recent name="$PROJECT_DIR$/maZe/electron/res/img" />
+      <recent name="$PROJECT_DIR$/maZe/electron" />
+      <recent name="$PROJECT_DIR$/flocke" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/maZe/electron/res/js" />
       <recent name="$PROJECT_DIR$/maZe/electron/res/css" />
       <recent name="$PROJECT_DIR$/flocke" />
       <recent name="$PROJECT_DIR$/common/js" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/maZe/electron/res/js" />
-      <recent name="$PROJECT_DIR$/maZe/electron/res/img" />
-      <recent name="$PROJECT_DIR$/maZe/electron" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/flocke" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -464,21 +419,11 @@
       <workItem from="1516266161603" duration="8000" />
       <workItem from="1516706359399" duration="7455000" />
       <workItem from="1516727326697" duration="3467000" />
-      <workItem from="1516744987900" duration="3776000" />
-    </task>
-    <task id="LOCAL-00064" summary="hilbertCurves:&#10;-links are now local coordinates&#10;-fixed linking for majorAreas&#10;&#10;&#10;orbitingSpheres:&#10;-fixed start date">
-      <created>1500707914536</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1500707914537</updated>
-    </task>
-    <task id="LOCAL-00065" summary="hilbertCurves:&#10;-added dragging and zooming&#10;-added adding new levels to the image&#10;&#10;-added hilbertCurve to overview">
-      <created>1500712023715</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1500712023715</updated>
+      <workItem from="1516744987900" duration="3902000" />
+      <workItem from="1516823434254" duration="335000" />
+      <workItem from="1516903890042" duration="9284000" />
+      <workItem from="1516917784678" duration="1438000" />
+      <workItem from="1517166748213" duration="89000" />
     </task>
     <task id="LOCAL-00066" summary="hilbertCurves:&#10;-added help display&#10;&#10;&#10;orbitingSpheres:&#10;-help and date is now always visible with zooming (hide when zooming too much)">
       <created>1500722502284</created>
@@ -809,11 +754,25 @@
       <option name="project" value="LOCAL" />
       <updated>1516110454227</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="maZe:&#10;-added initial (and working) version for a maZe screensaver, missing features are customization of executable and features which are really needed">
+      <created>1516750948601</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1516750948601</updated>
+    </task>
+    <task id="LOCAL-00114" summary="fireWorks:&#10;-changed head of flare trail items to be a square of two">
+      <created>1516823664542</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1516823664543</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="147624000" />
+    <option name="totallyTimeSpent" value="158896000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -822,7 +781,6 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -835,6 +793,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -911,8 +870,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="overview:&#10;- added unNamed to overview" />
-    <MESSAGE value="overview:&#10;-added kolaKoski" />
     <MESSAGE value="added recFlocke" />
     <MESSAGE value="first change to morphing the flocke" />
     <MESSAGE value="minor error on commit" />
@@ -936,29 +893,17 @@
     <MESSAGE value="maZe:&#10;-rendering the borders now happens with requestAnimationFrame, because it can take a long time if the resolution is big and you get feedback this way" />
     <MESSAGE value="common:&#10;-floodFill: fixed borders on th left and right&#10;&#10;maZe:&#10;-disabled filling with click if it is not yet tiled yet" />
     <MESSAGE value="maZe:&#10;-changed some paintable points for some tiles&#10;-the paintable points are not filtered anymore, but rather moved to the max position instead" />
-    <option name="LAST_COMMIT_MESSAGE" value="maZe:&#10;-changed some paintable points for some tiles&#10;-the paintable points are not filtered anymore, but rather moved to the max position instead" />
+    <MESSAGE value="maZe:&#10;-added initial (and working) version for a maZe screensaver, missing features are customization of executable and features which are really needed" />
+    <MESSAGE value="fireWorks:&#10;-changed head of flare trail items to be a square of two" />
+    <option name="LAST_COMMIT_MESSAGE" value="fireWorks:&#10;-changed head of flare trail items to be a square of two" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="19" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/voronoi/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="275" column="0" lean-forward="false" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/balls/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="24" column="40" lean-forward="false" selection-start-line="24" selection-start-column="40" selection-end-line="24" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/circleBs/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -997,13 +942,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="49" column="0" lean-forward="false" selection-start-line="49" selection-start-column="0" selection-end-line="50" selection-end-column="90" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="674">
-          <caret line="503" column="61" lean-forward="false" selection-start-line="503" selection-start-column="2" selection-end-line="503" selection-end-column="61" />
         </state>
       </provider>
     </entry>
@@ -1090,13 +1028,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nTriangles/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="612" column="14" lean-forward="false" selection-start-line="612" selection-start-column="14" selection-end-line="612" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/spaceFillingCurves/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
@@ -1132,13 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="48" column="21" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="13583">
@@ -1150,13 +1074,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="422" column="43" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="563" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1207,32 +1124,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/electron/maZe-win32-x64/locales/am.pak">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/electron/maZe-win32-x64/LICENSES.chromium.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1020">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/maZe/electron/maZe-win32-x64/locales/am.pak" />
+    <entry file="file://$PROJECT_DIR$/maZe/electron/maZe-win32-x64/LICENSES.chromium.html" />
     <entry file="file://$PROJECT_DIR$/jsTree/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="24" column="47" lean-forward="false" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="47" />
-          <folding>
-            <marker date="1511898159575" expanded="true" signature="650:803" ph="..." />
-            <marker date="1511898159575" expanded="true" signature="743:771" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1240,7 +1140,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
           <caret line="180" column="42" lean-forward="true" selection-start-line="180" selection-start-column="42" selection-end-line="180" selection-end-column="42" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1248,15 +1147,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="681" column="47" lean-forward="true" selection-start-line="681" selection-start-column="8" selection-end-line="681" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="453" column="0" lean-forward="false" selection-start-line="453" selection-start-column="0" selection-end-line="453" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1264,33 +1154,78 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
           <caret line="19" column="19" lean-forward="false" selection-start-line="19" selection-start-column="19" selection-end-line="19" selection-end-column="19" />
-          <folding>
-            <marker date="1516746323093" expanded="true" signature="516:669" ph="..." />
-            <marker date="1516746323093" expanded="true" signature="609:637" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/maZe/electron/res/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161">
+        <state relative-caret-position="3740">
           <caret line="220" column="15" lean-forward="false" selection-start-line="220" selection-start-column="15" selection-end-line="220" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/electron/res/js/maZe.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1244">
-          <caret line="419" column="4" lean-forward="false" selection-start-line="419" selection-start-column="4" selection-end-line="419" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/maZe/electron/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+        <state relative-caret-position="204">
+          <caret line="12" column="69" lean-forward="true" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maZe/electron/res/js/maZe.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7123">
+          <caret line="419" column="4" lean-forward="false" selection-start-line="419" selection-start-column="4" selection-end-line="419" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nTriangles/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="638" column="8" lean-forward="false" selection-start-line="638" selection-start-column="8" selection-end-line="638" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fireWorks/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="234" column="67" lean-forward="false" selection-start-line="234" selection-start-column="67" selection-end-line="234" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glOwing/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/maZe/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="407" column="11" lean-forward="true" selection-start-line="407" selection-start-column="11" selection-end-line="407" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9639">
+          <caret line="567" column="23" lean-forward="false" selection-start-line="567" selection-start-column="23" selection-end-line="567" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/collatzConjecture/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="114" column="76" lean-forward="true" selection-start-line="114" selection-start-column="76" selection-end-line="114" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/glOwing/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="249">
+          <caret line="33" column="18" lean-forward="false" selection-start-line="33" selection-start-column="18" selection-end-line="33" selection-end-column="18" />
           <folding />
         </state>
       </provider>

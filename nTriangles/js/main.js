@@ -73,11 +73,13 @@ function addTrianglesToVertice(vertice) {
         var existingTriangle = vertice.triangles[existTriangleI];
         for (var existingVerticeI = 0; existingVerticeI < existingTriangle.vertices.length; existingVerticeI++) {
             var existingVertice = existingTriangle.vertices[existingVerticeI];
+            // get a point which is not the base point, but one point in the border of the current pointy edge
             if (pointDistance(vertice, existingVertice) > 0.001) {
                 var mainVec = createNormalizedVector(existingVertice, vertice);
                 for (var otherTriangleI = 0; otherTriangleI < vertice.triangles.length; otherTriangleI++) {
                     var otherTriangle = vertice.triangles[otherTriangleI];
                     for (var otherVerticeI = 0; otherVerticeI < otherTriangle.vertices.length; otherVerticeI++) {
+                        // get another point which comes from the triangles, and search through all of the possible edges to get the one, which is spanning open the arc
                         var otherVertice = otherTriangle.vertices[otherVerticeI];
                         if (pointDistance(existingVertice, otherVertice) > 0.001 && pointDistance(otherVertice, vertice) > 0.001) {
                             var secondVec = createNormalizedVector(otherVertice, vertice);
@@ -85,6 +87,8 @@ function addTrianglesToVertice(vertice) {
                             if ((Math.abs(angle - vertice.freeArc) < 0.000001)) {
                                 endingVertice = otherVertice;
                                 startingVertice = existingVertice;
+
+                                // it can be over 180°, so we need to keep that in mind
                             } else if ((Math.abs(angle - (2 * Math.PI - vertice.freeArc)) < 0.000001)) {
                                 endingVertice = otherVertice;
                                 startingVertice = existingVertice;
@@ -336,6 +340,7 @@ function addTrianglesToVertice(vertice) {
         latestVertice = startingVertice;
 
     } else {
+        // the case at the very start, with no existing vertices
         var initialVerticeX = vertice.x + lenght * Math.cos(arc);
         var initialVerticeY = vertice.y + lenght * Math.sin(arc);
         var initialVertice = {
