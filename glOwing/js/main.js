@@ -9,10 +9,8 @@ var config = {
         height: window.innerHeight
     },
     glOwing: {
-        maxNeighbors: 2,
         nodes: 1000,
-        maxArcDelta: toRad(10),
-        maxFurtherDist: 150
+        maxNodeDist: 100
     }
 };
 
@@ -24,99 +22,102 @@ $(document).ready(function () {
     canvas.width = config.size.width;
     canvas.height = config.size.height;
     generateGraph();
-    paintGraph(graph, 0);
+    interconnectGraph(graph);
+    paintGraph(graph, 0, startBot);
+    setInterval(startBot, 2000);
 });
 
-var globalStart;
-
-function generateGraph(){
-    var start = createNode();
-    globalStart = start;
-    graph.push(start);
-    requestAnimationFrame(function(){
-        addLevels(toRad(0), [{before: start, node: start}]);
-    })
+function startBot(){
+    var index = randomInteger(graph.length);
+    bot(0, [graph[index]], {index: 1}, getColor());
 }
 
-var buildId = 0;
-var paintId = 0;
 
-var rainbowColors = createRainbowColors(1/16);
+function blackColor(){
+    var color = {
+        r: 0, g: 0, b: 0
+    };
+    addRGBStyle(color);
+    return color;
+}
 
-function addLevels(arc, addOnTo){
-    if(addOnTo.length === 0) {
-        console.log(buildId);
-        return;
+function getColor(){
+    //return randomColor();
+    return randomElement(rainbowColors);
+}
+
+function bot(index, toChange, changed, colorToSet){
+    if(index === toChange.length) return;
+    var vertice = toChange[index];
+    vertice.color = colorToSet;
+    for(var i = 0; i < vertice.neighbors.length; i++){
+        var verticeToChange = vertice.neighbors[i];
+        if(verticeToChange.index in changed) continue;
+        toChange.push(verticeToChange);
+        paintVerticeAndNeighbors(graph, verticeToChange.index);
+        changed[verticeToChange.index] = 1;
     }
-    var newAddOnTo = [];
-    for(var addI = 0; addI < addOnTo.length; addI++){
-        var nodeToDo = addOnTo[addI];
-        var neighbors = randomInteger(config.glOwing.maxNeighbors) + 2;
-        for(var i = 0; i < neighbors; i++){
-            var arcDelta2 = config.glOwing.maxArcDelta * Math.random() - config.glOwing.maxArcDelta / 2;
-            var newNode = generateNodeInArcOfNode({x: 0, y: 0}, arc, 0);
-            translate(newNode, nodeToDo.node);
-            ctx.beginPath();
-            ctx.strokeStyle = randomColor().styleRGB;
-            ctx.moveTo(nodeToDo.node.x, nodeToDo.node.y);
-            ctx.lineTo(newNode.x, newNode.y);
-            buildId++;
-            ctx.stroke();
-            newNode.neighbors.push(nodeToDo.before);
-            graph.push(newNode);
-            nodeToDo.before.neighbors.push(newNode);
-            if(graph.length < config.glOwing.nodes){
-                newAddOnTo.push({before: nodeToDo.node, node: newNode});
+    setTimeout(function(){
+        bot(index + 1, toChange, changed, colorToSet);
+    }, 1);
+}
+
+
+function generateGraph(){
+    for(var i = 0; i < config.glOwing.nodes; i++){
+        var vertice = randomPoint(config.size.width, config.size.height);
+        vertice.neighbors = [];
+        vertice.index = i;
+        vertice.color = blackColor();
+        graph.push(vertice)
+    }
+}
+
+function interconnectGraph(graphToConnect){
+    for(var grapI = 0; grapI < graphToConnect.length; grapI++){
+        var vertice = graphToConnect[grapI];
+        for(var compareToGraphI = 0; compareToGraphI < graphToConnect.length; compareToGraphI++){
+            var verticeToCheckWith = graphToConnect[compareToGraphI];
+            if(pointDistance(vertice, verticeToCheckWith) < config.glOwing.maxNodeDist){
+                verticeToCheckWith.neighbors.push(vertice);
+                vertice.neighbors.push(verticeToCheckWith);
             }
         }
     }
-
-    var arcDelta = config.glOwing.maxArcDelta * Math.random() - config.glOwing.maxArcDelta / 2;
-    if(arc > toDeg(60) && false) {
-        arc -= config.glOwing.maxArcDelta * Math.random();
-    }
-    if(arc < toDeg(0) && false){
-        arc += config.glOwing.maxArcDelta * Math.random();
-    }
-    var newArc = arc +  config.glOwing.maxArcDelta / 2;
-    requestAnimationFrame(function(){
-            addLevels(newArc, newAddOnTo);
-    })
-}
-
-function generateNodeInArcOfNode(baseNode, arc, arcDelta){
-    var newNode = createNode();
-    var coord = getPoint(baseNode, arc + arcDelta, randomInteger(config.glOwing.maxFurtherDist));
-    newNode.x = coord.x;
-    newNode.y = coord.y;
-    newNode.neighbors = [];
-    return newNode;
-}
-
-function createNode(){
-    return {x: 10, y: 10, neighbors: []}
 }
 
 
-function paintGraph(graph, index){
-    if(index === graph.length) {
-        console.log(paintId);
-        return;
-    }
+var rainbowColors = createRainbowColors(1/16);
+
+
+function paintVerticeAndNeighbors(graph, index) {
     var node = graph[index];
-    index++;
     ctx.beginPath();
-    ctx.strokeStyle = randomColor().styleRGB;
     //ctx.rect(node.x, node.y, 1, 1);
+    ctx.strokeStyle = node.color.styleRGB;
 
-    for(var i = 0; i < node.neighbors.length; i++){
+    for (var i = 0; i < node.neighbors.length; i++) {
         ctx.moveTo(node.x, node.y);
-        paintId++;
         ctx.lineTo(node.neighbors[i].x, node.neighbors[i].y);
     }
     ctx.stroke();
+}
+
+function paintGraph(graph, index, callback){
+    for(var verticeI = 0; verticeI < 20; verticeI++){
+        index++;
+        if(index === graph.length) {
+            callback();
+            return;
+        }
+        ctx.beginPath();
+        paintVerticeAndNeighbors(graph, index);
+        ctx.stroke();
+    }
+
+
     requestAnimationFrame(function(){
-        paintGraph(graph, index)
+        paintGraph(graph, index, callback)
     })
 }
 

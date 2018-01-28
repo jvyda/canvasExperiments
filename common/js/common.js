@@ -567,3 +567,7 @@ function translate(point, offset){
     point.x += offset.x;
     point.y += offset.y;
 }
+
+function randomPoint(xBounds, yBounds){
+    return {x: randomInteger(xBounds), y: randomInteger(yBounds)}
+}
