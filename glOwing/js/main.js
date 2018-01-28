@@ -9,8 +9,9 @@ var config = {
         height: window.innerHeight
     },
     glOwing: {
-        nodes: 1000,
-        maxNodeDist: 100
+        vertices: 0.0007028789923526766 * (window.innerWidth * window.innerHeight),
+        maxNodeDist: 80,
+        interVal: 2000
     }
 };
 
@@ -19,17 +20,26 @@ var graph = [];
 $(document).ready(function () {
     canvas = $("#canvas")[0];
     ctx = canvas.getContext("2d");
+    $("#canvas").css('background-color', 'rgba(0, 0, 0, 1)');
     canvas.width = config.size.width;
     canvas.height = config.size.height;
     generateGraph();
     interconnectGraph(graph);
-    paintGraph(graph, 0, startBot);
-    setInterval(startBot, 2000);
+    paintGraph(graph, 0, initBots);
 });
+
+function initBots(){
+    setTimeout(startBot, config.glOwing.interVal);
+}
 
 function startBot(){
     var index = randomInteger(graph.length);
     bot(0, [graph[index]], {index: 1}, getColor());
+/*    setTimeout(function(){
+        bot(0, [graph[index]], {index: 1}, blackColor())
+    }, 2000);
+    */
+    setTimeout(startBot, config.glOwing.interVal);
 }
 
 
@@ -47,16 +57,18 @@ function getColor(){
 }
 
 function bot(index, toChange, changed, colorToSet){
-    if(index === toChange.length) return;
+    if(index === graph.length - 1) {
+        return;
+    }
     var vertice = toChange[index];
     vertice.color = colorToSet;
     for(var i = 0; i < vertice.neighbors.length; i++){
         var verticeToChange = vertice.neighbors[i];
         if(verticeToChange.index in changed) continue;
         toChange.push(verticeToChange);
-        paintVerticeAndNeighbors(graph, verticeToChange.index);
         changed[verticeToChange.index] = 1;
     }
+    paintVerticeAndNeighbors(vertice);
     setTimeout(function(){
         bot(index + 1, toChange, changed, colorToSet);
     }, 1);
@@ -64,7 +76,7 @@ function bot(index, toChange, changed, colorToSet){
 
 
 function generateGraph(){
-    for(var i = 0; i < config.glOwing.nodes; i++){
+    for(var i = 0; i < config.glOwing.vertices; i++){
         var vertice = randomPoint(config.size.width, config.size.height);
         vertice.neighbors = [];
         vertice.index = i;
@@ -90,15 +102,14 @@ function interconnectGraph(graphToConnect){
 var rainbowColors = createRainbowColors(1/16);
 
 
-function paintVerticeAndNeighbors(graph, index) {
-    var node = graph[index];
+function paintVerticeAndNeighbors(vertice) {
     ctx.beginPath();
     //ctx.rect(node.x, node.y, 1, 1);
-    ctx.strokeStyle = node.color.styleRGB;
+    ctx.strokeStyle = vertice.color.styleRGB;
 
-    for (var i = 0; i < node.neighbors.length; i++) {
-        ctx.moveTo(node.x, node.y);
-        ctx.lineTo(node.neighbors[i].x, node.neighbors[i].y);
+    for (var i = 0; i < vertice.neighbors.length; i++) {
+        ctx.moveTo(vertice.x, vertice.y);
+        ctx.lineTo(vertice.neighbors[i].x, vertice.neighbors[i].y);
     }
     ctx.stroke();
 }
@@ -111,7 +122,7 @@ function paintGraph(graph, index, callback){
             return;
         }
         ctx.beginPath();
-        paintVerticeAndNeighbors(graph, index);
+        paintVerticeAndNeighbors(graph[index]);
         ctx.stroke();
     }
 
