@@ -19,6 +19,7 @@ var config = {
         scale_factor_factor: 20,
         showNames: false,
         // -1 means disabled
+        // this is the start of time from which we need to draw trails
         trailStart: -1,
         showMoons: false,
         showHelp: true,
@@ -49,7 +50,7 @@ config.orbitingSpheres.scale_factor = config.orbitingSpheres.scale_factor_factor
 config.orbitingSpheres.labelOffset = config.orbitingSpheres.AU / 10;
 
 
-// 6. june 0:00
+// 6. june 2017 0:00
 var pastTime = 1496707200;
 
 var spheres = [];
@@ -609,29 +610,41 @@ function spheresAct(addPointToTrail) {
     }
 }
 
-function drawSpherePoint(trailPoint, sphere) {
+function drawSpherePoint(trailPoint, sphere, upperBounds, lowerBounds) {
     if (!trailPoint) return;
     var xCoord = trailPoint.x * config.orbitingSpheres.scale_factor;
     var yCoord = trailPoint.y * config.orbitingSpheres.scale_factor;
-    if (xCoord > ctx.transformedPoint(config.size.width, 0).x ||
-        yCoord > ctx.transformedPoint(0, config.size.height).y ||
-        xCoord < ctx.transformedPoint(0, 0).x ||
-        yCoord < ctx.transformedPoint(0, 0).y) return;
-    if (painted.indexOf({x: xCoord, y: yCoord}) == -1) {
+    if (xCoord > lowerBounds.x ||
+        yCoord > lowerBounds.y ||
+        xCoord < upperBounds.x ||
+        yCoord < upperBounds.y) return;
+
+    if (painted.indexOf({x: xCoord, y: yCoord}) === -1) {
         ctx.beginPath();
         painted.push({x: xCoord, y: yCoord});
         var size = sphere.isMoon ? 1 : 2;
-        ctx.arc(trailPoint.x * config.orbitingSpheres.scale_factor, trailPoint.y * config.orbitingSpheres.scale_factor, size / config.orbitingSpheres.scala, 0, 2 * Math.PI);
+
+        var actualSize = size / config.orbitingSpheres.scala;
+        //ctx.arc(xCoord, yCoord, Math.max(actualSize, 0.007), 0, 2 * Math.PI);
+        ctx.rect(xCoord, yCoord, actualSize, actualSize);
         ctx.fill();
     }
 }
 
-function drawSpheres() {
+function drawSpheres(upper, lower) {
     painted = [];
     for (var sphereI = 0; sphereI < spheres.length; sphereI++) {
-        ctx.font = ~~(config.orbitingSpheres.baseTextSize / config.orbitingSpheres.scala + 1) + "px Arial";
-        ctx.beginPath();
         var sphere = spheres[sphereI];
+        var xCoord = sphere.x * config.orbitingSpheres.scale_factor;
+        var yCoord = sphere.y * config.orbitingSpheres.scale_factor;
+        if (xCoord > lower.x ||
+            yCoord > lower.y ||
+            xCoord < upper.x ||
+            yCoord < upper.y) {
+            continue;
+        }
+        ctx.beginPath();
+        ctx.font = ~~(config.orbitingSpheres.baseTextSize / config.orbitingSpheres.scala + 1) + "px Arial";
         ctx.fillStyle = sphere.finalColor;
         if (!sphere.trail[pastTime] || (!config.orbitingSpheres.showMoons && sphere.isMoon)) continue;
         if (config.orbitingSpheres.showNames) {
@@ -639,29 +652,19 @@ function drawSpheres() {
                 (sphere.trail[pastTime].y + config.orbitingSpheres.AU / 10 * sphere.labelPosition) * config.orbitingSpheres.scale_factor);
         }
         ctx.fill();
-        if (config.orbitingSpheres.trailStart != -1) {
+        if (config.orbitingSpheres.trailStart !== -1) {
             if (config.orbitingSpheres.timestep > 0) {
                 for (var trailIndexForward = pastTime; trailIndexForward > config.orbitingSpheres.trailStart; trailIndexForward -= config.orbitingSpheres.timestep) {
-                    drawSpherePoint(sphere.trail[trailIndexForward], sphere);
+                    drawSpherePoint(sphere.trail[trailIndexForward], sphere, upper, lower);
                 }
             } else {
                 for (var trailIndexBackward = pastTime; trailIndexBackward < config.orbitingSpheres.trailStart; trailIndexBackward -= config.orbitingSpheres.timestep) {
-                    drawSpherePoint(sphere.trail[trailIndexBackward], sphere);
+                    drawSpherePoint(sphere.trail[trailIndexBackward], sphere, upper, lower);
                 }
             }
         }
         if (pastTime in sphere.trail) {
-            drawSpherePoint(sphere.trail[pastTime], sphere);
-        }
-        if(false && sphere.link && (cnt % 50) === 0){
-            ctx.scale(5,5)
-            ctx.beginPath();
-            ctx.strokeStyle = 'yellow';
-            ctx.lineWidth = 0.1;
-            ctx.moveTo(sphere.x * config.orbitingSpheres.scale_factor, sphere.y * config.orbitingSpheres.scale_factor);
-            ctx.lineTo(sphere.link.x * config.orbitingSpheres.scale_factor, sphere.link.y * config.orbitingSpheres.scale_factor);
-            ctx.stroke();
-            ctx.scale(0.2, 0.2)
+            drawSpherePoint(sphere.trail[pastTime], sphere, upper, lower);
         }
     }
     cnt++;
@@ -688,15 +691,16 @@ function printHelp() {
     ctx.fillText('[t] - show trails', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[n] - show names', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[m] - show moons', leftTopX, leftTopY += fontOffset);
-    ctx.fillText('[alt] + click - add planet', leftTopX, leftTopY += fontOffset);
-    ctx.fillText('[ctr] + click - set sun position', leftTopX, leftTopY += fontOffset);
+    // TODO show when fixed, see comment at mouse click handler
+    //ctx.fillText('[alt] + click - add planet', leftTopX, leftTopY += fontOffset);
+    //ctx.fillText('[ctr] + click - set sun position', leftTopX, leftTopY += fontOffset);
     ctx.fillText('click & drag - move around', leftTopX, leftTopY += fontOffset);
     ctx.fillText('mouse wheel - zoom', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[left arrow] - go backward', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[right arrow] - go forward', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[r] - reset to today', leftTopX, leftTopY += fontOffset);
     ctx.fillText('[h] - hide help', leftTopX, leftTopY += fontOffset);
-    ctx.fillText('sadly it laggs, if you keep using trails', leftTopX, leftTopY += fontOffset);
+    ctx.fillText('trails have been improved! less lagg!', leftTopX, leftTopY += fontOffset);
 }
 
 function updateCanvas() {
@@ -707,7 +711,7 @@ function updateCanvas() {
     ctx.fillStyle = 'yellow';
     var topLeft = ctx.transformedPoint(0,0);
     var bottomRight = ctx.transformedPoint(canvas.width,canvas.height);
-    //ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
+    ctx.clearRect(topLeft.x,topLeft.y,bottomRight.x-topLeft.x,bottomRight.y-topLeft.y);
     if(config.orbitingSpheres.scala < 12) {
         var datePoint = ctx.transformedPoint(0, config.orbitingSpheres.baseTextSize);
         ctx.fillText('Current time ' + formatDateTime(~~pastTime), datePoint.x, datePoint.y);
@@ -732,7 +736,7 @@ function updateCanvas() {
             sphere.vz = newCoord.vz;
         }
     }
-    drawSpheres();
+    drawSpheres(topLeft, bottomRight);
     setTimeout(function () {
         pastTime += config.orbitingSpheres.timestep;
         animationId = requestAnimationFrame(updateCanvas);
@@ -747,7 +751,9 @@ function simulatePast() {
     requestAnimationFrame(updateCanvas);
 }
 
+// FIXME currently not working
 function setMousePos(event) {
+    return;
     if (event.altKey) {
         addRandomPlanet();
     } else if (event.ctrlKey) {
