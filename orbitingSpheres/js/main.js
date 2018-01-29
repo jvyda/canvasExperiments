@@ -341,6 +341,39 @@ function createSpheres() {
     europa.labelPosition = 2;
     europa.isMoon = true;
 
+    var amalthea = generateBasicPlanet();
+    amalthea.name = 'amalthea';
+    amalthea.radius = 83 * 1000;
+    amalthea.mass = 2.07 * Math.pow(10, 18);
+    amalthea.color = {
+        r: 0xbc, g: 0x94, b: 0x61
+    };
+    amalthea.x = -5.035827467478209E+00 * config.orbitingSpheres.AU;
+    amalthea.y = -2.080474247795096E+00 * config.orbitingSpheres.AU;
+    amalthea.z = 1.212064605253680E-01 * config.orbitingSpheres.AU;
+    amalthea.vx = auPerDayToMPerSecond(1.657996095034024E-02);
+    amalthea.vy = auPerDayToMPerSecond(-1.334482721782156E-02);
+    amalthea.vz = auPerDayToMPerSecond(-3.237861792010454E-05);
+    amalthea.labelPosition = -2;
+    amalthea.isMoon = true;
+
+
+    var himalia = generateBasicPlanet();
+    himalia.name = 'himalia';
+    himalia.radius = 65 * 1000;
+    himalia.mass = 6.7 * Math.pow(10, 18);
+    himalia.color = {
+        r: 0xbc, g: 0x94, b: 0x61
+    };
+    himalia.x = -5.072371995431338E+00 * config.orbitingSpheres.AU;
+    himalia.y = -2.156554393560907E+00 * config.orbitingSpheres.AU;
+    himalia.z = 1.050266303022453E-01 * config.orbitingSpheres.AU;
+    himalia.vx = auPerDayToMPerSecond(4.193659551801877E-03);
+    himalia.vy = auPerDayToMPerSecond(-7.097916485160895E-03);
+    himalia.vz = auPerDayToMPerSecond(-8.080490186851024E-04);
+    himalia.labelPosition = 3;
+    himalia.isMoon = true;
+
     var titan = generateBasicPlanet();
     titan.name = 'titan';
     titan.radius = 2575.5 * 1000;
@@ -389,9 +422,42 @@ function createSpheres() {
     dione.labelPosition = 2;
     dione.isMoon = true;
 
+
+    var tethys = generateBasicPlanet();
+    tethys.name = 'tethys';
+    tethys.radius = 530 * 1000;
+    tethys.mass = 6.17449 * Math.pow(10, 20);
+    tethys.color = {
+        r: 0x9e, g: 0x9e, b: 0x9e
+    };
+    tethys.x = -1.051406948047674E+00 * config.orbitingSpheres.AU;
+    tethys.y = -9.996641909835828E+00 * config.orbitingSpheres.AU;
+    tethys.z = 2.165065785911795E-01 * config.orbitingSpheres.AU;
+    tethys.vx = auPerDayToMPerSecond(1.144551147694172E-02);
+    tethys.vy = auPerDayToMPerSecond(9.911242134414222E-04);
+    tethys.vz = auPerDayToMPerSecond(-1.602194758400593E-03);
+    tethys.labelPosition = 3;
+    tethys.isMoon = true;
+
+    var iapetus = generateBasicPlanet();
+    iapetus.name = 'iapetus';
+    iapetus.radius = 718 * 1000;
+    iapetus.mass = 1.6 * Math.pow(10, 21);
+    iapetus.color = {
+        r: 0x9e, g: 0x9e, b: 0x9e
+    };
+    iapetus.x = -1.039798919596755E+00 * config.orbitingSpheres.AU;
+    iapetus.y = -1.001499652938064E+01 * config.orbitingSpheres.AU;
+    iapetus.z = 2.178171743017579E-01 * config.orbitingSpheres.AU;
+    iapetus.vx = auPerDayToMPerSecond(6.801709156549861E-03);
+    iapetus.vy = auPerDayToMPerSecond(3.515761783623368E-04);
+    iapetus.vz = auPerDayToMPerSecond(-7.338084599493610E-04);
+    iapetus.labelPosition = -2;
+    iapetus.isMoon = true;
+
     var ariel = generateBasicPlanet();
     ariel.name = 'ariel';
-    ariel.radius = 578.9;
+    ariel.radius = 578.9 * 1000;
     ariel.mass = 1.353 * Math.pow(10, 21);
     ariel.color = {
         r: 0x50, g: 0x50, b: 0x50
@@ -407,7 +473,7 @@ function createSpheres() {
 
     var umbriel = generateBasicPlanet();
     umbriel.name = 'umbriel';
-    umbriel.radius = 584.7;
+    umbriel.radius = 584.7 * 1000;
     umbriel.mass = 1.172 * Math.pow(10, 21);
     umbriel.color = {
         r: 0x4f, g: 0x4f, b: 0x4f
@@ -423,7 +489,7 @@ function createSpheres() {
 
     var titania = generateBasicPlanet();
     titania.name = 'titania';
-    titania.radius = 788.4;
+    titania.radius = 788.4 * 1000;
     titania.mass = 3.527 * Math.pow(10, 21);
     titania.color = {
         r: 0xa8, g: 0x8c, b: 0x74
@@ -439,7 +505,7 @@ function createSpheres() {
 
     var oberon = generateBasicPlanet();
     oberon.name = 'oberon';
-    oberon.radius = 761.4;
+    oberon.radius = 761.4 * 1000;
     oberon.mass = 3.014 * Math.pow(10, 21);
     oberon.color = {
         r: 0x82, g: 0x6f, b: 0x72
@@ -455,7 +521,7 @@ function createSpheres() {
 
     var miranda = generateBasicPlanet();
     miranda.name = 'miranda';
-    miranda.radius = 761.4;
+    miranda.radius = 235 * 1000;
     miranda.mass = 6.59 * Math.pow(10, 19);
     miranda.color = {
         r: 0xd3, g: 0xd3, b: 0xd3
@@ -471,7 +537,7 @@ function createSpheres() {
 
     var triton = generateBasicPlanet();
     triton.name = 'triton';
-    triton.radius = 1353.4;
+    triton.radius = 1353.4 * 1000;
     triton.mass = 2.14 * Math.pow(10, 22);
     triton.color = {
         r: 0xaf, g: 0xab, b: 0xe3
@@ -487,7 +553,7 @@ function createSpheres() {
 
     var nereid = generateBasicPlanet();
     nereid.name = 'nereid';
-    nereid.radius = 340;
+    nereid.radius = 340 * 1000;
     nereid.mass = 3.1 * Math.pow(10, 19);
     nereid.color = {
         r: 0x9e, g: 0x9e, b: 0x9e
@@ -501,10 +567,26 @@ function createSpheres() {
     nereid.labelPosition = 1;
     nereid.isMoon = true;
 
+    var proteus = generateBasicPlanet();
+    proteus.name = 'proteus';
+    proteus.radius = 240 * 1000;
+    proteus.mass = 5.0 * Math.pow(10, 19);
+    proteus.color = {
+        r: 0x9e, g: 0x9e, b: 0x9e
+    };
+    proteus.x = 2.849018707166290E+01 * config.orbitingSpheres.AU;
+    proteus.y = -9.222363533798239E+00 * config.orbitingSpheres.AU;
+    proteus.z = -4.665845482348466E-01 * config.orbitingSpheres.AU;
+    proteus.vx = auPerDayToMPerSecond(2.902002136722940E-03);
+    proteus.vy = auPerDayToMPerSecond(-3.672610457205283E-04);
+    proteus.vz = auPerDayToMPerSecond(-2.132453046264509E-03);
+    proteus.labelPosition = 2;
+    proteus.isMoon = true;
+
 
     var charon = generateBasicPlanet();
     charon.name = 'charon';
-    charon.radius = 604;
+    charon.radius = 604 * 1000;
     charon.mass = 1.586 * Math.pow(10, 21);
     charon.color = {
         r: 0xc2, g: 0xb3, b: 0xbb
@@ -530,11 +612,16 @@ function createSpheres() {
     spheres.push(ganymede);
     spheres.push(io);
     spheres.push(europa);
+    // works, but might be irrelevant
+    spheres.push(amalthea);
+    spheres.push(himalia);
 
     spheres.push(saturn);
     spheres.push(titan);
     spheres.push(rhea);
     spheres.push(dione);
+    spheres.push(tethys);
+    spheres.push(iapetus);
 
     spheres.push(uranus);
     spheres.push(ariel);
@@ -546,6 +633,7 @@ function createSpheres() {
     spheres.push(neptune);
     spheres.push(triton);
     spheres.push(nereid);
+    spheres.push(proteus);
 
     spheres.push(pluto);
     spheres.push(charon);
