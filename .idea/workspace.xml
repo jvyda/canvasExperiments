@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/orbitingSpheres/horizons-client/client.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/glOwing/js/main.js" afterPath="$PROJECT_DIR$/glOwing/js/main.js" />
       <change beforePath="$PROJECT_DIR$/orbitingSpheres/js/main.js" afterPath="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
@@ -26,8 +27,18 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="298">
-              <caret line="610" column="4" lean-forward="false" selection-start-line="610" selection-start-column="4" selection-end-line="610" selection-end-column="4" />
+            <state relative-caret-position="589">
+              <caret line="864" column="29" lean-forward="false" selection-start-line="864" selection-start-column="29" selection-end-line="864" selection-end-column="29" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="client.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/orbitingSpheres/horizons-client/client.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="822">
+              <caret line="129" column="34" lean-forward="false" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -45,12 +56,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>keyPressed</find>
-      <find>probablePoints.push(</find>
-      <find>tiles</find>
-      <find>lineWidth</find>
-      <find>20</find>
-      <find>used =</find>
       <find>used</find>
       <find>CONSOLE</find>
       <find>console</find>
@@ -75,6 +80,12 @@
       <find>scale_factor</find>
       <find>scala</find>
       <find>transforme</find>
+      <find>callist</find>
+      <find>2.848576999303575E+01</find>
+      <find>neptune</find>
+      <find>saturn</find>
+      <find>hyp</find>
+      <find>prome</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -97,8 +108,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/dotLines/js/main.js" />
-        <option value="$PROJECT_DIR$/hilbertCurve/js/main.js" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/index.html" />
         <option value="$PROJECT_DIR$/spaceFillingCurves/js/main.js" />
         <option value="$PROJECT_DIR$/common/js/jsfeat.js" />
@@ -147,6 +156,8 @@
         <option value="$PROJECT_DIR$/glOwing/index.html" />
         <option value="$PROJECT_DIR$/common/js/common.js" />
         <option value="$PROJECT_DIR$/glOwing/js/main.js" />
+        <option value="$PROJECT_DIR$/orbitingSpheres/horizons-client/test.txt" />
+        <option value="$PROJECT_DIR$/orbitingSpheres/horizons-client/client.js" />
         <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
       </list>
     </option>
@@ -188,7 +199,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -206,12 +216,19 @@
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="orbitingSpheres" type="462c0819:PsiDirectoryNode" />
+              <item name="horizons-client" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="orbitingSpheres" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -383,14 +400,9 @@
       <workItem from="1517221030892" duration="1199000" />
       <workItem from="1517225038710" duration="721000" />
       <workItem from="1517258274466" duration="5792000" />
-      <workItem from="1517265602309" duration="2662000" />
-    </task>
-    <task id="LOCAL-00070" summary="rename hilbertCurve to spaceFillingCurves&#10;&#10;spaceFillingCurves:&#10;-merged hilbertCurve and dragonCurve to support both at the same time&#10;-fixed dragonCurve">
-      <created>1502396810730</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1502396810734</updated>
+      <workItem from="1517265602309" duration="2691000" />
+      <workItem from="1517328628135" duration="598000" />
+      <workItem from="1517684038708" duration="12356000" />
     </task>
     <task id="LOCAL-00071" summary="fixed name of spaceFillingCurve">
       <created>1502397328873</created>
@@ -728,11 +740,18 @@
       <option name="project" value="LOCAL" />
       <updated>1517264056053</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="orbitingSpheres:&#10;-added some more moons">
+      <created>1517268626224</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1517268626225</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179009000" />
+    <option name="totallyTimeSpent" value="191992000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
@@ -765,13 +784,13 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32698414" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -831,7 +850,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="recFlocke:&#10;-removed direction in spreadAmount&#10;-changed background to black&#10;-the spread now morphs in regard to the old length" />
     <MESSAGE value="recFlocke:&#10;-don't render the flocke twice, if the widths are the same" />
     <MESSAGE value="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke" />
     <MESSAGE value="finally added gitignore" />
@@ -856,7 +874,8 @@
     <MESSAGE value="glOwing:&#10;-completely reworked glOwing" />
     <MESSAGE value="glOwing:&#10;-changed amount of vertices&#10;-changed canvas background to black&#10;-fixed fillingBot" />
     <MESSAGE value="orbitingSpheres:&#10;-greatly improved performance of trails&#10;-disabled ability to set sun and add planets" />
-    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-greatly improved performance of trails&#10;-disabled ability to set sun and add planets" />
+    <MESSAGE value="orbitingSpheres:&#10;-added some more moons" />
+    <option name="LAST_COMMIT_MESSAGE" value="orbitingSpheres:&#10;-added some more moons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -865,19 +884,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DOMEvents.js" />
-    <entry file="file://$PROJECT_DIR$/kolaKoski/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="178" column="75" lean-forward="false" selection-start-line="178" selection-start-column="75" selection-end-line="178" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overview/img/unNamed_preview.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/kolaKoski/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1183,10 +1189,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/horizons-client/test.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="65" lean-forward="false" selection-start-line="0" selection-start-column="65" selection-end-line="0" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/browser.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="64" column="12" lean-forward="false" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/orbitingSpheres/horizons-client/client.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="129" column="34" lean-forward="false" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="610" column="4" lean-forward="false" selection-start-line="610" selection-start-column="4" selection-end-line="610" selection-end-column="4" />
+        <state relative-caret-position="589">
+          <caret line="864" column="29" lean-forward="false" selection-start-line="864" selection-start-column="29" selection-end-line="864" selection-end-column="29" />
           <folding />
         </state>
       </provider>
