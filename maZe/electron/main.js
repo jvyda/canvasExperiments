@@ -8,7 +8,7 @@ const url = require('url');
 let wins = [];
 
 function createWindow() {
-    if(process.argv.length > 1)
+    if(process.argv.length > 2)
     {
         // The /p option tells us to display the screen saver in the tiny preview window in the Screen Saver Settings dialog.
         if(process.argv[2] === "/p")
