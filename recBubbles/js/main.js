@@ -25,12 +25,19 @@ var rootCircle = {
 config.recBubbles.maxRadius = rootCircle.radius;
 config.recBubbles.minRadius = -1;
 
+// results in 101 different colors
+var rainbow = createRainbowColors(1/16);
+// max distance from top left corner
+var max = Math.sqrt(rootCircle.x * rootCircle.x + rootCircle.y * rootCircle.y) / 2;
+var startOffset = (rainbow.length * Math.random()) << 0;
+
 
 $(document).ready(function () {
     canvas = $("#canvas")[0];
     ctx = canvas.getContext("2d");
     canvas.width = config.size.width;
     canvas.height = config.size.height;
+    ctx.strokeStyle = rainbow[rainbow.length - 1].styleRGB;
     paintCircle(rootCircle);
     addCircleInCircle(rootCircle);
     rootCircle.circles.forEach(function(circleToPain){
@@ -58,6 +65,13 @@ function addCircleInCircle(circle){
         newRandomPoint.circles = [];
         newRandomPoint.parent = circle;
         circle.circles.push(newRandomPoint);
+        var localX = newRandomPoint.x - rootCircle.x;
+        var localY = newRandomPoint.y - rootCircle.y;
+        var distance = Math.sqrt(localX * localX + localY * localY);
+        var index = ((startOffset + distance / max * 100) << 0) % rainbow.length;
+        var color = rainbow[index];
+        color.a = 255;
+        ctx.strokeStyle = color.styleRGB;
         paintCircle(newRandomPoint);
     }
     if(tries < config.recBubbles.maxTries){
