@@ -8,7 +8,7 @@ var config = {
         width: window.innerWidth,
         height: window.innerHeight
     },
-    bubbles: {
+    buBbles: {
         tileSize: 100,
         growFactorDivider: 5,
         radiusFactor: 1,
@@ -18,7 +18,7 @@ var config = {
 
 var rainbow = createRainbowColors(1/16);
 // max distance from top left corner
-var max = Math.sqrt(Math.pow(config.size.width + config.bubbles.tileSize, 2) + Math.pow(config.size.height + config.bubbles.tileSize, 2));
+var max = Math.sqrt(Math.pow(config.size.width + config.buBbles.tileSize, 2) + Math.pow(config.size.height + config.buBbles.tileSize, 2));
 var startOffset = (rainbow.length * Math.random()) << 0;
 
 function getRandomPoint(x, y) {
@@ -27,18 +27,18 @@ function getRandomPoint(x, y) {
     var color = rainbow[index];
     color.a = 255;
     return {
-        x: x + Math.random() * config.bubbles.tileSize,
-        y: y + Math.random() * config.bubbles.tileSize,
-        factor: Math.random() / config.bubbles.growFactorDivider,
-        radius: Math.random() * config.bubbles.radiusFactor,
+        x: x + Math.random() * config.buBbles.tileSize,
+        y: y + Math.random() * config.buBbles.tileSize,
+        factor: Math.random() / config.buBbles.growFactorDivider,
+        radius: Math.random() * config.buBbles.radiusFactor,
         color: color
     };
 }
 
 function getTilePoints(){
     var points = [];
-    for(var x = 0; x < config.size.width; x += config.bubbles.tileSize){
-        for(var y = 0; y < config.size.height; y += config.bubbles.tileSize){
+    for(var x = 0; x < config.size.width; x += config.buBbles.tileSize){
+        for(var y = 0; y < config.size.height; y += config.buBbles.tileSize){
             points.push(getRandomPoint(x, y));
         }
     }
@@ -68,7 +68,7 @@ function grow(points){
         }
     }
 
-    if(Math.random() < config.bubbles.bubbleChance){
+    if(Math.random() < config.buBbles.bubbleChance){
         addAnotherRandomPoint(points);
     }
 }
