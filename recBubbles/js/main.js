@@ -10,15 +10,17 @@ var config = {
     },
     recBubbles: {
         maxTries: 5,
-        splitMinSize: 5,
+        splitMinSize: 2,
         fps: 30
     }
 };
 
+
+config.recBubbles.relevantSize = Math.min(config.size.width, config.size.height);
 var rootCircle = {
     x: config.size.width / 2,
     y: config.size.height / 2,
-    radius: config.size.height / 2,
+    radius: config.recBubbles.relevantSize / 2,
     circles: []
 };
 
@@ -29,7 +31,6 @@ config.recBubbles.minRadius = -1;
 var rainbow = createRainbowColors(1/16);
 // max distance from top left corner
 var max = Math.sqrt(rootCircle.x * rootCircle.x + rootCircle.y * rootCircle.y) / 2;
-var startOffset = (rainbow.length * Math.random()) << 0;
 
 
 $(document).ready(function () {
@@ -68,7 +69,7 @@ function addCircleInCircle(circle){
         var localX = newRandomPoint.x - rootCircle.x;
         var localY = newRandomPoint.y - rootCircle.y;
         var distance = Math.sqrt(localX * localX + localY * localY);
-        var index = ((startOffset + distance / max * 100) << 0) % rainbow.length;
+        var index = ((distance / max * 100) << 0) % rainbow.length;
         var color = rainbow[index];
         color.a = 255;
         ctx.strokeStyle = color.styleRGB;
