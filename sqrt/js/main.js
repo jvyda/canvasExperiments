@@ -66,10 +66,10 @@ $(document).ready(function () {
     console.log('START', new Date());
     fillPoints();
     paintLayout();
-    loadNumbersAndRender(0, undefined);
+    loadPartAndRender(0, undefined);
 });
 
-function loadNumbersAndRender(part, latestPoint){
+function loadPartAndRender(part, latestPoint){
     loadNumbers(part).then(function (numberText) {
         if(numberText.indexOf('ERROR') !== -1){
             console.log('ERROR OUT OF BOUNDS');
@@ -81,7 +81,7 @@ function loadNumbersAndRender(part, latestPoint){
             latestPoint.point = getPointInAngle(points[numbers[0]].angle, center, config.sqrt.size);
             latestPoint.control = getPointInAngle(points[numbers[0]].angle, center, config.sqrt.controlSize);
         }
-        paintNumber(numbers, latestPoint, part, 0);
+        connectNumber(numbers, latestPoint, part, 0);
 
     }).catch(function (err) {
         console.log(err)
@@ -89,11 +89,11 @@ function loadNumbersAndRender(part, latestPoint){
 }
 
 
-function paintNumber(numbers, latestPoint, part, stackSize) {
+function connectNumber(numbers, latestPoint, part, stackSize) {
     if (numbers.length === 0) {
         part++;
         if(part < config.sqrt.parts){
-            loadNumbersAndRender(part, latestPoint);
+            loadPartAndRender(part, latestPoint);
         } else {
             console.log('DONE', new Date())
         }
@@ -114,10 +114,10 @@ function paintNumber(numbers, latestPoint, part, stackSize) {
     stackSize++;
     if(stackSize > 5000){
         requestAnimationFrame(function(){
-            paintNumber(numbers, latestPoint, part, 0)
+            connectNumber(numbers, latestPoint, part, 0)
         })
     } else {
-        paintNumber(numbers, latestPoint, part, stackSize);
+        connectNumber(numbers, latestPoint, part, stackSize);
     }
 }
 
