@@ -26,12 +26,6 @@ let center = {
     y: config.size.height / 2
 };
 
-let numbers = [];
-let part = 0;
-
-let globalCount = 0;
-let latestPoint;
-let stackSize = 0;
 
 function fillPoints() {
     let increment = 2 * Math.PI / 10;
@@ -72,22 +66,22 @@ $(document).ready(function () {
     console.log('START', new Date());
     fillPoints();
     paintLayout();
-    loadNumbersAndRender();
+    loadNumbersAndRender(0, undefined);
 });
 
-function loadNumbersAndRender(){
+function loadNumbersAndRender(part, latestPoint){
     loadNumbers(part).then(function (numberText) {
         if(numberText.indexOf('ERROR') !== -1){
             console.log('ERROR OUT OF BOUNDS');
             return;
         }
-        numbers = numberText.replace('.', '').split('');
+        let numbers = numberText.replace('.', '').split('');
         if(!latestPoint) {
             latestPoint = {};
             latestPoint.point = getPointInAngle(points[numbers[0]].angle, center, config.sqrt.size);
             latestPoint.control = getPointInAngle(points[numbers[0]].angle, center, config.sqrt.controlSize);
         }
-        paintNumber(latestPoint);
+        paintNumber(numbers, latestPoint, part, 0);
 
     }).catch(function (err) {
         console.log(err)
@@ -95,11 +89,11 @@ function loadNumbersAndRender(){
 }
 
 
-function paintNumber() {
+function paintNumber(numbers, latestPoint, part, stackSize) {
     if (numbers.length === 0) {
         part++;
         if(part < config.sqrt.parts){
-            loadNumbersAndRender();
+            loadNumbersAndRender(part, latestPoint);
         } else {
             console.log('DONE', new Date())
         }
@@ -114,18 +108,16 @@ function paintNumber() {
     ctx.strokeStyle = angle.color.styleRGB;
     ctx.bezierCurveTo(latestPoint.control.x, latestPoint.control.y, newCtrlPoint.x, newCtrlPoint.y, point.x, point.y);
     ctx.stroke();
-    globalCount++;
     points[digit].angle += config.sqrt.digitIncr;
     latestPoint.point = point;
     latestPoint.control = newCtrlPoint;
     stackSize++;
     if(stackSize > 5000){
-        stackSize = 0;
         requestAnimationFrame(function(){
-            paintNumber()
+            paintNumber(numbers, latestPoint, part, 0)
         })
     } else {
-        paintNumber();
+        paintNumber(numbers, latestPoint, part, stackSize);
     }
 }
 
