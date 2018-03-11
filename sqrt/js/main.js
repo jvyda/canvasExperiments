@@ -3,7 +3,7 @@ let ctx = {};
 let canvas = {};
 
 let totalAmount = 10000000;
-let parts = 200;
+let parts = totalAmount / 50000;
 
 let config = {
     size: {
@@ -46,16 +46,27 @@ function getPointInAngle(angle, centerToBaseOf, distance) {
     return {x: centerToBaseOf.x + distance * Math.cos(angle), y: centerToBaseOf.y + distance * Math.sin(angle)}
 }
 
-function paintLayout() {
-    let startPoint = getPointInAngle(points[0].angle, center, config.sqrt.size);
-    ctx.moveTo(points[0].x, points[0].y);
+function paintLayout(angles, basePoint, size, legendStyle=false) {
+    let startPoint = getPointInAngle(angles[0].angle, basePoint, size);
+    ctx.beginPath();
+    ctx.moveTo(angles[0].x, angles[0].y);
     for (let i = 0; i < 10; i++) {
-        let newPnt = getPointInAngle(points[i].angle, center, config.sqrt.size);
-        ctx.lineTo(newPnt.x, newPnt.y);
-        //ctx.fillText(i, newPnt.x, newPnt.y)
+        let newPnt = getPointInAngle(angles[i].angle, basePoint, size);
+        if(legendStyle) {
+            ctx.moveTo(newPnt.x, newPnt.y);
+            ctx.lineTo(basePoint.x, basePoint.y);
+            ctx.fillText(i, newPnt.x, newPnt.y)
+        } else {
+            ctx.lineTo(newPnt.x, newPnt.y);
+        }
     }
     ctx.lineTo(startPoint.x, startPoint.y);
     ctx.stroke();
+}
+
+function printLegend(){
+    ctx.fillText('First ' + totalAmount + ' digits of sqrt(2) connected by bezier curves according to https://apod.nasa.gov/htmltest/gifcity/sqrt2.10mil', 15, 15);
+    paintLayout(points, {x: config.size.width - 200, y: config.size.height - 200}, 100, true);
 }
 
 $(document).ready(function () {
@@ -65,7 +76,8 @@ $(document).ready(function () {
     canvas.height = config.size.height;
     console.log('START', new Date());
     fillPoints();
-    paintLayout();
+    printLegend();
+    paintLayout(points, center, config.sqrt.size);
     loadPartAndRender(0, undefined);
 });
 
@@ -125,8 +137,8 @@ function connectNumber(numbers, latestPoint, part, stackSize) {
 function loadNumbers(part) {
     return new Promise(function (resolve, reject) {
         let client = new XMLHttpRequest();
-        //client.open('GET', 'sqrt2.10mil.txt');
-        client.open('GET', 'http://localhost:5000/?start=' + part * config.sqrt.partSize + '&length=' + config.sqrt.partSize);
+        //client.open('GET', 'http://localhost:5000/?start=' + part * config.sqrt.partSize + '&length=' + config.sqrt.partSize);
+        client.open('GET', 'parts/part' + part + '.txt');
         client.onload = function () {
             resolve(client.responseText);
         };
