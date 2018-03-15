@@ -2,209 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="sqrt:&#10;-added flask server for serving the file in chunks&#10;-refactored global variables">
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part0.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part1.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part10.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part100.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part101.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part102.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part103.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part104.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part105.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part106.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part107.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part108.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part109.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part11.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part110.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part111.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part112.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part113.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part114.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part115.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part116.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part117.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part118.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part119.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part12.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part120.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part121.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part122.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part123.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part124.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part125.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part126.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part127.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part128.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part129.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part13.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part130.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part131.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part132.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part133.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part134.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part135.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part136.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part137.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part138.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part139.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part14.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part140.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part141.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part142.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part143.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part144.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part145.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part146.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part147.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part148.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part149.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part15.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part150.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part151.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part152.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part153.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part154.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part155.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part156.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part157.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part158.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part159.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part16.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part160.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part161.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part162.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part163.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part164.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part165.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part166.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part167.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part168.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part169.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part17.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part170.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part171.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part172.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part173.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part174.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part175.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part176.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part177.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part178.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part179.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part18.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part180.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part181.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part182.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part183.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part184.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part185.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part186.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part187.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part188.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part189.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part19.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part190.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part191.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part192.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part193.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part194.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part195.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part196.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part197.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part198.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part199.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part2.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part20.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part21.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part22.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part23.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part24.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part25.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part26.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part27.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part28.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part29.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part3.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part30.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part31.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part32.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part33.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part34.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part35.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part36.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part37.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part38.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part39.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part4.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part40.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part41.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part42.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part43.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part44.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part45.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part46.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part47.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part48.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part49.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part5.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part50.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part51.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part52.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part53.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part54.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part55.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part56.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part57.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part58.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part59.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part6.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part60.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part61.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part62.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part63.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part64.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part65.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part66.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part67.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part68.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part69.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part7.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part70.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part71.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part72.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part73.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part74.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part75.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part76.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part77.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part78.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part79.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part8.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part80.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part81.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part82.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part83.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part84.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part85.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part86.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part87.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part88.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part89.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part9.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part90.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part91.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part92.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part93.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part94.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part95.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part96.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part97.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part98.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/parts/part99.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/common/src/ts/ColorProvider.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/common/src/ts/GeometryUtils.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/common/src/ts/index.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/common/src/ts/tsconfig.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/gulpfile.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/package-lock.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/Config.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/FileLoader.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/FileParser.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/MainLoop.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/NumberRenderer.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/PointProvider.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/SourceProvider.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/Utils.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/main.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/sqrt/src/ts/tsconfig.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/gulpfile.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/package-lock.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/package.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/src/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/Renderer.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/config.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/main.ts" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tessellAtion/tsconfig.json" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/sqrt/fileServer.py" afterPath="$PROJECT_DIR$/sqrt/fileServer.py" />
-      <change beforePath="$PROJECT_DIR$/sqrt/js/main.js" afterPath="$PROJECT_DIR$/sqrt/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/common/gulpfile.js" afterPath="$PROJECT_DIR$/common/gulpfile.js" />
+      <change beforePath="$PROJECT_DIR$/common/package-lock.json" afterPath="$PROJECT_DIR$/common/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/common/package.json" afterPath="$PROJECT_DIR$/common/package.json" />
+      <change beforePath="$PROJECT_DIR$/glOwing/js/main.js" afterPath="$PROJECT_DIR$/glOwing/js/main.js" />
+      <change beforePath="$PROJECT_DIR$/sqrt/index.html" afterPath="$PROJECT_DIR$/sqrt/src/index.html" />
+      <change beforePath="$PROJECT_DIR$/sqrt/js/main.js" afterPath="$PROJECT_DIR$/sqrt/src/js/main.js" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -222,45 +53,66 @@
     <favorites_list name="canvasExperiments" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sqrt/index.html">
+    <leaf>
+      <file leaf-file-name="MainLoop.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqrt/src/ts/MainLoop.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+            <state relative-caret-position="473">
+              <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
               <folding>
-                <marker date="1520760438429" expanded="true" signature="598:751" ph="..." />
-                <marker date="1520760438429" expanded="true" signature="691:719" ph="..." />
+                <element signature="e#0#40#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="fileServer.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sqrt/fileServer.py">
+      <file leaf-file-name="FileParser.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqrt/src/ts/FileParser.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="51">
+              <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/sqrt/js/main.js">
+      <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqrt/src/ts/tsconfig.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="187">
+              <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="59" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileLoader.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqrt/src/ts/FileLoader.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NumberRenderer.ts" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/sqrt/src/ts/NumberRenderer.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
-              <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-              <folding />
+              <caret line="34" column="99" lean-forward="false" selection-start-line="34" selection-start-column="99" selection-end-line="34" selection-end-column="99" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="common.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/common/js/common.js">
+      <file leaf-file-name="Config.ts" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/sqrt/src/ts/Config.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1768">
-              <caret line="407" column="71" lean-forward="false" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
+            <state relative-caret-position="391">
+              <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -273,41 +125,42 @@
       <list>
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>match</find>
-      <find>ctx.ar</find>
-      <find>ctx.arc</find>
-      <find>console</find>
-      <find>rootCi</find>
-      <find>fps</find>
-      <find>bubbles.</find>
-      <find>start</find>
-      <find>addCircleInCircle</find>
-      <find>main.js</find>
+      <find>id</find>
+      <find>getMousePos</find>
+      <find>mouseMove</find>
+      <find>i</find>
+      <find>concat</find>
+      <find>Canvas</find>
       <find>gutil</find>
-      <find>bundle</find>
-      <find>&quot;</find>
-      <find>tessellAtion</find>
-      <find>function</find>
-      <find>randomNumber</find>
-      <find>allowSyntheticDefaultImports</find>
-      <find>Config</find>
-      <find>new Config</find>
-      <find>angle</find>
-      <find>\r\n</find>
-      <find>\n</find>
-      <find>ctx</find>
-      <find>layout</find>
-      <find>amount o</find>
-      <find>numbers</find>
+      <find>promise</find>
+      <find>Fileloader</find>
+      <find>ColorProv</find>
+      <find>Geometry</find>
+      <find>**/*</find>
+      <find>browseri</find>
+      <find>RemoteFileLoader</find>
+      <find>gulp-ty</find>
+      <find>Point2</find>
+      <find>./point</find>
+      <find>Dimension</find>
+      <find>dimension</find>
+      <find>Color</find>
+      <find>point</find>
+      <find>RESOLVE</find>
+      <find>moduleResolution</find>
+      <find>tsc</find>
+      <find>Point</find>
+      <find>./Point</find>
+      <find>var</find>
+      <find>huh</find>
       <find>incr</find>
-      <find>points</find>
-      <find>style</find>
-      <find>new Date</find>
+      <find>canvas</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -317,75 +170,84 @@
       <replace>.recFlocke.</replace>
       <replace>checkBoundsAndAdd(probablePoints,</replace>
       <replace>6</replace>
-      <replace>let</replace>
       <replace>buBbles.</replace>
       <replace>'</replace>
       <replace>commons.</replace>
+      <replace>startIndex</replace>
+      <replace>sizeToRead</replace>
+      <replace>const</replace>
+      <replace>let</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>$PROJECT_DIR$</dir>
       <dir>$PROJECT_DIR$/tessellAtion</dir>
       <dir>$PROJECT_DIR$/tessellAtion/dist</dir>
+      <dir>$PROJECT_DIR$/common/src</dir>
+      <dir>$PROJECT_DIR$/sqrt/src/ts</dir>
+      <dir>$PROJECT_DIR$/sqrt/src</dir>
+      <dir>$PROJECT_DIR$</dir>
+      <dir>$PROJECT_DIR$/sqrt/src/ts2</dir>
+      <dir>$PROJECT_DIR$/common/dist</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/flocke/chillFlocke/js/main.js" />
-        <option value="$PROJECT_DIR$/flocke/js/flockeCommon.js" />
-        <option value="$PROJECT_DIR$/flocke/retroFlocke/js/main.js" />
-        <option value="$PROJECT_DIR$/labyRinth/index.html" />
-        <option value="$PROJECT_DIR$/labyRinth/js/main.js" />
-        <option value="$PROJECT_DIR$/maZe/index.html" />
-        <option value="$PROJECT_DIR$/flags/js/main.js" />
-        <option value="$PROJECT_DIR$/maZe/electron/maZe.js" />
-        <option value="$PROJECT_DIR$/maZe/electron/res/js/common.js" />
-        <option value="$PROJECT_DIR$/maZe/electron/package.json" />
-        <option value="$PROJECT_DIR$/maZe/electron/index.html" />
-        <option value="$PROJECT_DIR$/maZe/js/main.js" />
-        <option value="$PROJECT_DIR$/maZe/electron/res/js/maZe.js" />
-        <option value="$PROJECT_DIR$/fireWorks/js/main.js" />
-        <option value="$PROJECT_DIR$/nTriangles/js/main.js" />
-        <option value="$PROJECT_DIR$/glOwing/index.html" />
-        <option value="$PROJECT_DIR$/glOwing/js/main.js" />
-        <option value="$PROJECT_DIR$/orbitingSpheres/horizons-client/test.txt" />
-        <option value="$PROJECT_DIR$/orbitingSpheres/horizons-client/client.js" />
-        <option value="$PROJECT_DIR$/orbitingSpheres/js/main.js" />
-        <option value="$PROJECT_DIR$/maZe/electron/main.js" />
-        <option value="$PROJECT_DIR$/maZe/win_desktop/browser_marionettes/MainWindow.xaml" />
-        <option value="$PROJECT_DIR$/maZe/win_desktop/browser_marionettes/maZe-frontend.exe.Config" />
-        <option value="$PROJECT_DIR$/maZe/win_desktop/browser_marionettes/MainWindow.xaml.cs" />
-        <option value="$PROJECT_DIR$/bubbles/index.html" />
-        <option value="$PROJECT_DIR$/bubbles/js/main.js" />
-        <option value="$PROJECT_DIR$/recBubbles/index.html" />
-        <option value="$PROJECT_DIR$/buBbles/index.html" />
-        <option value="$PROJECT_DIR$/buBbles/js/main.js" />
-        <option value="$PROJECT_DIR$/overview/index.html" />
-        <option value="$PROJECT_DIR$/recBubbles/js/main.js" />
-        <option value="$PROJECT_DIR$/kolaKoski/js/main.js" />
-        <option value="$PROJECT_DIR$/tessellAtion/js/main.js" />
-        <option value="$PROJECT_DIR$/tessellAtion/index.html" />
-        <option value="$PROJECT_DIR$/tessellAtion/ts/main.ts" />
-        <option value="$PROJECT_DIR$/tessellAtion/webpack.config.js" />
-        <option value="$PROJECT_DIR$/tessellAtion/package.json" />
-        <option value="$PROJECT_DIR$/common/js/exportCommon.js" />
-        <option value="$PROJECT_DIR$/tessellAtion/dist/index.html" />
-        <option value="$PROJECT_DIR$/tessellAtion/gulpfile.js" />
-        <option value="$PROJECT_DIR$/tessellAtion/src/index.html" />
+        <option value="$PROJECT_DIR$/common/src/ts/Effects.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/NumberUtils.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/vector.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/RandomUtil.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Vector.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Utils.ts" />
+        <option value="$PROJECT_DIR$/common/dist/lib.js" />
         <option value="$PROJECT_DIR$/tessellAtion/tsconfig.json" />
-        <option value="$PROJECT_DIR$/tessellAtion/src/ts/config.ts" />
-        <option value="$PROJECT_DIR$/tessellAtion/src/ts/main.ts" />
-        <option value="$PROJECT_DIR$/tessellAtion/src/ts/Renderer.ts" />
-        <option value="$PROJECT_DIR$/sqrt/index.html" />
-        <option value="$PROJECT_DIR$/sqrt/sqrt2.10mil.txt" />
-        <option value="$PROJECT_DIR$/sqrt/test.txt" />
-        <option value="$PROJECT_DIR$/common/js/common.js" />
-        <option value="$PROJECT_DIR$/sqrt/fileServer.py" />
-        <option value="$PROJECT_DIR$/sqrt/js/main.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/Utils.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/ColorProvider.ts" />
+        <option value="$PROJECT_DIR$/sqrt/node_modules/ce-common/dist/lib.d.ts" />
+        <option value="$PROJECT_DIR$/common/tsconfig.json" />
+        <option value="$PROJECT_DIR$/common/src/ts/gulpfile.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/index.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/FileParser.ts" />
+        <option value="$PROJECT_DIR$/common/dist/lib.d.ts" />
+        <option value="$PROJECT_DIR$/common/ce-common.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/tsconfig.json" />
+        <option value="$PROJECT_DIR$/common/dist/index.js" />
+        <option value="$PROJECT_DIR$/sqrt/Test.ts" />
+        <option value="$PROJECT_DIR$/common/Dimension.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/index.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/tsconfig.json" />
+        <option value="$PROJECT_DIR$/common/src/ts/Point.ts" />
+        <option value="$PROJECT_DIR$/sqrt/node_modules/browserify/index.js" />
+        <option value="$PROJECT_DIR$/sqrt/node_modules/vinyl-source-stream/index.js" />
+        <option value="$PROJECT_DIR$/common/package.json" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/main.ts" />
+        <option value="$PROJECT_DIR$/sqrt/package.json" />
+        <option value="$PROJECT_DIR$/common/src/ts2/UtilsClass.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts2/main.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts2/MainLoop.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts2/Config.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts2/index.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts2/SourceProvider.ts" />
+        <option value="$PROJECT_DIR$/common/dist/index.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/ColorProvider.ts" />
+        <option value="$PROJECT_DIR$/common/gulpfile.js" />
+        <option value="$PROJECT_DIR$/sqrt/dist/index.html" />
+        <option value="$PROJECT_DIR$/sqrt/gulpfile_old.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/FileLoader.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/GeometryUtils.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/CanvasUtils.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/PointProvider.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/SourceProvider.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/index.html" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/tsconfig.json" />
+        <option value="$PROJECT_DIR$/sqrt/gulpfile.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/MainLoop.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/Config.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/NumberRenderer.ts" />
       </list>
     </option>
   </component>
@@ -402,14 +264,16 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/common/node_modules" />
     <handled-path value="$PROJECT_DIR$/maZe/electron/node_modules" />
+    <handled-path value="$PROJECT_DIR$/sqrt/node_modules" />
     <handled-path value="$PROJECT_DIR$/tessellAtion/node_modules" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="402" />
-    <option name="y" value="333" />
-    <option name="width" value="1360" />
-    <option name="height" value="750" />
+    <option name="x" value="-3" />
+    <option name="y" value="31" />
+    <option name="width" value="1926" />
+    <option name="height" value="1052" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -427,7 +291,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -444,7 +308,14 @@
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
@@ -455,31 +326,26 @@
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
               <item name="sqrt" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
               <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="sqrt" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
+              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
+              <item name="sqrt" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -504,26 +370,26 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="1067" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../vids" />
-    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../npm-minimal-working-example" />
+    <property name="settings.editor.selected.configurable" value="vcs.Git" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
     <property name="javascript.nodejs.core.library.configured.version" value="9.5.0" />
     <property name="js.buildTools.gulp.gulp_package_dir" value="$PROJECT_DIR$/tessellAtion/node_modules/gulp" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/sqrt" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/common/js" />
-      <recent name="$PROJECT_DIR$/tessellAtion/src/css" />
-      <recent name="$PROJECT_DIR$/maZe/electron/res/js" />
+      <recent name="$PROJECT_DIR$/common/src/ts2" />
+      <recent name="$PROJECT_DIR$/sqrt/src/ts2" />
+      <recent name="$PROJECT_DIR$/common/src/ts" />
+      <recent name="$PROJECT_DIR$/common/src" />
+      <recent name="$PROJECT_DIR$/common" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/sqrt/parts" />
-      <recent name="$PROJECT_DIR$/tessellAtion/src" />
-      <recent name="$PROJECT_DIR$/tessellAtion/src/ts" />
-      <recent name="$PROJECT_DIR$/tessellAtion/dist" />
-      <recent name="$PROJECT_DIR$/maZe/web/maZe" />
+      <recent name="$PROJECT_DIR$/sqrt/src/ts" />
+      <recent name="$PROJECT_DIR$/sqrt" />
+      <recent name="$PROJECT_DIR$/sqrt/src" />
+      <recent name="$PROJECT_DIR$/common/dist" />
+      <recent name="$PROJECT_DIR$/common" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -707,35 +573,17 @@
       <workItem from="1518977660244" duration="24000" />
       <workItem from="1520634328043" duration="992000" />
       <workItem from="1520676496847" duration="28016000" />
-      <workItem from="1520714625796" duration="1663000" />
-    </task>
-    <task id="LOCAL-00080" summary="balls:&#10;- additional fix for collision with edges of rects (collision now done after the reaction as well, to see if the reaction was kinda correct)&#10;- fixed clicking without moving&#10;- added an simple way of handling an event moving over the screen (startcondition, condition, postevent and reset)&#10;- buffs now hold a gradient from magenta to yellow&#10;- added bars to indicate the numbers for rebounds and balls&#10;- moved spawning of buffs in front of rects so that the chance is actually defined and more likely on mobile (less place for rects)&#10;">
-      <created>1508792822651</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1508792822652</updated>
-    </task>
-    <task id="LOCAL-00081" summary="balls:&#10;- added portals&#10;-flipped colors for buffs and made magenta darker&#10;">
-      <created>1508871458899</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1508871458924</updated>
-    </task>
-    <task id="LOCAL-00082" summary="balls:&#10;- added a prediction to indicate in which direction the balls are going to fly">
-      <created>1508873431092</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1508873431092</updated>
-    </task>
-    <task id="LOCAL-00083" summary="balls:&#10;- shortened prediction (2 bounces) and changed its color to black&#10;- fixed portal out of bounds check&#10;- reduced portal chance&#10;">
-      <created>1509014894803</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1509014894804</updated>
+      <workItem from="1520714625796" duration="1708000" />
+      <workItem from="1520717455087" duration="1096000" />
+      <workItem from="1520719570422" duration="1740000" />
+      <workItem from="1520721327010" duration="4801000" />
+      <workItem from="1520760381280" duration="37000" />
+      <workItem from="1520798969887" duration="67000" />
+      <workItem from="1520799051574" duration="12886000" />
+      <workItem from="1520842418463" duration="38000" />
+      <workItem from="1520959702005" duration="11018000" />
+      <workItem from="1521114936726" duration="889000" />
+      <workItem from="1521137272975" duration="10099000" />
     </task>
     <task id="LOCAL-00084" summary="balls:&#10;- added ability to reset&#10;- state of the field (rects, buffs, portals, balls) is now stored in cookies and read out&#10;- changed ball indicator to light blue&#10;- reworked spawn blocking detection&#10;&#10;Common:&#10;-added cookie.js dependency">
       <created>1509216403104</created>
@@ -1052,20 +900,49 @@
       <option name="project" value="LOCAL" />
       <updated>1518888462397</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="added visualisation of square root of 2!">
+      <created>1520716327391</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1520716327391</updated>
+    </task>
+    <task id="LOCAL-00130" summary="sqrt:&#10;-added flask server for serving the file in chunks&#10;-refactored global variables">
+      <created>1520718340698</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1520718340699</updated>
+    </task>
+    <task id="LOCAL-00131" summary="sqrt:&#10;-cleanup of names">
+      <created>1520720008373</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1520720008374</updated>
+    </task>
+    <task id="LOCAL-00132" summary="common:&#10;-created npm module to use for common, migrated most of the functionality of the old pure js commons">
+      <created>1520783691640</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1520783691641</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="272269000" />
+    <option name="totallyTimeSpent" value="335759000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="402" y="333" width="1926" height="1052" extended-state="6" />
+    <frame x="-3" y="31" width="1926" height="1052" extended-state="6" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32698414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1073,24 +950,12 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32698414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1104,7 +969,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32910052" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19114584" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19470899" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1116,6 +981,59 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/common/src/ts/RandomUtil.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/ColorUtils.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/Point.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/CanvasUtils.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/NumberUtils.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/Dimension.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/Utils.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/Effects.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/Constants.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/main.js" />
+        <option value="$PROJECT_DIR$/common/src/ts/Effects.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/CanvasUtils.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Constants.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/NumberUtils.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Point.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Dimension.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Utils.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/RandomUtil.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/Vector.d.ts" />
+        <option value="$PROJECT_DIR$/common/src/ts/ColorUtils.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/main.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/SourceProvider.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/PointProvider.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/Utils.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/NumberRenderer.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/MainLoop.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/FileParser.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/SourceProvider.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/NumberRenderer.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/FileParser.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/Config.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/FileLoader.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/PointProvider.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/Utils.js" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/FileLoader.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/MainLoop.d.ts" />
+        <option value="$PROJECT_DIR$/sqrt/src/ts/Config.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/including-module/src/ts/main.js" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/including-module/src/ts/Class.js" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/including-module/src/ts/main.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/including-module/src/ts/Class.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/common-module2/src/ts2/index.js" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/including-module/src/ts2/main.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/including-module/src/ts2/main.js" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/common-module2/src/ts/index.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/common-module2/src/ts/OtherClass.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/common-module2/src/ts/UtilsClass.d.ts" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/common-module2/src/ts2/ClassWhichHasNothingToDoWithIt.js" />
+        <option value="$PROJECT_DIR$/../npm-minimal-working-example/common-module2/src/ts2/AbstractClass.js" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.History.Properties">
     <option name="COLUMN_ORDER">
@@ -1167,10 +1085,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="added maZe!" />
-    <MESSAGE value="overview:&#10;-added maZe to overview" />
-    <MESSAGE value="maZe:&#10;-changed color similarity check to be of distance instead of just a tolerance in rgb values&#10;-added bounds check for probable points to it wont overflow in the right" />
-    <MESSAGE value="maZe:&#10;-moved floodFill to commons" />
     <MESSAGE value="common:&#10;-floodfill: added a check if we painted the index already, sometimes it added the same again and again..&#10;&#10;maZe:&#10;-reduced initial size&#10;-added boxTile for testing purposes mainly&#10;-colors start at a random position, yellow can be in the center" />
     <MESSAGE value="maZe:&#10;-added two more tile sets&#10;-changed the probable points to be definable per tile&#10;-mouse click floods the area you clicked on" />
     <MESSAGE value="maZe:&#10;-rendering the borders now happens with requestAnimationFrame, because it can take a long time if the resolution is big and you get feedback this way" />
@@ -1192,280 +1106,400 @@
     <MESSAGE value="renamed bubbles to buBbles and added recBubbles and buBbles to overview." />
     <MESSAGE value="recBubbles:&#10;-also added rainbow colors" />
     <MESSAGE value="recBubbles:&#10;-changed radius to be calculated from the min of width and height&#10;-removed rainbow offset" />
-    <option name="LAST_COMMIT_MESSAGE" value="recBubbles:&#10;-changed radius to be calculated from the min of width and height&#10;-removed rainbow offset" />
+    <MESSAGE value="added visualisation of square root of 2!" />
+    <MESSAGE value="sqrt:&#10;-added flask server for serving the file in chunks&#10;-refactored global variables" />
+    <MESSAGE value="sqrt:&#10;-cleanup of names" />
+    <MESSAGE value="common:&#10;-created npm module to use for common, migrated most of the functionality of the old pure js commons" />
+    <option name="LAST_COMMIT_MESSAGE" value="common:&#10;-created npm module to use for common, migrated most of the functionality of the old pure js commons" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="20" />
+      <option name="time" value="22" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/glOwing/index.html">
+    <entry file="file://$PROJECT_DIR$/sqrt/node_modules/@types/node/index.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="18" selection-end-line="5" selection-end-column="18" />
+        <state relative-caret-position="245">
+          <caret line="4644" column="20" lean-forward="false" selection-start-line="4644" selection-start-column="20" selection-end-line="4644" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/flocke/chillFlocke/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="141" column="29" lean-forward="true" selection-start-line="141" selection-start-column="29" selection-end-line="142" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dotLines/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/glOwing/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="13" column="22" lean-forward="false" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/horizons-client/test.txt" />
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/browser.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="64" column="12" lean-forward="false" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/horizons-client/client.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2193">
-          <caret line="129" column="34" lean-forward="false" selection-start-line="129" selection-start-column="34" selection-end-line="129" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/electron/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="30" lean-forward="false" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/win_desktop/browser_marionettes/maZe-frontend.exe.Config">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="16" lean-forward="false" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/win_desktop/browser_marionettes/MainWindow.xaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/win_desktop/browser_marionettes/MainWindow.xaml.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="857">
-          <caret line="369" column="0" lean-forward="true" selection-start-line="369" selection-start-column="0" selection-end-line="369" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/flocke/js/flockeCommon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="39" column="12" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recBubbles/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/orbitingSpheres/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="1078" column="41" lean-forward="true" selection-start-line="1075" selection-start-column="4" selection-end-line="1078" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overview/img/circleBs_preview.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/buBbles/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/buBbles/js/main.js">
+    <entry file="file://$PROJECT_DIR$/sqrt/node_modules/vinyl-source-stream/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="14" column="25" lean-forward="true" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+          <caret line="14" column="19" lean-forward="false" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overview/index.html">
+    <entry file="file://$PROJECT_DIR$/common/dist/CanvasUtils.d.ts" />
+    <entry file="file://$PROJECT_DIR$/common/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="60" lean-forward="true" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/maZe/web/maZe/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6783">
-          <caret line="399" column="22" lean-forward="false" selection-start-line="396" selection-start-column="8" selection-end-line="399" selection-end-column="22" />
+        <state relative-caret-position="187">
+          <caret line="11" column="1" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="1" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tessellAtion/src/js/main.js" />
-    <entry file="file://$PROJECT_DIR$/dist/bundle.js" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/9.5.0/core-modules/path.js">
+    <entry file="file://$PROJECT_DIR$/sqrt/file.txt" />
+    <entry file="file://$PROJECT_DIR$/sqrt/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="1153" column="2" lean-forward="false" selection-start-line="1153" selection-start-column="2" selection-end-line="1153" selection-end-column="2" />
+        <state relative-caret-position="68">
+          <caret line="4" column="27" lean-forward="false" selection-start-line="4" selection-start-column="27" selection-end-line="4" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tessellAtion/src/css/main.css" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/webpack.config.js" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/dist/common/index.html" />
-    <entry file="file://$PROJECT_DIR$/kolaKoski/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="131" column="9" lean-forward="false" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/CanvasRecorder.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tessellAtion/dist/js/vendor.js" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/dist/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="20" lean-forward="false" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/voronoi/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="11" selection-end-column="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tessellAtion/tsconfig.json" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/dist/js/bundle.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="10949" column="0" lean-forward="false" selection-start-line="10949" selection-start-column="0" selection-end-line="10949" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/jquery.dd.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tessellAtion/gulpfile.js" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/package.json" />
-    <entry file="file://$PROJECT_DIR$/template/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="33" lean-forward="false" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es6.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="10184" column="104" lean-forward="false" selection-start-line="10184" selection-start-column="80" selection-end-line="10184" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/exportCommon.js" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/Renderer.ts" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/src/index.html" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/config.ts" />
-    <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/main.ts" />
-    <entry file="file://$PROJECT_DIR$/sqrt/sqrt2.10mil.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="10000006" lean-forward="false" selection-start-line="0" selection-start-column="10000006" selection-end-line="0" selection-end-column="10000006" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/recBubbles/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="30" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sqrt/test.txt" />
-    <entry file="file://$PROJECT_DIR$/spirals/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="816">
-          <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sqrt/js/plugins.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sqrt/index.html">
+    <entry file="file://$PROJECT_DIR$/common/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts2/OtherClass.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts2/UtilsClass.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/NumberUtils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/RandomUtil.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="19" selection-end-line="1" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/Dimension.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="13" lean-forward="false" selection-start-line="0" selection-start-column="13" selection-end-line="0" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/ColorUtils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="5" lean-forward="false" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
           <folding>
-            <marker date="1520760438429" expanded="true" signature="598:751" ph="..." />
-            <marker date="1520760438429" expanded="true" signature="691:719" ph="..." />
+            <element signature="e#0#42#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/js/common.js">
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts2/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1768">
-          <caret line="407" column="71" lean-forward="false" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts2/MainLoop.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="39" lean-forward="false" selection-start-line="1" selection-start-column="39" selection-end-line="1" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts2/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="21" lean-forward="false" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts2/Config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="32" lean-forward="true" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts2/SourceProvider.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="32" lean-forward="false" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts2/ColorProvider.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="1" lean-forward="false" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts2/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="20" lean-forward="false" selection-start-line="0" selection-start-column="20" selection-end-line="0" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/dist/ColorProvider.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sqrt/fileServer.py">
+    <entry file="file://$PROJECT_DIR$/common/dist/OtherClass.d.ts" />
+    <entry file="file://$PROJECT_DIR$/common/dist/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="25" lean-forward="false" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sqrt/js/main.js">
+    <entry file="file://$PROJECT_DIR$/common/dist/index.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="27" lean-forward="false" selection-start-line="0" selection-start-column="27" selection-end-line="0" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/index.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/dist/Vector.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="22" lean-forward="true" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/Utils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/dist/bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/dist/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="13" lean-forward="false" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding>
+            <marker date="1521151161936" expanded="true" signature="483:636" ph="..." />
+            <marker date="1521151161936" expanded="true" signature="576:604" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="59" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="16" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/dist/GeometryUtils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="18" lean-forward="false" selection-start-line="6" selection-start-column="18" selection-end-line="6" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/GeometryUtils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/CanvasUtils.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-408">
+          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1387">
+          <caret line="1097" column="10" lean-forward="false" selection-start-line="1097" selection-start-column="10" selection-end-line="1097" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/dist/Point.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/Point.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/SourceProvider.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="26" column="29" lean-forward="false" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/js/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="121" column="17" lean-forward="false" selection-start-line="117" selection-start-column="3" selection-end-line="121" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/common/src/ts/ColorProvider.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="1" lean-forward="false" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/PointProvider.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="75" lean-forward="false" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
+          <folding>
+            <marker date="1521146655669" expanded="true" signature="483:636" ph="..." />
+            <marker date="1521146655669" expanded="true" signature="576:604" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="22" lean-forward="false" selection-start-line="4" selection-start-column="22" selection-end-line="4" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/tsconfig.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="561">
+          <caret line="56" column="150" lean-forward="false" selection-start-line="56" selection-start-column="150" selection-end-line="56" selection-end-column="150" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/FileParser.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="4" lean-forward="false" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/Config.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="24" column="28" lean-forward="false" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/MainLoop.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/FileLoader.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sqrt/src/ts/NumberRenderer.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
-          <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-          <folding />
+          <caret line="34" column="99" lean-forward="false" selection-start-line="34" selection-start-column="99" selection-end-line="34" selection-end-column="99" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

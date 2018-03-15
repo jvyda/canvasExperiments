@@ -11,7 +11,7 @@ var config = {
     glOwing: {
         vertices: 0.0007028789923526766 * (window.innerWidth * window.innerHeight),
         maxNodeDist: 80,
-        interVal: 2000
+        interVal: 4000
     }
 };
 
@@ -35,10 +35,10 @@ function initBots(){
 function startBot(){
     var index = randomInteger(graph.length);
     bot(0, [graph[index]], {index: 1}, getColor());
-/*    setTimeout(function(){
+    setTimeout(function(){
         bot(0, [graph[index]], {index: 1}, blackColor())
     }, 2000);
-    */
+
     setTimeout(startBot, config.glOwing.interVal);
 }
 

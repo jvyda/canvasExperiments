@@ -1,0 +1,14 @@
+{
+  "include": [
+    "*.ts"
+  ],
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "target": "es5",
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "lib": ["es2015.promise", "es2015", "dom", "ScriptHost"]
+  }
+}
