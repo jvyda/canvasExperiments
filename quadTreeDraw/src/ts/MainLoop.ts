@@ -46,7 +46,7 @@ export class MainLoop {
     };
 
     keyUp = (event:KeyboardEvent) => {
-        if(Utils.eventIsKey(event, 90)){
+        if(Utils.eventIsKey(event, 88)){
             if(this.deleteKeyDown) {
                 this.deleteKeyDown = !this.deleteKeyDown;
             }
