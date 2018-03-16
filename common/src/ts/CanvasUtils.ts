@@ -117,11 +117,11 @@ export class CanvasUtils {
 }
 
 export class MyCanvasRenderingContext2D extends CanvasRenderingContext2D {
-    transformedPoint(x: number, y:number){
-
+    transformedPoint(x: number, y:number): SVGPoint{
+        return undefined;
     }
 
-    getTransform() {
-
+    getTransform() :SVGMatrix{
+        return undefined;
     }
 }

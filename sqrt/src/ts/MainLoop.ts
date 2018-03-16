@@ -3,15 +3,15 @@ import * as $ from 'jquery';
 import {ColoredAngle, NumberRenderer} from "./NumberRenderer";
 import {NasaSqrt2SourceProvider, SourceProvider} from "./SourceProvider";
 import {NumberLoader} from "./FileLoader";
-import {Config} from "./Config";
 import {PointProvider} from "./PointProvider";
-import {Color} from "ce-common";
+import {Color, Config} from "ce-common";
+import {SqrtConfig} from "./Config";
 
 export class MainLoop {
     execute() {
         let provider: SourceProvider = new NasaSqrt2SourceProvider();
         let loader: NumberLoader = provider.getLoader();
-        let config: Config = provider.getConfig();
+        let config: SqrtConfig = <SqrtConfig> provider.getConfig();
         let fp: FileParser = provider.getParser();
         let canvas: HTMLCanvasElement = <HTMLCanvasElement> $('#canvas')[0];
         canvas.width = config.dimensions.width;
@@ -24,7 +24,7 @@ export class MainLoop {
         this.loadNumbersAndRender(loader, fp, renderer, points, config, 0).catch((err) => console.log(err));
     }
 
-    async loadNumbersAndRender(loader: NumberLoader, fp: FileParser, renderer: NumberRenderer, points: Array<ColoredAngle>, config: Config, part: number): Promise<any> {
+    async loadNumbersAndRender(loader: NumberLoader, fp: FileParser, renderer: NumberRenderer, points: Array<ColoredAngle>, config: SqrtConfig, part: number): Promise<any> {
         if(part > config.parts){
             return new Promise((resolve, reject) => {
                 resolve();

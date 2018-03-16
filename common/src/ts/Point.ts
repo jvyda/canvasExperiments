@@ -50,3 +50,31 @@ export class Point2 {
         )
     };
 }
+
+
+export class Quad {
+    private _center: Point2;
+    private _side: number;
+
+
+    constructor(center: Point2, side: number) {
+        this._center = center;
+        this._side = side;
+    }
+
+    get center(): Point2 {
+        return this._center;
+    }
+
+    set center(value: Point2) {
+        this._center = value;
+    }
+
+    get side(): number {
+        return this._side;
+    }
+
+    set side(value: number) {
+        this._side = value;
+    }
+}

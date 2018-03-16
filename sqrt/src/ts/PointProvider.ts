@@ -1,6 +1,6 @@
 import {ColoredAngle} from "./NumberRenderer";
-import {ColorProvider} from "ce-common";
-import {CircularConfig, Config} from "./Config";
+import {ColorProvider, Config} from "ce-common";
+import {CircularConfig} from "./Config";
 
 export interface PointProvider {
     getPoints(provider: ColorProvider, config: Config): Array<ColoredAngle>;

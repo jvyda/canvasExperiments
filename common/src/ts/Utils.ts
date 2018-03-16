@@ -1,5 +1,6 @@
 import {Constants} from "./Constants";
 import {Color} from "./ColorUtils";
+import {Point2} from "./Point";
 
 export class Utils {
     static formatInterval(date1:Date, date2:Date, message:string) {
@@ -28,10 +29,18 @@ export class Utils {
 
     static getMousePos(canvas:HTMLCanvasElement, evt:MouseEvent) {
         let rect = canvas.getBoundingClientRect();
-        return {
-            x: evt.clientX - rect.left,
-            y: evt.clientY - rect.top
-        };
+        return new Point2(
+            evt.clientX - rect.left,
+            evt.clientY - rect.top
+        );
+    };
+
+    static getMousePosJQ(canvas:HTMLCanvasElement, evt: JQuery.Event<any>) {
+        let rect = canvas.getBoundingClientRect();
+        return new Point2(
+            evt.clientX - rect.left,
+            evt.clientY - rect.top
+        );
     };
 
     static auPerDayToMPerSecond(value:number) {

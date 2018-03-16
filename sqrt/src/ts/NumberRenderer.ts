@@ -1,7 +1,7 @@
-import {Point2} from "ce-common";
+import {Config, Point2} from "ce-common";
 import {Color} from "ce-common";
 import {GeometryUtils} from "ce-common";
-import {BezierConfig, Config} from "./Config";
+import {BezierConfig} from "./Config";
 
 export abstract class NumberRenderer {
     protected ctx: CanvasRenderingContext2D;

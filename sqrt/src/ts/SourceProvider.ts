@@ -1,9 +1,9 @@
-import {Config, NasaSqrt2Config} from "./Config";
+import {NasaSqrt2Config} from "./Config";
 import {NasaSqrtFileLoader, NumberLoader} from "./FileLoader";
 import {FileParser, NasaFileParser} from "./FileParser";
 import {BezierNumberRenderer, NumberRenderer} from "./NumberRenderer";
 import {CircularPointProvider, PointProvider} from "./PointProvider";
-import {ColorProvider, EvenlyDistributedColorProvider, Color} from "ce-common";
+import {ColorProvider, EvenlyDistributedColorProvider, Color, Config} from "ce-common";
 
 export abstract class SourceProvider {
 
