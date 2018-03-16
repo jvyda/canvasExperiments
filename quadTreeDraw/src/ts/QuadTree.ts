@@ -8,7 +8,8 @@ export class QuadTree {
 
     constructor() {
         let config = QuadTreeDrawConfig.getInstance();
-        this.root = new QuadTreeNode(new Bounds(config.quadTreeCenter, config.quadTreeSideLength));
+        // direction here should not matter, we are root...
+        this.root = new QuadTreeNode(new Bounds(config.quadTreeCenter, config.quadTreeSideLength), undefined, Direction.SW);
     }
 
     get root(): QuadTreeNode {
@@ -22,6 +23,10 @@ export class QuadTree {
     addSquare(rect: Quad): void {
         this.root.addSquare(rect);
     }
+
+    removeSquare(rect: Quad): void {
+        this.root.removeSquare(rect);
+    }
 }
 
 export class QuadTreeNode {
@@ -31,10 +36,14 @@ export class QuadTreeNode {
     private _NW: QuadTreeNode;
     private _SW: QuadTreeNode;
     private _side: number;
+    private _weLieIn: Direction;
+    private _parent: QuadTreeNode;
 
-    constructor(bounds: Bounds = undefined) {
+    constructor(bounds: Bounds = undefined, parent: QuadTreeNode = undefined, direction?: Direction) {
         this._base = bounds ? bounds.base : undefined;
         this._side = bounds ? bounds.width : undefined;
+        this._parent = parent;
+        this._weLieIn = direction;
     }
 
 
@@ -44,24 +53,24 @@ export class QuadTreeNode {
                 if (add && !this.NE) {
                     this.splitIntoDirection(Direction.NE)
                 }
-                return this.NE;
+                return new FoundDirection(this.NE, Direction.NE);
             } else {
                 if (add && !this.SE) {
                     this.splitIntoDirection(Direction.SE)
                 }
-                return this.SE;
+                return new FoundDirection(this.SE, Direction.SE);
             }
         } else {
             if (point.y < this.base.y) {
                 if (add && !this.NW) {
                     this.splitIntoDirection(Direction.NW)
                 }
-                return this.NW;
+                return new FoundDirection(this.NW, Direction.NW);
             } else {
                 if (add && !this.SW) {
                     this.splitIntoDirection(Direction.SW)
                 }
-                return this.SW;
+                return new FoundDirection(this.SW, Direction.SW);
             }
         }
     }
@@ -69,16 +78,16 @@ export class QuadTreeNode {
     splitIntoDirection(direction: Direction) {
         switch (direction) {
             case Direction.NE:
-                this.NE = new QuadTreeNode(this.getBounds(Direction.NE));
+                this.NE = new QuadTreeNode(this.getBounds(Direction.NE), this, Direction.NE);
                 break;
             case Direction.NW:
-                this.NW = new QuadTreeNode(this.getBounds(Direction.NW));
+                this.NW = new QuadTreeNode(this.getBounds(Direction.NW), this, Direction.NW);
                 break;
             case Direction.SE:
-                this.SE = new QuadTreeNode(this.getBounds(Direction.SE));
+                this.SE = new QuadTreeNode(this.getBounds(Direction.SE), this, Direction.SE);
                 break;
             case Direction.SW:
-                this.SW = new QuadTreeNode(this.getBounds(Direction.SW));
+                this.SW = new QuadTreeNode(this.getBounds(Direction.SW), this, Direction.SW);
                 break;
         }
     }
@@ -99,7 +108,29 @@ export class QuadTreeNode {
     addSquare(toAdd: Quad) {
         let node = this.getResponsibleChild(toAdd.center, true);
         if (this.side > toAdd.side) {
-            node.addSquare(toAdd);
+            node.node.addSquare(toAdd);
+        }
+    }
+
+    removeSquare(toRemove: Quad) {
+        let node = this.getResponsibleChild(toRemove.center, false)
+        if (!node.node && this.parent) {
+            switch (this._weLieIn) {
+                case Direction.NE:
+                    this.parent.NE = undefined;
+                    break;
+                case Direction.NW:
+                    this.parent.NW = undefined;
+                    break;
+                case Direction.SE:
+                    this.parent.SE = undefined;
+                    break;
+                case Direction.SW:
+                    this.parent.SW = undefined;
+                    break;
+            }
+        } else if(node.node) {
+            node.node.removeSquare(toRemove);
         }
     }
 
@@ -151,8 +182,28 @@ export class QuadTreeNode {
     set side(value: number) {
         this._side = value;
     }
+
+
+    get parent(): QuadTreeNode {
+        return this._parent;
+    }
+
+
+    get weLieIn(): Direction {
+        return this._weLieIn;
+    }
+
+    set weLieIn(value: Direction) {
+        this._weLieIn = value;
+    }
 }
 
 export enum Direction {
     NE, SE, NW, SW
+}
+
+export class FoundDirection {
+    constructor(public node: QuadTreeNode, public dir: Direction) {
+    }
+
 }
