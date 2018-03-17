@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/overview/img/quadTreeDraw_preview.png" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/overview/img/sqrt_preview.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/overview/index.html" afterPath="$PROJECT_DIR$/overview/index.html" />
+      <change beforePath="$PROJECT_DIR$/quadTreeDraw/package-lock.json" afterPath="$PROJECT_DIR$/quadTreeDraw/package-lock.json" />
+      <change beforePath="$PROJECT_DIR$/quadTreeDraw/package.json" afterPath="$PROJECT_DIR$/quadTreeDraw/package.json" />
+      <change beforePath="$PROJECT_DIR$/quadTreeDraw/src/index.html" afterPath="$PROJECT_DIR$/quadTreeDraw/src/index.html" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,8 +27,8 @@
       <file leaf-file-name="MainLoop.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/ts/MainLoop.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+            <state relative-caret-position="-125">
+              <caret line="93" column="25" lean-forward="false" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -36,28 +36,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="quadTreeDraw_preview.png" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overview/img/quadTreeDraw_preview.png">
-          <provider selected="true" editor-type-id="images">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/overview/index.html">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
-              <folding />
+            <state relative-caret-position="391">
+              <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding>
+                <element signature="n#style#0;n#span#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1521276897783" expanded="true" signature="491:644" ph="..." />
+                <marker date="1521276897783" expanded="true" signature="584:612" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.ts" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/ts/main.ts">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/quadTreeDraw/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="204">
+              <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -76,7 +73,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>point</find>
       <find>RESOLVE</find>
       <find>moduleResolution</find>
       <find>tsc</find>
@@ -106,6 +102,7 @@
       <find>drag</find>
       <find>pop</find>
       <find>sqrt</find>
+      <find>alt</find>
     </findStrings>
     <replaceStrings>
       <replace>options</replace>
@@ -184,7 +181,6 @@
         <option value="$PROJECT_DIR$/quadTreeDraw/dist/index.html" />
         <option value="$PROJECT_DIR$/common/src/ts/Point.ts" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/main.ts" />
-        <option value="$PROJECT_DIR$/quadTreeDraw/src/index.html" />
         <option value="$PROJECT_DIR$/common/src/ts/Utils.ts" />
         <option value="$PROJECT_DIR$/common/src/ts/Config.ts" />
         <option value="$PROJECT_DIR$/common/src/ts/CanvasUtils.ts" />
@@ -192,10 +188,11 @@
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/Config.ts" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/QuadTreeUtils.ts" />
         <option value="$PROJECT_DIR$/quadTreeDraw/gulpfile.js" />
-        <option value="$PROJECT_DIR$/quadTreeDraw/package.json" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/QuadTree.ts" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/MainLoop.ts" />
         <option value="$PROJECT_DIR$/overview/index.html" />
+        <option value="$PROJECT_DIR$/quadTreeDraw/src/index.html" />
+        <option value="$PROJECT_DIR$/quadTreeDraw/package.json" />
       </list>
     </option>
   </component>
@@ -251,36 +248,33 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="overview" type="462c0819:PsiDirectoryNode" />
+              <item name="quadTreeDraw" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="overview" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="quadTreeDraw" type="462c0819:PsiDirectoryNode" />
+              <item name="dist" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="spirals" type="462c0819:PsiDirectoryNode" />
+              <item name="quadTreeDraw" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="unNamed" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="unNamed" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="quadTreeDraw" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ts" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -522,14 +516,8 @@
       <workItem from="1521196339894" duration="73000" />
       <workItem from="1521196647795" duration="27209000" />
       <workItem from="1521228075930" duration="825000" />
-      <workItem from="1521234636500" duration="1273000" />
-    </task>
-    <task id="LOCAL-00089" summary="overview:&#10;-added kolaKoski">
-      <created>1512131929195</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1512131929195</updated>
+      <workItem from="1521234636500" duration="1298000" />
+      <workItem from="1521275538411" duration="2188000" />
     </task>
     <task id="LOCAL-00090" summary="added recFlocke">
       <created>1512592147963</created>
@@ -867,11 +855,18 @@
       <option name="project" value="LOCAL" />
       <updated>1521228642813</updated>
     </task>
-    <option name="localTasksCounter" value="138" />
+    <task id="LOCAL-00138" summary="overview:&#10;-added sqrt &amp; quadTreeDraw">
+      <created>1521235962906</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1521235962906</updated>
+    </task>
+    <option name="localTasksCounter" value="139" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="365172000" />
+    <option name="totallyTimeSpent" value="367385000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="31" width="1926" height="1052" extended-state="6" />
@@ -1030,7 +1025,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="maZe:&#10;-added initial (and working) version for a maZe screensaver, missing features are customization of executable and features which are really needed" />
     <MESSAGE value="fireWorks:&#10;-changed head of flare trail items to be a square of two" />
     <MESSAGE value="added first version of glOwing, which does not look good" />
     <MESSAGE value="glOwing:&#10;-completely reworked glOwing" />
@@ -1055,7 +1049,8 @@
     <MESSAGE value="common:&#10;-moved config to commons&#10;&#10;quadTreeDraw:&#10;-implemented basic case&#10;-implemented zooming/dragging&#10;&#10;sqrt:&#10;-refactored the movement of config" />
     <MESSAGE value="quadTreeDraw:&#10;-fixed npm module name&#10;-added ability to delete drawn elements" />
     <MESSAGE value="quadTreeDraw:&#10;-fixed wrong key code" />
-    <option name="LAST_COMMIT_MESSAGE" value="quadTreeDraw:&#10;-fixed wrong key code" />
+    <MESSAGE value="overview:&#10;-added sqrt &amp; quadTreeDraw" />
+    <option name="LAST_COMMIT_MESSAGE" value="overview:&#10;-added sqrt &amp; quadTreeDraw" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1201,13 +1196,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="245">
           <caret line="24" column="39" lean-forward="false" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="19" lean-forward="false" selection-start-line="18" selection-start-column="19" selection-end-line="18" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -1359,13 +1347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quadTreeDraw/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="26" lean-forward="false" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/ts/QuadTree.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="781">
@@ -1373,20 +1354,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/quadTreeDraw/dist/bundle.js">
+    <entry file="file://$PROJECT_DIR$/overview/img/buBbles_preview.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="11574" column="0" lean-forward="false" selection-start-line="11574" selection-start-column="0" selection-end-line="11574" selection-end-column="0" />
-          <folding>
-            <marker date="1521228128439" expanded="true" signature="316557:316629" ph="{...}" />
-          </folding>
+        <state relative-caret-position="731">
+          <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
+          <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/img/quadTreeDraw_preview.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/quadTreeDraw/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1398,30 +1388,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overview/img/buBbles_preview.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/ts/MainLoop.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="48" column="37" lean-forward="false" selection-start-line="48" selection-start-column="37" selection-end-line="48" selection-end-column="37" />
+        <state relative-caret-position="-125">
+          <caret line="93" column="25" lean-forward="false" selection-start-line="93" selection-start-column="25" selection-end-line="93" selection-end-column="25" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overview/img/quadTreeDraw_preview.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
+    <entry file="file://$PROJECT_DIR$/quadTreeDraw/dist/bundle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="666" column="0" lean-forward="false" selection-start-line="666" selection-start-column="0" selection-end-line="666" selection-end-column="0" />
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overview/index.html">
+    <entry file="file://$PROJECT_DIR$/quadTreeDraw/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
+        <state relative-caret-position="391">
+          <caret line="23" column="36" lean-forward="false" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1521276897783" expanded="true" signature="491:644" ph="..." />
+            <marker date="1521276897783" expanded="true" signature="584:612" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/quadTreeDraw/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="22" lean-forward="false" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
           <folding />
         </state>
       </provider>
