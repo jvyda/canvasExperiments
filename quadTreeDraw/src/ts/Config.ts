@@ -12,6 +12,7 @@ export class QuadTreeDrawConfig extends Config {
     public rotateIncr = 10;
     public rotate = 0;
     public rotateEnabled = true;
+    public maxLevels = 25;
 
     private static qtinstance:QuadTreeDrawConfig;
     public static getInstance(){

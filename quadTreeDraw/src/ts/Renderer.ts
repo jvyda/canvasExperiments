@@ -1,5 +1,5 @@
 import {QuadTree, QuadTreeNode} from "./QuadTree";
-import {MyCanvasRenderingContext2D, Point2} from 'ce-common';
+import {Color, EvenlyDistributedColorProvider, MyCanvasRenderingContext2D, Point2} from 'ce-common';
 import {QuadTreeDrawConfig} from "./Config";
 
 export abstract class Renderer {
@@ -16,17 +16,19 @@ export abstract class Renderer {
 export class QuadTreeRenderer extends Renderer {
 
     private cfg: QuadTreeDrawConfig;
+    private provider: EvenlyDistributedColorProvider;
     constructor(ctx: MyCanvasRenderingContext2D) {
         super(ctx);
+        this.provider = new EvenlyDistributedColorProvider(Color.getRainboColors(1/16), QuadTreeDrawConfig.getInstance().maxLevels)
     }
 
     render(object: QuadTree): void {
         let root = object.root;
         this.cfg = QuadTreeDrawConfig.getInstance();
-        this.renderNode(root);
+        this.renderNode(root, 0);
     }
 
-    renderNode(object: QuadTreeNode): void {
+    renderNode(object: QuadTreeNode, depth: number): void {
         if(!object) {
             return;
         }
@@ -48,6 +50,7 @@ export class QuadTreeRenderer extends Renderer {
 
 
         this.ctx.beginPath();
+        this.ctx.strokeStyle = this.provider.getColor(depth).styleRGB;
         this.ctx.translate(xStartvalue, yStartValue);
         this.ctx.rotate(this.cfg.rotate);
         this.ctx.lineWidth = this.cfg.strokeWidth / this.cfg.scale;
@@ -63,10 +66,10 @@ export class QuadTreeRenderer extends Renderer {
         this.ctx.translate(-xStartvalue, -yStartValue);
         this.ctx.stroke();
 
-        this.renderNode(object.NE);
-        this.renderNode(object.SE);
-        this.renderNode(object.NW);
-        this.renderNode(object.SW);
+        this.renderNode(object.NE, depth + 1);
+        this.renderNode(object.SE,depth + 1);
+        this.renderNode(object.NW,depth + 1);
+        this.renderNode(object.SW,depth + 1);
 
     }
 

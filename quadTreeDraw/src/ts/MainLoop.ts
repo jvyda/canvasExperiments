@@ -56,7 +56,7 @@ export class MainLoop {
     wheelEventHandler = (event: JQuery.Event<any>) => {
         let scalePoint = Utils.getMousePosJQ(this.canvas, event);
         let svgScalePoint = this.ctx.transformedPoint(scalePoint.x, scalePoint.y);
-        let scaleTo = (<WheelEvent> event.originalEvent).wheelDeltaY < 0 ? this.cfg.scalingSmaller : this.cfg.scalingBigger;
+        let scaleTo = (<WheelEvent> event.originalEvent).deltaY < 0 ? this.cfg.scalingSmaller : this.cfg.scalingBigger;
         let instance = QuadTreeDrawConfig.getInstance();
         instance.scale *= scaleTo;
         if (instance.scale < instance.minScale) {

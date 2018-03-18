@@ -21,7 +21,7 @@ export class QuadTree {
     }
 
     addSquare(rect: Quad): void {
-        this.root.addSquare(rect);
+        this.root.addSquare(rect, 0);
     }
 
     removeSquare(rect: Quad): void {
@@ -105,10 +105,10 @@ export class QuadTreeNode {
         }
     }
 
-    addSquare(toAdd: Quad) {
+    addSquare(toAdd: Quad, depth: number) {
         let node = this.getResponsibleChild(toAdd.center, true);
         if (this.side > toAdd.side) {
-            node.node.addSquare(toAdd);
+            node.node.addSquare(toAdd, depth+1);
         }
     }
 
