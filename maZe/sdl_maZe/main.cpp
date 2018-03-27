@@ -1,11 +1,8 @@
+#define SDL_MAIN_HANDLED
 #include <SDL2/SDL.h>
-#include <stdio.h>
 #include <iostream>
 #include <vector>
 #include <queue>
-#include <math.h>
-#include <chrono>
-#include <thread>
 
 
 #define TILE_SIZE 20
@@ -14,6 +11,9 @@
 #define RED 16711680
 #define GREEN 65280
 #define BLUE 255
+
+
+
 
 
 class Point {
@@ -35,9 +35,21 @@ public :
     Color(int r, int g, int b, int a) : r(r), g(g), b(b), a(a) {}
 };
 
+
+typedef std::vector<Point *> (*renderFuntionPtr)(Point *, SDL_Renderer *, int, int);
+bool quit;
+
+std::vector<bool> ready;
+
 unsigned long randomInt(const std::vector<Point *> *tilablePoints);
 
-std::vector<Point *> leftTile(Point *startPoint, SDL_Renderer *renderer) {
+void addPointToList(const Point *startPoint, std::vector<Point *> &paintablePoints, int x, int y, int w, int h) {
+    if (x < w && y < h) {
+        paintablePoints.push_back(new Point(x, y));
+    }
+}
+
+std::vector<Point *> leftTile(Point *startPoint, SDL_Renderer *renderer, int w, int h) {
     auto leftLower = new Point(startPoint->x, startPoint->y + TILE_SIZE / 2);
     auto leftUpper = new Point(startPoint->x + TILE_SIZE / 2, startPoint->y);
     SDL_RenderDrawLine(renderer, leftLower->x, leftLower->y, leftUpper->x, leftUpper->y);
@@ -48,14 +60,16 @@ std::vector<Point *> leftTile(Point *startPoint, SDL_Renderer *renderer) {
     SDL_RenderDrawLine(renderer, rightLower->x, rightLower->y, rightUpper->x, rightUpper->y);
 
     std::vector<Point *> paintablePoints;
-    paintablePoints.push_back(new Point(startPoint->x + SAFETY_OFFSET, startPoint->y + SAFETY_OFFSET));
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2));
-    paintablePoints.push_back(
-            new Point(startPoint->x + TILE_SIZE - SAFETY_OFFSET, startPoint->y + TILE_SIZE - SAFETY_OFFSET));
+    addPointToList(startPoint, paintablePoints, startPoint->x + SAFETY_OFFSET, startPoint->y + SAFETY_OFFSET, w, h);
+    addPointToList(startPoint, paintablePoints, startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2, w, h);
+    addPointToList(startPoint, paintablePoints, startPoint->x + TILE_SIZE - SAFETY_OFFSET, startPoint->y + TILE_SIZE - SAFETY_OFFSET, w, h);
     return paintablePoints;
 }
 
-std::vector<Point *> rightTile(Point *startPoint, SDL_Renderer *renderer) {
+
+
+
+std::vector<Point *> rightTile(Point *startPoint, SDL_Renderer *renderer, int w, int h) {
     auto leftLower = new Point(startPoint->x, startPoint->y + TILE_SIZE / 2);
     auto leftUpper = new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE);
     SDL_RenderDrawLine(renderer, leftLower->x, leftLower->y, leftUpper->x, leftUpper->y);
@@ -65,13 +79,13 @@ std::vector<Point *> rightTile(Point *startPoint, SDL_Renderer *renderer) {
     SDL_RenderDrawLine(renderer, rightLower->x, rightLower->y, rightUpper->x, rightUpper->y);
 
     std::vector<Point *> paintablePoints;
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE - SAFETY_OFFSET, startPoint->y + SAFETY_OFFSET));
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2));
-    paintablePoints.push_back(new Point(startPoint->x + SAFETY_OFFSET, startPoint->y + TILE_SIZE - SAFETY_OFFSET));
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE - SAFETY_OFFSET, startPoint->y + SAFETY_OFFSET, w, h);
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2, w, h);
+    addPointToList(startPoint, paintablePoints,startPoint->x + SAFETY_OFFSET, startPoint->y + TILE_SIZE - SAFETY_OFFSET, w, h);
     return paintablePoints;
 }
 
-std::vector<Point *> upSideSplitX(Point *startPoint, SDL_Renderer *renderer) {
+std::vector<Point *> upSideSplitX(Point *startPoint, SDL_Renderer *renderer, int w, int h) {
     auto leftUpper = new Point(startPoint->x, startPoint->y);
     auto leftMiddle = new Point(startPoint->x + TILE_SIZE * 0.25, startPoint->y + TILE_SIZE / 2);
     auto leftLower = new Point(startPoint->x, startPoint->y + TILE_SIZE);
@@ -86,13 +100,13 @@ std::vector<Point *> upSideSplitX(Point *startPoint, SDL_Renderer *renderer) {
     SDL_RenderDrawLine(renderer, rightMiddle->x, rightMiddle->y, rightLower->x, rightLower->y);
 
     std::vector<Point *> paintablePoints;
-    paintablePoints.push_back(new Point(startPoint->x + SAFETY_OFFSET, startPoint->y + TILE_SIZE / 2));
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2));
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE - SAFETY_OFFSET, startPoint->y + TILE_SIZE / 2));
+    addPointToList(startPoint, paintablePoints,startPoint->x + SAFETY_OFFSET, startPoint->y + TILE_SIZE / 2, w, h);
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2, w, h);
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE - SAFETY_OFFSET, startPoint->y + TILE_SIZE / 2, w, h);
     return paintablePoints;
 };
 
-std::vector<Point *> lyingSplitX(Point *startPoint, SDL_Renderer *renderer) {
+std::vector<Point *> lyingSplitX(Point *startPoint, SDL_Renderer *renderer, int w, int h) {
     auto upperLeft = new Point(startPoint->x, startPoint->y);
     auto upperMiddle = new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE * 0.25);
     auto upperRight = new Point(startPoint->x + TILE_SIZE, startPoint->y);
@@ -110,10 +124,19 @@ std::vector<Point *> lyingSplitX(Point *startPoint, SDL_Renderer *renderer) {
     SDL_RenderDrawLine(renderer, lowerMiddle->x, lowerMiddle->y, lowerRight->x, lowerRight->y);
 
     std::vector<Point *> paintablePoints;
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + SAFETY_OFFSET));
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2));
-    paintablePoints.push_back(new Point(startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE - SAFETY_OFFSET));
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE / 2, startPoint->y + SAFETY_OFFSET, w, h);
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE / 2, w, h);
+    addPointToList(startPoint, paintablePoints,startPoint->x + TILE_SIZE / 2, startPoint->y + TILE_SIZE - SAFETY_OFFSET, w, h);
     return paintablePoints;
+};
+
+std::vector<std::vector<renderFuntionPtr>> tileFun = {
+        {
+                rightTile,    leftTile
+        },
+        {
+                upSideSplitX, lyingSplitX
+        }
 };
 
 std::vector<Point *> getTilablePoints(int width, int height) {
@@ -145,9 +168,9 @@ std::vector<Color *> getRainbowColors(float frequency) {
     std::vector<Color *> colors;
     auto most = 2 * M_PI / frequency;
     for (auto i = 0; i < most; ++i) {
-        auto red = sin(frequency * i + 0) * 127 + 128;
-        auto green = sin(frequency * i + 2) * 127 + 128;
-        auto blue = sin(frequency * i + 4) * 127 + 128;
+        auto red = SDL_sin(frequency * i + 0) * 127 + 128;
+        auto green = SDL_sin(frequency * i + 2) * 127 + 128;
+        auto blue = SDL_sin(frequency * i + 4) * 127 + 128;
         auto color = new Color(static_cast<int>(red), static_cast<int>(green), static_cast<int>(blue), 255);
         colors.push_back(color);
     }
@@ -242,8 +265,8 @@ bool floodfill(Point *p, Color *fillcolor, std::vector<Uint32> *data, int width,
         if (pixelCompareAndSet(currentIndex, targetcolor, fillcolor, data, length, tolerance)) {
             rightColorBorder = currentIndex;
             leftColorBorder = currentIndex;
-            currentRowLeftBorder = (floor(currentIndex / rowWidth)) * rowWidth; //left bound
-            currentRowRightBorder = currentRowLeftBorder + rowWidth + 1;//right bound
+            currentRowLeftBorder = (SDL_floor(currentIndex / rowWidth)) * rowWidth; //left bound
+            currentRowRightBorder = currentRowLeftBorder + rowWidth;//right bound
 
             while (currentRowLeftBorder < (leftColorBorder -= 1) &&
                    pixelCompareAndSet(leftColorBorder, targetcolor, fillcolor, data, length,
@@ -275,144 +298,193 @@ bool floodfill(Point *p, Color *fillcolor, std::vector<Uint32> *data, int width,
 
 }
 
-void renderStuff(std::vector<Point *> paintablePoints, int width, int height, std::vector<Uint32> vpixels,
-                 SDL_Texture *sdlTexture, SDL_Renderer *renderer) {
+typedef struct {
+    int x, y, w, h, threadIndex, renderIndex;
+} ThreadData;
 
+int startWindow(void* att){
+    ThreadData* para = (ThreadData*) att;
 
-}
-
-
-int main(int argc, char *args[]) {
+    std::vector<renderFuntionPtr> chosen = tileFun[para->renderIndex];
     SDL_Window *window = NULL;
-    SDL_Surface *screenSurface = NULL;
-    if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-        fprintf(stderr, "could not initialize sdl2: %s\n", SDL_GetError());
-        return 1;
-    }
-    SDL_DisplayMode DM;
-    SDL_GetCurrentDisplayMode(0, &DM);
-    auto width = DM.w;
-    auto height = DM.h;
-
     window = SDL_CreateWindow(
             "maZe",
-            SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-            width, height,
+            para->x, para->y,
+            para->w, para->h,
             SDL_WINDOW_SHOWN
     );
 
 
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-
-    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_INPUT_FOCUS);
+    SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN | SDL_WINDOW_BORDERLESS);
     if (window == NULL) {
         fprintf(stderr, "could not create window: %s\n", SDL_GetError());
         return 1;
     }
 
-    typedef std::vector<Point *> (*renderFuntionPtr)(Point *, SDL_Renderer *);
-    std::vector<Point *> paintablePoints;
-    std::vector<std::vector<renderFuntionPtr>> tileFun = {
-            {
-                    rightTile,    leftTile
-            },
-            {
-                    upSideSplitX, lyingSplitX
-            }
-    };
-    //SDL_SetRenderDrawColor( renderer, 255, 255, 255, 255 );
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_SOFTWARE);
+    if (renderer == NULL) {
+        fprintf(stderr, "could not create renderer: %s\n", SDL_GetError());
+        return 1;
+    }
 
-    // Clear winow
+    std::vector<Point *> paintablePoints;
+
     SDL_RenderClear(renderer);
 
-    // Creat a rect at pos ( 50, 50 ) that's 50 pixels wide and 50 pixels high.
-
-    // Render the rect to the screen
-    auto points = getTilablePoints(width, height);
+    auto points = getTilablePoints( para->w, para->h);
     auto amountOfPoints = points.size();
-    auto chosenTileSetPtr = tileFun[rand() % tileFun.size()];
     for (int i = 0; i < amountOfPoints; i++) {
         Point *pointToRender = getTilable(&points);
         // auto distance = sqrt(pointToRender->x * pointToRender->x + pointToRender->y * pointToRender->y);
         // auto index = static_cast<int>( distance / max * 100) % rainbowColors.size();
         // auto color = rainbowColors[index];
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-        std::vector<Point *> painted = chosenTileSetPtr[rand() % chosenTileSetPtr.size()](pointToRender, renderer);
+        std::vector<Point *> painted = chosen[rand() % chosen.size()](pointToRender, renderer, para->w, para->h);
         paintablePoints.insert(std::end(paintablePoints), std::begin(painted), std::end(painted));
     }
 
 
     SDL_RenderPresent(renderer);
-
-    SDL_Texture *sdlTexture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_ABGR8888,
-                                                SDL_TEXTUREACCESS_STREAMING,
-                                                width, height);
-
+    // maybe needed if this format is not supported... needs testing
+   // SDL_RendererInfo info = {0};
+   // SDL_GetRendererInfo(renderer, &info);
 
     std::vector<Uint32> vpixels;
     SDL_Surface *saveSurface = NULL;
     SDL_Surface *infoSurface = NULL;
     infoSurface = SDL_GetWindowSurface(window);
+    SDL_Texture *sdlTexture = SDL_CreateTexture(renderer, infoSurface->format->format,
+                                                SDL_TEXTUREACCESS_STREAMING,
+                                                para->w, para->h);
+
     unsigned char *pixels = new(std::nothrow) unsigned char[infoSurface->w * infoSurface->h *
                                                             infoSurface->format->BytesPerPixel];
-    SDL_RenderReadPixels(renderer, &infoSurface->clip_rect, infoSurface->format->format, pixels,
+    int returnValue = SDL_RenderReadPixels(renderer, &infoSurface->clip_rect, infoSurface->format->format, pixels,
                          infoSurface->w * infoSurface->format->BytesPerPixel);
+    if(returnValue != 0){
+        return returnValue;
+    }
     saveSurface = SDL_CreateRGBSurfaceFrom(pixels, infoSurface->w, infoSurface->h,
                                            infoSurface->format->BitsPerPixel,
                                            infoSurface->w * infoSurface->format->BytesPerPixel,
                                            infoSurface->format->Rmask, infoSurface->format->Gmask,
                                            infoSurface->format->Bmask, infoSurface->format->Amask);
+
+    if(saveSurface == NULL){
+        return 1;
+    }
     Uint32 *upixels = (Uint32 *) saveSurface->pixels;
-    for (auto index = 0; index < (width * height); index++) {
+    for (auto index = 0; index < ( para->w * para->h); index++) {
         vpixels.push_back(upixels[index]);
     }
 
-    for (unsigned int i = 0; i < 1000; i++) {
-        const unsigned int x = rand() % width;
-        const unsigned int y = rand() % height;
-
-        const unsigned int offset = (width * y) + x;
-        // its abgr
-        //std::cout << vpixels[offset] << std::endl;
-        //vpixels[offset] = 255 << 0;
-        //vpixels[offset + 3] = SDL_ALPHA_OPAQUE;    // a
-    }
-
-
-
-
     auto rainbowColors = getRainbowColors(1.0 / 16);
-
-    auto max = sqrt(pow(width + TILE_SIZE, 2) + pow(height + TILE_SIZE, 2));
+    ready[para->threadIndex] = true;
+    auto max = SDL_sqrt(SDL_pow( para->w + TILE_SIZE, 2) + SDL_pow(para->h + TILE_SIZE, 2));
     size_t amountOfPaintablePoints = paintablePoints.size();
     for (auto index = 0; index < amountOfPaintablePoints; index++) {
-        auto p = getPaintable(paintablePoints);
-        auto distance = sqrt(p->x * p->x + p->y * p->y);
+        if(quit){
+            break;
+        }
+        auto p = paintablePoints[index];
+        auto distance = SDL_sqrt(p->x * p->x + p->y * p->y);
         auto colorIndex = static_cast<int>( distance / max * 100) % rainbowColors.size();
         auto color = rainbowColors[colorIndex];
-        floodfill(p, color, &vpixels, width, height, 0);
-        size_t stuff = SDL_UpdateTexture
+        floodfill(p, color, &vpixels,  para->w, para->h, 0);
+        returnValue = SDL_UpdateTexture
                 (
                         sdlTexture,
                         NULL,
                         &vpixels[0],
-                        width * 4
+                        para->w * 4
                 );
 
+        if(returnValue == 0){
 
-        SDL_RenderCopy(renderer, sdlTexture, NULL, NULL);
-        SDL_RenderPresent(renderer);
-
+            SDL_RenderPresent(renderer);
+            SDL_RenderCopy(renderer, sdlTexture, NULL, NULL);
+        }
+        std::cout << para->threadIndex << " RENDERED" << std::endl;
         //std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
     }
 
-    SDL_Delay(5000);
+
+    std::cout << "THREAD " << para->threadIndex << " EXITED" << std::endl;
     SDL_DestroyRenderer(renderer);
     SDL_DestroyTexture(sdlTexture);
     SDL_DestroyWindow(window);
-    SDL_Quit();
+}
 
+int main(int argc, char *args[]) {
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+        fprintf(stderr, "could not initialize sdl2: %s\n", SDL_GetError());
+        return 1;
+    }
+
+    int amountOfDisplays = SDL_GetNumVideoDisplays();
+    SDL_Rect* displayBounds = new SDL_Rect[ amountOfDisplays];;
+    for( int i = 0; i < amountOfDisplays; ++i )
+    {
+        ready.push_back(false);
+        SDL_GetDisplayBounds( i, &displayBounds[ i ] );
+    }
+
+    std::vector<SDL_Thread*> threads;
+    int index = rand() % tileFun.size();
+    std::cout << index << " " << tileFun.size();
+    for(int i = 0; i < amountOfDisplays; i++){
+        ThreadData *data = (ThreadData*) malloc(sizeof(ThreadData));
+        data->w = displayBounds[i].w;
+        data->h = displayBounds[i].h;
+        data->x = displayBounds[i].x;
+        data->y = displayBounds[i].y;
+        data->renderIndex = index;
+        data->threadIndex = i;
+        auto threadObj = SDL_CreateThread(startWindow, "rThread", data);
+        threads.push_back(threadObj);
+    }
+
+    quit = false;
+
+    int readyCount = 0;
+    while(readyCount < ready.size()){
+        readyCount = 0;
+        for(int i = 0; i < ready.size(); i++){
+            if(ready[i]){
+                readyCount++;
+            }
+        }
+    }
+    SDL_Delay(1000);
+    std::cout << "ready" << std::endl;
+
+
+
+    SDL_Event e;
+
+    while( !quit ) {
+        if (SDL_WaitEvent(&e)) {
+            switch(e.type){
+
+                case SDL_QUIT:
+                case SDL_KEYDOWN:
+                case SDL_KEYUP:
+                case SDL_MOUSEBUTTONDOWN:
+                case SDL_MOUSEWHEEL:
+                case SDL_MOUSEBUTTONUP:
+                case SDL_MOUSEMOTION:
+                    std::cout << e.type << std::endl;
+                    quit = true;
+                    break;
+            }
+        }
+    }
+
+
+     for(int i = 0; i < threads.size(); i++){
+         SDL_WaitThread(threads[i], nullptr);
+   }
+    SDL_Quit();
 
     return 0;
 }
