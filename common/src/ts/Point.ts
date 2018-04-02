@@ -78,3 +78,50 @@ export class Quad {
         this._side = value;
     }
 }
+
+export class Circle {
+
+
+    get center(): Point2 {
+        return this._center;
+    }
+
+    set center(value: Point2) {
+        this._center = value;
+    }
+
+    get radius(): number {
+        return this._radius;
+    }
+
+    set radius(value: number) {
+        this._radius = value;
+    }
+
+    constructor(private _center: Point2, private _radius: number) {
+    }
+}
+
+export class Line {
+
+
+    get start(): Point2 {
+        return this._start;
+    }
+
+    set start(value: Point2) {
+        this._start = value;
+    }
+
+    get end(): Point2 {
+        return this._end;
+    }
+
+    set end(value: Point2) {
+        this._end = value;
+    }
+
+    constructor(private _start: Point2, private _end: Point2){
+
+    }
+}

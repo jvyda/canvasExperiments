@@ -1,15 +1,15 @@
-var gulp = require('gulp');
-var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var watchify = require('watchify');
-var tsify = require('tsify');
-var gutil = require('gulp-util');
+
+let gulp = require('gulp');
+let browserify = require('browserify');
+let source = require('vinyl-source-stream');
+let tsify = require('tsify');
 const path = require('path');
-var cssConcat = require('gulp-concat-css');
-var clean = require('gulp-clean');
+let cssConcat = require('gulp-concat-css');
+const  buffer     = require('vinyl-buffer');
 
 
-var paths = {
+
+let paths = {
     pages: ['src/*.html'],
     commons: { css: './../common/css/*.css', img: './../common/img/**/*.*'}
 };
@@ -21,17 +21,9 @@ gulp.task('concat-commons-css', function(){
 });
 
 gulp.task('move-commons-img', function(){
-    gulp.src(paths.commons.img, { base: './' })
+    return gulp.src(paths.commons.img, { base: './' })
         .pipe(gulp.dest(path.resolve('dist', 'img')));
 });
-
-var watchedBrowserify = watchify(browserify({
-    basedir: '.',
-    debug: true,
-    entries: ['src/ts/main.ts'],
-    cache: {},
-    packageCache: {}
-}).plugin(tsify));
 
 gulp.task('copy-html', function () {
     return gulp.src(paths.pages)
@@ -40,23 +32,22 @@ gulp.task('copy-html', function () {
 
 gulp.task('concat-commons', function(){
     gulp.start('concat-commons-css');
-    gulp.start('move-commons-img');
+    return gulp.start('move-commons-img');
 });
 
-
-gulp.task('clean', function(){
-    return gulp.src('dist')
-        .pipe(clean())
-});
 
 function bundle() {
-    return watchedBrowserify
+    browserify()
+        .add("src/ts/main.ts")
+        .plugin("tsify", { noImplicitAny: true, target: 'es5', module: 'commonjs', global: true, lib: ["es2015.promise", "es2015", "dom", "ScriptHost"]})
         .bundle()
-        .pipe(source('bundle.js'))
-        .pipe(gulp.dest(path.resolve('dist', 'js')));
+        .pipe(source('.'))
+        .pipe(buffer())
+        .pipe(gulp.dest(path.resolve('dist', 'bundle.js')))
 }
 
 gulp.task('default', ['copy-html', 'concat-commons'], bundle);
 
-watchedBrowserify.on('update', bundle);
-watchedBrowserify.on('log', gutil.log);
+//watchedBrowserify.on('update', bundle);
+//watchedBrowserify.on('log', gutil.log);
+

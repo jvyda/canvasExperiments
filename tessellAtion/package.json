@@ -11,6 +11,7 @@
   "dependencies": {
     "@types/jquery": "^3.3.1",
     "gulp-cli": "^2.0.1",
+    "ce-common": "file:../common",
     "jquery": "^3.3.1"
   },
   "devDependencies": {
@@ -25,6 +26,7 @@
     "ts-loader": "^4.0.1",
     "tsify": "^3.0.4",
     "typescript": "^2.7.2",
+    "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",
     "watchify": "^3.11.0"
   }
