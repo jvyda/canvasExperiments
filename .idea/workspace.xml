@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="common:&#10;-added rotate point method&#10;&#10;tessellAtion:&#10;-added global mirroring and local tile mirroring">
+    <list default="true" id="081b0505-3c55-450a-b2bb-b1198f0ff1aa" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/overview/img/tessellAtion_preview.png" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/common/src/ts/GeometryUtils.ts" afterPath="$PROJECT_DIR$/common/src/ts/GeometryUtils.ts" />
-      <change beforePath="$PROJECT_DIR$/tessellAtion/package-lock.json" afterPath="$PROJECT_DIR$/tessellAtion/package-lock.json" />
-      <change beforePath="$PROJECT_DIR$/tessellAtion/package.json" afterPath="$PROJECT_DIR$/tessellAtion/package.json" />
-      <change beforePath="$PROJECT_DIR$/tessellAtion/src/ts/EntryPoint.ts" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/EntryPoint.ts" />
-      <change beforePath="$PROJECT_DIR$/tessellAtion/src/ts/PossibleObjects.ts" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/PossibleObjects.ts" />
-      <change beforePath="$PROJECT_DIR$/tessellAtion/src/ts/TesselationConfig.ts" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/TesselationConfig.ts" />
-      <change beforePath="$PROJECT_DIR$/tessellAtion/src/ts/TesselationRenderer.ts" afterPath="$PROJECT_DIR$/tessellAtion/src/ts/TesselationRenderer.ts" />
+      <change beforePath="$PROJECT_DIR$/overview/index.html" afterPath="$PROJECT_DIR$/overview/index.html" />
     </list>
     <ignored path="canvasExperiments.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +26,7 @@
       <file leaf-file-name="EntryPoint.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/EntryPoint.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
+            <state relative-caret-position="4658">
               <caret line="281" column="51" lean-forward="false" selection-start-line="281" selection-start-column="51" selection-end-line="281" selection-end-column="51" />
               <folding>
                 <element signature="e#0#199#0" expanded="true" />
@@ -53,7 +48,7 @@
       <file leaf-file-name="PossibleObjects.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/PossibleObjects.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="612">
+            <state relative-caret-position="731">
               <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
@@ -65,7 +60,7 @@
       <file leaf-file-name="TesselationRenderer.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/TesselationRenderer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="595">
+            <state relative-caret-position="527">
               <caret line="35" column="28" lean-forward="false" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
               <folding>
                 <element signature="e#0#132#0" expanded="true" />
@@ -74,11 +69,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TesselationConfig.ts" pinned="false" current-in-tab="true">
+      <file leaf-file-name="TesselationConfig.ts" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/TesselationConfig.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/overview/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -206,7 +211,6 @@
         <option value="$PROJECT_DIR$/common/src/ts/CanvasUtils.ts" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/QuadTreeUtils.ts" />
         <option value="$PROJECT_DIR$/quadTreeDraw/gulpfile.js" />
-        <option value="$PROJECT_DIR$/overview/index.html" />
         <option value="$PROJECT_DIR$/quadTreeDraw/package.json" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/index.html" />
         <option value="$PROJECT_DIR$/quadTreeDraw/src/ts/MainLoop.ts" />
@@ -228,6 +232,7 @@
         <option value="$PROJECT_DIR$/common/src/ts/GeometryUtils.ts" />
         <option value="$PROJECT_DIR$/tessellAtion/src/ts/EntryPoint.ts" />
         <option value="$PROJECT_DIR$/tessellAtion/src/ts/TesselationConfig.ts" />
+        <option value="$PROJECT_DIR$/overview/index.html" />
       </list>
     </option>
   </component>
@@ -273,8 +278,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -285,49 +288,20 @@
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
+              <item name="overview" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
               <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
-              <item name="dist" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="canvasExperiments" type="b2602c69:ProjectViewProjectNode" />
-              <item name="canvasExperiments" type="462c0819:PsiDirectoryNode" />
-              <item name="tessellAtion" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="ts" type="462c0819:PsiDirectoryNode" />
+              <item name="overview" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -583,14 +557,8 @@
       <workItem from="1522608240622" duration="358000" />
       <workItem from="1522608619670" duration="30257000" />
       <workItem from="1522830283810" duration="799000" />
-      <workItem from="1522844779791" duration="10666000" />
-    </task>
-    <task id="LOCAL-00095" summary="recFlocke:&#10;-don't render the flocke twice, if the widths are the same">
-      <created>1513351438994</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1513351438994</updated>
+      <workItem from="1522844779791" duration="10686000" />
+      <workItem from="1522867300174" duration="467000" />
     </task>
     <task id="LOCAL-00096" summary="recFlocke:&#10;-fixed rotation of double edged&#10;&#10;added retroFlocke">
       <created>1513353096959</created>
@@ -928,11 +896,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522689205876</updated>
     </task>
-    <option name="localTasksCounter" value="144" />
+    <task id="LOCAL-00144" summary="common:&#10;-added rotate point method&#10;&#10;tessellAtion:&#10;-added global mirroring and local tile mirroring">
+      <created>1522862598867</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1522862598868</updated>
+    </task>
+    <option name="localTasksCounter" value="145" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="425580000" />
+    <option name="totallyTimeSpent" value="426067000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="31" width="1926" height="1052" extended-state="6" />
@@ -942,12 +917,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15555556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32698414" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15555556" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1091,7 +1066,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="orbitingSpheres:&#10;-added some more moons" />
     <MESSAGE value="orbitingSpheres:&#10;-added node js client which extracts exactly the data in the format needed to add new objects&#10;-added many more objets, namely a lot of moons with above 50 km radius (some are below)" />
     <MESSAGE value="maZe:&#10;-added build script for electron" />
     <MESSAGE value="maZe:&#10;-added code for a win32 deskop application which starts browser and simulates it this way, currently abandoned, because the tabs cannot close on their own, a global mouse/key hook is needed" />
@@ -1116,7 +1090,8 @@
     <MESSAGE value="maZe:&#10;-added first c++ version with sdl" />
     <MESSAGE value="maZe:&#10;-added some fixes for sdl version" />
     <MESSAGE value="tessellAtion:&#10;-added initial version, might need some tweaking to produce good output" />
-    <option name="LAST_COMMIT_MESSAGE" value="tessellAtion:&#10;-added initial version, might need some tweaking to produce good output" />
+    <MESSAGE value="common:&#10;-added rotate point method&#10;&#10;tessellAtion:&#10;-added global mirroring and local tile mirroring" />
+    <option name="LAST_COMMIT_MESSAGE" value="common:&#10;-added rotate point method&#10;&#10;tessellAtion:&#10;-added global mirroring and local tile mirroring" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1149,13 +1124,6 @@
     <entry file="file://$PROJECT_DIR$/overview/img/buBbles_preview.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/overview/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/overview/img/quadTreeDraw_preview.png">
@@ -1422,7 +1390,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1430,7 +1397,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="7418" column="4" lean-forward="false" selection-start-line="7418" selection-start-column="4" selection-end-line="7418" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1444,7 +1410,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/PossibleObjects.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
+        <state relative-caret-position="731">
           <caret line="45" column="29" lean-forward="false" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
           <folding>
             <element signature="e#0#33#0" expanded="true" />
@@ -1454,7 +1420,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/TesselationRenderer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
+        <state relative-caret-position="527">
           <caret line="35" column="28" lean-forward="false" selection-start-line="35" selection-start-column="28" selection-end-line="35" selection-end-column="28" />
           <folding>
             <element signature="e#0#132#0" expanded="true" />
@@ -1472,7 +1438,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/EntryPoint.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
+        <state relative-caret-position="4658">
           <caret line="281" column="51" lean-forward="false" selection-start-line="281" selection-start-column="51" selection-end-line="281" selection-end-column="51" />
           <folding>
             <element signature="e#0#199#0" expanded="true" />
@@ -1483,7 +1449,15 @@
     <entry file="file://$PROJECT_DIR$/tessellAtion/src/ts/TesselationConfig.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="11" column="1" lean-forward="true" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/overview/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="14" lean-forward="false" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
           <folding />
         </state>
       </provider>
