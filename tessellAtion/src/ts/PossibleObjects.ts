@@ -3,17 +3,17 @@ import {Line, RandomUtil} from "ce-common";
 import {TesselationConfig} from "./TesselationConfig";
 
 export enum ProgressionDirection {
-    UP, DOWN, LEFT, RIGHT
+        UP, DOWN, LEFT, RIGHT, QUARTER
 }
 
 export class DirectionConfiguration {
     dir: ProgressionDirection;
-    fun: (pointA: Point2, pointB: Point2) => boolean;
+    fun: (pointA: Point2, pointB: Point2, cfg?: TesselationConfig) => boolean;
     getPointInConnectingPosition: (point: Point2, cfg: TesselationConfig) => Point2;
     getStatPoint: (cfg: TesselationConfig) => Point2;
 
 
-    constructor(dir: ProgressionDirection, fun:  (pointA: Point2, pointB: Point2) => boolean,
+    constructor(dir: ProgressionDirection, fun:  (pointA: Point2, pointB: Point2, cfg?: TesselationConfig) => boolean,
                 getPointInConnectingPosition: (point: Point2, cfg: TesselationConfig) => Point2,
                 getStartPoint: (cfg: TesselationConfig) => Point2) {
         this.dir = dir;
@@ -27,7 +27,7 @@ export class TesselationLayout {
     private _structures: Array<Structure> = [];
 
 
-    getNextPoint(p: Point2, maxDistance: number, secondCompareFun: DirectionConfiguration): Point2{
+    getNextPoint(p: Point2, maxDistance: number, secondCompareFun: DirectionConfiguration, config: TesselationConfig): Point2{
         let newPoint;
         let allDockingPoints: Array<PointOnStructure> = [];
         // get all docking points, because everything is possible
@@ -39,7 +39,7 @@ export class TesselationLayout {
         do {
             let randomDockingPoint = RandomUtil.randomElement(allDockingPoints);
             let distance = p.pointDistance(randomDockingPoint.point);
-            if(secondCompareFun.fun(p, randomDockingPoint.point) && distance < maxDistance && distance > 0.1){
+            if(secondCompareFun.fun(p, randomDockingPoint.point, config) && distance < maxDistance && distance > 0.1){
                 newPoint = randomDockingPoint.point;
             }
             tries++;

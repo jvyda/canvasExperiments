@@ -6,7 +6,7 @@ import {Point2} from "ce-common";
 
 export class TesselationRenderer {
 
-    protected ctx: CanvasRenderingContext2D;
+    public ctx: CanvasRenderingContext2D;
 
     constructor(ctx: CanvasRenderingContext2D) {
         this.ctx = ctx;
@@ -29,11 +29,23 @@ export class TesselationRenderer {
         this.ctx.stroke();
     }
 
+    public rotate(angle: number){
+        this.ctx.rotate(angle);
+    }
+
+    public scale(byWhat: Point2){
+        this.ctx.scale(byWhat.x, byWhat.y);
+    }
+
+    public translate(byWhat: Point2){
+        this.ctx.translate(byWhat.x, byWhat.y);
+    }
+
     public renderConfig(objectToRender: TesselationLayout, base?: Point2){
         if(!base){
             base = new Point2(0, 0);
         }
-        let color = 'black';
+        let color = 'silver';
         let objects = objectToRender.structures;
         objects.forEach((renderableObject) => {
             if(renderableObject instanceof CircleWithSegments){

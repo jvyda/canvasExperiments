@@ -5,7 +5,7 @@ import {
 import {TesselationRenderer} from "./TesselationRenderer";
 import * as $ from "jquery";
 import {TesselationConfig} from "./TesselationConfig";
-import {Line, Point2, GeometryUtils, RandomUtil, Utils} from "ce-common";
+import {Line, Point2, GeometryUtils, RandomUtil, Utils, Vector2} from "ce-common";
 
 export class EntryPoint {
     execute() {
@@ -16,14 +16,58 @@ export class EntryPoint {
         canvas.width = config.dimensions.width;
         canvas.height = config.dimensions.height;
         let renderer = new TesselationRenderer(<CanvasRenderingContext2D>canvas.getContext("2d"));
-        renderer.renderConfig(possibleTesselation);
-        //renderer.render(obj);
-        //renderer.render(obj, new Point2(config.tileSize, config.tileSize));
-           for (let x = 0; x < config.tilesX; x++) {
-               for (let y = 0; y < config.tilesY; y++) {
-                   renderer.render(obj, new Point2(x * config.tileSize, y * config.tileSize));
-               }
-           }
+        let centerX = ((config.tilesX / 2) << 0) + 1;
+        let centerY = ((config.tilesY / 2) << 0) + 1;
+
+        if (Math.random() < config.mirrorChance) {
+            let centerOffset = config.tileSize;
+            renderer.renderConfig(possibleTesselation, new Point2(centerX * config.tileSize - centerOffset, centerY * config.tileSize - centerOffset));
+
+            // bottom right
+            renderer.translate(new Point2(centerX * config.tileSize - centerOffset, centerY * config.tileSize - centerOffset));
+            centerOffset = 0;
+            let halfTilesX = centerX + 1;
+            let halfTilesY = centerY + 1;
+            for (let x = 0; x < halfTilesX; x++) {
+                for (let y = 0; y < halfTilesY; y++) {
+                    renderer.render(obj, new Point2(x * config.tileSize - centerOffset, y * config.tileSize - centerOffset));
+                }
+            }
+            // bottom left
+            renderer.rotate(Utils.toRad(90));
+            for (let x = 0; x < halfTilesY; x++) {
+                for (let y = 0; y < halfTilesX; y++) {
+                    renderer.render(obj, new Point2(x * config.tileSize - centerOffset, y * config.tileSize - centerOffset));
+                }
+            }
+
+            // top left
+            renderer.rotate(Utils.toRad(90));
+            for (let x = 0; x < halfTilesX; x++) {
+                for (let y = 0; y < halfTilesY; y++) {
+                    renderer.render(obj, new Point2(x * config.tileSize - centerOffset, y * config.tileSize - centerOffset));
+                }
+            }
+
+            // top right
+            renderer.rotate(Utils.toRad(90));
+            for (let x = 0; x < halfTilesY; x++) {
+                for (let y = 0; y < halfTilesX; y++) {
+                    renderer.render(obj, new Point2(x * config.tileSize - centerOffset, y * config.tileSize - centerOffset));
+                }
+            }
+        } else {
+
+            let centerOffset = config.tileSize;
+            renderer.renderConfig(possibleTesselation, new Point2(centerX * config.tileSize - centerOffset, centerY * config.tileSize - centerOffset));
+            // because the shift to actually center it (not only the upper left corner), we need to add one to the tile amount
+            for (let x = 0; x < config.tilesX + 1; x++) {
+                for (let y = 0; y < config.tilesY + 1; y++) {
+                    renderer.render(obj, new Point2(x * config.tileSize - centerOffset, y * config.tileSize - centerOffset));
+                }
+            }
+        }
+
     }
 
     getPossibleObject(config: TesselationConfig): TesselationLayout {
@@ -208,7 +252,6 @@ export class EntryPoint {
         obj.structures.push(leftToRightBottom);
 
 
-
         return obj;
     }
 
@@ -234,10 +277,14 @@ export class EntryPoint {
 
     generateActualObject(basedOf: TesselationLayout, config: TesselationConfig): ComputedTesellation {
         let obj = new ComputedTesellation();
-        let dirs = [ProgressionDirection.DOWN, ProgressionDirection.LEFT, ProgressionDirection.RIGHT, ProgressionDirection.UP];
+        let dirs = [ProgressionDirection.DOWN, ProgressionDirection.LEFT, ProgressionDirection.RIGHT, ProgressionDirection.UP, ProgressionDirection.QUARTER];
+        // because quarter does not harmony with the oder directions (imo), we determine it once, and overrule the individual random decision
+        let useQuarter = Math.random() < config.specialQuarterChance;
         for (let line = 0; line < config.lineAmount; line++) {
             let directionEnum = RandomUtil.randomElement(dirs);
-
+            if(useQuarter){
+                directionEnum = ProgressionDirection.QUARTER;
+            }
             let chosenDirection = this.directonConfig.find((mapper) => mapper.dir == directionEnum);
             obj.computedLines.push(this.getComputedLine(chosenDirection.getStatPoint(config), basedOf, config, chosenDirection));
         }
@@ -245,18 +292,51 @@ export class EntryPoint {
     }
 
     private directonConfig: Array<DirectionConfiguration> = [
-        new DirectionConfiguration(ProgressionDirection.LEFT, (pointA: Point2, pointB: Point2) => { return pointA.x > pointB.x },
-            (pointA: Point2, cfg: TesselationConfig) => {return new Point2(pointA.x - cfg.tileSize, pointA.y)},
-        (cfg: TesselationConfig) => {return new Point2(cfg.tileSize, cfg.tileSize / 2)}),
-        new DirectionConfiguration(ProgressionDirection.DOWN, (pointA: Point2, pointB: Point2) => { return pointA.y < pointB.y },
-            (pointA: Point2, cfg: TesselationConfig) => {return new Point2(pointA.x, pointA.y + cfg.tileSize)},
-            (cfg: TesselationConfig) => {return new Point2(cfg.tileSize / 2, 0)}),
-        new DirectionConfiguration(ProgressionDirection.RIGHT, (pointA: Point2, pointB: Point2) => { return pointA.x < pointB.x },
-            (pointA: Point2, cfg: TesselationConfig) => {return new Point2(pointA.x + cfg.tileSize, pointA.y)},
-            (cfg: TesselationConfig) => {return new Point2(0, cfg.tileSize / 2)}),
-        new DirectionConfiguration(ProgressionDirection.UP, (pointA: Point2, pointB: Point2) => { return pointA.y > pointB.y },
-            (pointA: Point2, cfg: TesselationConfig) => {return new Point2(pointA.x, pointA.y - cfg.tileSize)},
-            (cfg: TesselationConfig) => {return new Point2(cfg.tileSize / 2, cfg.tileSize)}),
+        new DirectionConfiguration(ProgressionDirection.LEFT, (pointA: Point2, pointB: Point2) => {
+                return pointA.x > pointB.x
+            },
+            (pointA: Point2, cfg: TesselationConfig) => {
+                return new Point2(pointA.x - cfg.tileSize, pointA.y)
+            },
+            (cfg: TesselationConfig) => {
+                return new Point2(cfg.tileSize, cfg.tileSize / 2)
+            }),
+        new DirectionConfiguration(ProgressionDirection.DOWN, (pointA: Point2, pointB: Point2) => {
+                return pointA.y < pointB.y
+            },
+            (pointA: Point2, cfg: TesselationConfig) => {
+                return new Point2(pointA.x, pointA.y + cfg.tileSize)
+            },
+            (cfg: TesselationConfig) => {
+                return new Point2(cfg.tileSize / 2, 0)
+            }),
+        new DirectionConfiguration(ProgressionDirection.RIGHT, (pointA: Point2, pointB: Point2) => {
+                return pointA.x < pointB.x
+            },
+            (pointA: Point2, cfg: TesselationConfig) => {
+                return new Point2(pointA.x + cfg.tileSize, pointA.y)
+            },
+            (cfg: TesselationConfig) => {
+                return new Point2(0, cfg.tileSize / 2)
+            }),
+        new DirectionConfiguration(ProgressionDirection.UP, (pointA: Point2, pointB: Point2) => {
+                return pointA.y > pointB.y
+            },
+            (pointA: Point2, cfg: TesselationConfig) => {
+                return new Point2(pointA.x, pointA.y - cfg.tileSize)
+            },
+            (cfg: TesselationConfig) => {
+                return new Point2(cfg.tileSize / 2, cfg.tileSize)
+            }),
+        new DirectionConfiguration(ProgressionDirection.QUARTER, (pointA: Point2, pointB: Point2, cfg: TesselationConfig) => {
+                return pointB.x > cfg.tileSize / 2 && pointB.y < cfg.tileSize / 2 && pointA.x >= pointB.x;
+            },
+            (pointA: Point2, cfg: TesselationConfig) => {
+                return new Point2(cfg.tileSize / 2 , cfg.tileSize * 0.25)
+            },
+            (cfg: TesselationConfig) => {
+                return new Point2(cfg.tileSize, cfg.tileSize * 0.25)
+            })
     ];
 
     private getComputedLine(startPoint: Point2, basedOf: TesselationLayout, config: TesselationConfig, dir: DirectionConfiguration): ComputedLine {
@@ -265,16 +345,32 @@ export class EntryPoint {
         let newComputedLine: ComputedLine = new ComputedLine();
 
         do {
-            let nextPoint = basedOf.getNextPoint(currentPoint, config.maxJumpDistance, dir);
+            let nextPoint = basedOf.getNextPoint(currentPoint, config.maxJumpDistance, dir, config);
             // TODO think about refactoring, I dont like this exist condition here
             if (!nextPoint) {
-                newComputedLine.lines.push(new Line(currentPoint, dir.getPointInConnectingPosition(startPoint, config)));
                 break;
             }
             newComputedLine.lines.push(new Line(currentPoint, nextPoint));
             counter++;
             currentPoint = nextPoint;
         } while (counter < config.jumpAmount);
+        newComputedLine.lines.push(new Line(currentPoint, dir.getPointInConnectingPosition(startPoint, config)));
+
+        if(dir.dir == ProgressionDirection.QUARTER){
+            // quarter creates the elements in the top right corner
+            let copiedLines: Array<Line> = [];
+            let center = new Point2(config.tileSize/2, config.tileSize/2);
+            newComputedLine.lines.forEach((existingLine) => {
+                copiedLines.push(new Line(GeometryUtils.getPointRotatedAroundPointByAngle(existingLine.start, center, Utils.toRad(270)), GeometryUtils.getPointRotatedAroundPointByAngle(existingLine.end, center, Utils.toRad(270))))
+            });
+            newComputedLine.lines.forEach((existingLine) => {
+                copiedLines.push(new Line(GeometryUtils.getPointRotatedAroundPointByAngle(existingLine.start, center, Utils.toRad(180)), GeometryUtils.getPointRotatedAroundPointByAngle(existingLine.end, center, Utils.toRad(180))))
+            });
+            newComputedLine.lines.forEach((existingLine) => {
+                copiedLines.push(new Line(GeometryUtils.getPointRotatedAroundPointByAngle(existingLine.start, center, Utils.toRad(90)), GeometryUtils.getPointRotatedAroundPointByAngle(existingLine.end, center, Utils.toRad(90))))
+            });
+            newComputedLine.lines.push.apply(newComputedLine.lines, copiedLines);
+        }
 
         // TODO this needs some fixing, which point is needed?
         //newComputedLine.lines[newComputedLine.lines.length - 1].end = directionConfig.getPointInConnectingPosition();
