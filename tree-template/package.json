@@ -1,0 +1,39 @@
+{
+  "name": "three-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/bundle.js",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@types/es6-promise": "^3.3.0",
+    "@types/jquery": "^3.3.1",
+    "es6-promise": "^4.2.4",
+    "gulp-cli": "^2.0.1",
+    "jquery": "^3.3.1",
+    "three": "^0.97.0",
+    "three-orbitcontrols-ts": "^0.1.2",
+    "three-trackballcontrols": "0.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^9.4.7",
+    "browserify": "^16.1.1",
+    "gulp": "^3.9.1",
+    "gulp-add-src": "^1.0.0",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^3.1.0",
+    "gulp-minify": "^3.1.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-replace": "^1.0.0",
+    "gulp-sequence": "^1.0.0",
+    "gulp-typescript": "^4.0.1",
+    "gulp-util": "^3.0.8",
+    "ts-loader": "^4.0.1",
+    "tsify": "^3.0.4",
+    "typescript": "^2.7.2",
+    "vinyl-buffer": "^1.0.1",
+    "vinyl-source-stream": "^2.0.0",
+    "watchify": "^3.11.0"
+  }
+}
