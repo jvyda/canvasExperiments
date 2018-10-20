@@ -103,8 +103,10 @@ function fetchMoonOfPlanet(planetName, moonIndex, moonName, callback){
             var vectorLine = '';
             var radiusRegex = /Radius\s*\(km\)\s*=\s*(\d*\.?\d?)/;
             let otherRadiusRegex = /Radius\s*\(gravity\),\s*km\s*=\s*(\d*\.?\d?)/;
+            let meanRadius = /Radius\s*\(km\),\s*mean\s*=\s*(\d*\.?\d?)/;
             var massRegex = /Mass\s*\(10\^(\d*)\skg\s*\)\s*=\s*(\d*\.?\d?)/;
             var otherMassRegex = /Mass,\s*x10\^(\d*)\skg\s*\s*=\s*(\d*\.?\d*)/;
+            var gramRegex = /Mass\s*\(10\^(\d*\s*)\s*g\s*\)\s*=\s*(\d*\.?\d*)/;
             var mass = 0;
             var radius = 0;
             lines.forEach(function(line, index, array){
@@ -113,6 +115,8 @@ function fetchMoonOfPlanet(planetName, moonIndex, moonName, callback){
                     var radiusMatch;
                     if(line.indexOf('gravity') !== -1){
                         radiusMatch = otherRadiusRegex.exec(line);
+                    } else if(line.indexOf('mean') !== -1){
+                        radiusMatch = meanRadius.exec(line);
                     } else {
                         radiusMatch = radiusRegex.exec(line);
                     }
@@ -122,10 +126,14 @@ function fetchMoonOfPlanet(planetName, moonIndex, moonName, callback){
                     var massMatch;
                     if(line.indexOf('x10') !== -1){
                         massMatch = otherMassRegex.exec(line);
-                    } else {
+                        mass = massMatch[2] + ' * Math.pow(10, ' + massMatch[1] + ')'
+                    } else if(line.indexOf('kg') !== -1){
                         massMatch = massRegex.exec(line);
+                        mass = massMatch[2] + ' * Math.pow(10, ' + massMatch[1] + ')'
+                    } else {
+                        massMatch = gramRegex.exec(line);
+                        mass = (parseInt(massMatch[2]) / 3)  + ' * Math.pow(10, ' + (parseInt(massMatch[1])) + ')';
                     }
-                    mass = massMatch[2] + ' * Math.pow(10, ' + massMatch[1] + ')'
                 }
                 if(line.indexOf('$$SOE') !== -1) {
                     vectorLine = array[index + 1];
@@ -261,21 +269,36 @@ fetchMoonOfPlanet('saturn', 7, 'hyperion', moonformat);
 fetchMoonOfPlanet('saturn', 8, 'iapetus', moonformat);
 fetchMoonOfPlanet('saturn', 9, 'phoebe', moonformat);
 fetchMoonOfPlanet('saturn', 10, 'janus', moonformat);
-fetchMoonOfPlanet('saturn', 11, 'epimetheus', moonformat);
+fetchMoonOfPlanet('saturn', 11, 'epimetheus', moonformat);*/
+fetchMoonOfPlanet('saturn', 12, 'helene', moonformat);
+fetchMoonOfPlanet('saturn', 13, 'telesto', moonformat);
+fetchMoonOfPlanet('saturn', 14, 'calypso', moonformat);
+fetchMoonOfPlanet('saturn', 15, 'atlas', moonformat);/*
 fetchMoonOfPlanet('saturn', 16, 'prometheus', moonformat);
 
 fetchMoonOfPlanet('uranus', 1, 'ariel', moonformat);
 fetchMoonOfPlanet('uranus', 2, 'umbriel', moonformat);
 fetchMoonOfPlanet('uranus', 3, 'titania', moonformat);
 fetchMoonOfPlanet('uranus', 4, 'oberon', moonformat);
-fetchMoonOfPlanet('uranus', 5, 'miranda', moonformat);
-fetchMoonOfPlanet('uranus', 12, 'portia', moonformat);
-fetchMoonOfPlanet('uranus', 15, 'puck', moonformat);
-fetchMoonOfPlanet('uranus', 17, 'sycorax', moonformat);
+fetchMoonOfPlanet('uranus', 5, 'miranda', moonformat);*/
+fetchMoonOfPlanet('uranus', 6, 'cordelia', moonformat);
+fetchMoonOfPlanet('uranus', 7, 'ophelia', moonformat);
+fetchMoonOfPlanet('uranus', 8, 'bianca', moonformat);
+fetchMoonOfPlanet('uranus', 9, 'cressida', moonformat);
+fetchMoonOfPlanet('uranus', 10, 'desdemona', moonformat);
+fetchMoonOfPlanet('uranus', 11, 'juliet', moonformat);
+//fetchMoonOfPlanet('uranus', 12, 'portia', moonformat);
+fetchMoonOfPlanet('uranus', 13, 'rosalind', moonformat);
+fetchMoonOfPlanet('uranus', 14, 'belinda', moonformat);
+//fetchMoonOfPlanet('uranus', 15, 'puck', moonformat);
+fetchMoonOfPlanet('uranus', 16, 'caliban', moonformat);
+//fetchMoonOfPlanet('uranus', 17, 'sycorax', moonformat);
 
-fetchMoonOfPlanet('neptune', 1, 'triton', moonformat);
-fetchMoonOfPlanet('neptune', 2, 'nereid', moonformat);
-fetchMoonOfPlanet('neptune', 5, 'despina', moonformat);
+//fetchMoonOfPlanet('neptune', 1, 'triton', moonformat);
+//fetchMoonOfPlanet('neptune', 2, 'nereid', moonformat);
+fetchMoonOfPlanet('neptune', 3, 'naiad', moonformat);
+fetchMoonOfPlanet('neptune', 4, 'thalassa', moonformat);
+/*fetchMoonOfPlanet('neptune', 5, 'despina', moonformat);
 fetchMoonOfPlanet('neptune', 6, 'galatea', moonformat);
 fetchMoonOfPlanet('neptune', 7, 'larissa', moonformat);
 fetchMoonOfPlanet('neptune', 8, 'proteus', moonformat);
@@ -289,4 +312,3 @@ planets.forEach(value => {
     fetchPlanet(value, planetformat);
 });
 */
-fetchPlanet('sun', planetformat)

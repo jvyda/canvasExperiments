@@ -3,7 +3,6 @@ import {PlanetaryObjectManager} from "./PlanetaryObjectManager";
 import {Config} from "./Config";
 import TrackingBallControls = require('three-trackballcontrols');
 import {PlanetaryObject} from "./PlanetaryObject";
-import {Planet} from "./Planet";
 import {Moon} from "./Moon";
 
 export class MainLoop {
@@ -38,8 +37,9 @@ export class MainLoop {
 
 
         this._controls = new TrackingBallControls(this.mainCamera, this._mainRenderer.domElement);
-        this._controls.zoomSpeed = 10.0;
-        this._controls.noRotate = true;
+        this._controls.zoomSpeed = 5;
+        this._controls.rotateSpeed = 5;
+        this._controls.panSpeed = 3;
         this._controls.staticMoving = true;
 
         window.addEventListener('keypress', this.keyPress);
@@ -50,12 +50,11 @@ export class MainLoop {
             toggleMoons.appendChild(textNode);
             toggleMoons.style.position = 'absolute';
             toggleMoons.style.top = '20px';
-            toggleMoons.style.right = '10px';
+            toggleMoons.style.right = '5px';
             toggleMoons.onclick = this.toggleMoons;
             document.body.appendChild(toggleMoons);
 
             let toggleMoonNames = document.createElement('button');
-            toggleMoonNames.value = 'toggle moon names';
             toggleMoonNames.style.position = 'absolute';
             toggleMoonNames.style.top  = '80px';
             toggleMoonNames.style.right = '10px';
@@ -65,7 +64,6 @@ export class MainLoop {
             document.body.appendChild(toggleMoonNames);
 
             let toggleTrails = document.createElement('button');
-            toggleTrails.value = 'toggle moon names';
             toggleTrails.style.position = 'absolute';
             toggleTrails.style.top  = '120px';
             toggleTrails.style.right = '10px';
@@ -73,6 +71,15 @@ export class MainLoop {
             let toggleTrailsText = document.createTextNode("toggle trails");
             toggleTrails.appendChild(toggleTrailsText);
             document.body.appendChild(toggleTrails);
+
+            let resetControls = document.createElement('button');
+            resetControls.style.position = 'absolute';
+            resetControls.style.top  = '20px';
+            resetControls.style.right = '100px';
+            resetControls.onclick = this.resetControls;
+            let resetControlsText = document.createTextNode("reset controls");
+            resetControls.appendChild(resetControlsText);
+            document.body.appendChild(resetControls);
 
         }
         this.setupPlanets();
@@ -98,6 +105,9 @@ export class MainLoop {
                 break;
             case 116:
                 this.toggleTrails();
+                break;
+            case 114:
+                this.resetControls();
                 break;
         }
     };
@@ -141,6 +151,10 @@ export class MainLoop {
                 this._scene.add(value.trail)
             })
         }
+    };
+
+    resetControls = () => {
+        this._controls.reset();
     };
 
     private createObject(object: PlanetaryObject) {

@@ -449,6 +449,63 @@ export class PlanetaryObjectManager {
         epimetheusVelocity.z = Converter.auPerDayToMPerSecond( -2.000762440516565E-03);
         epimetheus.velocity.copy(epimetheusVelocity);
 
+        let helene = new Moon(11 * Math.pow(10, 15), 'helene', 16);
+        helene.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let helenePosition = new THREE.Vector3();
+        helenePosition.x =  -1.051208141497840E+00 * Constants.AU;
+        helenePosition.y =  -9.997133125236129E+00 * Constants.AU;
+        helenePosition.z =   2.167044753879504E-01 * Constants.AU;
+        helene.position.copy(helenePosition);
+
+        let heleneVelocity = new THREE.Vector3();
+        heleneVelocity.x = Converter.auPerDayToMPerSecond(  1.068501763344550E-02);
+        heleneVelocity.y = Converter.auPerDayToMPerSecond(  8.013921891911989E-04);
+        heleneVelocity.z = Converter.auPerDayToMPerSecond( -1.484386518468636E-03);
+        helene.velocity.copy(heleneVelocity);
+
+        let telesto = new Moon(4.0464 * Math.pow(10, 15), 'telesto', 15);
+        telesto.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let telestoPosition = new THREE.Vector3();
+        telestoPosition.x =  -1.050113764022335E+00 * Constants.AU;
+        telestoPosition.y =  -9.995441096777805E+00 * Constants.AU;
+        telestoPosition.z =   2.157215152927225E-01 * Constants.AU;
+        telesto.position.copy(telestoPosition);
+
+        let telestoVelocity = new THREE.Vector3();
+        telestoVelocity.x = Converter.auPerDayToMPerSecond(  6.695498830872860E-03);
+        telestoVelocity.y = Converter.auPerDayToMPerSecond(  4.938631422423813E-03);
+        telestoVelocity.z = Converter.auPerDayToMPerSecond( -3.390648001184134E-03);
+        telesto.velocity.copy(telestoVelocity);
+
+        let calypso = new Moon(2.5477  * Math.pow(10, 15), 'calypso', 15);
+        calypso.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let calypsoPosition = new THREE.Vector3();
+        calypsoPosition.x =  -1.053246289255403E+00 * Constants.AU;
+        calypsoPosition.y =  -9.996311421371129E+00 * Constants.AU;
+        calypsoPosition.z =   2.164373703272932E-01 * Constants.AU;
+        calypso.position.copy(calypsoPosition);
+
+        let calypsoVelocity = new THREE.Vector3();
+        calypsoVelocity.x = Converter.auPerDayToMPerSecond(  1.037779849626199E-02);
+        calypsoVelocity.y = Converter.auPerDayToMPerSecond( -4.341661764670207E-03);
+        calypsoVelocity.z = Converter.auPerDayToMPerSecond(  1.424862624268842E-03);
+        calypso.velocity.copy(calypsoVelocity);
+
+        let atlas = new Moon(6.6 * Math.pow(10, 15), 'atlas', 18.5);
+        atlas.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let atlasPosition = new THREE.Vector3();
+        atlasPosition.x =  -1.052106091143701E+00 * Constants.AU;
+        atlasPosition.y =  -9.995787069764924E+00 * Constants.AU;
+        atlasPosition.z =   2.160850381163072E-01 * Constants.AU;
+        atlas.position.copy(atlasPosition);
+
+        let atlasVelocity = new THREE.Vector3();
+        atlasVelocity.x = Converter.auPerDayToMPerSecond(  1.478318550815113E-02);
+        atlasVelocity.y = Converter.auPerDayToMPerSecond( -1.726533934790352E-03);
+        atlasVelocity.z = Converter.auPerDayToMPerSecond( -5.336993376544495E-04);
+        atlas.velocity.copy(atlasVelocity);
+
+
         let prometheus = new Moon(1.566 * Math.pow(10, 17), 'prometheus', 74);
         prometheus.color = new THREE.Color(0xc2,0xb3, 0xbb);
         let prometheusPosition = new THREE.Vector3();
@@ -534,6 +591,90 @@ export class PlanetaryObjectManager {
         mirandaVelocity.z = Converter.auPerDayToMPerSecond( -1.814058428868515E-03);
         miranda.velocity.copy(mirandaVelocity);
 
+        let cordelia = new Moon(4.496 * Math.pow(10, 16), 'cordelia', 13);
+        cordelia.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let cordeliaPosition = new THREE.Vector3();
+        cordeliaPosition.x =   1.808890194635873E+01 * Constants.AU;
+        cordeliaPosition.y =   8.362260835128007E+00 * Constants.AU;
+        cordeliaPosition.z =  -2.029699341195864E-01 * Constants.AU;
+        cordelia.position.copy(cordeliaPosition);
+
+        let cordeliaVelocity = new THREE.Vector3();
+        cordeliaVelocity.x = Converter.auPerDayToMPerSecond(  4.367537694762891E-03);
+        cordeliaVelocity.y = Converter.auPerDayToMPerSecond(  2.204589046156134E-03);
+        cordeliaVelocity.z = Converter.auPerDayToMPerSecond(  1.011944725010162E-03);
+        cordelia.velocity.copy(cordeliaVelocity);
+
+        let ophelia = new Moon(5.3952 * Math.pow(10, 16), 'ophelia', 16);
+        ophelia.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let opheliaPosition = new THREE.Vector3();
+        opheliaPosition.x =   1.808872495342943E+01 * Constants.AU;
+        opheliaPosition.y =   8.362292400533992E+00 * Constants.AU;
+        opheliaPosition.z =  -2.030247964778732E-01 * Constants.AU;
+        ophelia.position.copy(opheliaPosition);
+
+        let opheliaVelocity = new THREE.Vector3();
+        opheliaVelocity.x = Converter.auPerDayToMPerSecond(  2.873465890174441E-03);
+        opheliaVelocity.y = Converter.auPerDayToMPerSecond(  2.938185645001026E-03);
+        opheliaVelocity.z = Converter.auPerDayToMPerSecond(  3.939956253542814E-03);
+        ophelia.velocity.copy(opheliaVelocity);
+
+        let bianca = new Moon(9.2917 * Math.pow(10, 16), 'bianca', 22);
+        bianca.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let biancaPosition = new THREE.Vector3();
+        biancaPosition.x =   1.808872986247212E+01 * Constants.AU;
+        biancaPosition.y =   8.362297476854657E+00 * Constants.AU;
+        biancaPosition.z =  -2.029756439669983E-01 * Constants.AU;
+        bianca.position.copy(biancaPosition);
+
+        let biancaVelocity = new THREE.Vector3();
+        biancaVelocity.x = Converter.auPerDayToMPerSecond(  2.980642976431620E-03);
+        biancaVelocity.y = Converter.auPerDayToMPerSecond(  2.838109052744181E-03);
+        biancaVelocity.z = Converter.auPerDayToMPerSecond(  3.307083116531829E-03);
+        bianca.velocity.copy(biancaVelocity);
+
+        let cressida = new Moon(3.432 * Math.pow(10, 17), 'cressida', 33);
+        cressida.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let cressidaPosition = new THREE.Vector3();
+        cressidaPosition.x =   1.808912474168243E+01 * Constants.AU;
+        cressidaPosition.y =   8.362218659319156E+00 * Constants.AU;
+        cressidaPosition.z =  -2.029241105127799E-01 * Constants.AU;
+        cressida.position.copy(cressidaPosition);
+
+        let cressidaVelocity = new THREE.Vector3();
+        cressidaVelocity.x = Converter.auPerDayToMPerSecond(  3.209994340515226E-03);
+        cressidaVelocity.y = Converter.auPerDayToMPerSecond(  1.993049597332895E-03);
+        cressidaVelocity.z = Converter.auPerDayToMPerSecond( -2.300842497885613E-03);
+        cressida.velocity.copy(cressidaVelocity);
+
+        let desdemona = new Moon(1.78341543538566000 * Math.pow(10, 17), 'desdemona', 29);
+        desdemona.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let desdemonaPosition = new THREE.Vector3();
+        desdemonaPosition.x =   1.808853739806392E+01 * Constants.AU;
+        desdemonaPosition.y =   8.362300649902172E+00 * Constants.AU;
+        desdemonaPosition.z =  -2.032597780310287E-01 * Constants.AU;
+        desdemona.position.copy(desdemonaPosition);
+
+        let desdemonaVelocity = new THREE.Vector3();
+        desdemonaVelocity.x = Converter.auPerDayToMPerSecond( -1.057930260695167E-03);
+        desdemonaVelocity.y = Converter.auPerDayToMPerSecond(  4.002399412121152E-03);
+        desdemonaVelocity.z = Converter.auPerDayToMPerSecond(  5.521047558418985E-03);
+        desdemona.velocity.copy(desdemonaVelocity);
+
+        let juliet = new Moon(5.5750 * Math.pow(10, 17), 'juliet', 42);
+        juliet.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let julietPosition = new THREE.Vector3();
+        julietPosition.x =   1.808883775764932E+01 * Constants.AU;
+        julietPosition.y =   8.362286924489874E+00 * Constants.AU;
+        julietPosition.z =  -2.028860792071264E-01 * Constants.AU;
+        juliet.position.copy(julietPosition);
+
+        let julietVelocity = new THREE.Vector3();
+        julietVelocity.x = Converter.auPerDayToMPerSecond(  3.504250530625501E-03);
+        julietVelocity.y = Converter.auPerDayToMPerSecond(  2.465987613115481E-03);
+        julietVelocity.z = Converter.auPerDayToMPerSecond(  1.557737494655678E-03);
+        juliet.velocity.copy(julietVelocity);
+
         let portia = new Moon(1.6815 * Math.pow(10, 18), 'portia', 55);
         portia.color = new THREE.Color(0xc2,0xb3, 0xbb);
         let portiaPosition = new THREE.Vector3();
@@ -541,6 +682,34 @@ export class PlanetaryObjectManager {
         portiaPosition.y =   8.362097681542858E+00 * Constants.AU;
         portiaPosition.z =  -2.034540065554775E-01 * Constants.AU;
         portia.position.copy(portiaPosition);
+
+        let rosalind = new Moon(2.5477 * Math.pow(10, 17), 'rosalind', 29);
+        rosalind.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let rosalindPosition = new THREE.Vector3();
+        rosalindPosition.x =   1.808935032607153E+01 * Constants.AU;
+        rosalindPosition.y =   8.362148086252374E+00 * Constants.AU;
+        rosalindPosition.z =  -2.030715495325098E-01 * Constants.AU;
+        rosalind.position.copy(rosalindPosition);
+
+        let rosalindVelocity = new THREE.Vector3();
+        rosalindVelocity.x = Converter.auPerDayToMPerSecond(  6.715319360705671E-04);
+        rosalindVelocity.y = Converter.auPerDayToMPerSecond(  2.251499773002828E-03);
+        rosalindVelocity.z = Converter.auPerDayToMPerSecond( -4.530027416598101E-03);
+        rosalind.velocity.copy(rosalindVelocity);
+
+        let belinda = new Moon(3.56683087077132000 * Math.pow(10, 17), 'belinda', 34);
+        belinda.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let belindaPosition = new THREE.Vector3();
+        belindaPosition.x =   1.808845601855128E+01 * Constants.AU;
+        belindaPosition.y =   8.362303637362350E+00 * Constants.AU;
+        belindaPosition.z =  -2.033689609380092E-01 * Constants.AU;
+        belinda.position.copy(belindaPosition);
+
+        let belindaVelocity = new THREE.Vector3();
+        belindaVelocity.x = Converter.auPerDayToMPerSecond( -2.266283712628655E-03);
+        belindaVelocity.y = Converter.auPerDayToMPerSecond(  4.204015033667478E-03);
+        belindaVelocity.z = Converter.auPerDayToMPerSecond(  5.003480717877666E-03);
+        belinda.velocity.copy(belindaVelocity);
 
         let portiaVelocity = new THREE.Vector3();
         portiaVelocity.x = Converter.auPerDayToMPerSecond( -3.740968579934781E-03);
@@ -561,6 +730,21 @@ export class PlanetaryObjectManager {
         puckVelocity.y = Converter.auPerDayToMPerSecond(  2.425000072226604E-03);
         puckVelocity.z = Converter.auPerDayToMPerSecond(  5.828152995737249E-04);
         puck.velocity.copy(puckVelocity);
+
+        // incredible high range of mass 2.5-7.3
+        let caliban = new Moon(5 * Math.pow(10, 17), 'caliban', 35);
+        caliban.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let calibanPosition = new THREE.Vector3();
+        calibanPosition.x =   1.804476347314614E+01 * Constants.AU;
+        calibanPosition.y =   8.366331177889480E+00 * Constants.AU;
+        calibanPosition.z =  -2.029034639481397E-01 * Constants.AU;
+        caliban.position.copy(calibanPosition);
+
+        let calibanVelocity = new THREE.Vector3();
+        calibanVelocity.x = Converter.auPerDayToMPerSecond( -1.649172593204582E-03);
+        calibanVelocity.y = Converter.auPerDayToMPerSecond(  3.813161317652717E-03);
+        calibanVelocity.z = Converter.auPerDayToMPerSecond(  3.948728443708463E-04);
+        caliban.velocity.copy(calibanVelocity);
 
         let sycorax = new Moon(2.3 * Math.pow(10, 18), 'sycorax', 75);
         sycorax.color = new THREE.Color(0xc2,0xb3, 0xbb);
@@ -605,6 +789,35 @@ export class PlanetaryObjectManager {
         nereidVelocity.y = Converter.auPerDayToMPerSecond(  3.362641681679426E-03);
         nereidVelocity.z = Converter.auPerDayToMPerSecond( -6.593772982006257E-05);
         nereid.velocity.copy(nereidVelocity);
+
+        let naiad = new Moon(1.9 * Math.pow(10, 17), 'naiad', 29);
+        naiad.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let naiadPosition = new THREE.Vector3();
+        naiadPosition.x =   2.849052386709126E+01 * Constants.AU;
+        naiadPosition.y =  -9.221977658534561E+00 * Constants.AU;
+        naiadPosition.z =  -4.666070261364434E-01 * Constants.AU;
+        naiad.position.copy(naiadPosition);
+
+        let naiadVelocity = new THREE.Vector3();
+        naiadVelocity.x = Converter.auPerDayToMPerSecond(  1.248061719248399E-03);
+        naiadVelocity.y = Converter.auPerDayToMPerSecond( -3.268213420904007E-03);
+        naiadVelocity.z = Converter.auPerDayToMPerSecond( -2.890853116295286E-03);
+        naiad.velocity.copy(naiadVelocity);
+
+        let thalassa = new Moon(3.5 * Math.pow(10, 17), 'thalassa', 40);
+        thalassa.color = new THREE.Color(0xc2,0xb3, 0xbb);
+        let halassaPosition = new THREE.Vector3();
+        halassaPosition.x =   2.849102798210040E+01 * Constants.AU;
+        halassaPosition.y =  -9.222142904575350E+00 * Constants.AU;
+        halassaPosition.z =  -4.668512186358853E-01 * Constants.AU;
+        thalassa.position.copy(halassaPosition);
+
+        let halassaVelocity = new THREE.Vector3();
+        halassaVelocity.x = Converter.auPerDayToMPerSecond(  5.825388705034145E-03);
+        halassaVelocity.y = Converter.auPerDayToMPerSecond(  7.661589038331868E-03);
+        halassaVelocity.z = Converter.auPerDayToMPerSecond( -4.087021173796102E-04);
+        thalassa.velocity.copy(halassaVelocity);
+
 
         let despina = new Moon(2.1 * Math.pow(10, 18), 'despina', 74);
         despina.color = new THREE.Color(0xc2,0xb3, 0xbb);
@@ -678,7 +891,6 @@ export class PlanetaryObjectManager {
         charonVelocity.z = Converter.auPerDayToMPerSecond( -1.021966349205112E-03);
         charon.velocity.copy(charonVelocity);
 
-
         this._moons.push(luna);
 
         this._moons.push(io);
@@ -700,6 +912,10 @@ export class PlanetaryObjectManager {
         this._moons.push(phoebe);
         this._moons.push(janus);
         this._moons.push(epimetheus);
+        this._moons.push(helene);
+        this._moons.push(telesto);
+        this._moons.push(calypso);
+        this._moons.push(atlas);
         this._moons.push(prometheus);
 
         this._moons.push(ariel);
@@ -707,13 +923,24 @@ export class PlanetaryObjectManager {
         this._moons.push(titania);
         this._moons.push(oberon);
         this._moons.push(miranda);
+        this._moons.push(ophelia);
+        this._moons.push(bianca);
+        this._moons.push(cressida);
+        this._moons.push(desdemona);
+        this._moons.push(juliet);
         this._moons.push(portia);
+        this._moons.push(rosalind);
+        this._moons.push(belinda);
         this._moons.push(puck);
+        this._moons.push(caliban);
         this._moons.push(sycorax);
 
         this._moons.push(triton);
         this._moons.push(nereid);
-        this._moons.push(despina);
+        // these moons dont behave properly
+        //this._moons.push(naiad);
+        //this._moons.push(thalassa);
+        //this._moons.push(despina);
         this._moons.push(galatea);
         this._moons.push(larissa);
         this._moons.push(proteus);
