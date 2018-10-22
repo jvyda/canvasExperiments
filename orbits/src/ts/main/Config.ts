@@ -12,6 +12,7 @@ export class Config {
     public showMoons: boolean;
     public maxTrailPoints: number;
     public trailEnabled: boolean;
+    public zoomSpeed: number;
 
     public reconfigureSizeRelatedConfigurations() {
         this.mainDimensions = new THREE.Vector2(window.innerWidth, window.innerHeight);
@@ -25,6 +26,7 @@ export class Config {
         this.showMoons = true;
         this.maxTrailPoints = 50000;
         this.trailEnabled = false;
+        this.zoomSpeed = 5;
     }
 
     protected constructor() {

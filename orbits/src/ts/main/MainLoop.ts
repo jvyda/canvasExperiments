@@ -37,7 +37,7 @@ export class MainLoop {
 
 
         this._controls = new TrackingBallControls(this.mainCamera, this._mainRenderer.domElement);
-        this._controls.zoomSpeed = 5;
+        this._controls.zoomSpeed = Config.i().zoomSpeed;
         this._controls.rotateSpeed = 5;
         this._controls.panSpeed = 3;
         this._controls.staticMoving = true;
@@ -217,6 +217,7 @@ export class MainLoop {
             sprite.scale.set(scale, scale, scale);
             value.textObj.scale.set(scale, scale, scale);
         });
+        this._controls.zoomSpeed = Config.i().zoomSpeed * (1/this.mainCamera.zoom) ;
         // TODO very bad style, REFACTOR
         this.planObjManager.spheresAct(this._scene);
         setTimeout(() => {
