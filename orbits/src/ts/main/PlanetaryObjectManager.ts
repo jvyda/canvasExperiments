@@ -5,12 +5,14 @@ import {Converter} from "./Converter";
 import {Constants} from "./Contants";
 import {PlanetaryObject} from "./PlanetaryObject";
 import {Config} from "./Config";
+import {OtherObject} from "./OtherObject";
 
 
 export class PlanetaryObjectManager {
     private _planets: Array<Planet> = [];
     private _moons: Array<Moon> = [];
     private _objects: Array<PlanetaryObject> = [];
+    private _minor_objects: Array<OtherObject> = [];
 
     setupPlanets(){
         let sun = new Planet(1.98892 * Math.pow(10, 30), 'sun', 696000);
@@ -949,9 +951,59 @@ export class PlanetaryObjectManager {
 
     }
 
+    setupMinorObjects(){
+        let haumea = new OtherObject(4.006 * Math.pow(10, 21), 'haumea', 806);
+        haumea.color = new THREE.Color(174/255,174/255, 171/255);
+        let heaumeaPosition = new THREE.Vector3();
+        heaumeaPosition.x =  -4.093055831796075E+01 * Constants.AU;
+        heaumeaPosition.y =  -1.787488310171598E+01 * Constants.AU;
+        heaumeaPosition.z =   2.369889695911210E+01 * Constants.AU;
+        haumea.position.copy(heaumeaPosition);
+
+        let haumeaVelocity = new THREE.Vector3();
+        haumeaVelocity.x = Converter.auPerDayToMPerSecond(  1.102660402434050E-03);
+        haumeaVelocity.y = Converter.auPerDayToMPerSecond(  -1.904960110473722E-03);
+        haumeaVelocity.z = Converter.auPerDayToMPerSecond( 3.878001996250186E-05);
+        haumea.velocity.copy(haumeaVelocity);
+
+        let eris = new OtherObject(1.66 * Math.pow(10, 22), 'eris', 1163);
+        eris.color = new THREE.Color(255/255,172/255, 171/255);
+        let erisPosition = new THREE.Vector3();
+        erisPosition.x =   8.654332892754566E+01 * Constants.AU;
+        erisPosition.y =   3.670844038669810E+01 * Constants.AU;
+        erisPosition.z =  -2.040340180469552E+01 * Constants.AU;
+        eris.position.copy(erisPosition);
+
+        let erisVelocity = new THREE.Vector3();
+        erisVelocity.x = Converter.auPerDayToMPerSecond(  -3.808054913309695E-04);
+        erisVelocity.y = Converter.auPerDayToMPerSecond(  8.977027696286822E-04);
+        erisVelocity.z = Converter.auPerDayToMPerSecond( 9.173543747680041E-04);
+        eris.velocity.copy(erisVelocity);
+
+
+        let makemake = new OtherObject(4.4 * Math.pow(10, 21), 'makemake', 715);
+        makemake.color = new THREE.Color(174/255,174/255, 171/255);
+        let makemakePosition = new THREE.Vector3();
+        makemakePosition.x =  -4.613900444781419E+01 * Constants.AU;
+        makemakePosition.y =  -2.284317179513587E+00 * Constants.AU;
+        makemakePosition.z =   2.491233775763982E+01 * Constants.AU;
+        makemake.position.copy(makemakePosition);
+
+        let makemakeVelocity = new THREE.Vector3();
+        makemakeVelocity.x = Converter.auPerDayToMPerSecond(  -9.899377825101445E-05);
+        makemakeVelocity.y = Converter.auPerDayToMPerSecond(  -2.177338967285932E-03);
+        makemakeVelocity.z = Converter.auPerDayToMPerSecond( -1.672130256978141E-04);
+        makemake.velocity.copy(makemakeVelocity);
+
+        this._minor_objects.push(haumea);
+        this._minor_objects.push(eris);
+        this._minor_objects.push(makemake);
+
+    }
+
 
     joinToFullList() {
-        this._objects = this._moons.concat(this._planets);
+        this._objects = this._moons.concat(this._planets).concat(this._minor_objects);
         // for finding the scale
        /* let xMax = Number.MIN_SAFE_INTEGER, xMin = Number.MAX_SAFE_INTEGER, yMax = Number.MIN_SAFE_INTEGER, yMin = Number.MAX_SAFE_INTEGER, zMax = Number.MIN_SAFE_INTEGER, zMin = Number.MAX_SAFE_INTEGER;
         this._objects.forEach(value => {
@@ -989,5 +1041,10 @@ export class PlanetaryObjectManager {
 
     get objects(): Array<PlanetaryObject> {
         return this._objects;
+    }
+
+
+    get minor_objects(): Array<OtherObject> {
+        return this._minor_objects;
     }
 }

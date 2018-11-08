@@ -4,6 +4,7 @@ import {Config} from "./Config";
 import TrackingBallControls = require('three-trackballcontrols');
 import {PlanetaryObject} from "./PlanetaryObject";
 import {Moon} from "./Moon";
+import {OtherObject} from "./OtherObject";
 
 export class MainLoop {
     private planObjManager: PlanetaryObjectManager = new PlanetaryObjectManager();
@@ -18,6 +19,7 @@ export class MainLoop {
 
         this.planObjManager.setupPlanets();
         this.planObjManager.setupMoons();
+        this.planObjManager.setupMinorObjects();
         this.planObjManager.joinToFullList();
 
         this._mainRenderer = new THREE.WebGLRenderer({antialias: true});
@@ -116,6 +118,9 @@ export class MainLoop {
         Config.i().showMoonNames = !Config.i().showMoonNames;
         this.planObjManager.moons.forEach(value => {
             value.textObj.visible = Config.i().showMoonNames;
+        });
+        this.planObjManager.minor_objects.forEach(value => {
+            value.textObj.visible = Config.i().showMoonNames;
         })
     };
 
@@ -123,6 +128,9 @@ export class MainLoop {
         let config = Config.i();
         config.showMoons = !config.showMoons;
         this.planObjManager.moons.forEach(value => {
+            value.obj.visible = Config.i().showMoons;
+        });
+        this.planObjManager.minor_objects.forEach(value => {
             value.obj.visible = Config.i().showMoons;
         });
         if(config.trailEnabled){
@@ -167,7 +175,7 @@ export class MainLoop {
         fixedPosition.copy(object.position);
         sphere.position.copy(fixedPosition);
         object.obj = sphere;
-        if(object instanceof Moon){
+        if(object instanceof Moon || object instanceof OtherObject){
             sphere.visible = Config.i().showMoons;
         }
         this.placeTextToPlanet(object, fixedPosition);
@@ -193,7 +201,7 @@ export class MainLoop {
         let textMesh = new THREE.Mesh(fontGeo, fontMat);
         textMesh.position.copy(fixedPosition);
 
-        if(object instanceof Moon){
+        if(object instanceof Moon || object instanceof OtherObject){
             textMesh.visible = Config.i().showMoonNames;
         }
         this._scene.add(textMesh);
