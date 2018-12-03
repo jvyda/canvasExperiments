@@ -16,6 +16,9 @@ export class Turtle {
     private currentAngle = Utils.degToRad(-90);
     private oldAngles : Array<number> = [];
     private oldPositions : Array<Vector2>;
+    private oldColorIndexes: Array<number> = [];
+    private colorIndex: number = 0;
+    private rainbowColors = Utils.createRainbowColors(0.5);
 
     constructor(ctx: CanvasRenderingContext2D, turtleRules: TurtleRule) {
         this.ctx = ctx;
@@ -27,7 +30,7 @@ export class Turtle {
 
     interpretSequence(sequence: string[]){
         this.ctx.clearRect(0, 0, Config.width, Config.height);
-        this.ctx.beginPath();
+        this.updateColor();
         this.ctx.moveTo(this.position.x, this.position.y);
         sequence.forEach(value => {
             this.turtleRules[value](this, this.ctx);
@@ -58,6 +61,7 @@ export class Turtle {
     saveState(){
         this.oldAngles.push(this.currentAngle);
         this.oldPositions.push(new Vector2(this._position.x, this._position.y));
+        this.oldColorIndexes.push(this.colorIndex);
     }
 
     popState(){
@@ -68,6 +72,7 @@ export class Turtle {
         this.ctx.beginPath();
         this._position = this.oldPositions.pop();
         this.currentAngle = this.oldAngles.pop();
+        this.colorIndex = this.oldColorIndexes.pop();
     }
 
     rotateVectorAccordingToAngle(vec: Vector2){
@@ -79,5 +84,25 @@ export class Turtle {
 
     drawToPosition() {
         this.ctx.lineTo(this.position.x, this.position.y);
+    }
+
+    incrementColor() {
+        this.colorIndex += 1;
+        this.updateColor();
+    }
+
+    private updateColor() {
+        this.ctx.stroke();
+        this.ctx.beginPath();
+        this.colorIndex = this.colorIndex % this.rainbowColors.length;
+        this.ctx.strokeStyle = this.rainbowColors[this.colorIndex].styleRGB;
+    }
+
+    decrementColor() {
+        this.colorIndex -= 1;
+        if(this.colorIndex < 0){
+            this.colorIndex = 0;
+        }
+        this.updateColor();
     }
 }

@@ -55,7 +55,8 @@ export class MainLoop {
     });*/
         let turtleRules = TurtleRuleGenerator.getTurtleRules();
         let turtle = new Turtle(this.ctx, turtleRules);
-        turtle.interpretSequence(this.manager.sequences[this.manager.sequences.length - 1]);
+        let sequenceToUse = this.manager.sequences[this.manager.sequences.length - 1];
+        turtle.interpretSequence(sequenceToUse);
     }
 
 

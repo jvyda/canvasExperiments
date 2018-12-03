@@ -26,6 +26,14 @@ export class TurtleRuleGenerator {
         let popState = (turtle: Turtle, ctx: CanvasRenderingContext2D) => {
             turtle.popState();
         };
+
+        let incrementColor = (turtle: Turtle, ctx: CanvasRenderingContext2D) => {
+            turtle.incrementColor();
+        };
+
+        let decrementColor = (turtle: Turtle, ctx: CanvasRenderingContext2D) => {
+            turtle.decrementColor();
+        };
         turtleRules['F'] = drawF;
         turtleRules['G'] = drawF;
         turtleRules['I'] = noop;
@@ -33,6 +41,8 @@ export class TurtleRuleGenerator {
         turtleRules['-'] = rotateReverse;
         turtleRules['['] = saveState;
         turtleRules[']'] = popState;
+        turtleRules['R'] = incrementColor;
+        turtleRules['C'] = decrementColor;
         return turtleRules;
     }
 }
