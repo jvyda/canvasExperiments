@@ -9,12 +9,13 @@ export class MainLoop {
 
     private manager: SystemManager;
     private ctx: CanvasRenderingContext2D;
+    private canvas : HTMLCanvasElement;
 
     execute() {
-        let canvas = <HTMLCanvasElement>document.getElementById('canvas');
-        canvas.width = Config.width;
-        canvas.height = Config.height;
-        this.ctx = canvas.getContext('2d');
+        this.canvas = <HTMLCanvasElement>document.getElementById('canvas');
+        this.canvas.width = Config.width;
+        this.canvas.height = Config.height;
+        this.ctx = this.canvas.getContext('2d');
         this.manager = new SystemManager();
 
         let iterationsButton = <HTMLButtonElement> document.getElementById('iterationsBtn');
@@ -56,6 +57,11 @@ export class MainLoop {
         let turtleRules = TurtleRuleGenerator.getTurtleRules();
         let turtle = new Turtle(this.ctx, turtleRules);
         let sequenceToUse = this.manager.sequences[this.manager.sequences.length - 1];
+        let max = turtle.findMax(sequenceToUse);
+        Config.width = Math.max(max.x, window.innerWidth);
+        Config.height = Math.max(max.y, window.innerHeight);
+        this.canvas.width = Config.width;
+        this.canvas.height = Config.height;
         turtle.interpretSequence(sequenceToUse);
     }
 

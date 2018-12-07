@@ -22,7 +22,11 @@ export class SystemRuleStorage {
         let replacements : ReplacementRule = {};
         SystemRuleStorage.setBaseRules(replacements);
         Config.alphabet.forEach(value => {
-            replacements[value] = Utils.randomElement(Config.colorChars) + Utils.randomElement(Config.angleChars) + Utils.randomElement(Config.moveChars) + Utils.randomElement(Config.stateChars);
+            replacements[value] =
+                Utils.randomElement(Config.alphabet) +
+                Utils.randomElement(Config.alphabet) +
+                Utils.randomElement(Config.alphabet) +
+                Utils.randomElement(Config.alphabet)
         });
 
         let startElement = Utils.randomElement(Config.alphabet);
